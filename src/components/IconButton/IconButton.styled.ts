@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const StyledIconButton = styled.button`
+	min-height: 3em;
+	min-width: 3em;
 	height: 3em;
 	width: 3em;
 	padding: 0.4em;
@@ -11,7 +13,7 @@ export const StyledIconButton = styled.button`
 	box-shadow: 0 0.15em 0.1em 0.1em rgb(0 0 0 / 50%);
 
 	&:active {
-		scale: 0.97;
+		transform: scale(0.97);
 	}
 
 	img {
