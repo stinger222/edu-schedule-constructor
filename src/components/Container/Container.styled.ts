@@ -7,7 +7,7 @@ const StyledContainer = styled.div`
 
 	@media (max-width: 360px) {
 		& {
-			font-size: 3vw !important;
+			font-size: 4.4vw;
 		}
 		
 	}
