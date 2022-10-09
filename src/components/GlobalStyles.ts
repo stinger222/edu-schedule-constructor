@@ -6,9 +6,6 @@ const GlobalStyles = createGlobalStyle`
 		margin: 0;
 		padding: 0;
 		font-size: 1em;
-	}
-
-	body {
 		font-family: 'Inter', sans-serif;
 	}
 
@@ -17,3 +14,9 @@ const GlobalStyles = createGlobalStyle`
 	}
 `
 export default GlobalStyles
+
+export const theme = {
+	minWidth: {
+		mobile: 360
+	}
+}
