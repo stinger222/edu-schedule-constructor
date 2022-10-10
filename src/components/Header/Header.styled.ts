@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const StyledHeader = styled.header`
 	font-size: 0.875em;
 	max-width: 400px;
-	margin: 1.5em auto;
+	margin-inline: auto;
+	margin-block: 1.5em 2em;
 	padding: 0 0.5em;
 	display: flex;
 	justify-content: space-between;

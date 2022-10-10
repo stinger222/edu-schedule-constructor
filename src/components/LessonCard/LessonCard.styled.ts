@@ -8,14 +8,15 @@ export const StyledLessonCard = styled.div`
 	margin: 0 auto;
 	padding: 0.4em 0.7em;
 
-	background: red;
+	background: rgba(127, 164, 236, 0.15);
 	border-radius: 0.75em;
+	box-shadow: 0px 4px 6px 2px rgb(0 0 0 / 25%);
 
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 
-	& .card_header {
+	& .header {
 		font-weight: 300;
 		display: flex;
 		justify-content: space-between;

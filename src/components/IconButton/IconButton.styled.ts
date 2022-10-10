@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledIconButton = styled.button`
+	font-size: 0.9em;
 	min-height: 3em;
 	min-width: 3em;
 	height: 3em;
