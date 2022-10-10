@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import HeaderButton from "../HeaderButton/HeaderButton";
 import IconButton from "../IconButton/IconButton";
 import { StyledHeader } from "./Header.styled";

@@ -4,9 +4,16 @@ export const StyledHeader = styled.header`
 	font-size: 0.875em;
 	max-width: 400px;
 	margin: 1.5em auto;
+	padding: 0 0.5em;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	@media (max-width: 360px) {
+		& {
+			font-size: 3.88vw;
+		}
+	}
 
 	@media (min-width: 800px) {
 		& {
