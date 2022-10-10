@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledLessonCard = styled.div`
-	--card-ratio: 3.725;
+	--card-ratio: 3.94;
 
 	width: 25em;
 	height: calc(25em / var(--card-ratio));
@@ -10,7 +10,7 @@ export const StyledLessonCard = styled.div`
 
 	background: rgba(127, 164, 236, 0.15);
 	border-radius: 0.75em;
-	box-shadow: 0px 4px 6px 2px rgb(0 0 0 / 25%);
+	box-shadow: 0px 4px 6px 0px rgb(0 0 0 / 25%);
 
 	display: flex;
 	flex-direction: column;
@@ -24,7 +24,7 @@ export const StyledLessonCard = styled.div`
 
 	& .lesson_name {
 		font-size: 1.2em;
-		margin-top: 0.7em;
+		margin-top: 0.5em;
 		line-height: 1em;
 	}
 

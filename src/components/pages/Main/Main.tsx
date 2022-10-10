@@ -61,6 +61,62 @@ const Main = () => {
 				lessonName="Какая-то хуйня"
 				teacherName="Какой-то хуй"
 				/>
+			<BreakCard
+				breakLength={10}
+				startTime="11:10"
+				endTime="11:20"
+			/>
+
+			<LessonCard
+				cabinet="302т"
+				startTime="10:10"
+				endTime="11:10"
+				lessonId={1}
+				lessonName="Какая-то хуйня"
+				teacherName="Какой-то хуй"
+				/>
+			<BreakCard
+				breakLength={10}
+				startTime="11:10"
+				endTime="11:20"
+			/>
+
+			<LessonCard
+				cabinet="302т"
+				startTime="10:10"
+				endTime="11:10"
+				lessonId={1}
+				lessonName="Какая-то хуйня"
+				teacherName="Какой-то хуй"
+				/>
+			<BreakCard
+				breakLength={10}
+				startTime="11:10"
+				endTime="11:20"
+			/>
+
+			<LessonCard
+				cabinet="302т"
+				startTime="10:10"
+				endTime="11:10"
+				lessonId={1}
+				lessonName="Какая-то хуйня"
+				teacherName="Какой-то хуй"
+				/>
+			<BreakCard
+				breakLength={10}
+				startTime="11:10"
+				endTime="11:20"
+			/>
+
+			<LessonCard
+				cabinet="302т"
+				startTime="10:10"
+				endTime="11:10"
+				lessonId={1}
+				lessonName="Какая-то хуйня"
+				teacherName="Какой-то хуй"
+				/>
 
 			</Container>
 		</StyledMain>

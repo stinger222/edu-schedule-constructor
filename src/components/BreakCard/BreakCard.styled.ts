@@ -6,7 +6,7 @@ const StyledBreakCard = styled.div`
 
 	width: 25em;
 	height: calc(25em / var(--card-ratio));
-	margin: 0.6em 0;
+	margin: 0.7em 0;
 	padding: 0.4em 1em;
 	background: white;
 

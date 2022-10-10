@@ -9,6 +9,10 @@ const GlobalStyles = createGlobalStyle`
 		font-family: 'Inter', sans-serif;
 	}
 
+	body {
+		padding-bottom: 0.8em;
+	}
+
 	button {
 		outline: none;
 	}
