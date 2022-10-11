@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const StyledBreakCard = styled.div`
 	--card-ratio: 9;
 
-	width: 25em;
-	height: calc(25em / var(--card-ratio));
-	margin: 0.7em 0;
+	width: 24.5em;
+	height: calc(24.5em / var(--card-ratio));
+	margin: 0.7em auto;
 	padding: 0.4em 1em;
 	background: white;
 

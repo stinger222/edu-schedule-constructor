@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const StyledLessonCard = styled.div`
 	--card-ratio: 3.94;
 
-	width: 25em;
-	height: calc(25em / var(--card-ratio));
+	width: 24.5em;
+	height: calc(24.5em / var(--card-ratio));
 	margin: 0 auto;
 	padding: 0.4em 0.7em;
 

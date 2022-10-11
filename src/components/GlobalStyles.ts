@@ -16,6 +16,18 @@ const GlobalStyles = createGlobalStyle`
 	button {
 		outline: none;
 	}
+
+	::-webkit-scrollbar {
+		width: 11px;
+		height: 11px;
+		background-color: #ffffff;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #cfcfcf;
+		border-radius: 50px;
+		border: 2px solid #ffffff;
+	}
 `
 export default GlobalStyles
 
