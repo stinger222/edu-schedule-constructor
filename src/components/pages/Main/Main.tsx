@@ -7,7 +7,7 @@ import Header from "../../Header/Header"
 import LessonCard from "../../LessonCard/LessonCard"
 import StyledMain from "./Main.styled"
 
-const Main = observer(() => {
+const Main = () => {
 	const {lessonsStore} = useContext(StoreContext)
 	return (
 		<StyledMain>
@@ -34,6 +34,6 @@ const Main = observer(() => {
 			</Container>
 		</StyledMain>
 	)
-})
+}
 
-export default Main
+export default observer(Main)

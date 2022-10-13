@@ -10,7 +10,7 @@ const StyledHeaderButton = styled.button`
 	margin-inline: 0.2em;
 	padding: 0.1em;
 
-	&.active {
+	&.selected {
 		color: white;
 		background: #0071ef;
 		border-radius: 10em;

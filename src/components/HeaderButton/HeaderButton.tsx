@@ -1,17 +1,23 @@
+import { observer } from "mobx-react-lite"
+import { useContext } from "react"
+import { StoreContext } from "../.."
 import StyledHeaderButton from "./HeaderButton.styled"
-
 interface IProps {
 	children?: any,
-	onClick?: () => void,
-	active?: boolean
+	id: number
 }
 
-const HeaderButton: React.FC<IProps> = ({children, active, onClick}) => {
+const HeaderButton: React.FC<IProps> = ({ children, id }) => {
+	let { selectedDayId, selectDay } = useContext(StoreContext).headerStore
+	
 	return (
-		<StyledHeaderButton className={`${active ? 'active' : ''}`}>
+		<StyledHeaderButton
+			className={selectedDayId == id ? 'selected' : ''}
+			onClick={() => {selectDay(id)}}
+		>
 			{children}
 		</StyledHeaderButton>
 	)
 }
 
-export default HeaderButton
+export default observer(HeaderButton)

@@ -8,12 +8,12 @@ import { StyledHeader } from "./Header.styled";
 			<IconButton
 				iconPath={require('../../assets/schedules-icon.png')}
 			/>
-			<HeaderButton active>Пн</HeaderButton>
-			<HeaderButton>Вт</HeaderButton>
-			<HeaderButton>Ср</HeaderButton>
-			<HeaderButton>Чт</HeaderButton>
-			<HeaderButton>Пт</HeaderButton>
-			{/* <HeaderButton>Сб</HeaderButton> */}
+			<HeaderButton id={1}>Пн</HeaderButton>
+			<HeaderButton id={2}>Вт</HeaderButton>
+			<HeaderButton id={3}>Ср</HeaderButton>
+			<HeaderButton id={4}>Чт</HeaderButton>
+			<HeaderButton id={5}>Пт</HeaderButton>
+			{/* <HeaderButton id={6}>Сб</HeaderButton> */}
 			<IconButton
 				iconPath={require('../../assets/add-icon.png')}
 			/>
