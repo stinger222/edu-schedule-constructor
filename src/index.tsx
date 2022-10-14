@@ -4,7 +4,7 @@ import App from './App';
 import RootStore from './stores/RootStore';
 
 const rootStore = new RootStore()
-export const StoreContext = React.createContext(rootStore)
+export const StoreContext = React.createContext<typeof rootStore>(rootStore)
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

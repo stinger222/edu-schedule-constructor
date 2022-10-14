@@ -1,25 +1,25 @@
 import { ILesson } from './interfaces';
-import { action, makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
-class LessonsStore {
+export interface ILessonsStore {
+	lessons: ILesson[]
+}
+class LessonsStore implements ILessonsStore {
 	lessons: ILesson[] = [{
-		id: 'df6g-2df4',
-		cabinet: "232t",
-		teacher: "teacher",
-		lesson_name: "lesson"
-	}]
+		id: '1',
+		cabinet: "232п",
+		teacher: "Некий хуй",
+		lesson_name: "ведёт некую хуйню"
+	},{
+		id: '2',
+		cabinet: "666",
+		teacher: "люблю хуи",
+		lesson_name: "Ещё какая-то хуйня"
+	},
+]
 
 	constructor() {
 		makeAutoObservable(this)
-	}
-
-	dick() {
-		this.lessons[0] = {
-			id: Math.random()+'',
-			cabinet: "232t",
-			teacher: "teacher",
-			lesson_name: "lesson"
-		}
 	}
 }
 

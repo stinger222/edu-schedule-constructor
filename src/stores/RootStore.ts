@@ -1,13 +1,13 @@
-import ComsposedSchedulesStore from "./ComsposedSchedulesStore";
-import HeaderStore from "./HeaderStore";
-import LessonsStore from "./LessonsStore";
-import RingSchedulesStore from "./RingSchedulesStore";
+import ComsposedSchedulesStore, { IComsposedSchedulesStore } from "./ComsposedSchedulesStore";
+import HeaderStore, { IHeaderStore } from "./HeaderStore";
+import LessonsStore, { ILessonsStore } from "./LessonsStore";
+import RingSchedulesStore, { IRingSchedulesStore } from "./RingSchedulesStore";
 
 class RootStore {
-		lessonsStore: any
-		comsposedSchedulesStore: any
-		ringSchedulesStore: any
-		headerStore: any
+		lessonsStore: ILessonsStore
+		comsposedSchedulesStore: IComsposedSchedulesStore
+		ringSchedulesStore: IRingSchedulesStore
+		headerStore: IHeaderStore
 
 		constructor() {
 			this.lessonsStore = new LessonsStore()
