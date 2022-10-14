@@ -1,5 +1,4 @@
 // Ring schedule
-
 export interface IRingSchedule {
 	id: string,
 	lessons: Array<{
@@ -9,7 +8,6 @@ export interface IRingSchedule {
 }
 
 // Lesson card
-
 export interface ILesson {
 	id: string,
 	cabinet: string,
@@ -17,10 +15,7 @@ export interface ILesson {
 	lesson_name: string,
 }
 
-
-
 // Composed schedule
-
 interface IComposedDay {
 	ring_schedule_id: string,
 	lesson_ids: string[]
@@ -28,10 +23,5 @@ interface IComposedDay {
 
 export interface IComposedSchedule {
 	id: string,
-	monday: IComposedDay,
-	tuesday: IComposedDay,
-	wensday: IComposedDay,
-	thursdsy: IComposedDay,
-	friday: IComposedDay,
-	saturday?: IComposedDay
+	week: IComposedDay[] // id represents day of the week
 }
