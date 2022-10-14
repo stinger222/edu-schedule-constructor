@@ -8,8 +8,8 @@ import LessonCard from "../../LessonCard/LessonCard"
 import StyledMain from "./Main.styled"
 
 const Main = () => {
-	const { comsposedSchedulesStore, headerStore, lessonsStore, ringSchedulesStore } = useContext(StoreContext)
-	const selectedDayId = headerStore.selectedDayId
+	const { comsposedSchedulesStore, uiStore, lessonsStore, ringSchedulesStore } = useContext(StoreContext)
+	const selectedDayId = uiStore.selectedDayId
 	const lessons = lessonsStore.lessons
 	const ringSchedules = ringSchedulesStore.schedules
 	const day = comsposedSchedulesStore.schedules[0].week[selectedDayId-1]

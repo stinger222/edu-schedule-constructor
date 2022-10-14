@@ -1,11 +1,11 @@
 import { makeAutoObservable } from 'mobx';
 
-export interface IHeaderStore {
+export interface IUIStore {
 	selectedDayId: number
 	selectDay: (id: number) => void
 }
 
-class HeaderStore implements IHeaderStore {
+class UIStore implements IUIStore {
 	selectedDayId = 1
 
 	constructor() {
@@ -22,4 +22,4 @@ class HeaderStore implements IHeaderStore {
 	}
 }
 
-export default HeaderStore
+export default UIStore

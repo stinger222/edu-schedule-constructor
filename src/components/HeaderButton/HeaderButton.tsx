@@ -8,12 +8,12 @@ interface IProps {
 }
 
 const HeaderButton: React.FC<IProps> = ({ children, id }) => {
-	let { selectedDayId, selectDay } = useContext(StoreContext).headerStore
+	const { selectedDayId, selectDay } = useContext(StoreContext).uiStore
 	
 	return (
 		<StyledHeaderButton
 			className={selectedDayId == id ? 'selected' : ''}
-			onClick={() => {selectDay(id)}}
+			onClick={() => selectDay(id)}
 		>
 			{children}
 		</StyledHeaderButton>
