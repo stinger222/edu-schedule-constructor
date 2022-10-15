@@ -15,6 +15,11 @@ class LessonsStore implements ILessonsStore {
 		cabinet: "666",
 		teacher: "люблю хуи",
 		lesson_name: "Ещё какая-то хуйня"
+	},{
+		id: '3',
+		cabinet: "1111",
+		teacher: "да",
+		lesson_name: "Ещё пара "
 	},
 ]
 

@@ -1,7 +1,7 @@
 // Ring schedule
 export interface IRingSchedule {
 	id: string,
-	lessons: Array<{
+	rings: Array<{
 		start: string,
 		end: string
 	}>
@@ -15,7 +15,7 @@ export interface ILesson {
 	lesson_name: string,
 }
 
-// Composed schedule
+// Composedschedule
 interface IComposedDay {
 	ring_schedule_id: string,
 	lesson_ids: string[]

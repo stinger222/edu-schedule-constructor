@@ -1,21 +1,21 @@
-import { observer } from "mobx-react-lite"
 import React, { useContext } from "react"
 import { StoreContext } from "../../.."
-import BreakCard from "../../BreakCard/BreakCard"
-import Container from "../../Container/Container"
-import Header from "../../Header/Header"
+import { observer } from "mobx-react-lite"
 import LessonCard from "../../LessonCard/LessonCard"
+import Container from "../../Container/Container"
+import BreakCard from "../../BreakCard/BreakCard"
+import Header from "../../Header/Header"
 import StyledMain from "./Main.styled"
 
 const Main = () => {
-	const { comsposedSchedulesStore, uiStore, lessonsStore, ringSchedulesStore } = useContext(StoreContext)
+	const { composedSchedulesStore, uiStore, lessonsStore, ringSchedulesStore } = useContext(StoreContext)
 
 	const lessons = lessonsStore.lessons
 	const ringSchedules = ringSchedulesStore.schedules
 
 	const selectedDayId = uiStore.selectedDayId
-	const selectedDay = comsposedSchedulesStore.schedules[0].week[selectedDayId-1]
-	const selectedDayRings = ringSchedules.find(i => i.id === selectedDay.ring_schedule_id).lessons
+	const selectedDay = composedSchedulesStore.schedules[0].week[selectedDayId-1]
+	const selectedDayRings = ringSchedules.find(i => i.id === selectedDay.ring_schedule_id).rings
 	
 	// i.e data for certain LessonCard and BreackCard
 	const getCardsData = (lessonId, itemId) => {
