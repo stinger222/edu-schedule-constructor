@@ -8,6 +8,7 @@ import Header from "../../Header/Header"
 import StyledMain from "./Main.styled"
 
 const Main = () => {
+	let errorMessage: string | null = null
 	const { composedSchedulesStore, uiStore, lessonsStore, ringSchedulesStore } = useContext(StoreContext)
 
 	const lessons = lessonsStore.lessons
@@ -31,30 +32,43 @@ const Main = () => {
 		return [lesson, lessonRings, breakStart, breakEnd]
 	}
 
+	// Amount of lessons greater that amount of rings defined
+	if (selectedDay.lesson_ids.length > selectedDayRings.length) {
+		errorMessage = 'Количество уроков привышет количество звонков в расписании!'
+	}
+
 	return (
 		<StyledMain>
 			<Header/>
 			<Container>
-				
-			{selectedDay.lesson_ids.map((lessonId, itemId) => {
-				const [ lesson, lessonRings, breakStart, breakEnd ] = getCardsData(lessonId, itemId)
 
-				return <React.Fragment key={itemId}>
-					<LessonCard
-						cabinet={lesson["cabinet"]}
-						startTime={lessonRings["start"]}
-						endTime={lessonRings["end"]}
-						lessonId={itemId + 1}
-						lessonName={lesson["lesson_name"]}
-						teacherName={lesson["teacher"]}
-					/>
-					
-					<BreakCard
-						startTime={breakStart as string | undefined}
-						endTime={breakEnd as string | undefined}
-					/>
-				</React.Fragment>
-			})}
+				{errorMessage &&
+					<h1
+						style={{ textAlign: 'center', color: 'orangered' }}
+					>{errorMessage}</h1>
+				}
+				
+				{!errorMessage &&
+					selectedDay.lesson_ids.map((lessonId, itemId) => {
+						const [ lesson, lessonRings, breakStart, breakEnd ] = getCardsData(lessonId, itemId)
+
+						return <React.Fragment key={itemId}>
+							<LessonCard
+								cabinet={lesson["cabinet"]}
+								startTime={lessonRings["start"]}
+								endTime={lessonRings["end"]}
+								lessonId={itemId + 1}
+								lessonName={lesson["lesson_name"]}
+								teacherName={lesson["teacher"]}
+							/>
+							
+							<BreakCard
+								startTime={breakStart as string | undefined}
+								endTime={breakEnd as string | undefined}
+							/>
+						</React.Fragment>
+					})
+				}
 
 			</Container>
 		</StyledMain>

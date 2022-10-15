@@ -32,7 +32,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 		},
 		{
 			ring_schedule_id: "rings2",
-			lesson_ids: ["2", "1"]
+			lesson_ids: ["2", "1","1","1","1","1","1",]
 		}
 	]
 	}]
