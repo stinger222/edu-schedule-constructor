@@ -15,7 +15,8 @@ const Main = () => {
 	const ringSchedules = ringSchedulesStore.schedules
 
 	const selectedDayId = uiStore.selectedDayId
-	const selectedDay = composedSchedulesStore.schedules[0].week[selectedDayId-1]
+
+	const selectedDay = composedSchedulesStore.schedules[0].week[selectedDayId]
 	const selectedDayRings = ringSchedules.find(i => i.id === selectedDay.ring_schedule_id).rings
 	
 	// i.e data for certain LessonCard and BreackCard

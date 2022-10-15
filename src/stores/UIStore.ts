@@ -14,7 +14,8 @@ class UIStore implements IUIStore {
 	}
 
 	private getTodayId(): number {
-		return new Date().getDay()
+		return Math.max((new Date().getDay() - 1), 0)
+
 	}
 
 	selectDay = (id: number) => {
