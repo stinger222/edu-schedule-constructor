@@ -1,4 +1,4 @@
-import { observer } from "mobx-react-lite"
+import { observer } from "mobx-react"
 import { useContext } from "react"
 import { StoreContext } from "../.."
 import StyledHeaderButton from "./HeaderButton.styled"

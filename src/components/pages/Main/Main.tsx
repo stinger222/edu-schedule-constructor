@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { StoreContext } from "../../.."
-import { observer } from "mobx-react-lite"
+import { observer } from "mobx-react"
 import LessonCard from "../../LessonCard/LessonCard"
 import Container from "../../Container/Container"
 import BreakCard from "../../BreakCard/BreakCard"
