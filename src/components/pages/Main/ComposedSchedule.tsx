@@ -4,7 +4,6 @@ import { observer } from "mobx-react"
 import BreakCard from "../../BreakCard/BreakCard"
 import LessonCard from "../../LessonCard/LessonCard"
 
-
 function ComposedSchedule() {
 	const { composedSchedulesStore, uiStore, lessonsStore, ringSchedulesStore } = useContext(StoreContext)
 
@@ -17,6 +16,7 @@ function ComposedSchedule() {
 
 	// User didn't compose schedule for this day
 	if (!selectedDay) {
+		console.clear()
 		throw new Error("Вы не составили расписание для этого дня!")
 	}
 
@@ -25,16 +25,15 @@ function ComposedSchedule() {
 		throw new Error("Количество уроков привышет количество звонков в расписании!")
 	}
 
-	return <>
-		<button onClick={() => {
+	return <> 
+			<button onClick={() => {
 			composedSchedulesStore.addSchedule([{
 				ring_schedule_id: "rings1",
 				lesson_ids: ["1", "1", "1"]
 			}])
 		}}>CUM</button>
 
-
-		{ !(selectedDay?.lesson_ids?.length > selectedDayRings?.length) &&
+	{
 			selectedDay.lesson_ids.map((index, itemId) => {
 				const [lesson, lessonRings, breakStart, breakEnd] = getCardsData(index, itemId)
 
@@ -54,9 +53,7 @@ function ComposedSchedule() {
 					/>
 				</React.Fragment>
 			})
-		}
-
-	</>
+		} </>
 
 	// i.e data for currnet LessonCard and BreackCard
 	function getCardsData (index, itemId) {
