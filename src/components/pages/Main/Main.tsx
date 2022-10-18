@@ -16,7 +16,7 @@ const Main = () => {
 
 	const selectedDayId = uiStore.selectedDayId
 
-	const selectedDay = composedSchedulesStore.schedules[0].week[selectedDayId]
+	const selectedDay = composedSchedulesStore.schedules[composedSchedulesStore.schedules.length - 1].week[selectedDayId]
 	const selectedDayRings = ringSchedules.find(i => i.id === selectedDay.ring_schedule_id).rings
 	
 	// i.e data for certain LessonCard and BreackCard
@@ -29,7 +29,6 @@ const Main = () => {
 		if (itemId + 1 >= selectedDay.lesson_ids.length ) {
 			breakEnd = undefined
 		}
-
 		return [lesson, lessonRings, breakStart, breakEnd]
 	}
 
@@ -42,7 +41,12 @@ const Main = () => {
 		<StyledMain>
 			<Header/>
 			<Container>
-
+				<button onClick={() => {
+					composedSchedulesStore.addSchedule([{
+						ring_schedule_id: "rings1",
+						lesson_ids: ["1", "1", "1"]
+					}])
+				}}>CUM</button>
 				{errorMessage &&
 					<h1
 						style={{ textAlign: 'center', color: 'orangered' }}

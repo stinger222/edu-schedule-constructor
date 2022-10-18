@@ -3,7 +3,11 @@ import { IRingSchedule } from './interfaces';
 import { makeAutoObservable } from 'mobx';
 
 export interface IRingSchedulesStore {
-	schedules: IRingSchedule[]
+	schedules: IRingSchedule[],
+	addSchedule: (
+		rings: Array<{start: string, end: string}>,
+		id?: string
+	) => void
 } 
 class RingSchedulesStore implements IRingSchedulesStore {
 	schedules: IRingSchedule[] = [{
@@ -37,6 +41,14 @@ class RingSchedulesStore implements IRingSchedulesStore {
 
 	constructor() {
 		makeAutoObservable(this)
+	}
+
+	
+	addSchedule( rings: Array<{start: string, end: string}>, id?: string) {
+		this.schedules.push({
+			id: id ?? nanoid(6),
+			rings
+		})
 	}
 }
 

@@ -1,10 +1,10 @@
 import { nanoid } from 'nanoid';
-import { IComposedSchedule } from './interfaces';
+import { IComposedSchedule, IComposedDay } from './interfaces';
 import { makeAutoObservable } from "mobx"
 
 export interface IComposedSchedulesStore {	
 	schedules: IComposedSchedule[],
-	addSchedule: (schedule: IComposedSchedule) => void
+	addSchedule: (week: IComposedDay[], id?: string) => void
 }
 
 class ComposedSchedulesStore implements IComposedSchedulesStore {
@@ -41,8 +41,13 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 		makeAutoObservable(this)
 	}
 
-	addSchedule(schedule) {
-		this.schedules.push(schedule)
+	addSchedule(week: IComposedDay[], id?: string) {
+		this.schedules.push({
+			id: id ?? nanoid(6),
+			week
+		})
+
+		console.log(JSON.stringify(this.schedules[this.schedules.length-1], null, 2));
 	}
 }
 

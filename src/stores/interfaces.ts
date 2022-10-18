@@ -16,7 +16,7 @@ export interface ILesson {
 }
 
 // Composedschedule
-interface IComposedDay {
+export interface IComposedDay {
 	ring_schedule_id: string,
 	lesson_ids: string[]
 }
