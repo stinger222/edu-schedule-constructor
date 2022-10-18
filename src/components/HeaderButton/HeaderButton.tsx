@@ -1,9 +1,9 @@
 import { observer } from "mobx-react"
-import { useContext } from "react"
+import { ReactNode, useContext } from "react"
 import { StoreContext } from "../.."
 import StyledHeaderButton from "./HeaderButton.styled"
 interface IProps {
-	children?: any,
+	children?: ReactNode,
 	id: number
 }
 
