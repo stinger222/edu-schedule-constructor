@@ -1,83 +1,26 @@
-import React, { useContext } from "react"
-import { StoreContext } from "../../.."
-import { observer } from "mobx-react"
-import LessonCard from "../../LessonCard/LessonCard"
+import { ErrorBoundary } from "react-error-boundary"
 import Container from "../../Container/Container"
-import BreakCard from "../../BreakCard/BreakCard"
+import ComposedSchedule from "./ComposedSchedule"
 import Header from "../../Header/Header"
 import StyledMain from "./Main.styled"
 
-const Main = () => {
-	let errorMessage: string | null = null
-	const { composedSchedulesStore, uiStore, lessonsStore, ringSchedulesStore } = useContext(StoreContext)
+export function ErrorFallback({ error }) {	
+	return <div style={{color: "orange", fontWeight:500, fontSize:"1.2em", textAlign:"center"}}>
+		{error.message}
+	</div>
+}
 
-	const lessons = lessonsStore.lessons
-	const ringSchedules = ringSchedulesStore.schedules
-
-	const selectedDayId = uiStore.selectedDayId
-
-	const selectedDay = composedSchedulesStore.schedules[composedSchedulesStore.schedules.length - 1].week[selectedDayId]
-	const selectedDayRings = ringSchedules.find(i => i.id === selectedDay.ring_schedule_id).rings
-	
-	// i.e data for certain LessonCard and BreackCard
-	const getCardsData = (index, itemId) => {
-		const lesson = lessons.find(i => i.id === index)
-		const lessonRings = selectedDayRings[itemId]
-		let breakStart = selectedDayRings[itemId]?.end
-		let breakEnd = selectedDayRings[itemId + 1]?.start
-
-		if (itemId + 1 >= selectedDay.lesson_ids.length ) {
-			breakEnd = undefined
-		}
-		return [lesson, lessonRings, breakStart, breakEnd]
-	}
-
-	// Amount of lessons greater that amount of rings defined
-	if (selectedDay.lesson_ids.length > selectedDayRings.length) {
-		errorMessage = 'Количество уроков привышет количество звонков в расписании!'
-	}
-
+function Main() {
 	return (
 		<StyledMain>
 			<Header/>
 			<Container>
-				<button onClick={() => {
-					composedSchedulesStore.addSchedule([{
-						ring_schedule_id: "rings1",
-						lesson_ids: ["1", "1", "1"]
-					}])
-				}}>CUM</button>
-				{errorMessage &&
-					<h1
-						style={{ textAlign: 'center', color: 'orangered' }}
-					>{errorMessage}</h1>
-				}
-				
-				{!errorMessage &&
-					selectedDay.lesson_ids.map((index, itemId) => {
-						const [ lesson, lessonRings, breakStart, breakEnd ] = getCardsData(index, itemId)
-
-						return <React.Fragment key={itemId}>
-							<LessonCard
-								cabinet={lesson["cabinet"]}
-								startTime={lessonRings["start"]}
-								endTime={lessonRings["end"]}
-								index={itemId + 1}
-								lessonName={lesson["lesson_name"]}
-								teacherName={lesson["teacher"]}
-							/>
-							
-							<BreakCard
-								startTime={breakStart as string | undefined}
-								endTime={breakEnd as string | undefined}
-							/>
-						</React.Fragment>
-					})
-				}
-
+				<ErrorBoundary FallbackComponent={ErrorFallback}>
+					<ComposedSchedule />
+				</ErrorBoundary>
 			</Container>
 		</StyledMain>
 	)
 }
 
-export default observer(Main)
+export default Main
