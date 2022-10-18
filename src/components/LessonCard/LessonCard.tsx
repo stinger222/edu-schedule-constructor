@@ -3,7 +3,7 @@ import { StyledLessonCard } from "./LessonCard.styled"
 
 interface IProps {
 	cabinet: string,
-	lessonId: number,
+	index: number,
 	startTime: string,
 	endTime: string,
 	lessonName: string,
@@ -11,12 +11,12 @@ interface IProps {
 }
 
 const LessonCard: React.FC<IProps> = ({
-	cabinet, lessonId, startTime, endTime, lessonName, teacherName
+	cabinet, index, startTime, endTime, lessonName, teacherName
 }) => {
 	return (
 		<StyledLessonCard>
 			<div className="header">
-				<span>{lessonId} пара {startTime} — {endTime}</span>
+				<span>{index} пара {startTime} — {endTime}</span>
 				<span>каб. {cabinet}</span>
 			</div>
 			<h1 className="lesson_name">{lessonName}</h1>

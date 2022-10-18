@@ -20,8 +20,8 @@ const Main = () => {
 	const selectedDayRings = ringSchedules.find(i => i.id === selectedDay.ring_schedule_id).rings
 	
 	// i.e data for certain LessonCard and BreackCard
-	const getCardsData = (lessonId, itemId) => {
-		const lesson = lessons.find(i => i.id === lessonId)
+	const getCardsData = (index, itemId) => {
+		const lesson = lessons.find(i => i.id === index)
 		const lessonRings = selectedDayRings[itemId]
 		let breakStart = selectedDayRings[itemId]?.end
 		let breakEnd = selectedDayRings[itemId + 1]?.start
@@ -50,15 +50,15 @@ const Main = () => {
 				}
 				
 				{!errorMessage &&
-					selectedDay.lesson_ids.map((lessonId, itemId) => {
-						const [ lesson, lessonRings, breakStart, breakEnd ] = getCardsData(lessonId, itemId)
+					selectedDay.lesson_ids.map((index, itemId) => {
+						const [ lesson, lessonRings, breakStart, breakEnd ] = getCardsData(index, itemId)
 
 						return <React.Fragment key={itemId}>
 							<LessonCard
 								cabinet={lesson["cabinet"]}
 								startTime={lessonRings["start"]}
 								endTime={lessonRings["end"]}
-								lessonId={itemId + 1}
+								index={itemId + 1}
 								lessonName={lesson["lesson_name"]}
 								teacherName={lesson["teacher"]}
 							/>
