@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite"
 import { useContext } from "react"
 import { ErrorBoundary } from "react-error-boundary"
 import { StoreContext } from "../../.."
-import ComposedSchedule from "./ComposedSchedule"
+import SelectedSchedule from "./SelectedSchedule"
 import Container from "../../Container/Container"
 import Header from "../../Header/Header"
 import StyledMain from "./Main.styled"
@@ -13,7 +13,7 @@ export function ErrorFallback({ error, resetErrorBoundary }) {
 	</div>
 }
 
-function Main() {
+const Main = () => {
 	const { uiStore } = useContext(StoreContext)
 
 	return (
@@ -21,7 +21,7 @@ function Main() {
 			<Header/>
 			<Container>
 				<ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayId]}>
-					<ComposedSchedule />
+					<SelectedSchedule />
 				</ErrorBoundary>
 			</Container>
 		</StyledMain>

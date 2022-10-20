@@ -4,7 +4,7 @@ import { observer } from "mobx-react"
 import BreakCard from "../../BreakCard/BreakCard"
 import LessonCard from "../../LessonCard/LessonCard"
 
-function ComposedSchedule() {
+function SelectedSchedule() {
 	const { composedSchedulesStore, uiStore, lessonsStore, ringSchedulesStore } = useContext(StoreContext)
 
 	const lessons = lessonsStore.lessons
@@ -69,4 +69,4 @@ function ComposedSchedule() {
 	}
 }
 
-export default observer(ComposedSchedule)
+export default observer(SelectedSchedule)
