@@ -3,11 +3,12 @@ import { StyledIconButton } from "./IconButton.styled";
 interface IProps {
 	iconPath?: string,
 	onClick?: () => void;
+	title?: string
 }
 
-const IconButton: React.FC<IProps> = ({iconPath, onClick}) => {
+const IconButton: React.FC<IProps> = ({iconPath, onClick, title}) => {
 	return (
-		<StyledIconButton onClick={onClick}>
+		<StyledIconButton title={title} onClick={onClick}>
 			<img src={iconPath}/>
 		</StyledIconButton>
 	)
