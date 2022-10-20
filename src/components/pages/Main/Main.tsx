@@ -6,12 +6,7 @@ import SelectedSchedule from "./SelectedSchedule"
 import Container from "../../Container/Container"
 import Header from "../../Header/Header"
 import StyledMain from "./Main.styled"
-
-export function ErrorFallback({ error, resetErrorBoundary }) {	
-	return <div style={{color: "orange", fontWeight:500, fontSize:"1.2em", textAlign:"center"}}>
-		{error.message}
-	</div>
-}
+import ErrorFallback from "../../ErrorFallback/ErrorFallback"
 
 const Main = () => {
 	const { uiStore } = useContext(StoreContext)
