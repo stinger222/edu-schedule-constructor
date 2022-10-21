@@ -12,6 +12,7 @@ export const StyledIconButton = styled.button`
 	border-radius: 50%;
 	border: none;
 	box-shadow: 0 0.15em 0.1em 0.1em rgb(0 0 0 / 50%);
+	cursor: pointer;
 
 	&:active {
 		transform: scale(0.97);

@@ -10,6 +10,10 @@ export const StyledHeader = styled.header`
 	justify-content: space-between;
 	align-items: center;
 
+	&.secondary {
+		padding-inline: 5em;
+	}
+
 	@media (max-width: 360px) {
 		& {
 			font-size: 3.88vw;

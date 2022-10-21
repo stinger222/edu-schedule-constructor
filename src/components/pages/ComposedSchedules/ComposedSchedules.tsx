@@ -1,9 +1,10 @@
 import Header from "../../Header/Header"
+import HeaderSecondary from "../../Header/HeaderSecondary"
 import ComposedSchedulesList from "./ComposedSchedulesList"
 
 const ComposedSchedules = () => {
 	return <>
-		<Header /> {/* There will be different header type */}
+		<HeaderSecondary />
 		<ComposedSchedulesList />	
 	</>
 }
