@@ -23,5 +23,11 @@ export interface IComposedDay {
 
 export interface IComposedSchedule {
 	id: string,
-	week: IComposedDay[] // id represents day of the week
+	name: string,
+	week: IComposedDay[] // index represents day of the week (0 = Monday)
+}
+
+// Other
+export interface CustomError extends Error {
+	type?: 'error' | 'warning' | 'message'
 }

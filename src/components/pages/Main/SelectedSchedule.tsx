@@ -3,6 +3,7 @@ import { StoreContext } from "../../.."
 import { observer } from "mobx-react"
 import BreakCard from "../../BreakCard/BreakCard"
 import LessonCard from "../../LessonCard/LessonCard"
+import { CustomError } from "../../../stores/interfaces"
 
 function SelectedSchedule() {
 	const { composedSchedulesStore, uiStore, lessonsStore, ringSchedulesStore } = useContext(StoreContext)
@@ -11,18 +12,31 @@ function SelectedSchedule() {
 	const ringSchedules = ringSchedulesStore.schedules
 
 	const selectedDayId = uiStore.selectedDayId
-	const selectedDay = composedSchedulesStore.schedules[composedSchedulesStore.schedules.length - 1].week[selectedDayId]
+	const selectedDay = composedSchedulesStore.schedules[0].week[selectedDayId]
 	const selectedDayRings = ringSchedules.find(i => i.id === selectedDay?.ring_schedule_id)?.rings
 
 	// User didn't compose schedule for this day
 	if (!selectedDay) {
 		console.clear()
-		throw new Error("Вы не составили расписание для этого дня!")
+		const e:CustomError = new Error("Вы не составили расписание для этого дня!")
+		e.type = 'warning'
+		throw e
+	}
+
+	// No lessons for this day defined
+	if (selectedDay?.lesson_ids?.length === 0) {
+		console.clear()
+		const e: CustomError = new Error("🎉  На этот день пар нет  🎉")
+		e.type = 'message'
+		throw e
 	}
 
 	// Amount of lessons greater that amount of rings defined
 	if (selectedDay?.lesson_ids?.length > selectedDayRings?.length) {
-		throw new Error("Количество уроков привышет количество звонков в расписании!")
+		console.clear()
+		const e: CustomError = new Error("Количество уроков привышет количество звонков в расписании!")
+		e.type = 'error'
+		throw e
 	}
 
 	return <> 
