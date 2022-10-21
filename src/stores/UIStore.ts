@@ -1,25 +1,26 @@
+import { weekDay } from './interfaces';
 import { makeAutoObservable } from 'mobx';
 
 export interface IUIStore {
-	selectedDayId: number
-	selectDay: (id: number) => void
+	selectedDay: weekDay
+	selectDay: (day: weekDay) => void
 }
 
 class UIStore implements IUIStore {
-	selectedDayId = 1
+	selectedDay: weekDay = 'mon'
 
 	constructor() {
 		makeAutoObservable(this)
-		this.selectedDayId = this.getTodayId()
+		this.selectedDay = this.getToday()
 	}
 
-	private getTodayId(): number {
-		return Math.max((new Date().getDay() - 1), 0)
-
+	private getToday(): weekDay {
+		let result = [null, 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][new Date().getDay()] as weekDay
+		return result ?? 'mon'
 	}
 
-	selectDay = (id: number) => {
-		this.selectedDayId = id
+	selectDay = (day: weekDay) => {
+		this.selectedDay = day
 	}
 }
 

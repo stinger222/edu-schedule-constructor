@@ -21,13 +21,24 @@ export interface IComposedDay {
 	lesson_ids: string[]
 }
 
+export interface IComposedWeek {
+	mon: IComposedDay,
+	tue: IComposedDay,
+	wed: IComposedDay,
+	thu: IComposedDay,
+	fri: IComposedDay,
+	sat: IComposedDay,
+}
+
 export interface IComposedSchedule {
 	id: string,
 	name: string,
-	week: IComposedDay[] // index represents day of the week (0 = Monday)
+	week: IComposedWeek
 }
 
 // Other
 export interface CustomError extends Error {
 	type?: 'error' | 'warning' | 'message'
 }
+
+export type weekDay = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat'

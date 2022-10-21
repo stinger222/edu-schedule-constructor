@@ -11,12 +11,13 @@ const Header: React.FC = memo(() => {
 				<IconButton title="Cоставленные расписаний" iconPath={require('../../assets/schedules-icon.png')} />
 			</Link>
 			
-			<HeaderButton id={0}>Пн</HeaderButton>
-			<HeaderButton id={1}>Вт</HeaderButton>
-			<HeaderButton id={2}>Ср</HeaderButton>
-			<HeaderButton id={3}>Чт</HeaderButton>
-			<HeaderButton id={4}>Пт</HeaderButton>
-			<HeaderButton id={5}>Сб</HeaderButton>
+			<HeaderButton day="mon">Пн</HeaderButton>
+			<HeaderButton day="tue">Вт</HeaderButton>
+			<HeaderButton day="wed">Ср</HeaderButton>
+			<HeaderButton day="thu">Чт</HeaderButton>
+			<HeaderButton day="fri">Пт</HeaderButton>
+			<HeaderButton day="sat">Сб</HeaderButton>
+			
 			<IconButton title="Меню" iconPath={require('../../assets/add-icon.png')} />
 		</StyledHeader>
 	)

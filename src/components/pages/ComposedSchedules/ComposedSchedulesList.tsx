@@ -1,21 +1,25 @@
 import { useContext } from "react"
 import { StoreContext } from "../../.."
+import { StyledComposedSchedulesList } from "./ComposedSchedulesList.styled"
 
 const ComposedSchedulesList = () => {
 	const { composedSchedulesStore } = useContext(StoreContext)
 
 	return (
-		<div>
+		<StyledComposedSchedulesList>
 			{
 				composedSchedulesStore.schedules.map(schedule => {
-					return <div style={{border: "2px solid black", padding:"1em", margin:"1em"}}>
-						id: {schedule.id}
+					return <div>
+						<p>id: {schedule.id}</p>
 						<br/>
-						days: {schedule.week.length}
+						{/* <p>days: {schedule.week}</p> */}
+						<br/>
+						<p>name: {schedule.name}</p>
+						<br/>
 					</div>
 				})
 			}
-		</div>
+		</StyledComposedSchedulesList>
 	)
 }
 

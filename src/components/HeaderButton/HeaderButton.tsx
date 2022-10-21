@@ -1,19 +1,20 @@
 import { observer } from "mobx-react"
 import { ReactNode, useContext } from "react"
 import { StoreContext } from "../.."
+import { weekDay } from "../../stores/interfaces"
 import StyledHeaderButton from "./HeaderButton.styled"
 interface IProps {
 	children?: ReactNode,
-	id: number
+	day: weekDay
 }
 
-const HeaderButton: React.FC<IProps> = ({ children, id }) => {
-	const { selectedDayId, selectDay } = useContext(StoreContext).uiStore
+const HeaderButton: React.FC<IProps> = ({ children, day }) => {
+	const { selectedDay, selectDay } = useContext(StoreContext).uiStore
 	
 	return (
 		<StyledHeaderButton
-			className={selectedDayId == id ? 'selected' : ''}
-			onClick={() => selectDay(id)}
+			className={selectedDay == day ? 'selected' : ''}
+			onClick={() => selectDay(day)}
 		>
 			{children}
 		</StyledHeaderButton>

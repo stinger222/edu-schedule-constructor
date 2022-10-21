@@ -1,48 +1,53 @@
 import { nanoid } from 'nanoid';
-import { IComposedSchedule, IComposedDay } from './interfaces';
+import { IComposedSchedule, IComposedDay, IComposedWeek } from './interfaces';
 import { makeAutoObservable } from "mobx"
 
 export interface IComposedSchedulesStore {	
 	schedules: IComposedSchedule[],
-	addSchedule: (week: IComposedDay[], id?: string) => void
+	addSchedule: (week: IComposedWeek, id?: string) => void
 }
 
 class ComposedSchedulesStore implements IComposedSchedulesStore {
-	schedules: IComposedSchedule[] = [{
+	schedules: IComposedSchedule[] = [
+	{
 		id: nanoid(6),
-		week: [{
-			ring_schedule_id: "rings1",
-			lesson_ids: ["1"]
-		}, 
-		{
-			ring_schedule_id: "rings1",
-			lesson_ids: ["1", "1"]
-		}, 
-		{
-			ring_schedule_id: "rings1",
-			lesson_ids: ["1", "1", "1"]
-		}, 
-		{
-			ring_schedule_id: "rings1",
-			lesson_ids: ["1", "1", "1", "1"]
-		}, 
-		{
-			ring_schedule_id: "rings1",
-			lesson_ids: ["1", "1", "1", "1", "1"]
-		},
-		{
-			ring_schedule_id: "rings2",
-			lesson_ids: ["1", "1", "1", "1", "1", "1"]
+		name: 'Schdeule №2',
+		week: {
+			mon: {
+				ring_schedule_id: "rings1",
+				lesson_ids: ["1",]
+			},
+			tue: {
+				ring_schedule_id: "rings1",
+				lesson_ids: ["1", "1"]
+			},
+			wed: {
+				ring_schedule_id: "rings1",
+				lesson_ids: ["1", "1", "1"]
+			},
+			thu: {
+				ring_schedule_id: "rings1",
+				lesson_ids: ["1", "1", "1", "1"]
+			},
+			fri: {
+				ring_schedule_id: "rings1",
+				lesson_ids: ["1", "1", "1", "1", "1"]
+			},
+			sat: {
+				ring_schedule_id: "rings1",
+				lesson_ids: ["1", "1", "1", "1", "1", "1"]
+			}
 		}
-	]
-	}]
+	}
+]
 
 	constructor() {
 		makeAutoObservable(this)
 	}
 
-	addSchedule(week: IComposedDay[], id?: string) {
+	addSchedule(week: IComposedWeek, name: string, id?: string) {
 		this.schedules.push({
+			name: name ?? "Расписание " + (this.schedules.length + 1),
 			id: id ?? nanoid(6),
 			week
 		})

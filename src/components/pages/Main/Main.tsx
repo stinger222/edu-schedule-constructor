@@ -15,7 +15,7 @@ const Main = () => {
 		<StyledMain>
 			<Header/>
 			<Container>
-				<ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayId]}>
+				<ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDay]}>
 					<SelectedSchedule />
 				</ErrorBoundary>
 			</Container>

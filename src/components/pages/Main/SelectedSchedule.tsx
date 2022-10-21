@@ -11,8 +11,8 @@ function SelectedSchedule() {
 	const lessons = lessonsStore.lessons
 	const ringSchedules = ringSchedulesStore.schedules
 
-	const selectedDayId = uiStore.selectedDayId
-	const selectedDay = composedSchedulesStore.schedules[0].week[selectedDayId]
+	const selectedDaySrt = uiStore.selectedDay
+	const selectedDay = composedSchedulesStore.schedules[0].week[selectedDaySrt]
 	const selectedDayRings = ringSchedules.find(i => i.id === selectedDay?.ring_schedule_id)?.rings
 
 	// User didn't compose schedule for this day
@@ -39,15 +39,8 @@ function SelectedSchedule() {
 		throw e
 	}
 
-	return <> 
-			<button onClick={() => {
-			composedSchedulesStore.addSchedule([{
-				ring_schedule_id: "rings1",
-				lesson_ids: ["1", "1", "1"]
-			}])
-		}}>CUM</button>
-
-	{
+	return <>
+		{
 			selectedDay.lesson_ids.map((index, itemId) => {
 				const [lesson, lessonRings, breakStart, breakEnd] = getCardsData(index, itemId)
 
