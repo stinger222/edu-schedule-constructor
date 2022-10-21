@@ -8,7 +8,7 @@ const Header: React.FC = memo(() => {
 	return (
 		<StyledHeader>
 			<Link to='/composed'>
-				<IconButton title="Список составленных расписаний" iconPath={require('../../assets/schedules-icon.png')} />
+				<IconButton title="Cоставленные расписаний" iconPath={require('../../assets/schedules-icon.png')} />
 			</Link>
 			
 			<HeaderButton id={0}>Пн</HeaderButton>
