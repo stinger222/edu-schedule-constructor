@@ -1,4 +1,3 @@
-import Header from "../../Header/Header"
 import HeaderSecondary from "../../Header/HeaderSecondary"
 import ComposedSchedulesList from "./ComposedSchedulesList"
 

@@ -12,7 +12,12 @@ function SelectedSchedule() {
 	const ringSchedules = ringSchedulesStore.schedules
 
 	const selectedDaySrt = uiStore.selectedDay
-	const selectedDay = composedSchedulesStore.schedules[0].week[selectedDaySrt]
+
+	const selectedSchedule = composedSchedulesStore.schedules.find(i => {
+		return i.id === composedSchedulesStore.selectedScheduleId
+	}) ?? composedSchedulesStore.schedules[0]
+
+	const selectedDay = selectedSchedule.week[selectedDaySrt]
 	const selectedDayRings = ringSchedules.find(i => i.id === selectedDay?.ring_schedule_id)?.rings
 
 	// User didn't compose schedule for this day
