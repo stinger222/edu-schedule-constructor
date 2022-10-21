@@ -8,7 +8,7 @@ StyledErrorFallback.Warning = styled.div`
 	flex-direction: column;
 	font-size: 1.1em;
 
-	width: 19em;
+	width: 22em;
 	height: fit-content;
 	margin-inline: auto;
 
@@ -26,7 +26,7 @@ StyledErrorFallback.Warning = styled.div`
 		padding: 0.5em;
 		text-align: center;
 		font-weight: 500;
-		font-size: 0.9em;
+		font-size: 1.1em;
 		letter-spacing: 0.02em;
 	}
 `
