@@ -1,3 +1,4 @@
+import { observer } from "mobx-react"
 import { useContext } from "react"
 import { StoreContext } from "../.."
 import { IComposedWeek } from "../../stores/interfaces"
@@ -18,7 +19,9 @@ const ComposedScheduleCard: React.FC<IProps> = ({ id, name, week }) => {
 	return (
 		<StyledComposedScheduleCard
 			className={selected ? 'selected' : ''}
-			onClick={() => composedSchedulesStore.selectSchedule(id)}
+			onClick={() => {
+				composedSchedulesStore.selectSchedule(id)
+			}}
 		>
 			<div className="header">{ name }</div>
 			<div className="days-wrapper">
@@ -29,11 +32,9 @@ const ComposedScheduleCard: React.FC<IProps> = ({ id, name, week }) => {
 						</span>
 					))
 				}
-
-
 			</div>
 		</StyledComposedScheduleCard>
 	)
 }
 
-export default ComposedScheduleCard
+export default observer(ComposedScheduleCard)
