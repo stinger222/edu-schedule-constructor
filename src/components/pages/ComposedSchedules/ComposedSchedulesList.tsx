@@ -48,7 +48,6 @@ const ComposedSchedulesList = () => {
 						id={schedule.id}
 						name={schedule.name}
 						week={schedule.week}
-						selected={composedSchedulesStore.selectedScheduleId === schedule.id}
 					/>
 				))
 			}

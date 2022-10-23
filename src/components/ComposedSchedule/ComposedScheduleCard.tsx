@@ -7,13 +7,13 @@ interface IProps {
 	id: string,
 	name: string,
 	week: IComposedWeek,
-	selected: boolean
 }
 
 const rusWeekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
 
-const ComposedScheduleCard: React.FC<IProps> = ({ id, name, week, selected }) => {
+const ComposedScheduleCard: React.FC<IProps> = ({ id, name, week }) => {
 	const { composedSchedulesStore } = useContext(StoreContext)
+	const selected =  composedSchedulesStore.selectedScheduleId === id
 	
 	return (
 		<StyledComposedScheduleCard
