@@ -2,12 +2,15 @@ import { weekDay } from './interfaces';
 import { makeAutoObservable } from 'mobx';
 
 export interface IUIStore {
-	selectedDay: weekDay
-	selectDay: (day: weekDay) => void
+	selectedDay: weekDay,
+	isMenuOpen: boolean,
+	selectDay: (day: weekDay) => void,
+	toggleMenu: () => void
 }
 
 class UIStore implements IUIStore {
 	selectedDay: weekDay = 'mon'
+	isMenuOpen = false
 
 	constructor() {
 		makeAutoObservable(this)
@@ -21,6 +24,10 @@ class UIStore implements IUIStore {
 
 	selectDay = (day: weekDay) => {
 		this.selectedDay = day
+	}
+
+	toggleMenu() {
+		this.isMenuOpen = !this.isMenuOpen
 	}
 }
 

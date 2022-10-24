@@ -1,3 +1,4 @@
+import { memo } from "react"
 import HeaderSecondary from "../../Header/HeaderSecondary"
 import ComposedSchedulesList from "./ComposedSchedulesList"
 
@@ -8,4 +9,4 @@ const ComposedSchedules = () => {
 	</>
 }
 
-export default ComposedSchedules
+export default memo(ComposedSchedules)

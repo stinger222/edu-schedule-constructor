@@ -1,3 +1,4 @@
+import { observer } from "mobx-react";
 import { StyledIconButton } from "./IconButton.styled";
 
 interface IProps {
@@ -14,4 +15,4 @@ const IconButton: React.FC<IProps> = ({iconPath, onClick, title}) => {
 	)
 }
 
-export default IconButton
+export default observer(IconButton)

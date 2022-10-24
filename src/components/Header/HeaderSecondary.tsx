@@ -1,10 +1,15 @@
 import IconButton from "../IconButton/IconButton";
 import { StyledHeader } from "./Header.styled";
-import { memo } from "react";
+import { memo, useContext } from "react";
 import { Link } from "react-router-dom";
+import { StoreContext } from "../..";
+import Menu from "../Menu/Menu";
+import { observer } from "mobx-react-lite";
 
-const HeaderSecondary = memo(() => {
-	return (
+const HeaderSecondary = () => {
+	const { uiStore } = useContext(StoreContext)
+	
+	return <>
 		<StyledHeader className="secondary">
 			<Link to='/composed'>
 				<IconButton title="Cоставленные расписания" iconPath={require('../../assets/schedules-icon.png')} />
@@ -14,9 +19,14 @@ const HeaderSecondary = memo(() => {
 				<IconButton title="На главную" iconPath={require('../../assets/home-icon.png')} />
 			</Link>
 			
-			<IconButton title="Меню" iconPath={require('../../assets/add-icon.png')} />
+			<IconButton
+				title="Меню"
+				iconPath={require('../../assets/add-icon.png')}
+				onClick={() => uiStore.toggleMenu()}
+			/>
 		</StyledHeader>
-	)
-})
+			{ uiStore.isMenuOpen && <Menu /> }
+	</>
+}
 
-export default HeaderSecondary
+export default observer(HeaderSecondary)

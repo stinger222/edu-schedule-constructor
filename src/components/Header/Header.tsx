@@ -1,14 +1,19 @@
 import HeaderButton from "../HeaderButton/HeaderButton";
 import IconButton from "../IconButton/IconButton";
 import { StyledHeader } from "./Header.styled";
-import { memo } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { StoreContext } from "../..";
+import Menu from "../Menu/Menu";
+import { observer } from "mobx-react";
 
-const Header: React.FC = memo(() => {
-	return (
+const Header: React.FC = () => {
+	const { uiStore } = useContext(StoreContext)
+
+	return <>
 		<StyledHeader>
 			<Link to='/composed'>
-				<IconButton title="Cоставленные расписаний" iconPath={require('../../assets/schedules-icon.png')} />
+				<IconButton title="Cоставленные расписания" iconPath={require('../../assets/schedules-icon.png')} />
 			</Link>
 			
 			<HeaderButton day="mon">Пн</HeaderButton>
@@ -18,9 +23,15 @@ const Header: React.FC = memo(() => {
 			<HeaderButton day="fri">Пт</HeaderButton>
 			<HeaderButton day="sat">Сб</HeaderButton>
 			
-			<IconButton title="Меню" iconPath={require('../../assets/add-icon.png')} />
+			<IconButton 
+				title="Меню"
+				iconPath={require('../../assets/add-icon.png')}
+				onClick={() => uiStore.toggleMenu()}
+			/>
 		</StyledHeader>
-	)
-})
 
-export default Header
+		{ uiStore.isMenuOpen && <Menu /> }
+	</>
+}
+
+export default observer(Header)
