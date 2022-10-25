@@ -9,8 +9,8 @@ export const StyledComposedScheduleCard = styled.div`
 
 	height: 4.5em;
 	width: 91%;
-
-	background: #FCECFB;
+	
+	background: #ECF2FC;
 	box-shadow: 0px 0.1em 0.25em 0.05em rgb(0 0 0 / 20%);
 	border-radius: 0.7em;
 
@@ -31,7 +31,7 @@ export const StyledComposedScheduleCard = styled.div`
 	& .day {
 		padding: 0.05em 0.2em;
 
-		background: #E8D3E6;
+		background: #D3D7E8;
 		border-radius: 0.3em;
 
 		font-weight: 200;
@@ -42,7 +42,7 @@ export const StyledComposedScheduleCard = styled.div`
 	}
 
 	&.selected {
-		box-shadow: #cfa4cc 0 0 0 0.13em;
+		box-shadow: #bdc3e4 0 0 0 0.13em;
 		
 	}
 
@@ -57,7 +57,7 @@ export const StyledComposedScheduleCard = styled.div`
 
 		border-style: solid;
 		border-width: 0.35em 0 0.35em 0.7em;
-		border-color: transparent transparent transparent #CCAAC9;
+		border-color: transparent transparent transparent #bdc3e4;
 	}
 
 	&.selected:after {
@@ -71,6 +71,6 @@ export const StyledComposedScheduleCard = styled.div`
 
 		border-style: solid;
 		border-width: 0.35em 0.7em 0.35em 0;
-		border-color: transparent #CCAAC9 transparent transparent;
+		border-color: transparent #bdc3e4 transparent transparent;
 	}
 `
