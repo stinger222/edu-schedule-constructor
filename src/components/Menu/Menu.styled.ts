@@ -4,7 +4,7 @@ export const StyledMenu = styled.div`
 	position: absolute;
 	z-index: 5;
 	top: 3.6em;
-	right: 0;
+	right: 0.5em;
 
 	display: flex;
 	flex-direction: column;
@@ -12,7 +12,7 @@ export const StyledMenu = styled.div`
 	text-align: center;
 
 	height: fit-content;
-	width: 18em;
+	width: 17.5em;
 	padding: 0.2em 0.5em 0.1em 0.5em;
 	
 	background: white;
@@ -28,14 +28,14 @@ export const StyledMenu = styled.div`
 
 	& .menu_button {
 		color: white;
-		font-size: 1.1em;
+		font-size: 1em;
 		font-weight: 600;
 		text-decoration: none;
 		text-shadow: 0.07em 0.07em 0.06em rgba(0, 0, 0, 0.4);
 
-		width: 95%;
+		width: 90%;
 		padding: 0.35em .5em;
-		margin-bottom: 0.3em;
+		margin-bottom: 0.45em;
 		
 		background: #0090F9;
 		border-radius: 10em;
