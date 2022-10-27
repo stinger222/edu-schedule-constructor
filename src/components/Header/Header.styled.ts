@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
+	position: relative;
 	font-size: 0.875em;
 	max-width: 400px;
 	margin-inline: auto;
@@ -24,13 +25,6 @@ export const StyledHeader = styled.header`
 		& {
 			font-size: 1.1em;
 			max-width: 530px;
-		}
-
-		& button:nth-child(2) {
-			margin-left: 0.6em;
-		}
-		& button:nth-last-child(2) {
-			margin-right: 0.6em;
 		}
 	}
 `

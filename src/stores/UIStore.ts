@@ -5,7 +5,7 @@ export interface IUIStore {
 	selectedDay: weekDay,
 	isMenuOpen: boolean,
 	selectDay: (day: weekDay) => void,
-	toggleMenu: () => void
+	toggleMenu: (newState?: boolean) => void
 }
 
 class UIStore implements IUIStore {
@@ -26,8 +26,8 @@ class UIStore implements IUIStore {
 		this.selectedDay = day
 	}
 
-	toggleMenu() {
-		this.isMenuOpen = !this.isMenuOpen
+	toggleMenu(newState?: boolean) {
+		this.isMenuOpen = newState ? newState : !this.isMenuOpen
 	}
 }
 

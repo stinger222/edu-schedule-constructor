@@ -28,9 +28,8 @@ const Header: React.FC = () => {
 				iconPath={require('../../assets/add-icon.png')}
 				onClick={() => uiStore.toggleMenu()}
 			/>
+			{ uiStore.isMenuOpen && <Menu /> }
 		</StyledHeader>
-
-		{ uiStore.isMenuOpen && <Menu /> }
 	</>
 }
 

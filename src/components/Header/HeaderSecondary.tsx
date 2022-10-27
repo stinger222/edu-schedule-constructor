@@ -24,8 +24,9 @@ const HeaderSecondary = () => {
 				iconPath={require('../../assets/add-icon.png')}
 				onClick={() => uiStore.toggleMenu()}
 			/>
-		</StyledHeader>
 			{ uiStore.isMenuOpen && <Menu /> }
+		</StyledHeader>
+
 	</>
 }
 
