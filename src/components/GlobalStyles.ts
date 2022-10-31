@@ -30,9 +30,3 @@ const GlobalStyles = createGlobalStyle`
 	}
 `
 export default GlobalStyles
-
-export const theme = {
-	minWidth: {
-		mobile: 360
-	}
-}
