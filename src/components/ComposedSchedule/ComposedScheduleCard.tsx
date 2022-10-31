@@ -10,7 +10,7 @@ interface IProps {
 	week: IComposedWeek,
 }
 
-const rusWeekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
+const weekDayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
 
 const ComposedScheduleCard: React.FC<IProps> = ({ id, name, week }) => {
 	const { composedSchedulesStore } = useContext(StoreContext)
@@ -28,7 +28,7 @@ const ComposedScheduleCard: React.FC<IProps> = ({ id, name, week }) => {
 				{
 					Object.keys(week).map((key, index) => (
 						<span className="day" key={index}>
-							{rusWeekDays[index]} - {week[key].lesson_ids.length}
+							{weekDayNames[index]} - {week[key].lesson_ids.length}
 						</span>
 					))
 				}
