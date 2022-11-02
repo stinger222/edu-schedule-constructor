@@ -1,5 +1,6 @@
 // Ring schedule
 export interface IRingSchedule {
+	name: string,
 	id: string,
 	rings: Array<{
 		start: string,
