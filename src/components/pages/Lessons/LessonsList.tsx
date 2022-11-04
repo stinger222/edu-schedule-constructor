@@ -1,16 +1,13 @@
 import Container from "../../Container/Container"
 import HeaderSecondary from "../../Header/HeaderSecondary"
-import { StyledLessons } from "./Lessons.styled"
+import LessonCardMini from "../../LessonCardMini/LessonCardMini"
 
 const LessonsList = () => {
 	return (
-		<StyledLessons>
-			<HeaderSecondary />
-			<Container>
-				<h1>Lessons list will be here</h1>
-			</Container>
-		</StyledLessons>
-	)
+    <Container>
+      <h1>Lessons list will be here (mini)</h1>
+    </Container>
+  )
 }
 
 export default LessonsList
