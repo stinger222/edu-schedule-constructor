@@ -1,8 +1,17 @@
+import { ILesson } from "../../stores/interfaces"
 import { StyledLessonCardMini } from "./LessonCardMini.styled"
 
-const LessonCardMini = () => {
+interface IProps {
+  lesson: ILesson
+}
+
+const LessonCardMini: React.FC<IProps> = ({ lesson }) => {
   return <StyledLessonCardMini>
-    <h1>This is StyledLessonCardMini</h1>
+    <div className="header">{ lesson.lesson_name }</div>
+    <div className="footer">
+      <span>{lesson.teacher}</span>
+      <span>{lesson.cabinet}</span>
+    </div>
   </StyledLessonCardMini>
   
 }
