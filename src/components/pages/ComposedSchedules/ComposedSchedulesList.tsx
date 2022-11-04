@@ -2,7 +2,7 @@ import { observer } from "mobx-react"
 import { nanoid } from "nanoid"
 import { useContext } from "react"
 import { StoreContext } from "../../.."
-import ComposedScheduleCard from "../../ComposedSchedule/ComposedScheduleCard"
+import ComposedScheduleCard from "../../ComposedScheduleCard/ComposedScheduleCard"
 import Container from "../../Container/Container"
 
 

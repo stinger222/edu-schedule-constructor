@@ -2,7 +2,7 @@ import Container from "../../Container/Container"
 import HeaderSecondary from "../../Header/HeaderSecondary"
 import { StyledLessons } from "./Lessons.styled"
 
-const Lessons = () => {
+const LessonsList = () => {
 	return (
 		<StyledLessons>
 			<HeaderSecondary />
@@ -13,4 +13,4 @@ const Lessons = () => {
 	)
 }
 
-export default Lessons
+export default LessonsList
