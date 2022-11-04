@@ -1,5 +1,5 @@
 import Container from "../Container/Container"
-import { StyledLessonCard } from "./LessonCard.styled"
+import { StyledLessonCard } from "./LessonCardFull.styled"
 
 interface IProps {
 	cabinet: string,

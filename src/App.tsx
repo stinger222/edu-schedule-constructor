@@ -1,8 +1,8 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import GlobalStyles  from "./components/GlobalStyles";
 import ComposedSchedules from "./components/pages/ComposedSchedules/ComposedSchedules";
-import Main from "./components/pages/Main/Main";
 import RingSchedules from "./components/pages/RingSchedules/RingSchedules";
+import Main from "./components/pages/Main/Main";
 
 function App() {
   return <>

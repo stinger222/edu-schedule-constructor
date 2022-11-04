@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { StoreContext } from "../../.."
 import { observer } from "mobx-react"
 import BreakCard from "../../BreakCard/BreakCard"
-import LessonCard from "../../LessonCard/LessonCard"
+import LessonCard from "../../LessonCardFull/LessonCardFull"
 import { CustomError } from "../../../stores/interfaces"
 
 function SelectedSchedule() {

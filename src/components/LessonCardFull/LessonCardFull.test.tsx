@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import LessonCard from "./LessonCard"
+import LessonCard from "./LessonCardFull"
 
 
 it('Renders LessonCard without crashing', () => {
