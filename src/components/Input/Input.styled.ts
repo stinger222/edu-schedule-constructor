@@ -16,6 +16,7 @@ export const StyledInput = styled.div`
     outline: none;
     margin-inline: 0.1em;
     font-size: 0.9em;
+    width: 100%;
   }
     
   & input::placeholder {
