@@ -1,36 +1,57 @@
+import { useFormik } from "formik"
 import Container from "../../Container/Container"
 import HeaderSecondary from "../../Header/HeaderSecondary"
 import Input from "../../Input/Input"
-import { StyledAddLesson } from "./AddLesson.styled"
+import { StyledAddLessonPage } from "./AddLesson.styled"
+import * as Yup from "yup"
+import { memo } from "react"
 
 const AddLesson = () => {
+  const formik = useFormik({
+    initialValues: {
+      cabinet: '',
+      teacher_name: '',
+      lesson_name: ''
+    },
+    validationSchema: Yup.object({
+      cabinet: Yup.mixed().required('required')
+    }),
+    onSubmit() {
+      console.log('submitted');
+    }
+  })
+
   return <>
     <HeaderSecondary />
     <Container>
-      <StyledAddLesson>
-        <div className="wrapper">
-          <Input
-          className="lesson_name"
+      <StyledAddLessonPage onSubmit={formik.handleSubmit}>
+      <Input
+          id="lesson_name"
+          name="lesson_name"
           caption="Название пары"
           placeholder="Уззкий язык"
-          />
-          <div className="same_line">
-
-          <Input
-            className="teacher_name"
-            caption="Имя препода"
-            placeholder="Cтарый хуй"
-            />
-          <Input
-            className="cabinet"
-            caption="Кабинет"
-            placeholder="403у"
-            />
-          </div>
-        </div>
-      </StyledAddLesson>
+          onChange={formik.handleChange}
+          value={formik.values.lesson_name}
+        />
+        <Input
+          id="teacher_name"
+          name="teacher_name"
+          caption="Имя препода"
+          placeholder="Старый хуй"
+          onChange={formik.handleChange}
+          value={formik.values.teacher_name}
+        />
+        <Input
+          id="cabinet"
+          name="cabinet"
+          caption="Кабинет"
+          placeholder="104п"
+          onChange={formik.handleChange}
+          value={formik.values.cabinet}
+        />
+      </StyledAddLessonPage>
     </Container>
   </>
 }
 
-export default AddLesson
+export default memo(AddLesson)
