@@ -1,33 +1,23 @@
 import styled from "styled-components"
 
-export const StyledAddLesson = styled.div`
+export const StyledAddLessonPage = styled.form`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr;
+  row-gap: 0.5em;
+  column-gap: 0.5em;
 
-  & .wrapper {
-    width: 55%;
-    margin: 0 auto;
-    font-size: 1em;
+  & #lesson_name {
+    grid-column: 2 / -2;
   }
 
-  & .lesson_name input {
-    width: 100%;
-    margin-bottom: 0.5em;
-  }
-
-  & .same_line {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  & .teacher_name input {
-    width: 10em;
-  }
-
-   & .cabinet input {
-    width: 3.5em;
+  & #teacher_name {
+    grid-row: 2 / 3;
+    grid-column: 2 / 5;
   }
   
-  & .cabinet, & .teacher_name {
-    display: inline-block;
-  } 
+  & #cabinet {
+    grid-row: 2 / 3;
+    grid-column: 5 / 6;
+  }
 `
