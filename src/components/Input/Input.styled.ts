@@ -5,6 +5,7 @@ export const StyledInput = styled.div`
   & .caption {
     font-size: 0.7em;
     padding-left: 0.2em;
+		margin-bottom: 0.2em;
     font-weight: 300;
   }
 

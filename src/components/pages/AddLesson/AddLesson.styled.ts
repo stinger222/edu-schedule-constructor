@@ -20,4 +20,20 @@ export const StyledAddLessonPage = styled.form`
     grid-row: 2 / 3;
     grid-column: 5 / 6;
   }
+
+	@media (max-width: 400px) {
+		& {
+			font-size: 1.5em;
+			grid-template-columns: repeat(15, 1fr);
+		}
+
+		
+		& #teacher_name {
+			grid-column: 2 / -5;
+		}
+		
+		& #cabinet {
+			grid-column: -5 / -2;
+		}
+	}
 `

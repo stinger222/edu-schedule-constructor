@@ -26,29 +26,29 @@ const AddLesson = () => {
     <Container>
       <StyledAddLessonPage onSubmit={formik.handleSubmit}>
       <Input
-          id="lesson_name"
-          name="lesson_name"
-          caption="Название пары"
-          placeholder="Уззкий язык"
-          onChange={formik.handleChange}
-          value={formik.values.lesson_name}
-        />
-        <Input
-          id="teacher_name"
-          name="teacher_name"
-          caption="Имя препода"
-          placeholder="Старый хуй"
-          onChange={formik.handleChange}
-          value={formik.values.teacher_name}
-        />
-        <Input
-          id="cabinet"
-          name="cabinet"
-          caption="Кабинет"
-          placeholder="104п"
-          onChange={formik.handleChange}
-          value={formik.values.cabinet}
-        />
+				id="lesson_name"
+				name="lesson_name"
+				caption="Название пары"
+				placeholder="Уззкий язык"
+				onChange={formik.handleChange}
+				value={formik.values.lesson_name}
+      />
+			<Input
+				id="teacher_name"
+				name="teacher_name"
+				caption="Имя препода"
+				placeholder="Старый хуй"
+				onChange={formik.handleChange}
+				value={formik.values.teacher_name}
+			/>
+			<Input
+				id="cabinet"
+				name="cabinet"
+				caption="Кабинет"
+				placeholder="104п"
+				onChange={formik.handleChange}
+				value={formik.values.cabinet}
+			/>
       </StyledAddLessonPage>
     </Container>
   </>
