@@ -27,7 +27,6 @@ export const StyledAddLessonPage = styled.form`
 			font-size: 1.5em;
 			grid-template-columns: repeat(15, 1fr);
 		}
-
 		
 		& #teacher_name {
 			grid-column: 2 / -5;
