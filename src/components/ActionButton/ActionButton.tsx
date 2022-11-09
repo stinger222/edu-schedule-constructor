@@ -1,9 +1,9 @@
 import { StyledActionButton } from "./ActionButton.styled"
 
-const ActionButton = () => {
+const ActionButton = ({ type, className, children }) => {
 	return (
-		<StyledActionButton>
-			
+		<StyledActionButton type={type} className={className}>
+			{ children }
 		</StyledActionButton>
 	)
 }

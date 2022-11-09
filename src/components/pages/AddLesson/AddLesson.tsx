@@ -5,6 +5,7 @@ import Input from "../../Input/Input"
 import { StyledAddLessonPage } from "./AddLesson.styled"
 import * as Yup from "yup"
 import { memo } from "react"
+import ActionButton from "../../ActionButton/ActionButton"
 
 const AddLesson = () => {
   const formik = useFormik({
@@ -49,6 +50,9 @@ const AddLesson = () => {
 				onChange={formik.handleChange}
 				value={formik.values.cabinet}
 			/>
+			<ActionButton type="submit" className="submit_button">
+				Готово
+			</ActionButton>
       </StyledAddLessonPage>
     </Container>
   </>
