@@ -6,6 +6,7 @@ export const StyledAddLessonPage = styled.form`
   grid-template-rows: 1fr 1fr;
   row-gap: 0.5em;
   column-gap: 0.5em;
+	font-size: 1.2em;
 
   & #lesson_name {
     grid-column: 2 / -2;
@@ -21,7 +22,7 @@ export const StyledAddLessonPage = styled.form`
     grid-column: 5 / 6;
   }
 
-	@media (max-width: 400px) {
+	@media (max-width: 799px) {
 		& {
 			font-size: 1.5em;
 			grid-template-columns: repeat(15, 1fr);
