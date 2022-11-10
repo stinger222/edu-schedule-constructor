@@ -1,12 +1,12 @@
 import { useFormik } from "formik"
-import Container from "../../Container/Container"
-import HeaderSecondary from "../../Header/HeaderSecondary"
-import Input from "../../Input/Input"
+import { StoreContext } from "../../.."
+import { memo, useContext } from "react"
 import { StyledAddLessonPage } from "./AddLesson.styled"
 import * as Yup from "yup"
-import { memo, useContext } from "react"
+import HeaderSecondary from "../../Header/HeaderSecondary"
 import ActionButton from "../../ActionButton/ActionButton"
-import { StoreContext } from "../../.."
+import Container from "../../Container/Container"
+import Input from "../../Input/Input"
 
 const AddLesson = () => {
 	const { lessonsStore } = useContext(StoreContext)
@@ -18,18 +18,20 @@ const AddLesson = () => {
       lesson_name: ''
     },
     validationSchema: Yup.object({
-      cabinet: Yup.mixed().required('required')
+      lesson_name: Yup.string().required('Названия у пары нету?))'),
+      teacher_name: Yup.mixed().required('Его имя нельзя называть?))'),
+      cabinet: Yup.mixed().required('Обязательное поле') // todo: replace with ???
     }),
+    initialTouched: {},
     onSubmit() {
       console.log('Submitted. \n', formik.values);
-
 			const { cabinet, lesson_name, teacher_name} = formik.values
 			lessonsStore.addLesson(cabinet, teacher_name, lesson_name)
 
 			formik.resetForm()
     }
   })
-
+  
   return <>
     <HeaderSecondary />
     <Container>
@@ -40,6 +42,8 @@ const AddLesson = () => {
 					caption="Название пары"
 					placeholder="Уззкий язык"
 					onChange={formik.handleChange}
+          errors={formik.errors}
+          touched={formik.touched}
 					value={formik.values.lesson_name}
 				/>
 				<Input
@@ -48,6 +52,8 @@ const AddLesson = () => {
 					caption="Имя препода"
 					placeholder="Старый хуй"
 					onChange={formik.handleChange}
+          errors={formik.errors}
+          touched={formik.touched}
 					value={formik.values.teacher_name}
 				/>
 				<Input
@@ -56,6 +62,8 @@ const AddLesson = () => {
 					caption="Кабинет"
 					placeholder="104п"
 					onChange={formik.handleChange}
+          errors={formik.errors}
+          touched={formik.touched}
 					value={formik.values.cabinet}
 				/>
 				<ActionButton type="submit" className="submit_button">

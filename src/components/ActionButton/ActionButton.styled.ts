@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 export const StyledActionButton = styled.button`
 	appearance: none;
+  outline: none;
+  border: none;
 	background: black;
 	color: white;
 	border-radius: 10em;

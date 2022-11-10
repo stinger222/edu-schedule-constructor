@@ -1,18 +1,18 @@
 import { StyledInput } from "./Input.styled"
 
 interface IProps {
-  className?: string,
-  placeholder?: string,
-  caption?: string
   id?: string,
   name?: string,
-  onChange?: any;
-  value?: string | number
+  placeholder?: string,
+  caption?: string
+  value?: string | number,
+  onChange?: any,
+  className?: string,
+  errors?: Object,
+  touched?: Object
 }
 
-const placeholders: string[] = [
-  
-]
+const placeholders: string[] = []
   
 const getRandomPlaceholder = () => {
   const min = 0
@@ -20,17 +20,16 @@ const getRandomPlaceholder = () => {
   return placeholders[Math.floor(Math.random() * (max - min + 1)) + min]
 }
 
-const Input: React.FC<IProps> = (
-  { id, name, onChange, value, placeholder, caption, className }
-) => {
+const Input: React.FC<IProps> = (props) => {
   return (
-    <StyledInput className={className} id={id}>
-      <p className="caption">{caption}</p>
+    <StyledInput className={props.className} id={props.id}>
+      <p className="caption">{props.caption}</p>
       <input
-        value={value}
-        name={name}
-        onChange={onChange}
-        placeholder={placeholder}
+        className={props.touched[props.name] && props.errors[props.name] ? 'invalid' : ''}
+        value={props.value}
+        name={props.name}
+        onChange={props.onChange}
+        placeholder={props.placeholder}
       />
     </StyledInput>
   )

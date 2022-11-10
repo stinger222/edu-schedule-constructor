@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const StyledAddLessonPage = styled.form`
   display: grid;
   grid-template-columns: repeat(16, 1fr);
-  grid-template-rows: 1fr 1fr 0.5em 1.7em;
+  grid-template-rows: 1fr 1fr 0.1em 1.7em;
   row-gap: 0.5em;
   column-gap: 0.5em;
 	font-size: 1.2em;

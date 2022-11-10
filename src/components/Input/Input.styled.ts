@@ -19,6 +19,11 @@ export const StyledInput = styled.div`
     font-size: 0.9em;
     width: 100%;
   }
+
+  & .invalid:is(input) {
+    border-color: #ee1313;
+    border-width: 0.0725em;
+  }
     
   & input::placeholder {
     color: #BBBBBB;
