@@ -5,6 +5,7 @@ import RingSchedules from "./components/pages/RingSchedules/RingSchedules";
 import Lessons from "./components/pages/Lessons/Lessons";
 import Main from "./components/pages/Main/Main";
 import AddLesson from "./components/pages/AddLesson/AddLesson";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return <>
@@ -21,6 +22,18 @@ function App() {
         </Route>
 			</Routes>
 		</HashRouter>
+		<ToastContainer
+			position="top-right"
+			autoClose={1000}
+			hideProgressBar
+			newestOnTop={false}
+			closeOnClick
+			rtl={false}
+			pauseOnFocusLoss
+			draggable
+			pauseOnHover
+			theme="colored"
+		/>
 	</>
 }
 

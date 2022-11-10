@@ -7,6 +7,8 @@ import HeaderSecondary from "../../Header/HeaderSecondary"
 import ActionButton from "../../ActionButton/ActionButton"
 import Container from "../../Container/Container"
 import Input from "../../Input/Input"
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddLesson = () => {
 	const { lessonsStore } = useContext(StoreContext)
@@ -22,11 +24,20 @@ const AddLesson = () => {
       teacher_name: Yup.mixed().required('Его имя нельзя называть?))'),
       cabinet: Yup.mixed().required('Обязательное поле') // todo: replace with ???
     }),
-    initialTouched: {},
     onSubmit() {
       console.log('Submitted. \n', formik.values);
 			const { cabinet, lesson_name, teacher_name} = formik.values
 			lessonsStore.addLesson(cabinet, teacher_name, lesson_name)
+
+			toast.success('Успешно добавлено!', {
+				position: "top-right",
+				autoClose: 1000,
+				hideProgressBar: true,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				theme: "colored",
+				});
 
 			formik.resetForm()
     }

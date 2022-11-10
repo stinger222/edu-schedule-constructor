@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-	* {
+* {
 		box-sizing: border-box;
 		margin: 0;
 		padding: 0;
@@ -27,6 +27,21 @@ const GlobalStyles = createGlobalStyle`
 		background: #cfcfcf;
 		border-radius: 50px;
 		border: 2px solid #ffffff;
+	}
+
+	.Toastify {
+		--toastify-toast-min-height: 60px;
+	}
+	
+	@media (max-width: 400px) {
+		.Toastify {
+			--toastify-toast-min-height: 17vw;
+			font-size: 4vw;
+		}
+
+		.Toastify__toast-icon {
+			width: min(20px, 5vw)
+		}
 	}
 `
 export default GlobalStyles
