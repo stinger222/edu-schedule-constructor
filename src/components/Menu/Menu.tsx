@@ -1,13 +1,26 @@
-import { useContext } from "react"
+import { useContext, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { StoreContext } from "../.."
 import { StyledMenu } from "./Menu.styled"
 
+
+
 const Menu = () => {
 	const { uiStore } = useContext(StoreContext)
-	
+	const menuRef = useRef<HTMLDivElement>(null) 
+
+	useEffect(() => {
+		const handleClick = (e) => {
+			if (!menuRef.current.contains(e.target)) {
+				uiStore.toggleMenu()
+			}
+		}
+		
+		document.addEventListener('click', handleClick)
+		return () => document.removeEventListener('click', handleClick)
+	}) 
 	return (
-		<StyledMenu>
+		<StyledMenu ref={menuRef}>
 			<h1>Меню</h1>
 				<Link
 					to="/rings"

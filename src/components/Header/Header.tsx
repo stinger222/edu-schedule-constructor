@@ -22,13 +22,16 @@ const Header: React.FC = () => {
 			<HeaderButton day="thu">Чт</HeaderButton>
 			<HeaderButton day="fri">Пт</HeaderButton>
 			<HeaderButton day="sat">Сб</HeaderButton>
-			
-			<IconButton 
+
+			<IconButton
 				title="Меню"
 				iconPath={require('../../assets/add-icon.png')}
-				onClick={() => uiStore.toggleMenu()}
+				onClick={(e) => {
+					e.stopPropagation()
+					uiStore.toggleMenu()
+				}}
 			/>
-			{ uiStore.isMenuOpen && <Menu /> }
+			{ uiStore.isMenuOpen && <Menu/> }
 		</StyledHeader>
 	</>
 }

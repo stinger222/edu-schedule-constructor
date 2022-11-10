@@ -3,7 +3,7 @@ import { StyledIconButton } from "./IconButton.styled";
 
 interface IProps {
 	iconPath?: string,
-	onClick?: () => void;
+	onClick?: any;
 	title?: string
 }
 

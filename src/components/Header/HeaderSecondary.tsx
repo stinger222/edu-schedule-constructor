@@ -22,7 +22,10 @@ const HeaderSecondary = () => {
 			<IconButton
 				title="Меню"
 				iconPath={require('../../assets/add-icon.png')}
-				onClick={() => uiStore.toggleMenu()}
+				onClick={(e) => {
+					e.stopPropagation()
+					uiStore.toggleMenu()
+				}}
 			/>
 			{ uiStore.isMenuOpen && <Menu /> }
 		</StyledHeader>
