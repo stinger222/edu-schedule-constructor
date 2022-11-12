@@ -6,6 +6,7 @@ import Lessons from "./components/pages/Lessons/Lessons";
 import Main from "./components/pages/Main/Main";
 import AddLesson from "./components/pages/AddLesson/AddLesson";
 import { ToastContainer } from "react-toastify";
+import AddRingSchedule from "./components/pages/AddRingSchedule/AddRingSchedule";
 
 function App() {
   return <>
@@ -19,7 +20,7 @@ function App() {
 
 				<Route path="/add">
           <Route path="lesson" element={<AddLesson />}/>
-          <Route path="rings" element={<h1>Form to create new ring schedules will be here</h1>}/>
+          <Route path="rings" element={<AddRingSchedule />}/>
         </Route>
 			</Routes>
 		</HashRouter>
