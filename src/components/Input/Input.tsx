@@ -6,6 +6,7 @@ interface IProps {
   placeholder?: string,
   caption?: string
   value?: string | number,
+	type?: string,
   onChange?: any,
   className?: string,
   errors?: Object,
@@ -25,11 +26,12 @@ const Input: React.FC<IProps> = (props) => {
     <StyledInput className={props.className} id={props.id}>
       <p className="caption">{props.caption}</p>
       <input
-        className={props.touched[props.name] && props.errors[props.name] ? 'invalid' : ''}
+        className={props?.touched?.[props.name] && props?.errors?.[props.name] ? 'invalid' : ''}
         value={props.value}
         name={props.name}
         onChange={props.onChange}
         placeholder={props.placeholder}
+				type={props.type ?? 'text'}
       />
     </StyledInput>
   )
