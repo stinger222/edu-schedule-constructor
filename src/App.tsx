@@ -19,9 +19,11 @@ function App() {
 
 				<Route path="/add">
           <Route path="lesson" element={<AddLesson />}/>
+          <Route path="rings" element={<h1>Form to create new ring schedules will be here</h1>}/>
         </Route>
 			</Routes>
 		</HashRouter>
+		
 		<ToastContainer
 			position="top-right"
 			autoClose={1000}
