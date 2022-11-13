@@ -27,4 +27,11 @@ export const StyledHeader = styled.header`
 			max-width: 530px;
 		}
 	}
+
+	@media (min-width: 2400px) {
+		& {
+			font-size: 1.7em;
+			max-width: 800px;
+		}
+	}
 `

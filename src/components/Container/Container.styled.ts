@@ -15,7 +15,15 @@ const StyledContainer = styled.div`
 		& {
 			padding: 0;
 			max-width: 650px;
-			font-size: 1.625em;
+			font-size: 1.325em;
+		}
+	}
+
+	@media (min-width: 2400px) {
+		& {
+			padding: 0;
+			max-width: 950px;
+			font-size: 2.5em;
 		}
 	}
 `

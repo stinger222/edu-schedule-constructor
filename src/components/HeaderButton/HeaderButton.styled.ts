@@ -5,10 +5,10 @@ const StyledHeaderButton = styled.button`
 	border: none;
 	min-height: 1.6em;
 	min-width: 1.6em;
-	font-size: 1.5em;
+	font-size: 1.4em;
 	font-weight: 300;
 	margin-inline: 0.2em;
-	padding: 0.1em;
+	padding: 0.2em;
 
 	&.selected {
 		color: white;
