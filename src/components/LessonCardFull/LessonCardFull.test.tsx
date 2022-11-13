@@ -3,7 +3,8 @@ import LessonCard from "./LessonCardFull"
 
 
 it('Renders LessonCard without crashing', () => {
-	render(<LessonCard 
+	render(<LessonCard
+		theme={[0, 360]}
 		cabinet="123т"
 		startTime="10:00"
 		endTime="11:00"

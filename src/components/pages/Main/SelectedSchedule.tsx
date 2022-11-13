@@ -4,6 +4,7 @@ import { observer } from "mobx-react"
 import BreakCard from "../../BreakCard/BreakCard"
 import LessonCard from "../../LessonCardFull/LessonCardFull"
 import { CustomError } from "../../../stores/interfaces"
+import { randInt } from "../../../utils/helpers"
 
 function SelectedSchedule() {
 	const { composedSchedulesStore, uiStore, lessonsStore, ringSchedulesStore } = useContext(StoreContext)
@@ -19,6 +20,8 @@ function SelectedSchedule() {
 
 	const selectedDay = selectedSchedule.week[selectedDaySrt]
 	const selectedDayRings = ringSchedules.find(i => i.id === selectedDay?.ring_schedule_id)?.rings
+
+	const themeColorRange = [[-45, 34], [93, 176], [195, 252]][randInt(0,2)]
 
 	// User didn't compose schedule for this day
 	if (!selectedDay) {
@@ -57,6 +60,7 @@ function SelectedSchedule() {
 						index={itemId + 1}
 						lessonName={lesson["lesson_name"]}
 						teacherName={lesson["teacher"]}
+						theme={themeColorRange}
 					/>
 
 					<BreakCard
