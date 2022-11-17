@@ -17,6 +17,7 @@ export const StyledInput = styled.div`
     outline: none;
     font-size: 0.9em;
     width: 100%;
+		height: 1.9em;
   }
 
   & .invalid:is(input) {
