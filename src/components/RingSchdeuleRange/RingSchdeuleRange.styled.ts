@@ -4,6 +4,7 @@ export const StyledRingSchdeuleRange = styled.div`
 	display: grid;
 	grid-template-columns: 5.3em 6.5em 5.3em;
 	justify-content: center;
+  margin-bottom: 0.8em;
 
 	& input {
 		padding-left: 0.5em
