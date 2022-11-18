@@ -9,6 +9,7 @@ export const StyledActionButton = styled.button`
 	color: white;
 	border-radius: 10em;
 	font-size: 0.9em;
+  padding: 0.3em 0.5em;
 
 	&:hover {
 		background: #313131;

@@ -1,8 +1,15 @@
 import { StyledActionButton } from "./ActionButton.styled"
 
-const ActionButton = ({ type, className, children }) => {
+interface IProps {
+  type?: "button" | "submit" | "reset",
+  className?: string,
+  onClick?: any,
+  children?: any
+}
+
+const ActionButton: React.FC<IProps> = ({ type, className, onClick, children }) => {
 	return (
-		<StyledActionButton type={type} className={className}>
+		<StyledActionButton onClick={onClick} type={type} className={className}>
 			{ children }
 		</StyledActionButton>
 	)

@@ -5,22 +5,22 @@ export const StyledAddRingSchdeulesPage = styled.div`
 
   & .add_button {
     display: block;
-    padding-bottom: 0.1em;
-    margin: 0 auto;
-    
-    border: none;
-    border-radius: 10em;
-    outline: none;
-    background: black;
-    
+    padding: 0 0 0.1em 0;
+    margin-inline: auto;
+        
     font-weight: 500;
-    font-size: 2em;
+    font-size: 2.2em;
     line-height: 0.75em;
-    color: white;
 
     width: 0.9em;
-    height: 0.9em;
+    height: 0.9em; 
   }
 
+  & button[type='submit'] {
+    display: block;
+    margin-inline: auto;
+    margin-top: 2em;
+    font-size: 1.1em;
+  }
 
 `

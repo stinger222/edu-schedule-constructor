@@ -1,4 +1,5 @@
 import { useState } from "react"
+import ActionButton from "../../ActionButton/ActionButton"
 import Container from "../../Container/Container"
 import HeaderSecondary from "../../Header/HeaderSecondary"
 import RingSchdeuleRange from "../../RingSchdeuleRange/RingSchdeuleRange"
@@ -15,10 +16,17 @@ const AddRingSchedule = () => {
 				  <RingSchdeuleRange index={index+1} key={index}/>
         ))}
         
-        <button
-          onClick={() => setLength(length+1)}
-          className="add_button"
-        >+</button>
+        {length < 9 && 
+          <ActionButton
+            onClick={() => setLength(length+1)}
+            className="add_button"
+          >+</ActionButton>
+        }
+
+        <ActionButton
+          type="submit"
+          className="done"
+        >Готово</ActionButton>
 
 			</StyledAddRingSchdeulesPage>
 		</Container>
