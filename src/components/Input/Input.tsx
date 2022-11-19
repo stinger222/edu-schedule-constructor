@@ -1,3 +1,5 @@
+import { Field } from "formik"
+import { ReactNode } from "react"
 import { StyledInput } from "./Input.styled"
 
 interface IProps {
@@ -10,29 +12,28 @@ interface IProps {
   onChange?: any,
   className?: string,
   errors?: Object,
-  touched?: Object
+  touched?: Object,
+  children?: ReactNode
 }
 
 const placeholders: string[] = []
   
-const getRandomPlaceholder = () => {
-  const min = 0
-  const max = placeholders.length - 1
-  return placeholders[Math.floor(Math.random() * (max - min + 1)) + min]
-}
-
 const Input: React.FC<IProps> = (props) => {
+
   return (
     <StyledInput className={props.className} id={props.id}>
       <p className="caption">{props.caption}</p>
-      <input
-        className={props?.touched?.[props.name] && props?.errors?.[props.name] ? 'invalid' : ''}
-        value={props.value}
-        name={props.name}
-        onChange={props.onChange}
-        placeholder={props.placeholder}
-				type={props.type ?? 'text'}
-      />
+      {
+        props.children  ||
+        <input
+          className={props?.touched?.[props.name] && props?.errors?.[props.name] ? 'invalid' : ''}
+          value={props.value}
+          name={props.name}
+          onChange={props.onChange}
+          placeholder={props.placeholder}
+          type={props.type ?? 'text'}
+        />
+      }
     </StyledInput>
   )
 }
