@@ -47,13 +47,14 @@ const AddRingSchedule = () => {
                     </div>
                   ))}
 
-                  {values.lessons.length < 9 &&
+                  {
+                    values.lessons.length < 9 &&
                     <ActionButton
                       onClick={() => {
                         console.log('add');
                         arrayHelpers.push({start: '08:40', end: '10:00'})
                       }}
-                      type="button"
+                    type="button"
                       className="add_button"
                     >+</ActionButton>
                   }
@@ -82,56 +83,3 @@ const AddRingSchedule = () => {
 }
 
 export default AddRingSchedule
-
-
-
-{/*           
-            {[...Array(length)].map((_, index) => {
-              const startId = `l${index+1}_start`
-              const endId = `l${index+1}_end`
-
-              return <div className="range" key={index}>
-                <Input
-                  value={formik.values[startId]}
-                  id={startId}
-                  name={startId}
-                  onChange={formik.handleChange}
-                  caption="Начало"
-                  className="start"
-                  type="time"
-                />
-
-                <div>
-                  <h2>Пара {index+1}</h2>
-                </div>
-
-                <Input
-                  value={formik.values[endId]}
-                  id={endId}
-                  name={endId}
-                  onChange={formik.handleChange}
-                  caption="Конец"
-                  className="end"
-                  type="time"
-                />
-              </div>})}
-
-            {length < 9 &&
-              <ActionButton
-                onClick={() => setLength(length + 1)}
-                type="button"
-                className="add_button"
-              >+</ActionButton>
-            }
-
-            {length === 9 &&
-              <h2 style={{
-                textAlign: 'center',
-                marginTop: '2em',
-                fontWeight: 300
-              }}>Прям все 9?)) Ну предположим)))</h2>
-            }
-
-            <ActionButton
-              type="submit"
-            >Готово</ActionButton> */}
