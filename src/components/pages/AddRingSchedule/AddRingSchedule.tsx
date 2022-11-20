@@ -5,22 +5,25 @@ import HeaderSecondary from "../../Header/HeaderSecondary"
 import ActionButton from "../../ActionButton/ActionButton"
 import Container from "../../Container/Container"
 import Input from "../../Input/Input"
+import { useContext } from "react"
+import { StoreContext } from "../../.."
 
 const AddRingSchedule = () => {
+
+	const { ringSchedulesStore } = useContext(StoreContext)
+
   return <>
     <HeaderSecondary />
     <Container>
       <StyledAddRingSchdeulesPage>
         <Formik
           initialValues={{
-            lessons: [
-              {
-                start: '08:40',
-                end: '10:00'
-              }
-            ]
+						lessons: [{ start: '08:40', end: '10:00' }]
           }}
-          onSubmit={values => console.log(values)}
+          onSubmit={(values) => {
+						console.log(values)
+						ringSchedulesStore.addSchedule(undefined, values.lessons)
+					}}
         >
           {({ values }) => (
             <Form>
@@ -51,7 +54,6 @@ const AddRingSchedule = () => {
                     values.lessons.length < 9 &&
                     <ActionButton
                       onClick={() => {
-                        console.log('add');
                         arrayHelpers.push({start: '08:40', end: '10:00'})
                       }}
                     type="button"
