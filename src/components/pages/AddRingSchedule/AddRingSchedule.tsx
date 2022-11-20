@@ -22,7 +22,7 @@ const AddRingSchedule = () => {
           }}
           onSubmit={(values) => {
 						console.log(values)
-						ringSchedulesStore.addSchedule(undefined, values.lessons)
+						ringSchedulesStore.addSchedule(values.lessons)
 					}}
         >
           {({ values }) => (

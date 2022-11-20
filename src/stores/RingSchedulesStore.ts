@@ -5,8 +5,8 @@ import { makeAutoObservable } from 'mobx';
 export interface IRingSchedulesStore {
 	schedules: IRingSchedule[],
 	addSchedule: (
-		name: string,
 		rings: Array<{start: string, end: string}>,
+		name?: string,
 		id?: string
 	) => void
 } 
@@ -47,7 +47,7 @@ class RingSchedulesStore implements IRingSchedulesStore {
 	}
 
 	
-	addSchedule( name: string, rings: Array<{start: string, end: string}>, id?: string) {
+	addSchedule(rings: Array<{start: string, end: string}>, name?: string,  id?: string) {
 		this.schedules.push({
 			name: name ?? `Расписание звонков №${this.schedules.length+1}`,
 			id: id ?? nanoid(6),
