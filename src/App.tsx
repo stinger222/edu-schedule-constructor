@@ -1,43 +1,25 @@
-import { HashRouter, Route, Routes } from "react-router-dom";
-import GlobalStyles  from "./components/GlobalStyles";
-import ComposedSchedules from "./components/pages/ComposedSchedules/ComposedSchedules";
-import RingSchedules from "./components/pages/RingSchedules/RingSchedules";
-import Lessons from "./components/pages/Lessons/Lessons";
-import Main from "./components/pages/Main/Main";
-import AddLesson from "./components/pages/AddLesson/AddLesson";
-import { ToastContainer } from "react-toastify";
-import AddRingSchedule from "./components/pages/AddRingSchedule/AddRingSchedule";
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-  return <>
-		<GlobalStyles />
-		<HashRouter>
-			<Routes>
-				<Route path="/" element={<Main />}/>
-				<Route path="/composed" element={<ComposedSchedules />}/>
-				<Route path="/rings" element={<RingSchedules />}/>
-				<Route path="/lessons" element={<Lessons />}/>
-
-				<Route path="/add">
-          <Route path="lesson" element={<AddLesson />}/>
-          <Route path="rings" element={<AddRingSchedule />}/>
-        </Route>
-			</Routes>
-		</HashRouter>
-		
-		<ToastContainer
-			position="top-right"
-			autoClose={1000}
-			hideProgressBar
-			newestOnTop={false}
-			closeOnClick
-			rtl={false}
-			pauseOnFocusLoss
-			draggable
-			pauseOnHover
-			theme="colored"
-		/>
-	</>
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
 export default App;
