@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledNavButton = styled.div`
-	width: 2.5em;
+	width: 3.5em;
 	display: inline-block;
 	cursor: pointer;
 	user-select: none;
