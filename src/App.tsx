@@ -1,7 +1,9 @@
+import Header from "./components/smart/Header/Header";
+
 function App() {
   return (
     <div>
-			<h1>Yo.</h1>
+			<Header/>
     </div>
   )
 }
