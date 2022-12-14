@@ -9,8 +9,6 @@ export const StyledHeader = styled.header`
 	align-items: center;
 	justify-content: space-between;
 
-	border: 1px solid black;
-
 	& .future-burger-button {
 		height: 3em;
 		width: 3em;

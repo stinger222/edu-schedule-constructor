@@ -1,0 +1,1 @@
+export const weekDaysRus = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] as const

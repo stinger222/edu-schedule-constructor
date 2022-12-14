@@ -1,17 +1,18 @@
+import { weekDaysRus } from "../../../core/constants/constants"
 import NavButton from "../NavButton/NavButton"
 import { StyledNavBar } from "./NavBar.styled"
 
 interface IProps {
-	week: string[]
+
 }
 
-const NavBar: React.FC<IProps> = ({ week }) => {
-	const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] // Move to consts
+const NavBar: React.FC<IProps> = ({  }) => {
+	const week = ['28', '29', '30', '01', '02', '03', '04']
 
 	return (
 		<StyledNavBar>
 			{week.map((day: string, index: number) => (
-			<NavButton caption={weekDays[index]} day={day}/>
+			<NavButton caption={weekDaysRus[index]} day={day}/>
 		))}
 		</StyledNavBar>
 	)
