@@ -20,7 +20,7 @@ export const StyledNavButton = styled.div`
 		font-weight: 400;
 	}
 
-	&.active .caption, &.active .day {
+	&.selected .caption, &.selected .day {
 		font-weight: 500;
 		transform: scale(1.1);
 	}

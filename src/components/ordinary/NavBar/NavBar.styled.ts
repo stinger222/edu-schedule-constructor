@@ -5,4 +5,8 @@ export const StyledNavBar = styled.div`
 	justify-content: space-between;
 	flex-grow: 1;
 	max-width: 27em;
+
+	& > div:nth-last-child(-n+2) {
+		color: gray;
+	}
 `
