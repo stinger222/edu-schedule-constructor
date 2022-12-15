@@ -1,0 +1,1 @@
+export type weekDates = [string, string, string, string, string, string, string]

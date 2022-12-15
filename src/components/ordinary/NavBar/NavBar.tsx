@@ -1,10 +1,11 @@
 import { useState } from "react"
 import { weekDaysRus } from "../../../core/constants/constants"
 import { StyledNavBar } from "./NavBar.styled"
+import { getCurrentWeekDates } from "../../../core/utils/helpers"
 import NavButton from "../NavButton/NavButton"
 
 const NavBar = () => {
-	const week = ['28', '29', '30', '01', '02', '03', '04']
+	const week = getCurrentWeekDates()
 	const [selectedDayIndex, setSelectedDayIndex] = useState(0)
 
 	const handleSelect = (index: number) => {
