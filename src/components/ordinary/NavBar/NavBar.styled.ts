@@ -7,6 +7,6 @@ export const StyledNavBar = styled.div`
 	max-width: 27em;
 
 	& > div:nth-last-child(-n+2) {
-		color: gray;
+		color: #c3c3c3;
 	}
 `

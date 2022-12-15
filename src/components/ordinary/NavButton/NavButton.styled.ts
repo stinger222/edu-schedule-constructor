@@ -5,6 +5,7 @@ export const StyledNavButton = styled.div`
 	display: inline-block;
 	cursor: pointer;
 	user-select: none;
+	position: relative;
 
 	& > div {
 		text-align: center;
@@ -23,6 +24,16 @@ export const StyledNavButton = styled.div`
 	&.selected .caption, &.selected .day {
 		font-weight: 500;
 		transform: scale(1.1);
+	}
+
+	&.selected:after {
+		content: '';
+		position: absolute;
+		left: 12%;
+		right: 12%;
+		bottom: -0.4em;
+		height: 0.2em;
+		background: currentColor;
 	}
 	
 `
