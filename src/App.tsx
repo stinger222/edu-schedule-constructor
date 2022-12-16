@@ -4,7 +4,10 @@ import Header from "./components/smart/Header/Header";
 function App() {
   return (
     <Container>
-			<Header/>
+			<Header>
+				<Header.NavBar/>
+				<Header.BurgerButton/>
+			</Header>
     </Container>
   )
 }
