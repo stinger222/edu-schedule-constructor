@@ -21,7 +21,11 @@ export const StyledNavButton = styled.div`
 		font-weight: 400;
 	}
 
-	&.selected .caption, &.selected .day {
+	&.selected {
+		color: royalblue !important;
+	}
+	
+	&.selected > * {
 		font-weight: 500;
 		transform: scale(1.1);
 	}
