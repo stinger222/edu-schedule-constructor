@@ -66,7 +66,7 @@ const GlobalStyles = createGlobalStyle`
 	}
 
 	body {
-		font-family: 'JetBrains Mono';
+		font-family: 'JetBrains Mono', 'Segoe UI', Arial, Tahoma, 'Verdana', 'Arial Narrow', sans-serif;
 		font-weight: 100;
 		margin: 0;
 		-webkit-font-smoothing: antialiased;
