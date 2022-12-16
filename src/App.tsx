@@ -8,6 +8,12 @@ function App() {
 				<Header.NavBar/>
 				<Header.BurgerButton/>
 			</Header>
+
+			<Header>
+				<Header.NavHome/>
+				<h1 className="title">Some Pretty Long Caption</h1>
+				<Header.BurgerButton style={{margin: 0}}/>
+			</Header>
     </Container>
   )
 }
