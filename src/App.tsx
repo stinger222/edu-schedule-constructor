@@ -1,10 +1,11 @@
+import Container from "./components/ordinary/Container/Container";
 import Header from "./components/smart/Header/Header";
 
 function App() {
   return (
-    <div>
+    <Container>
 			<Header/>
-    </div>
+    </Container>
   )
 }
 

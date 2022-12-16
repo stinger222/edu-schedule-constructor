@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.header`
 	height: 70px;
-	max-width: 600px;
-	margin: 2em auto 5em auto;
+	margin: 2em 0.5em 5em 0.5em;
 
 	display: flex;
 	align-items: center;
