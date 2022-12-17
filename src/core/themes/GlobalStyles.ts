@@ -65,10 +65,20 @@ const GlobalStyles = createGlobalStyle`
 			font-style: normal;
 	}
 
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		-webkit-tap-highlight-color: transparent
+	}
+
+	div:has(svg) {
+		box-sizing: content-box;
+	}
+
 	body {
 		font-family: 'JetBrains Mono', 'Segoe UI', Arial, Tahoma, 'Verdana', 'Arial Narrow', sans-serif;
 		font-weight: 100;
-		margin: 0;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
