@@ -14,12 +14,19 @@ export const StyledLessonCard = styled.div`
 	
 	letter-spacing: -0.025em;
 	padding: 0.6em 0.8em;
+
+	font-size: 1.1em;
 	
 	h1 {
 		line-height: 1.15em;
-		font-weight: 500;
+		font-weight: 600;
 		font-size: 1.625em;
-		/* todo: 2 lines max */
+
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 
 	& footer {
@@ -32,5 +39,17 @@ export const StyledLessonCard = styled.div`
 		line-height: 1em;
 		letter-spacing: 0;
 		color: #8B8B8B;
+	}
+
+	& footer span:nth-child(1) {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+	& footer span:nth-child(2) {
+		flex-shrink: 0;
+		margin-left: 0.5em;
 	}
 `

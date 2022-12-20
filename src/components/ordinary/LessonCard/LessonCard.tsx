@@ -9,8 +9,8 @@ const LessonCard: React.FC<IProps> = ({  }) => {
 		<StyledLessonCard>
 			<h1>Some really really really really reeeeeeally long name</h1>
 			<footer>
-				<span>Name Name Name Name Name Name</span>
-				<span>101у</span>
+				<span>Name Name Name Name Name Name e Name</span>
+				<span>каб. 101у</span>
 			</footer>
 		</StyledLessonCard>
 	)
