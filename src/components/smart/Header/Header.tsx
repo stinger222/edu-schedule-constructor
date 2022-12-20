@@ -1,8 +1,8 @@
-import BurgerButton from "./BurgerButton/BurgerButton"
-import NavBar from "./NavBar/NavBar"
-import { StyledHeader } from "./Header.styled"
 import { ReactNode } from "react"
+import { StyledHeader } from "./Header.styled"
+import BurgerButton from "./BurgerButton/BurgerButton"
 import NavHome from "./NavHome/NavHome"
+import NavBar from "./NavBar/NavBar"
 
 interface IHeaderExtensions {
 	BurgerButton: typeof BurgerButton,

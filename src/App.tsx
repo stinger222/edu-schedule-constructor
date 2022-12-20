@@ -1,4 +1,5 @@
 import Container from "./components/ordinary/Container/Container";
+import LessonCard from "./components/ordinary/LessonCard/LessonCard";
 import Header from "./components/smart/Header/Header";
 
 function App() {
@@ -9,11 +10,8 @@ function App() {
 				<Header.BurgerButton/>
 			</Header>
 
-			<Header>
-				<Header.NavHome/>
-				<h1 className="title">Some Pretty Long Caption</h1>
-				<Header.BurgerButton style={{margin: 0}}/>
-			</Header>
+			<LessonCard/>
+
     </Container>
   )
 }
