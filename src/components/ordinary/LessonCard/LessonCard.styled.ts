@@ -10,15 +10,17 @@ export const StyledLessonCard = styled.div`
 
 	
 	width: 29.6875em;
-	height: 8.4375em;
+	min-height: 7.8em;
 	
 	letter-spacing: -0.025em;
-	padding: 0.6em 0.8em;
+	padding: 1.2em 0.8em 1em 0.8em;
 
 	font-size: 1.1em;
 	
 	h1 {
-		line-height: 1.15em;
+		margin-bottom: 1em;
+
+		line-height: 1.25em;
 		font-weight: 600;
 		font-size: 1.625em;
 
