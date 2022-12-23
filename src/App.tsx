@@ -1,5 +1,6 @@
 import Container from "./components/ordinary/Container/Container";
 import LessonCard from "./components/ordinary/LessonCard/LessonCard";
+import ProgressBar from "./components/ordinary/ProgressBar/ProgressBar";
 import Header from "./components/smart/Header/Header";
 
 function App() {
@@ -9,8 +10,35 @@ function App() {
 				<Header.NavBar/>
 				<Header.BurgerButton/>
 			</Header>
-
-			<LessonCard/>
+			
+			<div className="schedule_row">
+				<ProgressBar
+					startTime="8:30"
+					endTime="9:50"
+				/>
+				<LessonCard/>
+			</div>
+			<div className="schedule_row">
+				<ProgressBar
+					startTime="8:30"
+					endTime="9:50"
+				/>
+				<LessonCard/>
+			</div>
+			<div className="schedule_row">
+				<ProgressBar
+					startTime="8:30"
+					endTime="9:50"
+				/>
+				<LessonCard/>
+			</div>
+			<div className="schedule_row">
+				<ProgressBar
+					startTime="8:30"
+					endTime="9:50"
+				/>
+				<LessonCard/>
+			</div>
 
     </Container>
   )

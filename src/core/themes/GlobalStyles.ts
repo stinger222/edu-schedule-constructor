@@ -83,6 +83,12 @@ const GlobalStyles = createGlobalStyle`
 		-moz-osx-font-smoothing: grayscale;
 	}
 
+
+	/* TEMP */
+	.schedule_row {
+		display: flex;
+		margin-bottom: 1em;
+	}
 `
 
 export default GlobalStyles
