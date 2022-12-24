@@ -83,12 +83,23 @@ const GlobalStyles = createGlobalStyle`
 		-moz-osx-font-smoothing: grayscale;
 	}
 
+	::-webkit-scrollbar {
+		width: 15px;
+		background-color: #ffffff;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #dcdcdc;
+		border-radius: 50px;
+		border: 3.5px solid #ffffff;
+	}
 
 	/* TEMP */
 	.schedule_row {
 		display: flex;
 		margin-bottom: 1em;
 	}
+	
 `
 
 export default GlobalStyles

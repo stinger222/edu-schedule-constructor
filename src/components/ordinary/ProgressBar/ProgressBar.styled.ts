@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledProgressBar = styled.div`
 	width: 6.5em;
 	margin-left: auto;
-	margin-right: 1.5em;
+	margin-right: 2em;
 
 	display: flex;
 	font-size: 1em;
