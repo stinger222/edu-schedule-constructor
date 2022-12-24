@@ -1,16 +1,12 @@
 import styled from "styled-components";
 
 export const StyledProgressBar = styled.div`
-	width: 6.5em;
-	margin-left: auto;
-	margin-right: 2em;
-
 	display: flex;
-	font-size: 1em;
+	width: 6.5em;
 
 	& .caption {
 		height: 100%;
-		width: 80%;
+		width: 75%;
 		font-size: 1.5em;
 	}
 
@@ -26,7 +22,7 @@ export const StyledProgressBar = styled.div`
 
 	& .progress_bar_body {
 		height: 100%;
-		width: 20%;
+		width: 25%;
 	}
 
 	& .progress_bar_body .indicator {
@@ -41,7 +37,7 @@ export const StyledProgressBar = styled.div`
 	
 	& .progress_bar_body .line {
 		width: 0.2em;
-		height: calc(100% - 0.8em);
+		height: calc(100% - 0.8em + 0.2em);
 		border-radius: 1em;
 		background: #0075FF;
 		margin-inline: auto;

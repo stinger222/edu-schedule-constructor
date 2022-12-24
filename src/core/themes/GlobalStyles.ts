@@ -94,12 +94,23 @@ const GlobalStyles = createGlobalStyle`
 		border: 3.5px solid #ffffff;
 	}
 
-	/* TEMP */
+	/* TEMP (will be moved to anoter place)*/
 	.schedule_row {
 		display: flex;
-		margin-bottom: 1em;
+		justify-content: space-between;
+		gap: 2em;
+		margin-bottom: 1.2em;
+		margin-inline: 0.5em;
 	}
-	
+
+	/* TEMP AS WELL */
+	@media (max-width: 625px) {
+		.schedule_row {
+			font-size: 1.03em;
+			padding-right: 0.4em;
+			gap: 0;
+		}
+	}
 `
 
 export default GlobalStyles

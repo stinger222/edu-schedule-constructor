@@ -8,16 +8,14 @@ export const StyledLessonCard = styled.div`
 	border-radius: 1em;
 	box-shadow: 0px 0.125em 0.3125em 0.0625em #00000040;
 
+	width: 29.5em;
 	height: fit-content;
 	min-height: 7.8em;
-	width: 29.5em;
-	
-	letter-spacing: -0.025em;
 	padding: 1.2em 0.8em 1em 0.8em;
-	margin-right: auto;
-
-	font-size: 1em;
 	
+	font-size: 1em;
+	letter-spacing: -0.025em;
+
 	h1 {
 		margin-bottom: 1em;
 
@@ -51,6 +49,7 @@ export const StyledLessonCard = styled.div`
 		text-overflow: ellipsis;
 		overflow: hidden;
 	}
+	
 	& footer span:nth-child(2) {
 		flex-shrink: 0;
 		margin-left: 0.5em;

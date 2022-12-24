@@ -4,9 +4,9 @@ export const StyledContainer = styled.div`
 	margin: 0 auto;
 	max-width: 625px;
 
-	@media (max-width: 540px) {
+	@media (max-width: 625px) {
 		& {
-			font-size: 2.95vw;
+			font-size: 2.55vw;
 		}
 	}
 `
