@@ -1,16 +1,27 @@
+import { replaceBlankProps } from "../../../core/utils/helpers"
 import { StyledLessonCard } from "./LessonCard.styled"
 
 interface IProps {
-	
+	title: string,
+	teacher: string,
+	cabinet: string,
 }
 
-const LessonCard: React.FC<IProps> = ({  }) => {
+const propsReplacements: Partial<IProps> = {
+	title: "<Название пары не указано>",
+	teacher: "<Имя препода не указано>",
+	cabinet: "???"
+}
+
+const LessonCard: React.FC<IProps> = (props) => {
+	const { title, teacher, cabinet } = replaceBlankProps<IProps>(props, propsReplacements)
+
 	return (
 		<StyledLessonCard>
-			<h1>Some really really really really reeeeeeally long name</h1>
+			<h1>{ title }</h1>
 			<footer>
-				<span>Name Name Name Name Name Name e Name</span>
-				<span>каб. 101у</span>
+				<span>{ teacher }</span>
+				<span>каб. { cabinet }</span>
 			</footer>
 		</StyledLessonCard>
 	)

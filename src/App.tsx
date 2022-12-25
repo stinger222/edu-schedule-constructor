@@ -16,29 +16,24 @@ function App() {
 					startTime="8:30"
 					endTime="9:50"
 				/>
-				<LessonCard/>
+				<LessonCard
+					teacher=" "
+					cabinet=" "
+					title=" "
+				/>
 			</div>
 			<div className="schedule_row">
 				<ProgressBar
 					startTime="8:30"
 					endTime="9:50"
 				/>
-				<LessonCard/>
-			</div>
-			<div className="schedule_row">
-				<ProgressBar
-					startTime="8:30"
-					endTime="9:50"
+				<LessonCard
+					teacher="Name Name Name Name Name Name e Name"
+					cabinet="101г"
+					title="Some really really really really reeeeeeally long name"
 				/>
-				<LessonCard/>
 			</div>
-			<div className="schedule_row">
-				<ProgressBar
-					startTime="8:30"
-					endTime="9:50"
-				/>
-				<LessonCard/>
-			</div>
+
 
     </Container>
   )
