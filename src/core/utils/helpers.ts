@@ -1,4 +1,4 @@
-import { weekDates } from './../types/types';
+import { KeyOfType, weekDates } from './../types/types';
 
 export const getCurrentWeekDates = (): weekDates => {
 	const result = []
@@ -21,13 +21,12 @@ export const formatNumbers = (numbers: number[]): string[] => {
 	})
 }
 
-export function replaceBlankProps<P extends {[key: string]: any}> (props: P , replacements: Partial<P>): P {
+export function replaceBlankProps<P extends {[key: string]: any}> (props: P , replacements: Record<KeyOfType<P, string>, string>): P {
 	const result: any = {}
 	for (const [key, value] of Object.entries(props)) {
 		if (typeof value === 'string') {
 			if (value.trim() == '') {
-				
-			result[key] = replacements[key]
+				result[key] = replacements[key as keyof typeof replacements]
 			} else {
 				result[key] = value
 			}

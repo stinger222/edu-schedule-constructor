@@ -7,7 +7,7 @@ interface IProps {
 	cabinet: string,
 }
 
-const propsReplacements: Partial<IProps> = {
+const propsReplacements = {
 	title: "<Название пары не указано>",
 	teacher: "<Имя препода не указано>",
 	cabinet: "???"
