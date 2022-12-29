@@ -16,9 +16,23 @@ function App() {
     <Container>
 			<Header>
 				<Header.NavBar/>
-				<Header.BurgerButton/>
+				<Header.BurgerButton onClick={() => {
+					uiStore.toggleDropdown()
+				}}/>
+				{uiStore.isDropdownOpen && <Dropdown/>}
 			</Header>
 			
+			<div className="schedule_row">
+				<ProgressBar
+					startTime="8:30"
+					endTime="9:50"
+				/>
+				<LessonCard
+					teacher=" "
+					cabinet=" "
+					title=" "
+				/>
+			</div>
 			<div className="schedule_row">
 				<ProgressBar
 					startTime="8:30"
@@ -41,12 +55,6 @@ function App() {
 					title="Some really really really really reeeeeeally long name"
 				/>
 			</div>
-		
-		<button onClick={() => {
-			uiStore.toggleDropdown()
-		}}>DICK</button>
-
-		{uiStore.isDropdownOpen && <Dropdown/>}
     </Container>
   )
 }

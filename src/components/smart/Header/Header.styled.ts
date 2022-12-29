@@ -1,14 +1,18 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-	height: 4.375em;
+	--header-height: 4.375em;
+
+	height: var(--header-height);
 	margin: 2em 0 5em 0;
 	padding-inline: 1.5em;
-	
+
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	
+	position: relative;
+
 	& .future-burger-button {
 		height: 3em;
 		width: 3em;
