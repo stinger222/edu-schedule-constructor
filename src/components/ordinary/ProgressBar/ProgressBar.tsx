@@ -1,3 +1,4 @@
+import React from "react"
 import { StyledProgressBar } from "./ProgressBar.styled"
 
 interface IProps {
@@ -20,4 +21,4 @@ const ProgressBar: React.FC<IProps> = ({ startTime, endTime }) => {
 	)
 }
 
-export default ProgressBar
+export default React.memo(ProgressBar)

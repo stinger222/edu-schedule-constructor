@@ -1,3 +1,4 @@
+import React from "react"
 import { replaceBlankProps } from "../../../core/utils/helpers"
 import { StyledLessonCard } from "./LessonCard.styled"
 
@@ -27,4 +28,4 @@ const LessonCard: React.FC<IProps> = (props) => {
 	)
 }
 
-export default LessonCard
+export default React.memo(LessonCard)
