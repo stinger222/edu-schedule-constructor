@@ -1,9 +1,17 @@
+import { observer } from "mobx-react";
+import { useContext } from "react";
+import { StoreContext } from ".";
+
 import Container from "./components/ordinary/Container/Container";
 import LessonCard from "./components/ordinary/LessonCard/LessonCard";
 import ProgressBar from "./components/ordinary/ProgressBar/ProgressBar";
+import Dropdown from "./components/smart/Dropdown/Dropdown";
 import Header from "./components/smart/Header/Header";
 
+
 function App() {
+	const { uiStore } = useContext(StoreContext)
+
   return (
     <Container>
 			<Header>
@@ -33,10 +41,14 @@ function App() {
 					title="Some really really really really reeeeeeally long name"
 				/>
 			</div>
+		
+		<button onClick={() => {
+			uiStore.toggleDropdown()
+		}}>DICK</button>
 
-
+		{uiStore.isDropdownOpen && <Dropdown/>}
     </Container>
   )
 }
 
-export default App;
+export default observer(App);

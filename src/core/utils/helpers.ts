@@ -5,7 +5,7 @@ export const getCurrentWeekDates = (): weekDates => {
 	const date = new Date()
 	date.setDate(date.getDate() - (date.getDay() === 0 ? 7 : date.getDay())) // now it's current week sunday date
 	for (let i = 0; i < 7; i++) {
-		date.setDate(date.getDate() + 1) // now it's monday
+		date.setDate(date.getDate() + 1) // and now it's monday
 		result.push(date.getDate())
 	}
 
