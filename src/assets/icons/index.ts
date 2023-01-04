@@ -1,0 +1,1 @@
+export { ReactComponent as Home } from './home.svg'
