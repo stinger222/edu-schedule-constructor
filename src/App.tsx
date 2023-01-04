@@ -1,19 +1,20 @@
-import { observer } from "mobx-react";
-import { useContext } from "react";
-import { StoreContext } from ".";
+import { observer } from "mobx-react"
+import { useContext } from "react"
+import { StoreContext } from "."
 
-import Container from "./components/ordinary/Container/Container";
-import LessonCard from "./components/ordinary/LessonCard/LessonCard";
-import ProgressBar from "./components/ordinary/ProgressBar/ProgressBar";
-import Dropdown from "./components/smart/Dropdown/Dropdown";
-import Header from "./components/smart/Header/Header";
-
+import Container from "./components/ordinary/Container/Container"
+import Icon from "./components/ordinary/Icon/Icon"
+import LessonCard from "./components/ordinary/LessonCard/LessonCard"
+import ProgressBar from "./components/ordinary/ProgressBar/ProgressBar"
+import Dropdown from "./components/smart/Dropdown/Dropdown"
+import Header from "./components/smart/Header/Header"
 
 function App() {
 	const { uiStore } = useContext(StoreContext)
 
   return (
     <Container>
+			<Icon name="Home"/>
 			<Header>
 				<Header.NavBar/>
 				<Header.BurgerButton onClick={() => {
