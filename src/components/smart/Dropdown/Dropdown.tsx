@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+import Icon from "../../ordinary/Icon/Icon"
 import Button from "../../ui/Button/Button"
 import { StyledDropdown } from "./Dropdown.styled"
 
@@ -10,8 +12,11 @@ const Dropdown: React.FC<IProps> = ({ }) => {
       <header>
         Меню
       </header>
-			<Button>Расписания звонков</Button>
-			<Button>Список предметов</Button>
+			<Link to="/rings">
+        <Button>Расписания звонков</Button>
+      </Link>
+
+			<Link to='lessons'><Button>Список предметов</Button></Link>
 		</StyledDropdown>
 	)
 }

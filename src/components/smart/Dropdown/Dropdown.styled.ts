@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const StyledDropdown = styled.div`
-	--dropdown-font-size: 1.3;
+	--dropdown-font-size: 1.1;
 	--dropdown-margin-top: 1em;
 	
 	font-size: calc(1em * var(--dropdown-font-size));
   font-family: 'JetBrains Mono';
+  user-select: none;
   
   display: flex;
   flex-direction: column;
@@ -39,11 +40,14 @@ export const StyledDropdown = styled.div`
   }
   
   & button {
-    width: 100%;
     margin-bottom: 0.3em;
- 
+    width: 100%;
     font-family: inherit;
     font-size: 1.2em;
     font-weight: 300;
+  }
+
+  & *:has(button) {
+    width: 100%;
   }
 `

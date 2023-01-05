@@ -1,63 +1,18 @@
-import { observer } from "mobx-react"
-import { useContext } from "react"
-import { StoreContext } from "."
-
-import Container from "./components/ordinary/Container/Container"
-import Icon from "./components/ordinary/Icon/Icon"
-import LessonCard from "./components/ordinary/LessonCard/LessonCard"
-import ProgressBar from "./components/ordinary/ProgressBar/ProgressBar"
-import Dropdown from "./components/smart/Dropdown/Dropdown"
-import Header from "./components/smart/Header/Header"
+import { HashRouter, Route, Routes } from "react-router-dom";
+import Lessons from "./pages/Lessons";
+import Main from "./pages/Main";
+import Rings from "./pages/Rings";
 
 function App() {
-	const { uiStore } = useContext(StoreContext)
-
   return (
-    <Container>
-			<Icon name="Home"/>
-			<Header>
-				<Header.NavBar/>
-				<Header.BurgerButton onClick={() => {
-					uiStore.toggleDropdown()
-				}}/>
-				{uiStore.isDropdownOpen && <Dropdown/>}
-			</Header>
-			
-			<div className="schedule_row">
-				<ProgressBar
-					startTime="8:30"
-					endTime="9:50"
-				/>
-				<LessonCard
-					teacher=" "
-					cabinet=" "
-					title=" "
-				/>
-			</div>
-			<div className="schedule_row">
-				<ProgressBar
-					startTime="8:30"
-					endTime="9:50"
-				/>
-				<LessonCard
-					teacher=" "
-					cabinet=" "
-					title=" "
-				/>
-			</div>
-			<div className="schedule_row">
-				<ProgressBar
-					startTime="8:30"
-					endTime="9:50"
-				/>
-				<LessonCard
-					teacher="Name Name Name Name Name Name e Name"
-					cabinet="101г"
-					title="Some really really really really reeeeeeally long name"
-				/>
-			</div>
-    </Container>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Main />}/>
+        <Route path="/lessons" element={<Lessons />}/>
+        <Route path="/rings" element={<Rings />}/>
+      </Routes>
+    </HashRouter>
   )
 }
 
-export default observer(App);
+export default App;
