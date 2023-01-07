@@ -12,11 +12,19 @@ const Dropdown: React.FC<IProps> = ({ }) => {
       <header>
         Меню
       </header>
+
+			<Link to='/composed'>
+				<Button>Составленные расписания</Button>
+			</Link>
+
 			<Link to="/rings">
         <Button>Расписания звонков</Button>
       </Link>
 
-			<Link to='lessons'><Button>Список предметов</Button></Link>
+			<Link to='lessons'>
+				<Button>Добавленные предметы</Button>
+			</Link>
+
 		</StyledDropdown>
 	)
 }

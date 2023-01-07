@@ -13,7 +13,8 @@ export const StyledDropdown = styled.div`
   align-items: center;
   
 	height: fit-content;
-	width: 17em;
+	width: max-content;
+	min-width: 17em;
   padding: 0.4em 0.8em;
 	background: white;
   
@@ -42,6 +43,7 @@ export const StyledDropdown = styled.div`
   & button {
     margin-bottom: 0.3em;
     width: 100%;
+		min-height: 1.5em;
     font-family: inherit;
     font-size: 1.2em;
     font-weight: 300;
