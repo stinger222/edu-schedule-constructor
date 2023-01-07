@@ -1,4 +1,5 @@
 import React from "react"
+import { Replacements } from "../../../core/types/types"
 import { replaceBlankProps } from "../../../core/utils/helpers"
 import { StyledLessonCard } from "./LessonCard.styled"
 
@@ -8,7 +9,7 @@ interface IProps {
 	cabinet: string,
 }
 
-const propsReplacements = {
+const propsReplacements: Replacements<IProps> = {
 	title: "<Название пары не указано>",
 	teacher: "<Имя препода не указано>",
 	cabinet: "???"
