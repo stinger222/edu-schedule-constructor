@@ -1,12 +1,9 @@
-import { Link } from "react-router-dom"
-import Icon from "../../ordinary/Icon/Icon"
-import Button from "../../ui/Button/Button"
 import { StyledDropdown } from "./Dropdown.styled"
+import { Link } from "react-router-dom"
+import Button from "../../ui/Button/Button"
 
-interface IProps {
-}
+const Dropdown = ({ }) => {
 
-const Dropdown: React.FC<IProps> = ({ }) => {
 	return (
 		<StyledDropdown>
       <header>

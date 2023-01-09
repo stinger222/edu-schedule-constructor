@@ -12,14 +12,8 @@ export const StyledHeader = styled.header`
 	justify-content: space-between;
 	
 	position: relative;
-
-	& .future-burger-button {
-		height: 3em;
-		width: 3em;
-		background: black;
-	}
 	
-	& > h1.title {
+	& > h1 {
 		font-weight: 100;
 		font-size: 1.7em;
 		user-select: none;

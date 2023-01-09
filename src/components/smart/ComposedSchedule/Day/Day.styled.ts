@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledDay = styled.div`
-	font-size: 1.35em;
+	font-size: 1.33em;
 	width: 9em;
 	height: max-content;
 	border-radius: 0.8em;

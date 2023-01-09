@@ -9,7 +9,7 @@ class UIStore implements IUIStore {
 	}
 
 	toggleDropdown(newState?: boolean) {
-		this.isDropdownOpen = newState ? newState : !this.isDropdownOpen
+		this.isDropdownOpen = newState != undefined ? newState : !this.isDropdownOpen
 	}
 }
 

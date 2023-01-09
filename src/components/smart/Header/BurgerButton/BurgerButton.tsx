@@ -1,3 +1,5 @@
+import { useContext } from "react"
+import { StoreContext } from "../../../.."
 import { StyledBurgerButton } from "./BurgerButton.styled"
 
 interface IProps {
@@ -6,8 +8,14 @@ interface IProps {
 }
 
 const BurgerButton: React.FC<IProps> = ({ style, onClick }) => {
+	const { uiStore } = useContext(StoreContext)
+	
+	const defaultOnClick = () => {
+		uiStore.toggleDropdown()
+	}
+
 	return (
-		<StyledBurgerButton style={style} onClick={onClick}>
+		<StyledBurgerButton style={style} onClick={onClick || defaultOnClick}>
 			<div className="burger-line"></div>
 			<div className="burger-line"></div>
 			<div className="burger-line"></div>
