@@ -37,7 +37,7 @@ export const StyledDropdown = styled.div`
     text-align: center;
     
     margin-bottom: 0.5em;
-    border-bottom: 0.08em solid #cdcdcd;
+    border-bottom: 0.09em solid #bfbfbf;
   }
   
   & button {

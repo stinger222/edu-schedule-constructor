@@ -12,12 +12,40 @@ interface ComposedScheduleExtensions {
 const ComposedSchedule: React.FC<IProps> & ComposedScheduleExtensions = ({  }) => {
 	return (
 		<StyledComposedSchedule>
-			<Day
-				dayIndex={6}
-				lessons={2}
-				startTime="10:00"
-				endTime="11:00"
-			/>
+			<header>Расписание #1</header>
+			<div className="days">
+				<Day
+					dayIndex={6}
+					lessons={2}
+					startTime="10:00"
+					endTime="11:00"
+				/>
+				<Day
+					dayIndex={6}
+					lessons={2}
+					startTime="10:00"
+					endTime="11:00"
+				/>
+				<Day
+					dayIndex={6}
+					lessons={2}
+					startTime="10:00"
+					endTime="11:00"
+				/>
+				<Day
+					dayIndex={6}
+					lessons={2}
+					startTime="10:00"
+					endTime="11:00"
+				/>
+				<Day
+					dayIndex={6}
+					lessons={2}
+					startTime="10:00"
+					endTime="11:00"
+				/>
+			
+			</div>
 		</StyledComposedSchedule>
 	)
 }

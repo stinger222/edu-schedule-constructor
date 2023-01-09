@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const StyledDay = styled.div`
-	font-size: 1.5em;
+	font-size: 1.35em;
 	width: 9em;
 	height: max-content;
 	border-radius: 0.8em;
 	padding-bottom: 0.5em;
 	background: #F1F0F5;
-	box-shadow: -0.05em 0.15em 0.2em rgba(0, 0, 0, 0.25);
+	box-shadow: 0.05em 0.1em 0.2em 0.007em rgb(0 0 0 / 25%);
 
 	& header {
 		font-size: 1.3em;
@@ -26,6 +26,7 @@ export const StyledDay = styled.div`
 
 	& .card-body span {
 		text-align: center;
+		line-height: 1.5em;
 	}
 
 	& .card-body span:nth-child(2n - 1) {
