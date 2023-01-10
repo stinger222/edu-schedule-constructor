@@ -13,7 +13,7 @@ const Main = () => {
     
     <div className="schedule_row">
       <ProgressBar
-        startTime="8:30"
+        startTime="10:30"
         endTime="9:50"
       />
       <LessonCard
