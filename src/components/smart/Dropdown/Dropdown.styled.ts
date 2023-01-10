@@ -41,6 +41,7 @@ export const StyledDropdown = styled.div`
   }
   
   & button {
+		/* TODO: Make buttons bigger on mobile */
     margin-bottom: 0.3em;
     width: 100%;
 		min-height: 1.5em;

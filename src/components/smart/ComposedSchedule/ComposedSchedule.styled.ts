@@ -6,14 +6,15 @@ export const StyledComposedSchedule = styled.div`
 	padding: 0 0.3em 1em 0.3em;
 	margin-inline: auto;
 
-	border-radius: 1em;
-	box-shadow: 0 0.125em 0.35em 0.06em rgba(0, 0, 0, 0.25);
+	border-radius: 1.5em;
+	box-shadow: 0 0.15em 0.4em 0.07em rgb(0 0 0 / 25%);
 	
 	& > header {
-		line-height: 2.4em;
-		font-size: 1.7em;
+		line-height: 1em;
+		font-size: 1.9em;
 		font-weight: 400;
 		letter-spacing: 0.05em;
+		padding-block: 0.9em;
 		text-align: center;
 	}
 
