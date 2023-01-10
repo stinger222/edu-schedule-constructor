@@ -36,3 +36,18 @@ export function replaceBlankProps<P extends {[key: string]: any}> (props: P , re
 	}
 	return result as P
 }
+
+export const formatNumber = (number: number): string => {
+	if (isNaN(number)) return "??"
+	
+	return number.toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false
+  })
+}
+
+export const formatTimeString = (timeString: string): string => {
+	let [hours, minutes] = timeString.split(':')
+
+	return `${formatNumber(parseInt(hours))}:${formatNumber(parseInt(minutes))}`
+}
