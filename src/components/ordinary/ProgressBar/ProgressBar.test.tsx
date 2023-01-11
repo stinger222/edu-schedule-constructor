@@ -3,17 +3,19 @@ import ProgressBar from "./ProgressBar"
 
 describe('Testing ProgressBar render with different props', () => {
 	it("Renders ProgressBar with valid props", () => {
-		render(<ProgressBar startTime="10:00" endTime="11:00"/>)
+		const progressBar = render(<ProgressBar startTime="10:00" endTime="11:00"/>)
 
 		expect(screen.getByText("10:00", {selector: ".caption_start"})).toBeInTheDocument()
 		expect(screen.getByText("11:00", {selector: ".caption_end"})).toBeInTheDocument()
+		expect(progressBar).toMatchSnapshot()
 	})
 
 	it("Renders ProgressBar correctly with logically incorrect props", () => {
-		render(<ProgressBar startTime="10:00" endTime="09:00"/>)
+		const progressBar = render(<ProgressBar startTime="10:00" endTime="09:00"/>)
 
 		expect(screen.getByText("09:00", {selector: ".caption_start"})).toBeInTheDocument()
 		expect(screen.getByText("10:00", {selector: ".caption_end"})).toBeInTheDocument()
+		expect(progressBar).toMatchSnapshot()
 
 		cleanup()
 
@@ -29,10 +31,11 @@ describe('Testing ProgressBar render with different props', () => {
 	})
 
 	it("Renders ProgressBar with valid props, but values not formatted", () => {
-		render(<ProgressBar startTime="7:3" endTime="9:5"/>)
+		const progressBar = render(<ProgressBar startTime="7:3" endTime="9:5"/>)
 
 		expect(screen.getByText("07:03", {selector: ".caption_start"})).toBeInTheDocument()
 		expect(screen.getByText("09:05", {selector: ".caption_end"})).toBeInTheDocument()
+		expect(progressBar).toMatchSnapshot()
 
 		cleanup()
 
@@ -85,10 +88,11 @@ describe('Testing ProgressBar render with different props', () => {
 	})
 
 	it("Renders ProgressBar with invalid props", () => {
-		render(<ProgressBar startTime="cum" endTime="sock"/>)
+		const progressBar = render(<ProgressBar startTime="cum" endTime="sock"/>)
 		
 		expect(screen.getByText("??:??", {selector: ".caption_start"})).toBeInTheDocument()
 		expect(screen.getByText("??:??", {selector: ".caption_end"})).toBeInTheDocument()
+		expect(progressBar).toMatchSnapshot()
 
 		cleanup()
 
@@ -105,4 +109,3 @@ describe('Testing ProgressBar render with different props', () => {
 		expect(screen.getByText("09:40", {selector: ".caption_end"})).toBeInTheDocument()
 	})
 })
-
