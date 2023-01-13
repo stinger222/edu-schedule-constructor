@@ -94,6 +94,13 @@ const GlobalStyles = createGlobalStyle`
 		border: 3.5px solid #ffffff;
 	}
 
+	.btn {
+		appearance: none;
+		outline: none;
+		border: none;
+		cursor: pointer;
+	}
+
 	/* TEMP (will be moved to anoter place)*/
 	.schedule_row {
 		display: flex;

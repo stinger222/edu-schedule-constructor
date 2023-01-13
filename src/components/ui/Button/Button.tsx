@@ -8,7 +8,7 @@ interface IProps {
 
 const Button: React.FC<IProps> = ({ children, onClick }) => {
   return (
-    <StyledButton onClick={onClick}>
+    <StyledButton onClick={onClick} className="btn">
       { children }
     </StyledButton>
   )

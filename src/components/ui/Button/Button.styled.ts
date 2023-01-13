@@ -6,15 +6,10 @@ export const StyledButton = styled.button`
 
   height: fit-content;
   width: fit-content;
-  padding: 0.2em 0.6em;
+  padding: 0.3em 0.8em;
 
   border-radius: 20em;
   background: black;
-  
-  appearance: none;
-  outline: none;
-  border: none;
-  cursor: pointer;
 
   &:has(svg), &:has(img) {
     padding: 0.3em;
