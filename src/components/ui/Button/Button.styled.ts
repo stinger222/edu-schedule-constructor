@@ -14,12 +14,4 @@ export const StyledButton = styled.button`
   &:has(svg), &:has(img) {
     padding: 0.3em;
   }
-
-  &:hover {
-    opacity: 0.7;
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
 `

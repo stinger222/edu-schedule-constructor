@@ -100,6 +100,14 @@ const GlobalStyles = createGlobalStyle`
 		border: none;
 		cursor: pointer;
 	}
+	
+  .btn:hover {
+    opacity: 0.75;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
 
 	/* TEMP (will be moved to anoter place)*/
 	.schedule_row {

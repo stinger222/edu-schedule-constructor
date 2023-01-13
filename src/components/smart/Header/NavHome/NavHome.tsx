@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const NavHome = () => {
 	return (
 		<Link to="/"> 
-			<StyledNavHome>
+			<StyledNavHome title="To main page">
 				<HomeIcon/> 
 			</StyledNavHome>
 		</Link>
