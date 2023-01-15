@@ -1,11 +1,16 @@
-import { StyledDropdown } from "./Dropdown.styled"
+import { StoreContext } from "../../.."
+import { useContext } from "react"
+import { observer } from "mobx-react"
 import { Link } from "react-router-dom"
+
+import { StyledDropdown } from "./Dropdown.styled"
 import Button from "../../ui/Button/Button"
 
-const Dropdown = ({ }) => {
+const Dropdown = () => {
+	const isOpen = useContext(StoreContext).uiStore.isDropdownOpen
 
 	return (
-		<StyledDropdown>
+		<StyledDropdown style={{visibility: isOpen ? 'visible' : 'hidden'}}>
       <header>
         Меню
       </header>
@@ -18,7 +23,7 @@ const Dropdown = ({ }) => {
         <Button>Расписания звонков</Button>
       </Link>
 
-			<Link to='lessons'>
+			<Link to='/lessons'>
 				<Button>Добавленные предметы</Button>
 			</Link>
 
@@ -26,4 +31,4 @@ const Dropdown = ({ }) => {
 	)
 }
 
-export default Dropdown
+export default observer(Dropdown)

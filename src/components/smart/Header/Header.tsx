@@ -1,5 +1,4 @@
 import { ReactNode, useContext } from "react"
-import { StoreContext } from "../../.."
 import { observer } from "mobx-react"
 
 import { StyledHeader } from "./Header.styled"
@@ -18,12 +17,11 @@ interface IProps {
 }
 
 const Header: React.FC<IProps> & IHeaderExtensions = ({ children }) => {
-	const { uiStore } = useContext(StoreContext)
 
 	return (
 		<StyledHeader>
 			{children}
-      {uiStore.isDropdownOpen && <Dropdown/>}
+      <Dropdown/>
 		</StyledHeader>
 	)
 }
