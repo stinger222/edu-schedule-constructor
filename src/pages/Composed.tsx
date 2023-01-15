@@ -1,7 +1,7 @@
 import Header from "../components/smart/Header/Header"
 import Container from "../components/ordinary/Container/Container"
+import GhostButton from "../components/ui/GhostButton/GhostButton"
 import ComposedSchedule from "../components/smart/ComposedSchedule/ComposedSchedule"
-import GhostButton from "../components/ui/Button/GhostButton/GhostButton"
 
 const Composed = () => {
 	return (
