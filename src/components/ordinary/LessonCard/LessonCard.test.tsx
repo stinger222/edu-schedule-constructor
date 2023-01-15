@@ -13,10 +13,10 @@ const emptyProps = {
 	cabinet: ""
 } 
 
-const spaceStringProps = {
-	title: " ",
+const filledWithSpacesProps = {
+	title: "   ",
 	teacher: " ",
-	cabinet: " "
+	cabinet: "      "
 }
 
 describe('Testing LessonCard render with different props', () => {
@@ -30,6 +30,14 @@ describe('Testing LessonCard render with different props', () => {
 
 	it('renders LessonCard with empty string porps', () => {
 		render(<LessonCard {...emptyProps}/>)
+
+		expect(screen.getByText(/^(<|&lt;)Название пары не указано(>|&gt;)$/)).toBeInTheDocument()
+		expect(screen.getByText(/^(<|&lt;)Имя препода не указано(>|&gt;)$/)).toBeInTheDocument()
+		expect(screen.getByText('каб. ???')).toBeInTheDocument()
+	})
+
+	it('renders LessonCard with string props that filled with spaces', () => {
+		render(<LessonCard {...filledWithSpacesProps}/>)
 
 		expect(screen.getByText(/^(<|&lt;)Название пары не указано(>|&gt;)$/)).toBeInTheDocument()
 		expect(screen.getByText(/^(<|&lt;)Имя препода не указано(>|&gt;)$/)).toBeInTheDocument()

@@ -13,12 +13,7 @@ export const getCurrentWeekDates = (): weekDates => {
 }
 
 export const formatNumbers = (numbers: number[]): string[] => {
-	return numbers.map(number => {
-		return number.toLocaleString('en-US', {
-			minimumIntegerDigits: 2,
-			useGrouping: false
-		})
-	})
+	return numbers.map(number => formatNumber(number))
 }
 
 export function replaceBlankProps<P extends {[key: string]: any}> (props: P , replacements: Replacements<P>): P {
@@ -40,7 +35,7 @@ export function replaceBlankProps<P extends {[key: string]: any}> (props: P , re
 export const formatNumber = (number: number): string => {
 	if (isNaN(number)) return "??"
 	
-	return number.toLocaleString('en-US', {
+	return Math.abs(number).toLocaleString('en-US', {
     minimumIntegerDigits: 2,
     useGrouping: false
   })
