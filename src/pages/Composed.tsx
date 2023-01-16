@@ -1,5 +1,5 @@
 import Header from "../components/smart/Header/Header"
-import Container from "../components/ordinary/Container/Container"
+import Container from "../components/containers/Container/Container"
 import GhostButton from "../components/ui/GhostButton/GhostButton"
 import ComposedSchedule from "../components/smart/ComposedSchedule/ComposedSchedule"
 

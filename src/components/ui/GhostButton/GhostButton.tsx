@@ -9,7 +9,7 @@ interface IProps {
 const GhostButton: React.FC<IProps> = ({ children, onClick }) => {
 	return (
 		<StyledGhostButton onClick={onClick} className="btn">
-			{ children }
+			<span>{ children }</span>
 		</StyledGhostButton>
 	)
 }

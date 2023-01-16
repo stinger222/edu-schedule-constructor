@@ -69,7 +69,8 @@ const GlobalStyles = createGlobalStyle`
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
-		-webkit-tap-highlight-color: transparent
+		-webkit-tap-highlight-color: transparent;
+		font-family: 'JetBrains Mono', 'Segoe UI', Arial, Tahoma, 'Verdana', 'Arial Narrow', sans-serif;
 	}
 
 	div:has(svg) {
@@ -77,7 +78,6 @@ const GlobalStyles = createGlobalStyle`
 	}
 
 	body {
-		font-family: 'JetBrains Mono', 'Segoe UI', Arial, Tahoma, 'Verdana', 'Arial Narrow', sans-serif;
 		font-weight: 100;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -103,6 +103,7 @@ const GlobalStyles = createGlobalStyle`
 	
   .btn:hover {
     opacity: 0.75;
+		filter: brightness(0.97);
   }
 
   .btn:active {
