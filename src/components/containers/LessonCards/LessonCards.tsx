@@ -1,13 +1,10 @@
 import LessonCard from "../../ordinary/LessonCard/LessonCard"
+import GhostButton from "../../ui/GhostButton/GhostButton"
 import { StyledLessonCards } from "./LessonCards.styled"
 
-interface IProps {
-	
-}
-
-const LessonCards: React.FC<IProps> = ({  }) => {
+const LessonCards = () => {
 	return (
-		<StyledLessonCards>
+		<StyledLessonCards className="lesson-cards">
 			<LessonCard
 				cabinet="23т"
 				teacher="Иванов Иван"
@@ -28,6 +25,8 @@ const LessonCards: React.FC<IProps> = ({  }) => {
 				teacher="Иванов Иван"
 				title="Название пары"
 			/>
+			
+			<GhostButton> Добавить предмет </GhostButton>
 		</StyledLessonCards>
 	)
 }

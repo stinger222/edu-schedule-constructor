@@ -1,6 +1,5 @@
 import LessonCards from "../../components/containers/LessonCards/LessonCards"
 import Container from "../../components/containers/Container/Container"
-import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import Header from "../../components/smart/Header/Header"
 import { StyledLessonsPage } from "./Lessons.styled"
 
@@ -16,7 +15,6 @@ const Lessons = () => {
 				
 				<LessonCards />
 
-				<GhostButton>Добавить предмет</GhostButton>
 			</Container>
 		</StyledLessonsPage>
   )
