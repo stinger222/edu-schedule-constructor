@@ -1,7 +1,6 @@
-import Header from "../../components/smart/Header/Header"
+import ComposedSchedules from "../../components/containers/ComposedSchedules/ComposedSchedules"
 import Container from "../../components/containers/Container/Container"
-import GhostButton from "../../components/ui/GhostButton/GhostButton"
-import ComposedSchedule from "../../components/smart/ComposedSchedule/ComposedSchedule"
+import Header from "../../components/smart/Header/Header"
 import { StyledComposedPage } from "./Composed.styled"
 
 const Composed = () => {
@@ -14,8 +13,7 @@ const Composed = () => {
 					<Header.BurgerButton style={{margin: 0}}/>
 				</Header>
 
-				<ComposedSchedule />
-				<GhostButton>Составить новое расписание</GhostButton>
+				<ComposedSchedules />
 			</Container>
 		</StyledComposedPage>
 	)

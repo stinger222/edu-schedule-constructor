@@ -14,7 +14,6 @@ const Lessons = () => {
 				</Header>
 				
 				<LessonCards />
-
 			</Container>
 		</StyledLessonsPage>
   )

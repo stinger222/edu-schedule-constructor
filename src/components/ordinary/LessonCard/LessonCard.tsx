@@ -19,7 +19,7 @@ const LessonCard: React.FC<IProps> = (props) => {
 	const { title, teacher, cabinet } = replaceBlankProps<IProps>(props, propsReplacements)
 
 	return (
-		<StyledLessonCard>
+		<StyledLessonCard className="lesson-card">
 			<h1>{ title }</h1>
 			<footer>
 				<span>{ teacher }</span>

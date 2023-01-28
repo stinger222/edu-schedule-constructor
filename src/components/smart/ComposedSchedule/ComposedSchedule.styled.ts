@@ -5,7 +5,7 @@ export const StyledComposedSchedule = styled.div`
 	height: fit-content;
 	padding: 0 0.3em 1em 0.3em;
 	margin-inline: auto;
-
+	
 	border-radius: 1.5em;
 	box-shadow: 0 0.15em 0.4em 0.07em rgb(0 0 0 / 25%);
 	

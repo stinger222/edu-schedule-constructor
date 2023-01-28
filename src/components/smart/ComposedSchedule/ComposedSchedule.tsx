@@ -11,7 +11,7 @@ interface ComposedScheduleExtensions {
 
 const ComposedSchedule: React.FC<IProps> & ComposedScheduleExtensions = ({  }) => {
 	return (
-		<StyledComposedSchedule>
+		<StyledComposedSchedule className="composed-schedule">
 			<header>Расписание #1</header>
 			<div className="days">
 				<Day
