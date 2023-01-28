@@ -2,10 +2,10 @@ import { StoreContext } from "."
 import { useContext, useEffect } from "react"
 import { Route, Routes, useLocation } from "react-router-dom";
 
-import Composed from "./pages/Composed"
-import Lessons from "./pages/Lessons";
-import Main from "./pages/Main";
-import Rings from "./pages/Rings";
+import Composed from "./pages/Composed/Composed"
+import Lessons from "./pages/Lessons/Lessons";
+import Main from "./pages/Main/Main";
+import Rings from "./pages/Rings/Rings";
 
 const App = () => {
 	const location = useLocation()
