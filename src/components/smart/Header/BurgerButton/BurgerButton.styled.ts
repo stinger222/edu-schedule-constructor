@@ -5,15 +5,15 @@ export const StyledBurgerButton = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 
-	height: 1.6em;
+	height: 1.2em;
 	width: 2.6em;
 	margin-left: 2em;
 
 	cursor: pointer;
 
 	& .burger-line {
-		height: 0.25em;
-		border-radius: 1em;
+		height: 0;
+		box-shadow: 0 0.5px 0 0.08em black;
 		background: black;
 	}
 `

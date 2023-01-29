@@ -4,7 +4,7 @@ export const StyledHeader = styled.header`
 	--header-height: 4.375em;
 
 	height: var(--header-height);
-	margin: 2em 0 5em 0;
+	margin: 2em 0 3.5em 0;
 	padding-inline: 1.5em;
 
 	display: flex;

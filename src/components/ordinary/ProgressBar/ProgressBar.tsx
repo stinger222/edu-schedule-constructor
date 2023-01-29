@@ -2,19 +2,21 @@ import React from "react"
 import { Replacements } from "../../../core/types/types"
 import { StyledProgressBar } from "./ProgressBar.styled"
 import { formatTimeString, replaceBlankProps } from "../../../core/utils/helpers"
+import { boolean } from "yup"
 
 interface IProps {
 	startTime: string,
-	endTime: string
+	endTime: string,
+	active?: boolean
 }
 
 const propsReplacements: Replacements<IProps> = {
 	startTime: "??:??",
-	endTime: "??:??"
+	endTime: "??:??",
 }
 
 const ProgressBar: React.FC<IProps> = (props) => {
-	let { startTime, endTime } = replaceBlankProps<IProps>(props, propsReplacements)
+	let { startTime, endTime, active } = replaceBlankProps<IProps>(props, propsReplacements)
 
 	startTime = formatTimeString(startTime)
 	endTime = formatTimeString(endTime)
@@ -27,7 +29,7 @@ const ProgressBar: React.FC<IProps> = (props) => {
 	}
 
 	return (
-		<StyledProgressBar>
+		<StyledProgressBar className={active ? 'active' : ''}>
 			<div className="caption">
 				<div className="caption_start">{ startTime }</div>
 				<div className="caption_end">{ endTime }</div>

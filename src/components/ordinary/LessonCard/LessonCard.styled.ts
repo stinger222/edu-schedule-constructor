@@ -5,7 +5,7 @@ export const StyledLessonCard = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 
-	border-radius: 1em;
+	border-radius: 1.3em;
 	box-shadow: 0px 0.125em 0.3125em 0.0625em #00000040;
 
 	width: 29.5em;

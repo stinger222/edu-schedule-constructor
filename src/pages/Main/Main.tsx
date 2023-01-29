@@ -29,6 +29,7 @@ const Main = () => {
 					<ProgressBar
 						startTime="8:30"
 						endTime="9:50"
+						active
 					/>
 					<LessonCard
 						teacher=" "
