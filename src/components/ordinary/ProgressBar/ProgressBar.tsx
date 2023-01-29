@@ -31,10 +31,10 @@ const ProgressBar: React.FC<IProps> = (props) => {
 	return (
 		<StyledProgressBar className={active ? 'active' : ''}>
 			<div className="caption">
-				<div className="caption_start">{ startTime }</div>
-				<div className="caption_end">{ endTime }</div>
+				<div className="caption-start">{ startTime }</div>
+				<div className="caption-end">{ endTime }</div>
 			</div>
-			<div className="progress_bar_body">
+			<div className="progress-bar-body">
 				<div className="indicator"></div>
 				<div className="line"></div>
 			</div>

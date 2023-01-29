@@ -6,24 +6,24 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-bcXHqe fTNrNh"
+        class="sc-bcXHqe eHkyuj"
       >
         <div
           class="caption"
         >
           <div
-            class="caption_start"
+            class="caption-start"
           >
             09:00
           </div>
           <div
-            class="caption_end"
+            class="caption-end"
           >
             10:00
           </div>
         </div>
         <div
-          class="progress_bar_body"
+          class="progress-bar-body"
         >
           <div
             class="indicator"
@@ -37,24 +37,24 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-bcXHqe fTNrNh"
+      class="sc-bcXHqe eHkyuj"
     >
       <div
         class="caption"
       >
         <div
-          class="caption_start"
+          class="caption-start"
         >
           09:00
         </div>
         <div
-          class="caption_end"
+          class="caption-end"
         >
           10:00
         </div>
       </div>
       <div
-        class="progress_bar_body"
+        class="progress-bar-body"
       >
         <div
           class="indicator"
@@ -125,24 +125,24 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-bcXHqe fTNrNh"
+        class="sc-bcXHqe eHkyuj"
       >
         <div
           class="caption"
         >
           <div
-            class="caption_start"
+            class="caption-start"
           >
             ??:??
           </div>
           <div
-            class="caption_end"
+            class="caption-end"
           >
             ??:??
           </div>
         </div>
         <div
-          class="progress_bar_body"
+          class="progress-bar-body"
         >
           <div
             class="indicator"
@@ -156,24 +156,24 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-bcXHqe fTNrNh"
+      class="sc-bcXHqe eHkyuj"
     >
       <div
         class="caption"
       >
         <div
-          class="caption_start"
+          class="caption-start"
         >
           ??:??
         </div>
         <div
-          class="caption_end"
+          class="caption-end"
         >
           ??:??
         </div>
       </div>
       <div
-        class="progress_bar_body"
+        class="progress-bar-body"
       >
         <div
           class="indicator"
@@ -244,24 +244,24 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-bcXHqe fTNrNh"
+        class="sc-bcXHqe eHkyuj"
       >
         <div
           class="caption"
         >
           <div
-            class="caption_start"
+            class="caption-start"
           >
             10:00
           </div>
           <div
-            class="caption_end"
+            class="caption-end"
           >
             11:00
           </div>
         </div>
         <div
-          class="progress_bar_body"
+          class="progress-bar-body"
         >
           <div
             class="indicator"
@@ -275,24 +275,24 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-bcXHqe fTNrNh"
+      class="sc-bcXHqe eHkyuj"
     >
       <div
         class="caption"
       >
         <div
-          class="caption_start"
+          class="caption-start"
         >
           10:00
         </div>
         <div
-          class="caption_end"
+          class="caption-end"
         >
           11:00
         </div>
       </div>
       <div
-        class="progress_bar_body"
+        class="progress-bar-body"
       >
         <div
           class="indicator"
@@ -363,24 +363,24 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-bcXHqe fTNrNh"
+        class="sc-bcXHqe eHkyuj"
       >
         <div
           class="caption"
         >
           <div
-            class="caption_start"
+            class="caption-start"
           >
             07:03
           </div>
           <div
-            class="caption_end"
+            class="caption-end"
           >
             09:05
           </div>
         </div>
         <div
-          class="progress_bar_body"
+          class="progress-bar-body"
         >
           <div
             class="indicator"
@@ -394,24 +394,24 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-bcXHqe fTNrNh"
+      class="sc-bcXHqe eHkyuj"
     >
       <div
         class="caption"
       >
         <div
-          class="caption_start"
+          class="caption-start"
         >
           07:03
         </div>
         <div
-          class="caption_end"
+          class="caption-end"
         >
           09:05
         </div>
       </div>
       <div
-        class="progress_bar_body"
+        class="progress-bar-body"
       >
         <div
           class="indicator"

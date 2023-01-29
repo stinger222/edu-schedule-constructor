@@ -16,17 +16,17 @@ export const StyledProgressBar = styled.div`
 		font-weight: 600;
 	}
 
-	& .caption .caption_end {
+	& .caption .caption-end {
 		font-size: 0.85em;
 		color: gray
 	}
 
-	& .progress_bar_body {
+	& .progress-bar-body {
 		height: 100%;
 		width: 25%;
 	}
 
-	& .progress_bar_body .indicator {
+	& .progress-bar-body .indicator {
 		width: 1em;
 		height: 1em;
 		background: transparent;
@@ -36,14 +36,14 @@ export const StyledProgressBar = styled.div`
 		margin-bottom: 0.4em;
 	}
 
-	&.active .progress_bar_body .indicator {
+	&.active .progress-bar-body .indicator {
 		height: 1.3em;
 		width: 1.3em;
 		position: relative;
 		box-shadow: 0 0 0 0.13em #0075FF inset;
 	}
 
-	&.active .progress_bar_body .indicator:after {
+	&.active .progress-bar-body .indicator:after {
 		content: "";
 		position: absolute;
 		inset: 50%;
@@ -56,7 +56,7 @@ export const StyledProgressBar = styled.div`
 		background: #0075ff;
 	}
 	
-	& .progress_bar_body .line {
+	& .progress-bar-body .line {
 		width: 0.25em;
 		height: calc(100% - 0.8em);
 		border-radius: 1em;

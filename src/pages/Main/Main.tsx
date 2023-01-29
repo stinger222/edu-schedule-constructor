@@ -14,7 +14,7 @@ const Main = () => {
 					<Header.BurgerButton/>
 				</Header>
 				
-				<div className="schedule_row">
+				<div className="schedule-row">
 					<ProgressBar
 						startTime="10:30"
 						endTime="9:50"
@@ -25,7 +25,7 @@ const Main = () => {
 						title=" "
 					/>
 				</div>
-				<div className="schedule_row">
+				<div className="schedule-row">
 					<ProgressBar
 						startTime="8:30"
 						endTime="9:50"
@@ -37,7 +37,7 @@ const Main = () => {
 						title=" "
 					/>
 				</div>
-				<div className="schedule_row">
+				<div className="schedule-row">
 					<ProgressBar
 						startTime="8:30"
 						endTime="9:50"
