@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react"
+import { cleanup, render, screen } from "../../../core/utils/test-utils"
 import ProgressBar from "./ProgressBar"
 
 describe('Testing ProgressBar render with different props', () => {

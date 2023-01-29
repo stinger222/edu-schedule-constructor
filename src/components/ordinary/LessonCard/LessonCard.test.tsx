@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen } from "../../../core/utils/test-utils"
 import LessonCard from "./LessonCard"
 
 const validProps = {

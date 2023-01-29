@@ -41,7 +41,7 @@ export const StyledLessonCard = styled.div`
 		font-size: 1.2em;
 		line-height: 1em;
 		letter-spacing: 0;
-		color: ${({theme}) => theme.colors.textSecondary};;
+		color: ${({theme}) => theme.colors.textSecondary};
 	}
 
 	& footer span:nth-child(1) {
