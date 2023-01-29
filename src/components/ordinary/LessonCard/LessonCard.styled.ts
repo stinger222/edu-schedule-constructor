@@ -6,7 +6,9 @@ export const StyledLessonCard = styled.div`
 	justify-content: space-between;
 
 	border-radius: 1.3em;
-	box-shadow: 0px 0.125em 0.3125em 0.0625em #00000040;
+	/* box-shadow: 0px 0.125em 0.3125em 0.0625em #00000040; */
+	box-shadow: ${({theme}) => theme.boxShadows.primaryShadow};
+	background: ${({theme}) => theme.colors.cardBg};
 
 	width: 29.5em;
 	height: fit-content;
@@ -20,7 +22,7 @@ export const StyledLessonCard = styled.div`
 		margin-bottom: 1em;
 
 		line-height: 1.25em;
-		font-weight: 600;
+		font-weight: 500;
 		font-size: 1.625em;
 
 		display: -webkit-box;
@@ -39,7 +41,7 @@ export const StyledLessonCard = styled.div`
 		font-size: 1.2em;
 		line-height: 1em;
 		letter-spacing: 0;
-		color: #8B8B8B;
+		color: ${({theme}) => theme.colors.textSecondary};;
 	}
 
 	& footer span:nth-child(1) {

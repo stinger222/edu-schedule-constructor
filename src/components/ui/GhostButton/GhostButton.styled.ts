@@ -9,6 +9,7 @@ export const StyledGhostButton = styled.button`
 	font-size: 1em;
 	font-weight: 400;
 	letter-spacing: 0.05em;
+	color: ${({theme}) => theme.colors.secondary};
 
 	display: flex;
 	align-items: center;
@@ -22,7 +23,7 @@ export const StyledGhostButton = styled.button`
 	padding: 1.8em 3em;
 
 	border-radius: 1em;
-	box-shadow: 0 0 0 0.1em black;
+	box-shadow: 0 0 0 0.1em ${({theme}) => theme.colors.secondary};
 
 	& > span {
 		font-size: 1.5em;

@@ -7,7 +7,6 @@ import { StyledMainPage } from "./Main.styled"
 const Main = () => {
   return (
 		<StyledMainPage>
-
 			<Container>
 				<Header>
 					<Header.NavBar/>

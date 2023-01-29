@@ -10,7 +10,7 @@ export const StyledProgressBar = styled.div`
 		font-size: 1.5em;
 		margin-right: 0.4em;
 	}
-
+	
 	& .caption > div {
 		text-align: center;
 		font-weight: 600;
@@ -18,7 +18,7 @@ export const StyledProgressBar = styled.div`
 
 	& .caption .caption-end {
 		font-size: 0.85em;
-		color: gray
+		color: ${({theme}) => theme.colors.textSecondary};
 	}
 
 	& .progress-bar-body {
@@ -57,7 +57,7 @@ export const StyledProgressBar = styled.div`
 	}
 	
 	& .progress-bar-body .line {
-		width: 0.25em;
+		width: 0.2em;
 		height: calc(100% - 0.8em);
 		border-radius: 1em;
 		background: #0075FF;

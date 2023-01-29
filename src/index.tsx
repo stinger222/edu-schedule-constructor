@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom/client'
 import GlobalStyles from './core/themes/GlobalStyles'
 import RootStore from './core/store/RootStore'
 import { HashRouter } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
+import { DarkTheme } from './core/themes/Dark'
 
 const rootStore = new RootStore()
 export const StoreContext = React.createContext<typeof rootStore>(rootStore)
@@ -15,10 +17,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
 		<StoreContext.Provider value={rootStore}>
-			<GlobalStyles />
-			<HashRouter>
-				<App />
-			</HashRouter>
+			<ThemeProvider theme={DarkTheme}>
+				<HashRouter>
+					<App />
+				</HashRouter>
+				<GlobalStyles />
+			</ThemeProvider>
 		</StoreContext.Provider>
   </React.StrictMode>
 )

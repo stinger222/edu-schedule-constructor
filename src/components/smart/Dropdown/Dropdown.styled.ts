@@ -16,10 +16,10 @@ export const StyledDropdown = styled.div`
 	width: max-content;
 	min-width: 17em;
   padding: 0.4em 0.8em;
-	background: white;
+	background: ${({theme}) => theme.colors.bg};
   
 	border-radius: 1em;
-	box-shadow: 0 0 0 0.08em black, -0.2em 0.3em 0.5em rgb(0 0 0 / 30%);
+	box-shadow: 0 0 0 0.08em ${({theme}) => theme.colors.textSecondary}, -0.2em 0.3em 0.5em rgb(0 0 0 / 30%);
   
 	position: absolute;
 	right: 1em;
@@ -39,17 +39,19 @@ export const StyledDropdown = styled.div`
     text-align: center;
     
     margin-bottom: 0.5em;
-    border-bottom: 0.09em solid #bfbfbf;
+    border-bottom: 0.09em solid ${({theme}) => theme.colors.textSecondary};;
   }
   
   & button {
 		/* TODO: Make buttons bigger on mobile */
-    margin-bottom: 0.3em;
+    margin-bottom: 0.4em;
     width: 100%;
 		min-height: 1.5em;
     font-family: inherit;
     font-size: 1.2em;
     font-weight: 300;
+		background: ${({theme}) => theme.colors.buttonBg};
+		box-shadow: ${({theme}) => theme.boxShadows.secondaryShadow};
   }
 
   & *:has(button) {

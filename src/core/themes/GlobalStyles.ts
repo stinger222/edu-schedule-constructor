@@ -1,7 +1,7 @@
+import { ITheme } from './../types/styled'
 import { createGlobalStyle } from "styled-components";
 
-
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 	@font-face {
 			font-family: 'JetBrains Mono';
 			src: url(${require('../../assets/fonts/JetBrainsMono-Thin.ttf')}) format('truetype');
@@ -81,6 +81,8 @@ const GlobalStyles = createGlobalStyle`
 		font-weight: 100;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+		background: ${({theme}) => theme.colors.bg};
+		color: ${({theme}) => theme.colors.textPrimary};
 	}
 
 	::-webkit-scrollbar {

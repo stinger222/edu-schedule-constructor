@@ -7,7 +7,8 @@ export const StyledComposedSchedule = styled.div`
 	margin-inline: auto;
 	
 	border-radius: 1.5em;
-	box-shadow: 0 0.15em 0.4em 0.07em rgb(0 0 0 / 25%);
+	box-shadow: ${({theme}) => theme.boxShadows.primaryShadow};
+	background: ${({theme}) => theme.colors.cardBg};
 	
 	& > header {
 		line-height: 1em;
