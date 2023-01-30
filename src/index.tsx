@@ -5,7 +5,7 @@ import GlobalStyles from './core/themes/GlobalStyles'
 import RootStore from './core/store/RootStore'
 import { HashRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
-import { DarkTheme } from './core/themes/Dark'
+import { LightTheme } from './core/themes/Light'
 
 const rootStore = new RootStore()
 export const StoreContext = React.createContext<typeof rootStore>(rootStore)
@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
 		<StoreContext.Provider value={rootStore}>
-			<ThemeProvider theme={DarkTheme}>
+			<ThemeProvider theme={LightTheme}>
 				<HashRouter>
 					<App />
 				</HashRouter>
