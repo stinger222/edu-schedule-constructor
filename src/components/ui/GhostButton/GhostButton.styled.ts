@@ -20,7 +20,7 @@ export const StyledGhostButton = styled.button`
 	width: 100%;
 
 	margin: 2em auto;
-	padding: 1.8em 3em;
+	padding: 1.8em;
 
 	border-radius: 1em;
 	box-shadow: 0 0 0 0.1em ${({theme}) => theme.colors.secondary};

@@ -6,7 +6,6 @@ export const StyledLessonCard = styled.div`
 	justify-content: space-between;
 
 	border-radius: 1.3em;
-	/* box-shadow: 0px 0.125em 0.3125em 0.0625em #00000040; */
 	box-shadow: ${({theme}) => theme.boxShadows.primaryShadow};
 	background: ${({theme}) => theme.colors.cardBg};
 
