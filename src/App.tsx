@@ -26,6 +26,7 @@ const App = () => {
 			<Route path="/add">
 				<Route path="rings" element={<>
 					<Input caption="sdklfklsj" type="text"/>
+					<Input caption="sdklfklsj" type="time"/>
 				</>}/>
 			</Route>
 		</Routes>

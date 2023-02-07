@@ -10,7 +10,7 @@ interface IProps {
 const Input: React.FC<IProps> = ({ caption, type = 'text', onChange }) => {
 	return (
 		<Container>
-			<StyledInput style={{position: 'absolute', top: "50px"}}>
+			<StyledInput>
 				<span className="caption">{caption}</span>
 				<input
 					type={type}
