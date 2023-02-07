@@ -6,6 +6,7 @@ import Composed from "./pages/Composed/Composed"
 import Lessons from "./pages/Lessons/Lessons";
 import Main from "./pages/Main/Main";
 import Rings from "./pages/Rings/Rings";
+import Input from "./components/ui/Input/Input"
 
 const App = () => {
 	const location = useLocation()
@@ -21,6 +22,12 @@ const App = () => {
 			<Route path="/composed" element={<Composed />}/>
 			<Route path="/lessons" element={<Lessons />}/>
 			<Route path="/rings" element={<Rings />}/>
+
+			<Route path="/add">
+				<Route path="rings" element={<>
+					<Input caption="sdklfklsj" type="text"/>
+				</>}/>
+			</Route>
 		</Routes>
   )
 }

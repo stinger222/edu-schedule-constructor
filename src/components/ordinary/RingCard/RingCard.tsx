@@ -14,7 +14,7 @@ const replacements: Replacements<IProps> = {
 }
 
 const RingCard: React.FC<IProps> = (props) => {
-	const {length, start, end} = replaceBlankProps<IProps>(props, replacements)
+	const { length, start, end } = replaceBlankProps<IProps>(props, replacements)
 
 	return (
 		<StyledRingCard className="ring-card">
