@@ -7,6 +7,9 @@ import Lessons from "./pages/Lessons/Lessons";
 import Main from "./pages/Main/Main";
 import Rings from "./pages/Rings/Rings";
 import Input from "./components/ui/Input/Input"
+import { StyledTimeRange } from "./components/ordinary/TimeRange/TimeRange.styled"
+import TimeRange from "./components/ordinary/TimeRange/TimeRange"
+import Container from "./components/containers/Container/Container"
 
 const App = () => {
 	const location = useLocation()
@@ -25,8 +28,11 @@ const App = () => {
 
 			<Route path="/add">
 				<Route path="rings" element={<>
-					<Input caption="sdklfklsj" type="text"/>
-					<Input caption="sdklfklsj" type="time"/>
+					<Container>
+						<TimeRange index={1}/>
+						<TimeRange index={2}/>
+						<TimeRange index={3}/>
+					</Container>
 				</>}/>
 			</Route>
 		</Routes>
