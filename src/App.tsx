@@ -2,12 +2,10 @@ import { StoreContext } from "."
 import { useContext, useEffect } from "react"
 import { Route, Routes, useLocation } from "react-router-dom";
 
-import Composed from "./pages/Composed/Composed"
-import Lessons from "./pages/Lessons/Lessons";
 import Main from "./pages/Main/Main";
-import Rings from "./pages/Rings/Rings";
-import Input from "./components/ui/Input/Input"
-import { StyledTimeRange } from "./components/ordinary/TimeRange/TimeRange.styled"
+import Lessons from "./pages/Lessons/Lessons";
+import Rings from "./pages/RingsSchedules/Rings";
+import Composed from "./pages/ComposedSchedules/Composed"
 import TimeRange from "./components/ordinary/TimeRange/TimeRange"
 import Container from "./components/containers/Container/Container"
 
