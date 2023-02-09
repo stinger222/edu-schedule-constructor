@@ -12,7 +12,7 @@ const Rings = () => {
 				<Header>
 						<Header.NavHome/>
 						<h1> Расписания звонков </h1>
-						<Header.BurgerButton style={{margin: 0}}/>
+						<Header.BurgerButton/>
 				</Header>
 
 				<RingsCards />

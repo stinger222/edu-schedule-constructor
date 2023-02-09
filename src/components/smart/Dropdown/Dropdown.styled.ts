@@ -25,6 +25,7 @@ export const StyledDropdown = styled.div`
 	right: 1em;
 
 	visibility: hidden;
+	z-index: 10;
   
 	/* now, even when dropdown font-size will be changed,
 	it's position relative to header will be the same */

@@ -10,7 +10,7 @@ const Composed = () => {
 				<Header>
 					<Header.NavHome/>
 					<h1> Составленные расписания </h1>
-					<Header.BurgerButton style={{margin: 0}}/>
+					<Header.BurgerButton/>
 				</Header>
 
 				<ComposedSchedules />

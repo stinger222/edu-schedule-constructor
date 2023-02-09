@@ -8,6 +8,7 @@ import Rings from "./pages/RingsSchedules/Rings";
 import Composed from "./pages/ComposedSchedules/Composed"
 import TimeRange from "./components/ordinary/TimeRange/TimeRange"
 import Container from "./components/containers/Container/Container"
+import AddRingsSchedule from "./pages/AddRingsSchedule/AddRingsSchedule"
 
 const App = () => {
 	const location = useLocation()
@@ -25,13 +26,7 @@ const App = () => {
 			<Route path="/rings" element={<Rings />}/>
 
 			<Route path="/add">
-				<Route path="rings" element={<>
-					<Container>
-						<TimeRange index={1}/>
-						<TimeRange index={2}/>
-						<TimeRange index={3}/>
-					</Container>
-				</>}/>
+				<Route path="rings" element={<AddRingsSchedule />}/>
 			</Route>
 		</Routes>
   )

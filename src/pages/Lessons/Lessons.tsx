@@ -10,7 +10,7 @@ const Lessons = () => {
 				<Header>
 					<Header.NavHome/>
 					<h1> Добавленные предметы </h1>
-					<Header.BurgerButton style={{margin: 0}}/>
+					<Header.BurgerButton/>
 				</Header>
 				
 				<LessonCards />

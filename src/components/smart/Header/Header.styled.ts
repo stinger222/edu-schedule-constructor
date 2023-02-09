@@ -25,5 +25,9 @@ export const StyledHeader = styled.header`
 			padding-inline: 1em;
 			margin-bottom: 4em;
 		}
+
+		& > h1 {
+			font-size: 1.5em;
+		}
 	}
 `

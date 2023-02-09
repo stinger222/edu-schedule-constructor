@@ -7,7 +7,6 @@ export const StyledBurgerButton = styled.div`
 
 	height: 1.2em;
 	width: 2.6em;
-	margin-left: 2em;
 
 	cursor: pointer;
 

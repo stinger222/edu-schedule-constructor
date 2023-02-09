@@ -3,12 +3,13 @@ import { StyledButton } from "./Button.styled"
 
 interface IProps {
   children: ReactNode,
-	onClick?: React.MouseEventHandler<HTMLButtonElement> 
+	className?: string,
+	onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const Button: React.FC<IProps> = ({ children, onClick }) => {
+const Button: React.FC<IProps> = ({ children, onClick, className }) => {
   return (
-    <StyledButton onClick={onClick} className="btn">
+    <StyledButton onClick={onClick} className={`btn ${className || ''}`}>
       { children }
     </StyledButton>
   )
