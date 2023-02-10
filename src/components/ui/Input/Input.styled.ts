@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const StyledInput = styled.div`
 	position: relative;
-
+	
 	& > .caption {
 		position: absolute;
-		top: 0em;
+		top: -0.05em;
 		left: 0.5em;
 		font-size: 1.1em;
 	}

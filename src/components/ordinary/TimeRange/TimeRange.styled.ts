@@ -6,8 +6,9 @@ export const StyledTimeRange = styled.div`
 	align-items: center;
 
 	margin-bottom: 1em;
+	padding-inline: 3em;
 
-	& .caption {
+	& .divider .caption {
 		font-size: 1.3em;
 		font-weight: 200;
 	}

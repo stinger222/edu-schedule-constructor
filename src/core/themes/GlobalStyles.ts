@@ -110,6 +110,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: 75%;
+		margin: 0;
 		filter:
 			invert(${({theme}) => theme.type == ThemeEnum.light ? '0' : '1'})
 			brightness(${({theme}) => theme.type == ThemeEnum.light ? '0' : '10'})

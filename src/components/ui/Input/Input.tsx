@@ -9,15 +9,13 @@ interface IProps {
 
 const Input: React.FC<IProps> = ({ caption, type = 'text', onChange }) => {
 	return (
-		<Container>
-			<StyledInput>
-				<span className="caption">{caption}</span>
-				<input
-					type={type}
-					onChange={onChange}
-				/>
-			</StyledInput>
-		</Container>
+		<StyledInput>
+			<span className="caption">{caption}</span>
+			<input
+				type={type}
+				onChange={onChange}
+			/>
+		</StyledInput>
 	)
 }
 
