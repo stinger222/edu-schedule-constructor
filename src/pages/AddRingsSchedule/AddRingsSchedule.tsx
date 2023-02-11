@@ -35,9 +35,14 @@ const AddRingsSchedule = () => {
 							<TimeRange index={index} key={id}/>
 						))}
 
-						<Button className="append-range" onClick={() => append({start: '', end: ''})}>
-							<Icon fill="white" name="Plus"/>
-						</Button>
+						{ fields.length < 9
+								?
+							<Button className="append" onClick={() => append({start: '', end: ''})}>
+								<Icon fill="white" name="Plus"/>
+							</Button> 
+								:
+							<div style={{textAlign: 'center', fontSize: '1.2em'}}>а ой))))) 👉👈</div>
+						}
 
 						<Button type="submit">Готово</Button>
 					</form>
