@@ -11,7 +11,7 @@ export const StyledAddRingsSchedule = styled.div`
 		margin-top: 1em;
 	}
 
-	& .submit {
+	& button[type=submit] {
 		margin-top: 2em;
 		font-size: 1.5em;
 	}

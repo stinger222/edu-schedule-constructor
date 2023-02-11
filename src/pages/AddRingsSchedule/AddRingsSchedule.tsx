@@ -3,15 +3,13 @@ import Button from "../../components/ui/Button/Button"
 import Header from "../../components/smart/Header/Header"
 import TimeRange from "../../components/ordinary/TimeRange/TimeRange"
 import Container from "../../components/containers/Container/Container"
+
 import { StyledAddRingsSchedule } from "./AddRingsSchedule.styled"
-import { useState } from "react"
+import { useForm, useFieldArray, FormProvider } from 'react-hook-form';
 
 const AddRingsSchedule = () => {
-	const [rangesAmmount, setRangesAmmount] = useState<number>(1)
-
-	const appendRange = () => {
-		setRangesAmmount(prev => Math.min(prev + 1, 9))
-	}
+	const methods = useForm()
+	const { append, remove, fields } = useFieldArray({control: methods.control, name: 'ranges' })
 
 	return (
 		<Container>
@@ -22,23 +20,19 @@ const AddRingsSchedule = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-				{
-					new Array(rangesAmmount).fill(0).map((_, index) => (
-						<TimeRange index={index + 1} key={index}/>
-					))
-				}
-				
-				{
-					rangesAmmount < 9
-						? 
-							<Button className="append-range" onClick={appendRange}>
-								<Icon fill="white" name="Plus"/>
-							</Button>
-						:
-							<div style={{textAlign: 'center'}}>А ой)))) 👉👈</div>
-				}
+				<FormProvider {...methods}>
+					<form onSubmit={ methods.handleSubmit(console.log) }>
+						{fields.map(({ id }, index) => (
+							<TimeRange index={index} key={id}/>
+						))}
 
-				<Button className="submit">Готово</Button>
+						<Button className="append-range" onClick={() => append({})}>
+							<Icon fill="white" name="Plus"/>
+						</Button>
+
+						<Button type="submit">Готово</Button>
+					</form>
+				</FormProvider>
 
 			</StyledAddRingsSchedule>
 		</Container>

@@ -8,12 +8,24 @@ interface IProps {
 const TimeRange: React.FC<IProps> = ({ index }) => {
 	return (
 		<StyledTimeRange>
-			<Input type="time" caption="Начало"/>
+			<Input
+				type="time"
+				caption="Начало"
+				registerName={`ranges.${index}.start`}
+				registerOptions={{required: true}}
+			/>
+
 				<span className="divider">
-					<div className="caption">{index} пара</div>
+					<div className="caption">{index + 1} пара</div>
 					<div className="line"></div>
 				</span>
-			<Input type="time" caption="Конец"/>
+
+			<Input
+				type="time"
+				caption="Конец"
+				registerName={`ranges.${index}.end`}
+				registerOptions={{required: true}}
+			/>
 		</StyledTimeRange>
 	)
 }
