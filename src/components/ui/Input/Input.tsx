@@ -15,7 +15,7 @@ const Input: React.FC<IProps> = ({ caption, type = 'text', onChange, registerNam
 		<StyledInput>
 			<span className="caption">{caption}</span>
 			<input
-				{...register(registerName || 'value', registerOptions)}
+				{...register(registerName || 'value' , registerOptions)}
 				type={type}
 				onChange={onChange}
 			/>

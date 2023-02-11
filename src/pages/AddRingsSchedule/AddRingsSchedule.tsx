@@ -8,7 +8,16 @@ import { StyledAddRingsSchedule } from "./AddRingsSchedule.styled"
 import { useForm, useFieldArray, FormProvider } from 'react-hook-form';
 
 const AddRingsSchedule = () => {
-	const methods = useForm()
+	const methods = useForm({
+		defaultValues: {
+			ranges: [
+				{
+					start: '08:40',
+					end: '10:00'
+				}
+			]
+		}
+	})
 	const { append, remove, fields } = useFieldArray({control: methods.control, name: 'ranges' })
 
 	return (
@@ -21,12 +30,12 @@ const AddRingsSchedule = () => {
 				</Header>
 
 				<FormProvider {...methods}>
-					<form onSubmit={ methods.handleSubmit(console.log) }>
+					<form onSubmit={ methods.handleSubmit(() => console.log(fields)) }>
 						{fields.map(({ id }, index) => (
 							<TimeRange index={index} key={id}/>
 						))}
 
-						<Button className="append-range" onClick={() => append({})}>
+						<Button className="append-range" onClick={() => append({start: '', end: ''})}>
 							<Icon fill="white" name="Plus"/>
 						</Button>
 

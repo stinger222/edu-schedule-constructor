@@ -11,7 +11,7 @@ const TimeRange: React.FC<IProps> = ({ index }) => {
 			<Input
 				type="time"
 				caption="Начало"
-				registerName={`ranges.${index}.start`}
+				registerName={`ranges.${index}.start` as const}
 				registerOptions={{required: true}}
 			/>
 
@@ -23,7 +23,7 @@ const TimeRange: React.FC<IProps> = ({ index }) => {
 			<Input
 				type="time"
 				caption="Конец"
-				registerName={`ranges.${index}.end`}
+				registerName={`ranges.${index}.end` as const}
 				registerOptions={{required: true}}
 			/>
 		</StyledTimeRange>
