@@ -2,7 +2,6 @@ import React from "react"
 import { Replacements } from "../../../core/types/types"
 import { StyledProgressBar } from "./ProgressBar.styled"
 import { formatTimeString, replaceBlankProps } from "../../../core/utils/helpers"
-import { boolean } from "yup"
 
 interface IProps {
 	startTime: string,

@@ -1,4 +1,6 @@
+import { useFormContext } from "react-hook-form"
 import Input from "../../ui/Input/Input"
+import InputWrapper from "../../wrappers/InputWrapper/InputWrapper"
 import { StyledTimeRange } from "./TimeRange.styled"
 
 interface IProps {
@@ -6,9 +8,11 @@ interface IProps {
 }
 
 const TimeRange: React.FC<IProps> = ({ index }) => {
+	const { register } = useFormContext()
+
 	return (
 		<StyledTimeRange>
-			<Input
+			<InputWrapper
 				type="time"
 				caption="Начало"
 				registerName={`ranges.${index}.start` as const}
@@ -20,12 +24,13 @@ const TimeRange: React.FC<IProps> = ({ index }) => {
 					<div className="line"></div>
 				</span>
 
-			<Input
+			<input type="time" {...register(`ranges.${index}.end` as const || 'value' , {required: true})}/>
+			{/* <InputWrapper
 				type="time"
 				caption="Конец"
 				registerName={`ranges.${index}.end` as const}
 				registerOptions={{required: true}}
-			/>
+			/> */}
 		</StyledTimeRange>
 	)
 }
