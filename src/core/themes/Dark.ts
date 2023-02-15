@@ -13,7 +13,8 @@ export const DarkTheme: ITheme = {
 		secondary: '#FFFFFF',
 
     textPrimary: '#FFFFFF',
-    textSecondary: '#808080'
+    textSecondary: '#808080',
+		textPlaceholder: '#707070'
 	},
 	boxShadows: {
 		primaryShadow: '0.05em 0.2em 0.2em 0.08em #00000080',

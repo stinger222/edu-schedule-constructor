@@ -27,6 +27,13 @@ export const StyledAddLesson = styled.div`
 		grid-row: 2 / 3;
 	}
 
+	& .error-message {
+		grid-column: 1 / -1;
+		text-align: center;
+		color: red;
+		line-height: 0.2em;
+	}
+
 	& button[type=submit] {
 		grid-column: 8 / -8;
 		grid-row: 4 / 5;

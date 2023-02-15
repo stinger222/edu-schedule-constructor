@@ -13,7 +13,8 @@ export const LightTheme: ITheme = {
 		secondary: '#000000',
 
     textPrimary: '#000000',
-    textSecondary: '#000000'
+    textSecondary: '#000000',
+		textPlaceholder: '#00000050'
 	},
 	boxShadows: {
 		primaryShadow: '0.1em 0.2em 0.35em 0 #00000050, 0 -0.1em 0.5em -0.3em #00000050',

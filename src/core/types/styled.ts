@@ -16,7 +16,8 @@ export interface ITheme {
 		secondary: string,
 
 		textPrimary: string,
-		textSecondary: string
+		textSecondary: string,
+		textPlaceholder: string
 	},
 	boxShadows: {
 		primaryShadow: string,

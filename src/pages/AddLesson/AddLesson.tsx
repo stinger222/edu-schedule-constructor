@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
@@ -7,9 +8,11 @@ import { StyledAddLesson } from "./AddLesson.styled"
 
 const AddLesson = () => {
 	const methods = useForm({defaultValues: {
-		dick1: 'dick 1',
+		title: "",
+		teacher: "",
+		cabinet: ""
 	}})
-
+	
 	return (
 		<StyledAddLesson>
 			<Container>
@@ -25,21 +28,30 @@ const AddLesson = () => {
 								caption="Название пары"
 								placeholder="Информационные Технологии"
 								registerName="title"
+								registerOptions={{required: true}}
 								className="title"
 							/>
 							<InputWrapper
 								caption="Имя препода"
 								placeholder="Иванов Иван Иванович"
 								registerName="teacher"
+								registerOptions={{required: true}}
 								className="teacher"
 							/>
 							<InputWrapper
 								caption="Кабинет"
 								placeholder="302у"
 								registerName="cabinet"
+								registerOptions={{required: true}}
 								className="cabinet"
 							/>
-							
+
+							{
+								Object.keys(methods.formState.errors).length !== 0 
+									&&
+								<p className="error-message">Все поля должны быть заполнены!</p>
+							}
+
 							<Button type="submit">Готово</Button>
 						</form>
 					</FormProvider>
