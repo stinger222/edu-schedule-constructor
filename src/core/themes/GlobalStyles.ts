@@ -117,6 +117,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 		background-color: transparent;
 		background-size: 75%;
 		margin: 0;
+		outline: none;
 		filter:
 			invert(${({theme}) => theme.type == ThemeEnum.light ? '0' : '1'})
 			brightness(${({theme}) => theme.type == ThemeEnum.light ? '0' : '10'})
