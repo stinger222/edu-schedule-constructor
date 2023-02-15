@@ -30,7 +30,7 @@ const AddRingsSchedule = () => {
 				</Header>
 
 				<FormProvider {...methods}>
-					<form onSubmit={ methods.handleSubmit(() => console.log(fields)) }>
+					<form onSubmit={ methods.handleSubmit(() => console.log(methods.getValues())) }>
 						{fields.map(({ id }, index) => (
 							<TimeRange index={index} key={id}/>
 						))}
