@@ -8,12 +8,12 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 } 
 
 const InputWrapper: React.FC<IProps> = ({ registerName, registerOptions, caption, ...rest }) => {
-	const { register } = useFormContext()
+	const methods = useFormContext()
 
 	return (
 		<Input
-			{...register(registerName || 'value' , registerOptions)}
 			caption={caption}
+			{...methods?.register(registerName || 'value' , registerOptions)}
 			{...rest}
 		/>
 	)

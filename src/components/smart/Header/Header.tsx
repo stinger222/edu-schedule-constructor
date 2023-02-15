@@ -19,7 +19,7 @@ interface IProps {
 const Header: React.FC<IProps> & IHeaderExtensions = ({ children }) => {
 
 	return (
-		<StyledHeader>
+		<StyledHeader className="app-header">
 			{children}
       <Dropdown/>
 		</StyledHeader>

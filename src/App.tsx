@@ -6,9 +6,8 @@ import Main from "./pages/Main/Main";
 import Lessons from "./pages/Lessons/Lessons";
 import Rings from "./pages/RingsSchedules/Rings";
 import Composed from "./pages/ComposedSchedules/Composed"
-import TimeRange from "./components/ordinary/TimeRange/TimeRange"
-import Container from "./components/containers/Container/Container"
 import AddRingsSchedule from "./pages/AddRingsSchedule/AddRingsSchedule"
+import AddLesson from "./pages/AddLesson/AddLesson"
 
 const App = () => {
 	const location = useLocation()
@@ -27,6 +26,7 @@ const App = () => {
 
 			<Route path="/add">
 				<Route path="rings" element={<AddRingsSchedule />}/>
+				<Route path="lesson" element={<AddLesson />}/>
 			</Route>
 		</Routes>
   )

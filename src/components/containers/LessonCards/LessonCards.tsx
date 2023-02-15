@@ -1,5 +1,4 @@
 import LessonCard from "../../ordinary/LessonCard/LessonCard"
-import GhostButton from "../../ui/GhostButton/GhostButton"
 import { StyledLessonCards } from "./LessonCards.styled"
 
 const LessonCards = () => {
@@ -25,8 +24,6 @@ const LessonCards = () => {
 				teacher="Иванов Иван"
 				title="Название пары"
 			/>
-			
-			<GhostButton> Добавить предмет </GhostButton>
 		</StyledLessonCards>
 	)
 }

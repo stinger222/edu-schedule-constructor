@@ -18,8 +18,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
 		<StoreContext.Provider value={rootStore}>
-			{/* <ThemeProvider theme={LightTheme}> */}
-			<ThemeProvider theme={DarkTheme}>
+			<ThemeProvider theme={LightTheme}>
+			{/* <ThemeProvider theme={DarkTheme}> */}
 				<HashRouter>
 					<App />
 				</HashRouter>

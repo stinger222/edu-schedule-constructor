@@ -15,7 +15,7 @@ export const StyledDropdown = styled.div`
 	height: fit-content;
 	width: max-content;
 	min-width: 17em;
-  padding: 0.4em 0.8em;
+  padding: 0.2em 0.8em;
 	background: ${({theme}) => theme.colors.bg};
   
 	border-radius: 1em;
@@ -45,7 +45,7 @@ export const StyledDropdown = styled.div`
   
   & button {
 		/* TODO: Make buttons bigger on mobile */
-    margin-bottom: 0.4em;
+    margin-bottom: 0.6em;
     width: 100%;
 		min-height: 1.5em;
     font-family: inherit;

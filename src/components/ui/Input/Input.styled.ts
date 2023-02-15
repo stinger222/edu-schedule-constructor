@@ -2,26 +2,27 @@ import styled from "styled-components";
 
 export const StyledInput = styled.div`
 	position: relative;
-	
+
 	& > .caption {
 		position: absolute;
-		top: -0.05em;
-		left: 0.5em;
+		top: -0.3em;
+		left: 0.3em;
 		font-size: 1.1em;
 	}
 
 	& > input {
-		font-size: 2em;
+		font-size: 1.6em;
 
-		width: 5em;
-		height: 1.4em;
+		width: 100%;
+		height: 1.6em;
 		padding: 0.2em 0.2em;
 		margin-top: 0.8em;
 		
-		border-radius: 0.4em;
-		border: 0.1px solid  ${({theme}) => theme.colors.secondary};
+		border-radius: 0.45em;
+		border: 0.05em solid  ${({theme}) => theme.colors.secondary};
 
 		background: ${({theme}) => theme.colors.cardBg};
 		color: ${({theme}) => theme.colors.textPrimary};
+		box-shadow: 0.1em 0.15em 0.2em 0 #00000015;
 	}
 `
