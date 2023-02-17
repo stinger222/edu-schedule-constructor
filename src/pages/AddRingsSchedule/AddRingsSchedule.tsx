@@ -41,7 +41,7 @@ const AddRingsSchedule = () => {
 								<Icon fill="white" name="Plus"/>
 							</Button> 
 								:
-							<div style={{textAlign: 'center', fontSize: '1.2em'}}>а ой))))) 👉👈</div>
+							<div style={{textAlign: 'center', fontSize: '1.2em', marginBottom: '1em'}}> а ой))))) 👉👈 </div>
 						}
 
 						<Button type="submit">Готово</Button>

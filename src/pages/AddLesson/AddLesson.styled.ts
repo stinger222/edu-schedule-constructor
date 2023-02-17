@@ -5,7 +5,7 @@ export const StyledAddLesson = styled.div`
 		display: grid;
 		grid-template-columns: repeat(20, 1fr);
 		grid-template-rows: 1fr 1fr 0 1fr;
-		gap: 0.9em;
+		gap: 0.7em;
 		row-gap: 1.5em;
 		
 		font-size: 1.2em;

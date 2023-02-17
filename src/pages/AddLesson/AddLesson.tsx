@@ -1,9 +1,8 @@
-import { useEffect } from "react"
-import { FormProvider, useForm } from "react-hook-form"
+import InputWrapper from "../../components/wrappers/InputWrapper/InputWrapper"
 import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
 import Button from "../../components/ui/Button/Button"
-import InputWrapper from "../../components/wrappers/InputWrapper/InputWrapper"
+import { FormProvider, useForm } from "react-hook-form"
 import { StyledAddLesson } from "./AddLesson.styled"
 
 const AddLesson = () => {
@@ -26,7 +25,7 @@ const AddLesson = () => {
 						<form onSubmit={methods.handleSubmit(console.log)}>
 							<InputWrapper
 								caption="Название пары"
-								placeholder="Информационные Технологии"
+								placeholder="Основы алгоритмизации"
 								registerName="title"
 								registerOptions={{required: true}}
 								className="title"

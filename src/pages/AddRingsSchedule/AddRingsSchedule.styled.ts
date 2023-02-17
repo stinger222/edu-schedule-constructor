@@ -15,6 +15,10 @@ export const StyledAddRingsSchedule = styled.div`
 		margin-block: 1em 1.5em;
 	}
 
+	& input {
+		width: 5em;
+	}
+
 	@media (max-width: 640px) {
 		& form {
 			font-size: 1.3em;
