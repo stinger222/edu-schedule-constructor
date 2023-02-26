@@ -55,8 +55,6 @@ const AddLesson = () => {
 							<Button type="submit">Готово</Button>
 						</form>
 					</FormProvider>
-
-					<Select />
 			</Container>
 		</StyledAddLesson>
 	)

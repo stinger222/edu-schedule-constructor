@@ -9,3 +9,8 @@ export type KeyOfType<T, V> = keyof {
 export type Replacements<P> = Record<KeyOfType<P, string>, string>
 
 export type Icons = keyof typeof icons
+
+export interface IOption {
+	label: string,
+	id: string
+}

@@ -9,7 +9,7 @@ export const StyledSelect = styled.div`
 	align-items: center;
 	gap: 0.3em;
 
-	border: 0.04em solid #777;
+	border: 0.04em solid #ced4da;
 	border-radius: 0.25em;
 
 	position: relative;
@@ -22,6 +22,7 @@ export const StyledSelect = styled.div`
 	}
 
 	& .btn-close {
+		color: rgb(134, 142, 150);
 		background: transparent;
 		font-size: inherit;
 		width: fit-content;
@@ -33,14 +34,15 @@ export const StyledSelect = styled.div`
 	}
 
 	& .divider {
-		width: 0.05em;
-		background: #333;
+		border-radius: 1em;
+		width: 1px;
+		background: rgb(134, 142, 150);
 		align-self: stretch;
 	}
 
 	& .caret {
 		border: 0.2em solid transparent;
-		border-top: 0.2em solid #333;
+		border-top: 0.2em solid rgb(134, 142, 150);
 		height: 0;
 		transform: translateY(35%);
 		cursor: pointer;
@@ -69,10 +71,17 @@ export const StyledSelect = styled.div`
 		padding: 0.3em 0.5em;
 		border-radius: 0.3em;
 		font-size: 0.8em;
+		margin-bottom: 0.2em;
 	}
 	
 	& .option:hover {
-		background: rgb(241, 243, 245);
+		background: rgb(240, 242, 244);
+	}
+
+	& .option.selected {
+		background: #0075FFDD;
+		color: white;
+		font-weight: 200;
 	}
 	
 
