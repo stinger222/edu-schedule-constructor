@@ -123,6 +123,14 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 			brightness(${({theme}) => theme.type == ThemeEnum.light ? '0' : '10'})
 	}
 
+	select {
+		outline: none;
+	}
+
+	ul {
+		list-style: none;
+	}
+
 	.btn {
 		appearance: none;
 		outline: none;

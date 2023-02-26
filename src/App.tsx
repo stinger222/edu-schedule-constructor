@@ -8,6 +8,8 @@ import Rings from "./pages/RingsSchedules/Rings";
 import Composed from "./pages/ComposedSchedules/Composed"
 import AddRingsSchedule from "./pages/AddRingsSchedule/AddRingsSchedule"
 import AddLesson from "./pages/AddLesson/AddLesson"
+import Select from "./components/ui/Select/Select"
+import Container from "./components/containers/Container/Container"
 
 const App = () => {
 	const location = useLocation()
@@ -18,17 +20,21 @@ const App = () => {
 	}, [location])
 
   return (
-		<Routes>
-			<Route path="/" element={<Main />}/>
-			<Route path="/composed" element={<Composed />}/>
-			<Route path="/lessons" element={<Lessons />}/>
-			<Route path="/rings" element={<Rings />}/>
+		
+		<Container>
+			<Select />
+		</Container>
+		// <Routes>
+		// 	<Route path="/" element={<Main />}/>
+		// 	<Route path="/composed" element={<Composed />}/>
+		// 	<Route path="/lessons" element={<Lessons />}/>
+		// 	<Route path="/rings" element={<Rings />}/>
 
-			<Route path="/add">
-				<Route path="rings" element={<AddRingsSchedule />}/>
-				<Route path="lesson" element={<AddLesson />}/>
-			</Route>
-		</Routes>
+		// 	<Route path="/add">
+		// 		<Route path="rings" element={<AddRingsSchedule />}/>
+		// 		<Route path="lesson" element={<AddLesson />}/>
+		// 	</Route>
+		// </Routes>
   )
 }
 
