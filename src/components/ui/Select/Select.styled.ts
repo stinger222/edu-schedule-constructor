@@ -2,14 +2,15 @@ import styled from "styled-components";
 
 export const StyledSelect = styled.div`
 	margin-top: 2em;
-	font-size: 1.8em;
+	font-size: 2.2em;
 	font-family: 'JetBrains Mono';
 
 	display: flex;
 	align-items: center;
 	gap: 0.3em;
 
-	border: 0.04em solid #ced4da;
+	outline-color: #0075FFBB;
+	border: 0.04em solid #979fa7;
 	border-radius: 0.25em;
 
 	position: relative;
@@ -18,15 +19,19 @@ export const StyledSelect = styled.div`
 	& .value {
 		font-size: 0.85em;
 		font-weight: 300;
+		
 		flex-grow: 1;
+		user-select: none;
+		cursor: pointer;
 	}
 
 	& .btn-close {
-		color: rgb(134, 142, 150);
-		background: transparent;
 		font-size: inherit;
 		width: fit-content;
 		cursor: pointer;
+		
+		color: rgb(134, 142, 150);
+		background: transparent;
 	}
 
 	& .btn-close:hover {
@@ -34,21 +39,22 @@ export const StyledSelect = styled.div`
 	}
 
 	& .divider {
-		border-radius: 1em;
-		width: 1px;
+		width: 0.04em;
 		background: rgb(134, 142, 150);
+		border-radius: 1em;
 		align-self: stretch;
 	}
 
 	& .caret {
 		border: 0.2em solid transparent;
 		border-top: 0.2em solid rgb(134, 142, 150);
-		height: 0;
 		transform: translateY(35%);
 		cursor: pointer;
 	}
 
 	& .options {
+		display: none;
+
 		position: absolute;
 		top: 120%;
 		left: 0;
@@ -59,7 +65,6 @@ export const StyledSelect = styled.div`
 		background: #FFFFFF;
 		border-radius: 0.25em;
 		border: 1px solid rgb(240, 242, 244);
-		/* border: 1px solid red; */
 		box-shadow: 
 			rgb(0 0 0 / 5%) -0.0625em -0.0625em 0.1em,
 			rgb(0 0 0 / 5%) 0 0.0625em 0.1875em,
@@ -67,11 +72,16 @@ export const StyledSelect = styled.div`
 			rgb(0 0 0 / 4%) 0.1em 0.4375em 0.4375em -0.3125em;
 	}
 
+	& .options.open {
+		display: block;
+	}
+
 	& .option {
+		margin-bottom: 0.2em;
 		padding: 0.3em 0.5em;
 		border-radius: 0.3em;
 		font-size: 0.8em;
-		margin-bottom: 0.2em;
+		cursor: pointer;
 	}
 	
 	& .option:hover {

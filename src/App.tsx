@@ -39,7 +39,9 @@ const App = () => {
   return (
 		
 		<Container>
-			<Select options={options} selectedOption={selectedOption} onChange={handleSelect}/>
+			<div style={{padding: "0.5em"}}>
+				<Select options={options} selectedOption={selectedOption} onChange={handleSelect}/>
+			</div>
 		</Container>
 		// <Routes>
 		// 	<Route path="/" element={<Main />}/>
