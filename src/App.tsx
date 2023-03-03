@@ -1,5 +1,5 @@
 import { StoreContext } from "."
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Main from "./pages/Main/Main";
@@ -8,10 +8,12 @@ import Rings from "./pages/RingsSchedules/Rings";
 import Composed from "./pages/ComposedSchedules/Composed"
 import AddRingsSchedule from "./pages/AddRingsSchedule/AddRingsSchedule"
 import AddLesson from "./pages/AddLesson/AddLesson"
-import Select from "./components/ui/Select/Select"
 import Container from "./components/containers/Container/Container"
 import { IOption } from "./core/types/types"
-import { nanoid } from "nanoid"
+import { Controller, FormProvider, useFieldArray, useForm } from "react-hook-form"
+import styled from '@emotion/styled';
+import Select from "./components/ui/Select/Select"
+import SelectWrapper from "./components/wrappers/SelectWrapper/SelectWrapper"
 
 const App = () => {
 	const location = useLocation()
@@ -21,27 +23,41 @@ const App = () => {
 		uiStore.toggleDropdown(false)
 	}, [location])
 
-	const options: IOption[] = [
-		{label: 'Название пары 1', id: 'dfsg34'},
-		{label: 'Название пары 2',  id: 'f349hf'},
-		{label: 'Название пары 3',  id: '09i43f'},
-		{label: 'Название пары 4',  id: '0tu9ru'},
-		{label: 'Название пары 5',  id: 'y6789d'},
-	]
-
-
-	const [selectedOption, setSelectedOption] = useState<IOption | null>(null)
-
-	const handleSelect = (newOption: IOption) => {
-		setSelectedOption(newOption)
-	}
+	const methods = useForm({defaultValues: {
+		frameworks: [
+			{
+				value: ''
+			}
+		]
+	}})
 	
+	const { append, fields } = useFieldArray({control: methods.control, name: 'frameworks' })
   return (
 		
 		<Container>
-			<div style={{padding: "0.5em"}}>
-				<Select options={options} selectedOption={selectedOption} onChange={handleSelect}/>
-			</div>
+			<FormProvider {...methods}>
+				<form onSubmit={methods.handleSubmit(console.log)}>
+					{
+						fields.map((i, index) => (
+							<SelectWrapper
+								registerName="frameworks"
+								index={index}
+								key={index}
+								data={[
+									{value: 'test', label: "test"},
+									{value: 'test2', label: "test2"}
+								]}
+							/>
+						))
+					}
+					
+					<br/>
+					
+					<button onClick={() => append({value: ''})}>Add</button>
+					<button type="submit">Submit</button>
+				</form>
+			</FormProvider>
+
 		</Container>
 		// <Routes>
 		// 	<Route path="/" element={<Main />}/>

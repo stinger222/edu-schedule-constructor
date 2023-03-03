@@ -4,7 +4,6 @@ import Header from "../../components/smart/Header/Header"
 import Button from "../../components/ui/Button/Button"
 import { FormProvider, useForm } from "react-hook-form"
 import { StyledAddLesson } from "./AddLesson.styled"
-import Select from "../../components/ui/Select/Select"
 
 const AddLesson = () => {
 	const methods = useForm({defaultValues: {
