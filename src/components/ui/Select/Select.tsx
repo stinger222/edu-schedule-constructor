@@ -1,4 +1,4 @@
-import { SelectItem } from "@mantine/core"
+import { SelectItem, SelectProps } from "@mantine/core"
 import React from "react"
 import { StyledSelect } from "./Select.styled"
 
@@ -10,18 +10,23 @@ interface IProps {
 	data: (string | SelectItem)[]
 }
 
-const Select: React.FC<IProps> = React.forwardRef((props, ref) => {
+const Select: React.FC<IProps & SelectProps> = React.forwardRef(({
+	onChange,
+	onBlur,
+	data,
+	defaultValue,
+	...rest
+}, ref) => {
 	return (
-		
 		<StyledSelect
 			size="1em"
-			label="Your favorite framework/library"
-			onChange={props.onChange}
-			onBlur={props.onBlur}
-			defaultValue={props.defaultValue}
+			onChange={onChange}
+			onBlur={onBlur}
+			defaultValue={defaultValue}
 			placeholder="Pick one"
 			ref={ref}
-			data={props.data}
+			data={data}
+			{...rest}
 		/>
 	)
 })

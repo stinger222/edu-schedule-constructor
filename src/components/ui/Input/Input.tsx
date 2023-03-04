@@ -6,16 +6,16 @@ interface IProps {
 	className?: string
 } 
 
-const Input: React.FC<IProps> = React.forwardRef<HTMLInputElement, IProps>(({ 
+const Input: React.FC<IProps & React.InputHTMLAttributes<HTMLInputElement>> = React.forwardRef<HTMLInputElement, IProps>(({ 
 	caption,
 	className,
 	...rest
 }, ref) => {
 
 	return (
-		<StyledInput className={className}>
+		<StyledInput  className={className}>
 			<span className="caption">{caption}</span>
-			<input ref={ref} {...rest} />
+			<input placeholder="" ref={ref} {...rest} />
 		</StyledInput>
 	)
 })

@@ -1,12 +1,16 @@
 import styled from "styled-components";
 
 export const StyledAddLesson = styled.div`
+	& input {
+		font-size: 1.4em;
+	}
+
 	& form {
 		display: grid;
 		grid-template-columns: repeat(20, 1fr);
-		grid-template-rows: 1fr 1fr 0 1fr;
+		grid-template-rows: 1fr 1fr 0.3fr 1fr;
 		gap: 0.7em;
-		row-gap: 1.5em;
+		row-gap: 0.5em;
 		
 		font-size: 1.2em;
 		padding-inline: 2em;

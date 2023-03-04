@@ -16,7 +16,7 @@ export const StyledAddRingsSchedule = styled.div`
 	}
 
 	& input {
-		width: 5em;
+		width: 6em;
 	}
 
 	@media (max-width: 640px) {
