@@ -19,7 +19,7 @@ export const StyledGhostButton = styled.button`
 	max-height: 3em;
 	width: 100%;
 
-	margin: 2em auto;
+	margin-inline: auto;
 	padding: 1.8em;
 
 	border-radius: 1em;

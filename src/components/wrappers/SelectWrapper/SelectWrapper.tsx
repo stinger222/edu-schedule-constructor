@@ -18,7 +18,7 @@ const SelectWrapper: React.FC<IProps & SelectProps> = ({ data, registerName, ind
 
 	return (
 		<Controller
-			name={`${registerName}.${index}`}
+			name={registerName}
 			control={methods.control}
 			render={({ field: { onChange, onBlur, value, ref }}) => (
 				<Select
