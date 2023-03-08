@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { weekDaysRus } from "../../../../core/constants/constants"
+import { weekDaysRus_short } from "../../../../core/constants/constants"
 import { StyledNavBar } from "./NavBar.styled"
 import { getCurrentWeekDates } from "../../../../core/utils/helpers"
 import NavButton from "../../../ordinary/NavButton/NavButton"
@@ -16,7 +16,7 @@ const NavBar = () => {
 		<StyledNavBar>
 			{week.map((date: string, index: number) => (
 				<NavButton
-					caption={weekDaysRus[index]}
+					caption={weekDaysRus_short[index]}
 					date={date}
 					index={index}
 					selectedDayIndex={selectedDayIndex}

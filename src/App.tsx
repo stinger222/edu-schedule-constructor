@@ -29,7 +29,7 @@ const App = () => {
 			<Route path="/add">
 				<Route path="rings" element={<AddRingsSchedule />}/>
 				<Route path="lesson" element={<AddLesson />}/>
-				<Route path="composed" element={<AddComposedSchedule  dayIndex={0}/>}/>
+				<Route path="composed" element={<AddComposedSchedule />}/>
 
 			</Route>
 		</Routes>

@@ -1,4 +1,4 @@
-import { weekDaysRus } from "../../../../core/constants/constants"
+import { weekDaysRus_short } from "../../../../core/constants/constants"
 import { Replacements } from "../../../../core/types/types"
 import { replaceBlankProps } from "../../../../core/utils/helpers"
 import { StyledDay } from "./Day.styled"
@@ -17,7 +17,7 @@ const propsReplacements: Replacements<IProps> = {
 
 const Day: React.FC<IProps> = (props: IProps) => {
 	const { lessons, startTime, endTime, dayIndex } = replaceBlankProps<IProps>(props, propsReplacements)
-	const weekDay: string = weekDaysRus[dayIndex]
+	const weekDay: string = weekDaysRus_short[dayIndex]
 
 	return (
 		<StyledDay>

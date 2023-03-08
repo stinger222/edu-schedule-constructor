@@ -28,4 +28,13 @@ export const StyledGhostButton = styled.button`
 	& > span {
 		font-size: 1.5em;
 	}
+
+	& > span > span.plus {
+		font-size: 2em;
+		font-weight: 100;
+	}
+
+	& > span:has(.plus) {
+		line-height: 2em
+	}
 `
