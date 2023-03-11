@@ -18,11 +18,12 @@ const AddRingsSchedule = () => {
 			]
 		}
 	})
-	const { append, remove, fields } = useFieldArray({control: methods.control, name: 'ranges' })
+
+	const { append, fields } = useFieldArray({control: methods.control, name: 'ranges' })
 
 	return (
-		<Container>
-			<StyledAddRingsSchedule>
+		<StyledAddRingsSchedule>
+			<Container>
 				<Header>
 					<Header.NavHome/>
 					<h1>Добавить расписание звонков</h1>
@@ -48,8 +49,8 @@ const AddRingsSchedule = () => {
 					</form>
 				</FormProvider>
 
-			</StyledAddRingsSchedule>
-		</Container>
+			</Container>
+		</StyledAddRingsSchedule>
 	)
 }
 

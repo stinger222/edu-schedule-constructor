@@ -1,8 +1,9 @@
-import { FormProvider, useFieldArray, useForm } from "react-hook-form"
-import { weekDaysRus_full } from "../../../core/constants/constants"
+import { StyledComposeDay } from "./ComposeDay.styled"
+import { useFieldArray, useFormContext } from "react-hook-form"
+
 import GhostButton from "../../ui/GhostButton/GhostButton"
 import SelectWrapper from "../../wrappers/SelectWrapper/SelectWrapper"
-import { StyledComposeDay } from "./ComposeDay.styled"
+import { weekDaysRus_full } from "../../../core/constants/constants"
 
 interface IProps {
 	dayIndex: number
@@ -11,54 +12,51 @@ interface IProps {
 const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 	
 	const data = [
-		{ label: 'Lesson name #1', value:"1" },
-		{ label: 'Lesson name #2', value:"2" },
-		{ label: 'Lesson name #3', value:"3" },
-		{ label: 'Lesson name #4', value:"4" },
+		{ label: 'Условная математика', value: "selected-lesson-id-1" },
+		{ label: 'Типа английский', value: "selected-lesson-id-2"  },
+		{ label: 'Ну предположим физра', value: "selected-lesson-id-3"  },
+		{ label: 'Допустим информатика', value: "selected-lesson-id-4"  },
 	]
 
-	const methods = useForm({defaultValues: {
-		[`day_${dayIndex}`]: [{value: ''}]
-	}})
+	const methods = useFormContext()
 	
-	const { append, fields } = useFieldArray({control: methods.control, name: `day_${dayIndex}` })
+	const { fields, append:appendLessonId } = useFieldArray({control: methods.control, name: `days.${dayIndex}.lessonIds` })
 
-	if (dayIndex >= 5) return
+	
+	if (dayIndex >= 5) return null
 
 	return (
 		<StyledComposeDay>
 			<h2>{weekDaysRus_full[dayIndex]}:</h2>
 
-			<FormProvider {...methods}>
-				<form onSubmit={methods.handleSubmit(console.log)}>
-					<SelectWrapper
-						registerName="days"
-						index={0}
-						key={0}
-						label="Расписание звонков для этого дня"
-						data={data}
-					/>
+			<div className="compose-day">
+				<SelectWrapper
+					registerName={`days.${dayIndex}.ringsScheduleId`}
+					index={0}
+					key={0}
+					label="Расписание звонков для этого дня"
+					data={[{label: 'Звонки для понедельника', value: '1'}, {label: 'Нормальные звонки', value: '2'}]}
+				/>
 
-					<div className="hr-divider"></div>
+				<div className="hr-divider"></div>
 
-					{
-						fields.map((i, index) => (
-							<SelectWrapper
-								registerName={`days.${index}.value`}
-								index={index + 1}
-								key={index + 1}
-								label={`${index + 1}-ая пара`}
-								data={data}
-							/>
-						))
-					}
+				{
+					fields.map((_, index) => (
+						<SelectWrapper
+							registerName={`days.${dayIndex}.lessonIds.${index}`}
+							index={index + 1}
+							key={index + 1}
+							label={`${index + 1}-ая пара`}
+							data={data}
+						/>
+					))
+				}
 
-					<br />
+				<br />
 
-					<GhostButton onClick={() => append({ value: '' })}>Добавить {fields.length + 1}-ую пару</GhostButton>
-					{/* <button type="submit">Submit</button> */}
-				</form>
-			</FormProvider>
+				<GhostButton onClick={() => appendLessonId('appended-lesson-id-??')}>Добавить {fields.length + 1}-ую пару</GhostButton>
+			</div>
+
 		</StyledComposeDay>
 	)
 }

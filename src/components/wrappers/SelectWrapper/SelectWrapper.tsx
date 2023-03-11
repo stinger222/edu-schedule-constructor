@@ -1,9 +1,9 @@
 import { SelectItem, SelectProps } from "@mantine/core"
 import React from "react"
-import { Controller, useFormContext } from "react-hook-form"
+import { Controller, useController, useFormContext } from "react-hook-form"
 import Select from "../../ui/Select/Select"
 
-interface MySelectItem extends  SelectItem {
+interface MySelectItem extends SelectItem {
 	label: string
 }
 
@@ -16,21 +16,20 @@ interface IProps {
 const SelectWrapper: React.FC<IProps & SelectProps> = ({ data, registerName, index, ...rest }) => {
 	const methods = useFormContext()
 
+	const {field: { onChange, onBlur, value, ref }} = useController({
+		name: registerName,
+		control: methods.control
+	})
+
 	return (
-		<Controller
-			name={registerName}
-			control={methods.control}
-			render={({ field: { onChange, onBlur, value, ref }}) => (
-				<Select
-					onChange={onChange}
-					onBlur={onBlur}
-					value={value}
-					ref={ref}
-					data={data}
-					{...rest}
-				/>
-			)}
-	/>
+		<Select
+			onChange={onChange}
+			onBlur={onBlur}
+			value={value}
+			ref={ref}
+			data={data}
+			{...rest}
+		/>
 	)
 }
 

@@ -57,7 +57,7 @@ export class WeekDays {
 			accusative: [
 				'Понедельник', 'Вторник', 'Среду', 'Четверг', 'Пятницу', 'Субботу', 'Воскресенье'
 			]
-		} as Record<Cases, string[]>
+		}
 	}
 
 	static getShort() {
