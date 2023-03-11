@@ -1,4 +1,4 @@
-import { weekDates, Replacements } from './../types/types';
+import { weekDates, Replacements, Cases } from './../types/types';
 
 export const getCurrentWeekDates = (): weekDates => {
 	const result = []
@@ -45,4 +45,27 @@ export const formatTimeString = (timeString: string): string => {
 	let [hours, minutes] = timeString.split(':')
 
 	return `${formatNumber(parseInt(hours))}:${formatNumber(parseInt(minutes))}`
+}
+
+export class WeekDays {
+	private static _week = {
+		short: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+		full: {
+			nominative: [
+				'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'
+			],
+			accusative: [
+				'Понедельник', 'Вторник', 'Среду', 'Четверг', 'Пятницу', 'Субботу', 'Воскресенье'
+			]
+		} as Record<Cases, string[]>
+	}
+
+	static getShort() {
+		return this._week.short
+	}
+
+	static getFull(_case: Cases = Cases.Nominative, lowerCase: boolean = false) {
+		let result = this._week.full[_case]
+		return lowerCase ? result.map(i => i.toLowerCase()) : result
+	}
 }

@@ -14,3 +14,8 @@ export interface IOption {
 	label: string,
 	id: string
 }
+
+export enum Cases {
+	Nominative = 'nominative',
+	Accusative = 'accusative',
+}
