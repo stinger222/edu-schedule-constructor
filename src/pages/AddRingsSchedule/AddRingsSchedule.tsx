@@ -2,7 +2,7 @@ import Icon from "../../components/ordinary/Icon/Icon"
 import Button from "../../components/ui/Button/Button"
 import Header from "../../components/smart/Header/Header"
 import TimeRange from "../../components/ordinary/TimeRange/TimeRange"
-import Container from "../../components/containers/Container/Container"
+import Container from "../../components/wrappers/Container/Container"
 
 import { StyledAddRingsSchedule } from "./AddRingsSchedule.styled"
 import { useForm, useFieldArray, FormProvider } from 'react-hook-form';

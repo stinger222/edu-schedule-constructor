@@ -2,6 +2,7 @@ import { StoreContext } from "."
 import { useContext, useEffect } from "react"
 import { Route, Routes, useLocation } from "react-router-dom";
 
+
 import Main from "./pages/Main/Main";
 import Lessons from "./pages/Lessons/Lessons";
 import Rings from "./pages/RingsSchedules/Rings";

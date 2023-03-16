@@ -2,7 +2,7 @@ import { StyledComposeDay } from "./ComposeDay.styled"
 import { useFieldArray, useFormContext } from "react-hook-form"
 
 import GhostButton from "../../ui/GhostButton/GhostButton"
-import SelectWrapper from "../../wrappers/SelectWrapper/SelectWrapper"
+import SelectWrapper from "../../containers/SelectContainer/SelectContainer"
 import { weekDaysRus_full } from "../../../core/constants/constants"
 
 interface IProps {

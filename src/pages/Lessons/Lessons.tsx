@@ -1,5 +1,5 @@
-import LessonCards from "../../components/containers/LessonCards/LessonCards"
-import Container from "../../components/containers/Container/Container"
+import LessonCards from "../../components/wrappers/LessonCards/LessonCards"
+import Container from "../../components/wrappers/Container/Container"
 import Header from "../../components/smart/Header/Header"
 import { StyledLessonsPage } from "./Lessons.styled"
 import { Link } from "react-router-dom"

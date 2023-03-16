@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import ComposedSchedules from "../../components/containers/ComposedSchedules/ComposedSchedules"
-import Container from "../../components/containers/Container/Container"
+import ComposedSchedules from "../../components/wrappers/ComposedSchedules/ComposedSchedules"
+import Container from "../../components/wrappers/Container/Container"
 import Header from "../../components/smart/Header/Header"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import { StyledComposedPage } from "./Composed.styled"

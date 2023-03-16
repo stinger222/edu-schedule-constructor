@@ -1,5 +1,5 @@
 import { StyledTimeRange } from "./TimeRange.styled"
-import InputWrapper from "../../wrappers/InputWrapper/InputWrapper"
+import InputWrapper from "../../containers/InputContainer/InputContainer"
 
 interface IProps {
 	index: number
