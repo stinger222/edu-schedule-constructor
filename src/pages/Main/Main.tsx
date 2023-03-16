@@ -1,4 +1,4 @@
-import Container from "../../components/wrappers/Container/Container"
+import Container from "../../components/containers/Container/Container"
 import LessonCard from "../../components/ordinary/LessonCard/LessonCard"
 import ProgressBar from "../../components/ordinary/ProgressBar/ProgressBar"
 import Header from "../../components/smart/Header/Header"

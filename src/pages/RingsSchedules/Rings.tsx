@@ -1,5 +1,5 @@
 import RingsCards from "../../components/wrappers/RingsCards/RingsCards"
-import Container from "../../components/wrappers/Container/Container"
+import Container from "../../components/containers/Container/Container"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import Header from "../../components/smart/Header/Header"
 import { StyledRingsPage } from "./Rings.styled"

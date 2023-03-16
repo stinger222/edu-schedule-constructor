@@ -1,5 +1,5 @@
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
-import Container from "../../components/wrappers/Container/Container"
+import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
 import Button from "../../components/ui/Button/Button"
 import { FormProvider, useForm } from "react-hook-form"

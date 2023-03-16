@@ -5,7 +5,7 @@ import { Cases } from "../../core/types/types"
 import { WeekDays } from "../../core/utils/helpers"
 
 import Header from "../../components/smart/Header/Header"
-import Container from "../../components/wrappers/Container/Container"
+import Container from "../../components/containers/Container/Container"
 import ComposeDay from "../../components/smart/ComposeDay/ComposeDay"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
 
