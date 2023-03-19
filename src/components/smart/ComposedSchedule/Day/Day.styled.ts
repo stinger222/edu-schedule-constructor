@@ -6,8 +6,8 @@ export const StyledDay = styled.div`
 	height: max-content;
 	border-radius: 0.8em;
 	padding-bottom: 0.5em;
-	background: ${({theme}) => theme.colors.dayCardBg};
-	box-shadow: ${({theme}) => theme.boxShadows.secondaryShadow};
+	background: ${({theme}) => theme.backgrounds.tertiary};
+	box-shadow: ${({theme}) => theme.boxShadows.secondary};
 
 	& header {
 		font-size: 1.3em;

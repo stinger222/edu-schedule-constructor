@@ -16,10 +16,10 @@ export const StyledDropdown = styled.div`
 	width: max-content;
 	min-width: 17em;
   padding: 0.2em 0.8em;
-	background: ${({theme}) => theme.colors.bg};
+	background: ${({theme}) => theme.backgrounds.primary};
   
 	border-radius: 1em;
-	box-shadow: 0 0 0 0.08em ${({theme}) => theme.colors.textSecondary}, -0.2em 0.3em 0.5em rgb(0 0 0 / 30%);
+	box-shadow: 0 0 0 0.07em ${({theme}) => theme.borders.secondary}, 0.2em 0.3em 0.4em 0 rgb(0 0 0 / 45%);
   
 	position: absolute;
 	right: 1em;
@@ -40,7 +40,7 @@ export const StyledDropdown = styled.div`
     text-align: center;
     
     margin-bottom: 0.5em;
-    border-bottom: 0.09em solid ${({theme}) => theme.colors.textSecondary};;
+    border-bottom: 0.09em solid ${({theme}) => theme.borders.secondary};
   }
   
   & button {
@@ -51,8 +51,8 @@ export const StyledDropdown = styled.div`
     font-family: inherit;
     font-size: 1.2em;
     font-weight: 300;
-		background: ${({theme}) => theme.colors.buttonBg};
-		box-shadow: ${({theme}) => theme.boxShadows.secondaryShadow};
+		background: ${({theme}) => theme.buttons.secondary};
+		box-shadow: ${({theme}) => theme.boxShadows.secondary};
   }
 
   & *:has(button) {

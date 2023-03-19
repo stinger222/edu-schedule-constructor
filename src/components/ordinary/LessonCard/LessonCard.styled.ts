@@ -6,8 +6,8 @@ export const StyledLessonCard = styled.div`
 	justify-content: space-between;
 
 	border-radius: 1.3em;
-	box-shadow: ${({theme}) => theme.boxShadows.primaryShadow};
-	background: ${({theme}) => theme.colors.cardBg};
+	box-shadow: ${({theme}) => theme.boxShadows.primary};
+	background: ${({theme}) => theme.backgrounds.secondary};
 
 	width: 29.5em;
 	height: fit-content;
@@ -40,7 +40,7 @@ export const StyledLessonCard = styled.div`
 		font-size: 1.2em;
 		line-height: 1em;
 		letter-spacing: 0;
-		color: ${({theme}) => theme.colors.textSecondary};
+		color: ${({theme}) => theme.text.secondary};
 	}
 
 	& footer span:nth-child(1) {

@@ -88,8 +88,8 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 		font-weight: 100;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		background: ${({theme}) => theme.colors.bg};
-		color: ${({theme}) => theme.colors.textPrimary};
+		background: ${({theme}) => theme.backgrounds.primary};
+		color: ${({theme}) => theme.text.primary};
 	}
 	
 	a {
@@ -106,7 +106,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 	}
 
 	input::placeholder {
-		color: ${({theme}) => theme.colors.textPlaceholder};
+		color: ${({theme}) => theme.text.secondary};
 	}
 
 	input[type="time"]::-webkit-calendar-picker-indicator {

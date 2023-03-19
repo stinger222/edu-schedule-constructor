@@ -18,7 +18,7 @@ export const StyledProgressBar = styled.div`
 
 	& .caption .caption-end {
 		font-size: 0.85em;
-		color: ${({theme}) => theme.colors.textSecondary};
+		color: ${({theme}) => theme.text.secondary};
 	}
 
 	& .progress-bar-body {

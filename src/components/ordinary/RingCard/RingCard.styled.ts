@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const StyledRingCard = styled.div`
 	
 	border-radius: 1em;
-	box-shadow: ${({theme}) => theme.boxShadows.primaryShadow};
-	background: ${({theme}) => theme.colors.cardBg};
+	box-shadow: ${({theme}) => theme.boxShadows.primary};
+	background: ${({theme}) => theme.backgrounds.secondary};
 	
 	width: 29.5em;
 	padding: 0.5em 0.8em;

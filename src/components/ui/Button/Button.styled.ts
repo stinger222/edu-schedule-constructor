@@ -12,7 +12,7 @@ export const StyledButton = styled.button`
 
   border-radius: 20em;
 	box-shadow: 0.1em 0.2em 0.3em 0 #00000060;
-  background: ${({theme}) => theme.colors.buttonBg};
+  background: ${({theme}) => theme.buttons.primary};
 
   &:has(.icon), &:has(svg), &:has(img) {
     padding: 0.3em;

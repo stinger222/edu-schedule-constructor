@@ -22,8 +22,8 @@ export const StyledInput = styled.div`
 		border-radius: 0.45em;
 		border: 0.05em solid  ${({theme}) => theme.colors.secondary};
 
-		background: ${({theme}) => theme.colors.cardBg};
-		color: ${({theme}) => theme.colors.textPrimary};
+		background: ${({theme}) => theme.backgrounds.secondary};
+		color: ${({theme}) => theme.text.primary};
 		box-shadow: 0.1em 0.15em 0.2em 0 #00000015;
 	}
 `

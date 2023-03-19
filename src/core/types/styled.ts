@@ -3,24 +3,34 @@ export enum ThemeEnum  {
 	dark = "dark"
 }
 
+type colorString = `#${string}`
+
 export interface ITheme {
 	type: ThemeEnum,
 	
 	colors: {
-		bg: string,
-		cardBg: string,
-		dayCardBg: string,
-		buttonBg: string,
-
-		primary: string,
-		secondary: string,
-
-		textPrimary: string,
-		textSecondary: string,
-		textPlaceholder: string
+		primary: colorString,
+		secondary: colorString
+	},
+	buttons: {
+		primary: colorString,
+		secondary: colorString,
+	},
+	text: {
+		primary: colorString,
+		secondary: colorString
+	},
+	backgrounds: {
+		primary: colorString,
+		secondary: colorString,
+		tertiary: colorString
+	},
+	borders: {
+		primary: colorString,
+		secondary: colorString
 	},
 	boxShadows: {
-		primaryShadow: string,
-		secondaryShadow: string
+		primary: string,
+		secondary: string
 	}
 }

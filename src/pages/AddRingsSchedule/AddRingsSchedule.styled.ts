@@ -3,15 +3,16 @@ import styled from "styled-components";
 export const StyledAddRingsSchedule = styled.div`
 	& form {
 		padding-inline: 4em;
+		font-size: 1.2em;
 	}
 
-	& .btn {
+	& form .btn {
 		display: block;
 		margin-inline: auto;
+		font-size: 1.2em;
 	}
 
 	& .append {
-		font-size: 1.3em;
 		margin-block: 1em 1.5em;
 	}
 

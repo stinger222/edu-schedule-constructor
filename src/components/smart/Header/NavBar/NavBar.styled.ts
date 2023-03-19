@@ -7,6 +7,6 @@ export const StyledNavBar = styled.div`
 	max-width: 27em;
 
 	& > div:nth-last-child(-n+2) {
-		color: ${({theme}) => theme.colors.textSecondary};
+		color: ${({theme}) => theme.text.secondary};
 	}
 `
