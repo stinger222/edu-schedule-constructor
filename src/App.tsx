@@ -31,7 +31,6 @@ const App = () => {
 				<Route path="rings" element={<AddRingsSchedule />}/>
 				<Route path="lesson" element={<AddLesson />}/>
 				<Route path="composed" element={<AddComposedSchedule />}/>
-
 			</Route>
 		</Routes>
   )

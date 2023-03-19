@@ -19,7 +19,7 @@ export const StyledSelect = styled(Select)`
 			border-radius: 0.4em;
 			
 			font-size: 1.2em;
-			font-family: 'JetBrains Mono', 'Segoe UI', Arial, Tahoma, 'Verdana', 'Arial Narrow', sans-serif;
+			font-family: 'JetBrains Mono', 'Segoe UI', 'Arial', 'Tahoma', 'Verdana', 'Arial Narrow', sans-serif;
 			color: ${({theme}) => theme.text.primary};
 		}
 
