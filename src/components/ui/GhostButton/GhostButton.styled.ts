@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-// (!) Current appearance is temporal and will match desired one later!!!
-
 export const StyledGhostButton = styled.button`
 	background: transparent;
 	position: relative;
@@ -9,7 +7,7 @@ export const StyledGhostButton = styled.button`
 	font-size: 1em;
 	font-weight: 400;
 	letter-spacing: 0.05em;
-	color: ${({theme}) => theme.colors.secondary};
+	color: ${({theme}) => theme.borders.dashed};
 
 	display: flex;
 	align-items: center;
@@ -22,11 +20,14 @@ export const StyledGhostButton = styled.button`
 	margin-inline: auto;
 	padding: 1.8em;
 
-	border-radius: 1em;
-	box-shadow: 0 0 0 0.1em ${({theme}) => theme.colors.secondary};
+	border-image-slice: 130 !important;
+	border-image-width: 3.125em !important;
+	border-image-repeat: round round  !important;
+	border-image-source: url(${require('../../../assets/icons/dashed-border.png')})  !important;
+	border-style: solid !important; 
 
 	& > span {
-		font-size: 1.5em;
+		font-size: 1.3em;
 	}
 
 	& > span > span.plus {

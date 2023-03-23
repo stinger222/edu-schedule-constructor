@@ -22,7 +22,8 @@ export const DarkTheme: ITheme = {
 	},
 	borders: {
 		primary: "#FFFFFF",
-		secondary: "#969696"
+		secondary: "#969696",
+		dashed: "#9B9B9B"
 	},
 	boxShadows: {
 		primary: '0.05em 0.2em 0.2em 0.08em #00000080',

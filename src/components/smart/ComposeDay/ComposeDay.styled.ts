@@ -35,11 +35,12 @@ export const StyledComposeDay = styled.div`
 	}
 
 	& .compose-day .btn-ghost {
-		font-size: 0.55em;
+		font-size: 0.65em;
+		padding: 1.6em;
 	}
 
 	& .compose-day .btn-ghost span {
-		font-size: 1.7em;
+		font-size: 1.5em;
 	}
 
 	@media (max-width: '???px') {

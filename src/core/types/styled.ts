@@ -27,7 +27,8 @@ export interface ITheme {
 	},
 	borders: {
 		primary: colorString,
-		secondary: colorString
+		secondary: colorString,
+		dashed: colorString
 	},
 	boxShadows: {
 		primary: string,

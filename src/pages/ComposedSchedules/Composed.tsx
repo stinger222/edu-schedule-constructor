@@ -18,7 +18,7 @@ const Composed = () => {
 				<ComposedSchedules />
 
 				<Link to="/add/composed">
-					<GhostButton> Составить новое расписание </GhostButton>
+					<GhostButton> Составить новое расписание <br/> <span className="plus">+</span></GhostButton>
 				</Link>
 			</Container>
 		</StyledComposedPage>

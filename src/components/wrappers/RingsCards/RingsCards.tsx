@@ -1,4 +1,4 @@
-import RingCard from "../../ordinary/RingCard/RingCard"
+import RingCard from "../../ordinary/RingsCard/RingsCard"
 import { StyledRingsCards } from "./RingsCards.styled"
 
 interface IProps {

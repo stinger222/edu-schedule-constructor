@@ -39,17 +39,13 @@ const AddComposedSchedule = () => {
 
 						{fields.length < 5 && <>
 								<h2>{WeekDays.getFull(Cases.Nominative)[fields.length]}:</h2>
-								<GhostButton
-									onClick={() => append({ ringsScheduleId: '1', lessonIds: ['1'] })}
-									>
+								<GhostButton onClick={() => append({ ringsScheduleId: '1', lessonIds: ['1'] })}>
 									Заполнить расписание на {WeekDays.getFull(Cases.Accusative, true)[fields.length]}
 									<br />
 									<span className="plus">+</span>
 								</GhostButton>
 							</>
 						}
-
-						{/* <button type="submit">Submit</button> */}
 					</form>
 				</FormProvider>
 

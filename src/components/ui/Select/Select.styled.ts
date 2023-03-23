@@ -35,8 +35,9 @@ export const StyledSelect = styled(Select)`
 			background: ${({theme}) => theme.backgrounds.primary};
 		}
 		
-		& .mantine-Select-dropdown .mantine-Select-item
-		:not(& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"]) {
+		& .mantine-Select-dropdown .mantine-Select-item:not(
+			& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"]
+		) {
 			background: ${({theme}) => theme.backgrounds.primary};
 			color: ${({theme}) => theme.type === ThemeEnum.dark ? '#FFFFFF' : '#000000'}
 		}
@@ -46,10 +47,13 @@ export const StyledSelect = styled(Select)`
 			filter: brightness(${({theme}) => theme.type === ThemeEnum.dark ? 1.2 : 0.95});
 		}
 
-
 		& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"] {
 			background:  ${({theme}) => theme.colors.primary}CC;
 			color: "#FFFFFF";
+		}
+
+		& .mantine-Select-dropdown .mantine-ScrollArea-scrollbar:hover {
+			background-color: transparent;
 		}
 	`
 

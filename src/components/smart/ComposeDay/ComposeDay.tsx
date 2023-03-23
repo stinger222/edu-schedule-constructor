@@ -54,9 +54,10 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 
 				<br />
 
-				<GhostButton onClick={() => appendLessonId('appended-lesson-id-??')}>Добавить {fields.length + 1}-ую пару</GhostButton>
+				<GhostButton onClick={() => appendLessonId('appended-lesson-id-??')}>
+					Добавить {fields.length + 1}-ую пару
+				</GhostButton>
 			</div>
-
 		</StyledComposeDay>
 	)
 }
