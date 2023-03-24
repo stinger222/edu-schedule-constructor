@@ -1,9 +1,10 @@
+import { nanoid } from "nanoid"
 import { StyledComposeDay } from "./ComposeDay.styled"
+import { weekDaysRus_full } from "../../../core/constants/constants"
 import { useFieldArray, UseFieldArrayRemove, useFormContext } from "react-hook-form"
 
 import GhostButton from "../../ui/GhostButton/GhostButton"
 import SelectContainer from "../../containers/SelectContainer/SelectContainer"
-import { weekDaysRus_full } from "../../../core/constants/constants"
 
 interface IProps {
 	dayIndex: number
@@ -21,8 +22,7 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 	const methods = useFormContext()
 	
 	const {
-		fields, append:appendLessonId, 
-		remove:removeLessonId
+		fields, append: appendLessonId, remove: removeLessonId
 	} = useFieldArray({control: methods.control, name: `days.${dayIndex}.lessonIds` })
 
 	
@@ -43,15 +43,15 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 				<div className="hr-divider"></div>
 
 				{
-					fields.map((_, index) => (
+					fields.map(({id}, index) => (
 						<SelectContainer
-							rightSection={
-								fields.length - 1 == index && <RemoveFieldButton index={index} remove={removeLessonId}/>
+							rightSection= {
+								(fields.length - 1 === index && index != 0) && <RemoveFieldButton index={index} remove={removeLessonId} />
 							}
 							registerName={`days.${dayIndex}.lessonIds.${index}`}
-							key={index + 1}
+							key={id}
 							label={`${index + 1}-ая пара`}
-							data={[...data]}
+							data={data}
 						/>
 					))
 				}
@@ -59,7 +59,7 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 				<br />
 
 				{ fields.length < 9 &&
-					<GhostButton onClick={() => appendLessonId('appended-lesson-id-??')}>
+					<GhostButton onClick={() => appendLessonId(`${nanoid(6)}`)}>
 						Добавить {fields.length + 1}-ую пару
 					</GhostButton>
 				}
@@ -68,7 +68,12 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 	)
 }
 
-const RemoveFieldButton = ({index, remove}: {index: number, remove: UseFieldArrayRemove}) => {
+interface IRemoveFieldButtonProps {
+  index: number;
+  remove: UseFieldArrayRemove;
+}
+
+const RemoveFieldButton = ({index, remove}: IRemoveFieldButtonProps) => {
 	return (
 		<button className="btn custom-select-clear" onClick={() => remove(index)}>×</button>
 	)

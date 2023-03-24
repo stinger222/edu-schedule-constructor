@@ -8,12 +8,13 @@ import Header from "../../components/smart/Header/Header"
 import Container from "../../components/containers/Container/Container"
 import ComposeDay from "../../components/smart/ComposeDay/ComposeDay"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
+import { nanoid } from "nanoid"
 
 
 const AddComposedSchedule = () => {
 	const methods = useForm({
 		defaultValues: {
-			days: [{ringsScheduleId: 'default-ring-schedule-id-1', lessonIds: ["default-lesson-id-1"]}]
+			days: [{ringsScheduleId: `${nanoid(6)}`, lessonIds: [`${nanoid(6)}`]}]
 		}
 	})
 	
@@ -39,7 +40,7 @@ const AddComposedSchedule = () => {
 
 						{fields.length < 5 && <>
 								<h2>{WeekDays.getFull(Cases.Nominative)[fields.length]}:</h2>
-								<GhostButton onClick={() => append({ ringsScheduleId: '1', lessonIds: ['1'] })}>
+								<GhostButton onClick={() => append({ ringsScheduleId: `${nanoid(6)}`, lessonIds: [`${nanoid(6)}`] })}>
 									Заполнить расписание на {WeekDays.getFull(Cases.Accusative, true)[fields.length]}
 									<br />
 									<span className="plus">+</span>
