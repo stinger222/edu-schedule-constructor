@@ -4,7 +4,7 @@ export const StyledAddComposedSchedule = styled.div`
 	& form > h2 {
 		text-align: center;
 		font-weight: 500;
-		margin-bottom: 0.7em;
+		margin-block: 1.5em 0.7em;
 	}
 
 	& form > .btn-ghost {

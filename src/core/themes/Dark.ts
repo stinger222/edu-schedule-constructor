@@ -13,7 +13,7 @@ export const DarkTheme: ITheme = {
 	},
 	text: {
 		primary: "#FFFFFF",
-		secondary: "#808080"
+		secondary: "#868e96"
 	},
 	backgrounds: {
 		primary: "#37393F",

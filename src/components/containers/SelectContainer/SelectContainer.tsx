@@ -9,11 +9,10 @@ interface MySelectItem extends SelectItem {
 
 interface IProps {
 	data: (string | MySelectItem)[],
-	registerName: string,
-	index: number
+	registerName: string
 }
 
-const SelectWrapper: React.FC<IProps & SelectProps> = ({ data, registerName, index, ...rest }) => {
+const SelectContainer: React.FC<IProps & SelectProps> = ({ data, registerName, ...rest }) => {
 	const methods = useFormContext()
 
 	const {field: { onChange, onBlur, value, ref }} = useController({
@@ -33,4 +32,4 @@ const SelectWrapper: React.FC<IProps & SelectProps> = ({ data, registerName, ind
 	)
 }
 
-export default SelectWrapper
+export default SelectContainer

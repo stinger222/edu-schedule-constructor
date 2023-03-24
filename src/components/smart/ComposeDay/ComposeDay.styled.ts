@@ -34,6 +34,13 @@ export const StyledComposeDay = styled.div`
 		margin-block: -0.1em 0.5em;
 	}
 
+	& button.custom-select-clear {
+		background: none;
+		color: ${({theme}) => theme.text.secondary};
+		font-size: 1.3em;
+		font-weight: 100;
+	}
+
 	& .compose-day .btn-ghost {
 		font-size: 0.65em;
 		padding: 1.6em;
