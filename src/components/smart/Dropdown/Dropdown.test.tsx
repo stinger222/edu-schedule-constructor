@@ -1,16 +1,11 @@
 
 import { useContext } from "react"
-import { BrowserRouter, HashRouter, MemoryRouter, useLocation } from "react-router-dom"
 import { StoreContext } from "../../.."
 import { IUIStore } from "../../../core/types/store"
 import { act, queryByAttribute, render, renderHook,  screen } from "../../../core/utils/test-utils"
-import {render as defaultRender} from '@testing-library/react'
 import Dropdown from "./Dropdown"
-import { ThemeProvider } from "styled-components"
-import { DarkTheme } from "../../../core/themes/Dark"
 
 describe('Testing Dropdown component', () => {
-
 	let uiStore: IUIStore | null;
 
 	beforeEach(() => {

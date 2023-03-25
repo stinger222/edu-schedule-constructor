@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid"
 import { StyledComposeDay } from "./ComposeDay.styled"
 import { weekDaysRus_full } from "../../../core/constants/constants"
 import { useFieldArray, UseFieldArrayRemove, useFormContext } from "react-hook-form"
@@ -59,7 +58,7 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 				<br />
 
 				{ fields.length < 9 &&
-					<GhostButton onClick={() => appendLessonId(`${nanoid(6)}`)}>
+					<GhostButton onClick={() => appendLessonId('undefined')}>
 						Добавить {fields.length + 1}-ую пару
 					</GhostButton>
 				}
