@@ -9,8 +9,10 @@ import Button from "../../ui/Button/Button"
 const Dropdown = () => {
 	const isOpen = useContext(StoreContext).uiStore.isDropdownOpen
 
-	return (
-		<StyledDropdown style={{visibility: isOpen ? 'visible' : 'hidden'}}>
+
+	
+	return !isOpen ? null : (
+		<StyledDropdown>
       <header>
         Меню
       </header>
