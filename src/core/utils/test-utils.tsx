@@ -1,12 +1,22 @@
-import { ReactElement } from "react"
+import React, { ReactElement } from "react"
 import { DarkTheme } from "../themes/Dark"
 import { ThemeProvider } from "styled-components"
 import { render, RenderOptions } from "@testing-library/react"
+import { BrowserRouter, HashRouter, MemoryRouter } from "react-router-dom"
+import RootStore from "../store/RootStore"
 
 const AllTheProviders: React.FC<{children: ReactElement}> = ({children}) => {
+
+	const rootStore = new RootStore()
+	const StoreContext = React.createContext<typeof rootStore>(rootStore)
+
 	return (
 		<ThemeProvider theme={DarkTheme}>
-			{children}
+			<StoreContext.Provider value={rootStore}>
+				<HashRouter>
+					{children}
+				</HashRouter>
+			</StoreContext.Provider>
 		</ThemeProvider>
 	)
 }

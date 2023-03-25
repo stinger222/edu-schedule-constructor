@@ -11,20 +11,22 @@ import { ThemeProvider } from 'styled-components'
 const rootStore = new RootStore()
 export const StoreContext = React.createContext<typeof rootStore>(rootStore)
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-)
+const rootElement = document.getElementById('root');
 
-root.render(
-  <React.StrictMode>
-		<StoreContext.Provider value={rootStore}>
-			<ThemeProvider theme={LightTheme}>
-			{/* <ThemeProvider theme={DarkTheme}> */}
-				<HashRouter>
-					<App />
-				</HashRouter>
-				<GlobalStyles />
-			</ThemeProvider>
-		</StoreContext.Provider>
-  </React.StrictMode>
-)
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement);
+
+  root.render(
+    <React.StrictMode>
+      <StoreContext.Provider value={rootStore}>
+        <ThemeProvider theme={LightTheme}>
+          {/* <ThemeProvider theme={DarkTheme}> */}
+          <HashRouter>
+            <App />
+          </HashRouter>
+          <GlobalStyles />
+        </ThemeProvider>
+      </StoreContext.Provider>
+    </React.StrictMode>
+  );
+}
