@@ -5,10 +5,12 @@ export const StyledBurgerButton = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 
+	cursor: pointer;
+	user-select: none;
+	
 	height: 1.2em;
 	width: 2.6em;
-
-	cursor: pointer;
+	
 
 	& .burger-line {
 		height: 0;
