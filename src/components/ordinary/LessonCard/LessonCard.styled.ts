@@ -9,7 +9,8 @@ export const StyledLessonCard = styled.div`
 	box-shadow: ${({theme}) => theme.boxShadows.primary};
 	background: ${({theme}) => theme.backgrounds.secondary};
 
-	width: 29.5em;
+	/* width: 29.5em; */
+	width: fit-content;
 	height: fit-content;
 	min-height: 7.8em;
 	padding: 1.2em 0.8em 1em 0.8em;

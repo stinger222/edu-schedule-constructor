@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom"
 import RingCard from "../../ordinary/RingsCard/RingsCard"
+import GhostButton from "../../ui/GhostButton/GhostButton"
 import { StyledRingsCards } from "./RingsCards.styled"
 
 interface IProps {
@@ -13,18 +15,23 @@ const RingsCards: React.FC<IProps> = ({ }) => {
 				end="10:00"
 				length={4}
 			/>
-			
-			<RingCard
-				start="08:00"
-				end="10:00"
-				length={4}
-			/>
 
 			<RingCard
 				start="08:00"
 				end="10:00"
 				length={4}
 			/>
+
+
+			<RingCard
+				start="08:00"
+				end="10:00"
+				length={4}
+			/>
+
+			<Link to="/add/rings">
+				<GhostButton>Добавить расписание звонков <span className="plus">+</span></GhostButton>
+			</Link>
 		</StyledRingsCards>
 	)
 }

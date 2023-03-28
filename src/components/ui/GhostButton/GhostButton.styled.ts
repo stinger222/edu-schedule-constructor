@@ -13,12 +13,11 @@ export const StyledGhostButton = styled.button`
 	align-items: center;
 	justify-content: center;
 
-	height: 3em;
-	max-height: 3em;
-	width: 100%;
+	height: fit-content;
+	width: fit-content;
 
 	margin-inline: auto;
-	padding: 1.8em;
+	padding-inline: 1em;
 
 	border-image-slice: 130 !important;
 	border-image-width: 3.125em !important;
@@ -28,14 +27,16 @@ export const StyledGhostButton = styled.button`
 
 	& > span {
 		font-size: 1.3em;
+		vertical-align: middle;
 	}
-
-	& > span > span.plus {
+	
+	&  span.plus {
+		vertical-align: middle;
+		display: inline-block;
 		font-size: 2em;
 		font-weight: 100;
-	}
-
-	& > span:has(.plus) {
-		line-height: 2em
+		transform: translateY(-4%);
+		height: 1.5em;
+		line-height: 1.5em;
 	}
 `

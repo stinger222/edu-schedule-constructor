@@ -44,7 +44,6 @@ const ComposedSchedule: React.FC<IProps> & ComposedScheduleExtensions = ({  }) =
 					startTime="10:00"
 					endTime="11:00"
 				/>
-			
 			</div>
 		</StyledComposedSchedule>
 	)

@@ -45,7 +45,7 @@ const SwipeToAction: React.FC<IProps> = ({ children, onSwipe, confirm }) => {
 	})
 
 	return (
-		<StyledSwipeToAction {...bind()} ref={wrapperRef}>
+		<StyledSwipeToAction className="swipe-action-wrapper" {...bind()} ref={wrapperRef}>
 			<animated.div className="animated-wrapper" style={{ x, opacity, touchAction: 'pan-y' }}>
 				{children}
 			</animated.div>

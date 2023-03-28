@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledSwipeToAction = styled.div`
+	/* height: fit-content !important; */
 	position: relative;
 	z-index: 5;
 	width: fit-content;

@@ -31,6 +31,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 	
 	a {
 		text-decoration: none;
+		color: currentColor;
 	}
 
 	div:has(svg) {

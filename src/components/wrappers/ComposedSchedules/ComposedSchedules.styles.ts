@@ -1,10 +1,26 @@
 import styled from "styled-components";
 
 export const StyledComposedSchedules = styled.div`
-	width: fit-content;
-	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-inline: 0.5em;
 
-	&.composed-schedules > .composed-schedule {
-		margin-bottom: 1em;
+	& > * {
+		margin-bottom: 1.5em;
+		width: 100%;
+	}
+
+	& a > * {
+		width: 100%;
+	}
+	
+	.btn-ghost {
+		font-size: 0.85em;
+		height: 18em;
+	}
+
+	& .btn-ghost span {
+		font-size: 2em;
 	}
 `

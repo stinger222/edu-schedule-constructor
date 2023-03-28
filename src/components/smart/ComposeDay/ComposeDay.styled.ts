@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledComposeDay = styled.div`
 	background: inherit;
 	margin-inline: auto;
-	width: 38em;
+	width: fit-content;
 
 	& > h2 {
 		text-align: center;
@@ -42,8 +42,9 @@ export const StyledComposeDay = styled.div`
 	}
 
 	& .compose-day .btn-ghost {
-		font-size: 0.65em;
-		padding: 1.6em;
+		width: 100%;
+		height: 3.2em;
+		font-size: 0.7em;
 	}
 
 	& .compose-day .btn-ghost span {

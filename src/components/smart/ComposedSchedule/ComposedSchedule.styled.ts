@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const StyledComposedSchedule = styled.div`
-	width: 38em;
+	width: fit-content;
 	height: fit-content;
 	padding: 0 0.3em 1em 0.3em;
-	margin-inline: auto;
 	
 	border-radius: 1.5em;
 	box-shadow: ${({theme}) => theme.boxShadows.primary};

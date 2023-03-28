@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledRingsCard = styled.div`
-
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -10,7 +9,8 @@ export const StyledRingsCard = styled.div`
 	box-shadow: ${({theme}) => theme.boxShadows.primary};
 	background: ${({theme}) => theme.backgrounds.secondary};
 	
-	width: 29.5em;
+	/* width: 29.5em; */
+	width: fit-content;
 	height: 7em;
 	padding: 1em 0.8em;
 	
