@@ -6,6 +6,7 @@ export const StyledComposedSchedule = styled.div`
 	padding: 0 0.3em 1em 0.3em;
 	
 	border-radius: 1.5em;
+	border: 0.08em solid #00000035;
 	box-shadow: ${({theme}) => theme.boxShadows.primary};
 	background: ${({theme}) => theme.backgrounds.secondary};
 	
@@ -24,5 +25,9 @@ export const StyledComposedSchedule = styled.div`
 		justify-content: center;
 		gap: 0.6em;
 		row-gap: 0.7em;
+	}
+
+	& .days > * {
+		flex-basis: calc(33% - 0.4em);
 	}
 `

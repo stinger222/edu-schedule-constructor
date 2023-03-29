@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Timeline render with different props Renders Timeline correctly with logically incorrect props 1`] = `
+Object {
+  "$$typeof": Symbol(react.memo),
+  "compare": null,
+  "type": [Function],
+}
+`;
+
+exports[`Testing Timeline render with different props Renders Timeline with invalid props 1`] = `
+Object {
+  "$$typeof": Symbol(react.memo),
+  "compare": null,
+  "type": [Function],
+}
+`;
+
+exports[`Testing Timeline render with different props Renders Timeline with valid props 1`] = `
+Object {
+  "$$typeof": Symbol(react.memo),
+  "compare": null,
+  "type": [Function],
+}
+`;
+
+exports[`Testing Timeline render with different props Renders Timeline with valid props, but values not formatted 1`] = `
+Object {
+  "$$typeof": Symbol(react.memo),
+  "compare": null,
+  "type": [Function],
+}
+`;

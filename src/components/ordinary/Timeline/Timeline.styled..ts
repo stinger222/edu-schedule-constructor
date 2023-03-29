@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledProgressBar = styled.div`
+export const StyledTimeline = styled.div`
 	display: flex;
 	width: 6.5em;
 
@@ -64,4 +64,3 @@ export const StyledProgressBar = styled.div`
 		margin-inline: auto;
 	}
 `
-

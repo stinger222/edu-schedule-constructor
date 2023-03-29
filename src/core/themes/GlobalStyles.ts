@@ -86,7 +86,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
   }
 
 	/* TEMP (will be moved to anoter place)*/
-	.schedule-row {
+	.schedule-item {
 		display: flex;
 		justify-content: space-between;
 		gap: 2em;
@@ -96,7 +96,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 
 	/* TEMP AS WELL */
 	@media (max-width: 625px) {
-		.schedule-row {
+		.schedule-item {
 			font-size: 1.03em;
 			padding-right: 0.4em;
 			gap: 0;

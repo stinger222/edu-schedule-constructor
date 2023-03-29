@@ -1,6 +1,6 @@
 import React from "react"
+import { StyledTimeline } from "./Timeline.styled."
 import { Replacements } from "../../../core/types/types"
-import { StyledProgressBar } from "./ProgressBar.styled"
 import { formatTimeString, replaceBlankProps } from "../../../core/utils/helpers"
 
 interface IProps {
@@ -14,7 +14,7 @@ const propsReplacements: Replacements<IProps> = {
 	endTime: "??:??",
 }
 
-const ProgressBar: React.FC<IProps> = (props) => {
+const Timeline: React.FC<IProps> = (props) => {
 	let { startTime, endTime, active } = replaceBlankProps<IProps>(props, propsReplacements)
 
 	startTime = formatTimeString(startTime)
@@ -28,7 +28,7 @@ const ProgressBar: React.FC<IProps> = (props) => {
 	}
 
 	return (
-		<StyledProgressBar className={active ? 'active' : ''}>
+		<StyledTimeline className={active ? 'active' : ''}>
 			<div className="caption">
 				<div className="caption-start">{ startTime }</div>
 				<div className="caption-end">{ endTime }</div>
@@ -37,8 +37,8 @@ const ProgressBar: React.FC<IProps> = (props) => {
 				<div className="indicator"></div>
 				<div className="line"></div>
 			</div>
-		</StyledProgressBar>
+		</StyledTimeline>
 	)
 }
 
-export default React.memo(ProgressBar)
+export default React.memo(Timeline)
