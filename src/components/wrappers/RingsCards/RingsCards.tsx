@@ -9,7 +9,7 @@ interface IProps {
 
 const RingsCards: React.FC<IProps> = ({ }) => {
 	return (
-		<StyledRingsCards>
+		<StyledRingsCards className="rings-cards">
 			<RingCard
 				start="08:00"
 				end="10:00"

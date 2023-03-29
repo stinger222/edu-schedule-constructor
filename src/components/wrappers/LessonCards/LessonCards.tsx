@@ -12,7 +12,6 @@ const LessonCards = () => {
 
 	return (
 		<StyledLessonCards className="lesson-cards">
-
 			<SwipeToAction onSwipe={handleSwipe}>
 				<LessonCard
 					cabinet="223т"

@@ -5,11 +5,11 @@ export const StyledLessonCards = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-inline: 5em;
+	padding-inline: 1em;
 	
 	& > * {
 		margin-bottom: 1.5em;
-		width: 100%;
+		width: 28em;
 	}
 
 	& .lesson-card, & .animated-wrapper {
@@ -28,5 +28,4 @@ export const StyledLessonCards = styled.div`
 	& .btn-ghost span {
 		font-size: 1.9em;
 	}
-
 `

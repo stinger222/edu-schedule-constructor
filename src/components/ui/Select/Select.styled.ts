@@ -34,6 +34,10 @@ export const StyledSelect = styled(Select)`
 		& .mantine-Select-dropdown {
 			background: ${({theme}) => theme.backgrounds.primary};
 		}
+
+		& .mantine-Select-dropdown .mantine-Select-item {
+			font-weight: 200;
+		}
 		
 		& .mantine-Select-dropdown .mantine-Select-item:not(
 			& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"]
@@ -56,4 +60,3 @@ export const StyledSelect = styled(Select)`
 			background-color: transparent;
 		}
 	`
-

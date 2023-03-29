@@ -72,4 +72,27 @@ export const StyledAddLesson = styled.div`
 			margin-inline: 0;
 		}
 	}
+
+	@media(max-width: 400px) {
+		
+		& form {
+			font-size: 1.5em;
+			/* padding-inline: 0.6em; */
+		}
+
+		& .teacher {
+			grid-column: 1 / -6;
+			grid-row: 2 / 3;
+		}
+
+		& .cabinet {
+			grid-column: -6 / -1;
+			grid-row: 2 / 3;
+		}
+
+		& .caption {
+			font-size: 1.2em;
+			top: 0.1em;
+		}
+	}
 `
