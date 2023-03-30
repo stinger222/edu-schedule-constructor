@@ -1,15 +1,15 @@
-import { weekDates, Replacements, Cases } from './../types/types';
+import { weekDates, Replacements, Cases } from './../types/types'
 
 export const getCurrentWeekDates = (): weekDates => {
-	const result = []
-	const date = new Date()
-	date.setDate(date.getDate() - (date.getDay() === 0 ? 7 : date.getDay())) // now it's current week sunday date
-	for (let i = 0; i < 7; i++) {
-		date.setDate(date.getDate() + 1) // and now it's monday
-		result.push(date.getDate())
-	}
+  const date = new Date()
+  date.setDate(date.getDate() - (date.getDay() === 0 ? 7 : date.getDay())) // now it's current week sunday date:
 
-	return formatNumbers(result) as weekDates
+  const result = Array.from({ length: 7 }, () => {
+    date.setDate(date.getDate() + 1) // and now it's monday
+    return formatNumber(date.getDate())
+  })
+
+  return result as weekDates
 }
 
 export const formatNumbers = (numbers: number[]): string[] => {
@@ -32,23 +32,25 @@ export function replaceBlankProps<P extends {[key: string]: any}> (props: P , re
 	return result as P
 }
 
-export const formatNumber = (number: number): string => {
-	if (isNaN(number)) return "??"
-	
-	return Math.abs(number).toLocaleString('en-US', {
-    minimumIntegerDigits: 2,
-    useGrouping: false
+ export const formatNumber = (number: number, digits: number = 2): string => {
+	if (isNaN(number)) return '??'
+  
+  const formatter = new Intl.NumberFormat('en-US', {
+    minimumIntegerDigits: digits,
+    useGrouping: true
   })
+  
+  return formatter.format(Math.abs(number))
 }
 
 export const formatTimeString = (timeString: string): string => {
-	let [hours, minutes] = timeString.split(':')
+	const [hours, minutes] = timeString.split(':')
 
 	return `${formatNumber(parseInt(hours))}:${formatNumber(parseInt(minutes))}`
 }
 
 export class WeekDays {
-	private static _week = {
+	private static readonly _week = {
 		short: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
 		full: {
 			nominative: [
@@ -60,12 +62,12 @@ export class WeekDays {
 		}
 	}
 
-	static getShort() {
-		return this._week.short
+	static getShort(): ReadonlyArray<string> {
+		return this._week.short as ReadonlyArray<string>
 	}
 
-	static getFull(_case: Cases = Cases.Nominative, lowerCase: boolean = false) {
-		let result = this._week.full[_case]
-		return lowerCase ? result.map(i => i.toLowerCase()) : result
+	static getFull(caseType: Cases = Cases.Nominative, toLowerCase: boolean = false): ReadonlyArray<string> {
+		let result: ReadonlyArray<string> = this._week.full[caseType]
+		return toLowerCase ? result.map(i => i.toLowerCase()) : result
 	}
 }
