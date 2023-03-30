@@ -1,9 +1,9 @@
 import { StyledComposeDay } from "./ComposeDay.styled"
-import { weekDaysRus_full } from "../../../core/constants/constants"
 import { useFieldArray, UseFieldArrayRemove, useFormContext } from "react-hook-form"
 
 import GhostButton from "../../ui/GhostButton/GhostButton"
 import SelectContainer from "../../containers/SelectContainer/SelectContainer"
+import { WeekDays } from "../../../core/utils/helpers"
 
 interface IProps {
 	dayIndex: number
@@ -29,7 +29,7 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 	
 	return (
 		<StyledComposeDay>
-			<h2>{weekDaysRus_full[dayIndex]}:</h2>
+			<h2>{WeekDays.getFull()[dayIndex]}:</h2>
 
 			<div className="compose-day">
 				<SelectContainer
