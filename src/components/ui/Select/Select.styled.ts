@@ -1,8 +1,8 @@
-import { Select } from "@mantine/core"
+import { Select as MantineSelect } from "@mantine/core"
 import styled from "styled-components"
 import { ThemeEnum } from "../../../core/types/styled"
 
-export const StyledSelect = styled(Select)`
+export const StyledSelect = styled(MantineSelect)`
 		margin-bottom: 0.3em;
 
 		& .mantine-Select-label {
@@ -28,13 +28,18 @@ export const StyledSelect = styled(Select)`
 		}
 
 		& .mantine-Input-rightSection {
-			right: 0.3em;
+			width: 2em;
+		}
+
+		& .mantine-Input-rightSection svg {
+			height: 1.3em;
+			width: 1.3em;
 		}
 
 		& .mantine-Select-dropdown {
 			background: ${({theme}) => theme.backgrounds.primary};
 		}
-
+		
 		& .mantine-Select-dropdown .mantine-Select-item {
 			font-weight: 200;
 		}
