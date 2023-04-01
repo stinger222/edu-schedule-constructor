@@ -4,19 +4,19 @@ export const StyledTimeline = styled.div`
 	display: flex;
 	width: 6.5em;
 
-	& .caption {
+	& .label {
 		height: 100%;
 		width: 75%;
 		font-size: 1.5em;
 		margin-right: 0.4em;
 	}
 	
-	& .caption > div {
+	& .label > div {
 		text-align: center;
 		font-weight: 600;
 	}
 
-	& .caption .caption-end {
+	& .label .label-end {
 		font-size: 0.85em;
 		color: ${({theme}) => theme.text.secondary};
 	}

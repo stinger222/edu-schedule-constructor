@@ -2,19 +2,19 @@ import React from "react"
 import { StyledInput } from "./Input.styled"
 
 interface IProps {
-	caption?: string,
+	label?: string,
 	className?: string
 } 
 
 const Input: React.FC<IProps & React.InputHTMLAttributes<HTMLInputElement>> = React.forwardRef<HTMLInputElement, IProps>(({ 
-	caption,
+	label,
 	className,
 	...rest
 }, ref) => {
 
 	return (
 		<StyledInput  className={className}>
-			<span className="caption">{caption}</span>
+			<span className="label">{label}</span>
 			<input placeholder="" ref={ref} {...rest} />
 		</StyledInput>
 	)

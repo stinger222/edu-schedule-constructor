@@ -7,7 +7,7 @@ export const StyledTimeRange = styled.div`
 
 	margin-bottom: 1em;
 
-	& .divider .caption {
+	& .divider .label {
 		font-size: 1.3em;
 		font-weight: 200;
 	}

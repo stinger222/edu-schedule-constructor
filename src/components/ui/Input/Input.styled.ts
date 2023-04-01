@@ -4,7 +4,7 @@ export const StyledInput = styled.div`
 	position: relative;
 	padding: 0.7em 0;
 
-	& > .caption {
+	& > .label {
 		position: absolute;
 		top: 0.2em;
 		left: 0.3em;

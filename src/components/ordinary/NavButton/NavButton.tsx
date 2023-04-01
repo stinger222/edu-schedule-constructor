@@ -1,20 +1,20 @@
 import { StyledNavButton } from "./NavButton.styled"
 
 interface IProps {
-	caption: string,
+	label: string,
 	date: string,
 	index: number,
 	selectedDayIndex: number,
 	onSelect: (index: number) => void
 }
 
-const NavButton: React.FC<IProps> = ({ caption, date, selectedDayIndex, index, onSelect }) => {
+const NavButton: React.FC<IProps> = ({ label, date, selectedDayIndex, index, onSelect }) => {
 	return (
 		<StyledNavButton
 			className={selectedDayIndex === index ? 'selected' : ''}
 			onClick={() => onSelect(index)}
 		>
-			<div className="caption">{caption}</div>
+			<div className="label">{label}</div>
 			<div className="day">{date}</div>
 		</StyledNavButton>
 	)

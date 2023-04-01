@@ -10,21 +10,21 @@ const TimeRange: React.FC<IProps> = ({ index }) => {
 		<StyledTimeRange>
 			<InputWrapper
 				type="time"
-				caption="Начало"
-				registerName={`ranges.${index}.start` as const}
-				registerOptions={{required: true}}
+				label="Начало"
+				name={`ranges.${index}.start` as const}
+				rules={{required: true}}
 			/>
 
 				<span className="divider">
-					<div className="caption">{index + 1} пара</div>
+					<div className="label">{index + 1} пара</div>
 					<div className="line"></div>
 				</span>
 
 			<InputWrapper
 				type="time"
-				caption="Конец"
-				registerName={`ranges.${index}.end` as const}
-				registerOptions={{required: true}}
+				label="Конец"
+				name={`ranges.${index}.end` as const}
+				rules={{required: true}}
 			/>
 		</StyledTimeRange>
 	)
