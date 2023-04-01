@@ -1,6 +1,6 @@
+import { forwardRef } from "react"
 import { SelectItem, SelectProps } from "@mantine/core"
-import React from "react"
-import { Controller, useController, useFormContext } from "react-hook-form"
+import { FieldValues, RegisterOptions, useController, useFormContext } from "react-hook-form"
 import Select from "../../ui/Select/Select"
 
 interface MySelectItem extends SelectItem {
@@ -9,27 +9,32 @@ interface MySelectItem extends SelectItem {
 
 interface IProps {
 	data: (string | MySelectItem)[],
-	registerName: string
+	name: string,
+	rules?: Omit<RegisterOptions<FieldValues, string>, "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled">
 }
 
-const SelectContainer: React.FC<IProps & SelectProps> = ({ data, registerName, ...rest }) => {
+/**
+ * This is container for Select (from mantine library).
+ * 
+ * As all other containers, it can be used ONLY inside FormProvider.
+ * 
+ * @param name - name for "@react-hook-form" that used for registration
+ * @param data - data to show in dropdown
+*/
+
+const SelectContainer: React.FC<IProps & SelectProps> = forwardRef(({ name, rules, data, ...rest}, ref) => {
+
 	const methods = useFormContext()
 
-	const {field: { onChange, onBlur, value, ref }} = useController({
-		name: registerName,
-		control: methods.control
+	const {field: {ref: _ref, ...selectProps}} = useController({
+		name,
+		control: methods.control,
+		rules
 	})
 
 	return (
-		<Select
-			onChange={onChange}
-			onBlur={onBlur}
-			value={value}
-			ref={ref}
-			data={data}
-			{...rest}
-		/>
+		<Select data={data} {...selectProps} {...rest} placeholder={rest.placeholder ?? '<Не выбрано>'}/>
 	)
-}
+})
 
 export default SelectContainer

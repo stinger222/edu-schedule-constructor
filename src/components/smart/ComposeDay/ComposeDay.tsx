@@ -33,7 +33,7 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 
 			<div className="compose-day">
 				<SelectContainer
-					registerName={`days.${dayIndex}.ringsScheduleId`}
+					name={`days.${dayIndex}.ringsScheduleId`}
 					key={0}
 					label="Расписание звонков для этого дня"
 					data={[{label: 'Звонки для понедельника', value: '1'}, {label: 'Нормальные звонки', value: '2'}]}
@@ -47,7 +47,7 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 							rightSection= {
 								(fields.length - 1 === index && index != 0) && <RemoveFieldButton index={index} remove={removeLessonId} />
 							}
-							registerName={`days.${dayIndex}.lessonIds.${index}`}
+							name={`days.${dayIndex}.lessonIds.${index}`}
 							key={id}
 							label={`${index + 1}-ая пара`}
 							data={data}

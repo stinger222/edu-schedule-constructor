@@ -20,20 +20,20 @@ const App = () => {
 		uiStore.toggleDropdown(false)
 	}, [location])
 
-  return (
+	return (
 		<Routes>
-			<Route path="/" element={<Main />}/>
-			<Route path="/composed" element={<Composed />}/>
-			<Route path="/lessons" element={<Lessons />}/>
-			<Route path="/rings" element={<Rings />}/>
+			<Route path="/" element={<Main />} />
+			<Route path="/composed" element={<Composed />} />
+			<Route path="/lessons" element={<Lessons />} />
+			<Route path="/rings" element={<Rings />} />
 
 			<Route path="/add">
-				<Route path="rings" element={<AddRingsSchedule />}/>
-				<Route path="lesson" element={<AddLesson />}/>
-				<Route path="composed" element={<AddComposedSchedule />}/>
+				<Route path="rings" element={<AddRingsSchedule />} />
+				<Route path="lesson" element={<AddLesson />} />
+				<Route path="composed" element={<AddComposedSchedule />} />
 			</Route>
 		</Routes>
-  )
+	)
 }
 
 export default App
