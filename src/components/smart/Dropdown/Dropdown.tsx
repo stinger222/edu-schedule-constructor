@@ -1,17 +1,20 @@
 import { StoreContext } from "../../.."
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { observer } from "mobx-react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import { StyledDropdown } from "./Dropdown.styled"
 import Button from "../../ui/Button/Button"
 
 const Dropdown = () => {
-	const isOpen = useContext(StoreContext).uiStore.isDropdownOpen
-
-
+	const { uiStore } = useContext(StoreContext)
+	const location = useLocation()
 	
-	return !isOpen ? null : (
+	useEffect(() => {
+		uiStore.toggleDropdown(false)
+	}, [location])
+
+	return !uiStore.isDropdownOpen ? null : (
 		<StyledDropdown>
       <header>
         Меню

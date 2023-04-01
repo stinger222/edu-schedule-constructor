@@ -1,7 +1,4 @@
-import { StoreContext } from "."
-import { useContext, useEffect } from "react"
-import { Route, Routes, useLocation } from "react-router-dom";
-
+import { Route, Routes } from "react-router-dom";
 
 import Main from "./pages/Main/Main";
 import Lessons from "./pages/Lessons/Lessons";
@@ -13,13 +10,6 @@ import AddRingsSchedule from "./pages/AddRingsSchedule/AddRingsSchedule"
 import AddComposedSchedule from "./pages/AddComposedSchedule/AddComposedSchedule"
 
 const App = () => {
-	const location = useLocation()
-	const { uiStore } = useContext(StoreContext)
-
-	useEffect(() => {
-		uiStore.toggleDropdown(false)
-	}, [location])
-
 	return (
 		<Routes>
 			<Route path="/" element={<Main />} />

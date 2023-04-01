@@ -8,11 +8,20 @@ export type KeyOfType<T, V> = keyof {
 
 export type Replacements<P> = Record<KeyOfType<P, string>, string>
 
+export type PartialField<O, K extends keyof O> = Omit<O, K> & Partial<Pick<O, K>>
+
 export type Icons = keyof typeof icons
 
 export interface IOption {
 	label: string,
 	id: string
+}
+
+export interface ILesson {
+	title: string,
+	teacher: string,
+	cabinet: string,
+	uid: string
 }
 
 export enum Cases {

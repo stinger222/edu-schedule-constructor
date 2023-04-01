@@ -1,32 +1,33 @@
-import { useState } from "react"
+import { useContext } from "react"
+import { observer } from "mobx-react"
+import { StoreContext } from "../../../.."
 import { StyledNavBar } from "./NavBar.styled"
-import { formatNumber, getCurrentWeekDates, WeekDays } from "../../../../core/utils/helpers"
+import { getCurrentWeekDates, WeekDays } from "../../../../core/utils/helpers"
 import NavButton from "../../../ordinary/NavButton/NavButton"
 
 const NavBar = () => {
-	const week = getCurrentWeekDates()
-	const todayDate: string = formatNumber(new Date().getDate())
+	const { uiStore } = useContext(StoreContext)
 	
-	const [selectedDayIndex, setSelectedDayIndex] = useState(week.findIndex(i => i === todayDate))
+	const currentWeekDates = getCurrentWeekDates()
 
-	const handleSelect = (index: number) => {
-		setSelectedDayIndex(index)
+	const handleSelect = (newIndex: number) => {
+		uiStore.selectDayIndex(newIndex)
 	}
 
 	return (
 		<StyledNavBar>
-			{week.map((date: string, index: number) => (
+			{currentWeekDates.map((date: string, index: number) => (
 				<NavButton
 					label={WeekDays.getShort()[index]}
 					date={date}
 					index={index}
-					selectedDayIndex={selectedDayIndex}
+					selectedDayIndex={uiStore.selectedDayIndex}
 					onSelect={handleSelect}
-					key={index}
+					key={date}
 				/>
 		))}
 		</StyledNavBar>
 	)
 }
 
-export default NavBar
+export default observer(NavBar)
