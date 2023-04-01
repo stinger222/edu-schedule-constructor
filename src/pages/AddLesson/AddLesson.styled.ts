@@ -90,7 +90,7 @@ export const StyledAddLesson = styled.div`
 			grid-row: 2 / 3;
 		}
 
-		& .caption {
+		& .label {
 			font-size: 1.2em;
 			top: 0.1em;
 		}

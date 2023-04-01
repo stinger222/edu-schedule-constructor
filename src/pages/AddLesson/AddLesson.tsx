@@ -24,24 +24,24 @@ const AddLesson = () => {
 					<FormProvider {...methods}>
 						<form onSubmit={methods.handleSubmit(console.log)}>
 							<InputWrapper
-								caption="Название пары"
+								label="Название пары"
 								placeholder="Основы алгоритмизации"
-								registerName="title"
-								registerOptions={{required: true}}
+								name="title"
+								rules={{required: true}}
 								className="title"
 							/>
 							<InputWrapper
-								caption="Имя препода"
+								label="Имя препода"
 								placeholder="Иванов Иван Иванович"
-								registerName="teacher"
-								registerOptions={{required: true}}
+								name="teacher"
+								rules={{required: true}}
 								className="teacher"
 							/>
 							<InputWrapper
-								caption="Кабинет"
+								label="Кабинет"
 								placeholder="302у"
-								registerName="cabinet"
-								registerOptions={{required: true}}
+								name="cabinet"
+								rules={{required: true}}
 								className="cabinet"
 							/>
 

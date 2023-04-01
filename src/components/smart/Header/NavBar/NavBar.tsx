@@ -17,7 +17,7 @@ const NavBar = () => {
 		<StyledNavBar>
 			{week.map((date: string, index: number) => (
 				<NavButton
-					caption={WeekDays.getShort()[index]}
+					label={WeekDays.getShort()[index]}
 					date={date}
 					index={index}
 					selectedDayIndex={selectedDayIndex}

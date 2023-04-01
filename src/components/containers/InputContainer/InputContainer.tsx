@@ -2,18 +2,27 @@ import { FieldValues, RegisterOptions, useFormContext } from "react-hook-form"
 import Input from "../../ui/Input/Input"
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
-	caption?: string,
-	registerName?: string,
-	registerOptions?: RegisterOptions<FieldValues, string>
+	label?: string,
+	name?: string,
+	rules?: RegisterOptions<FieldValues, string>
 } 
 
-const InputWrapper: React.FC<IProps> = ({ registerName, registerOptions, caption, ...rest }) => {
+/**
+ * This is container for Input component.
+ * 
+ * As all other containers, it can be used ONLY inside FormProvider.
+ * 
+ * @param name - name for "@react-hook-form" that used for registration
+ * @param data - data to show in dropdown
+*/
+
+const InputWrapper: React.FC<IProps> = ({ name, rules, label, ...rest }) => {
 	const methods = useFormContext()
 
 	return (
 		<Input
-			caption={caption}
-			{...methods?.register(registerName || 'value' , registerOptions)}
+			label={label}
+			{...methods?.register(name || 'value' , rules )}
 			{...rest}
 		/>
 	)

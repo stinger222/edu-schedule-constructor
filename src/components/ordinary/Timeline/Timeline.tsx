@@ -29,9 +29,9 @@ const Timeline: React.FC<IProps> = (props) => {
 
 	return (
 		<StyledTimeline className={active ? 'active' : ''}>
-			<div className="caption">
-				<div className="caption-start">{ startTime }</div>
-				<div className="caption-end">{ endTime }</div>
+			<div className="label">
+				<div className="label-start">{ startTime }</div>
+				<div className="label-end">{ endTime }</div>
 			</div>
 			<div className="progress-bar-body">
 				<div className="indicator"></div>

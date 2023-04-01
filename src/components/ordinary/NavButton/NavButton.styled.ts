@@ -13,7 +13,7 @@ export const StyledNavButton = styled.div`
 		line-height: 1.1em;
 	}
 
-	& .caption {
+	& .label {
 		font-weight: 200;
 	}
 
