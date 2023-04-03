@@ -1,12 +1,17 @@
+import { makeAutoObservable } from 'mobx'
 import { ILessonsStore } from './../types/store'
 import { ILesson } from './../types/types'
 import { nanoid } from 'nanoid'
 
 export class LessonsStore implements ILessonsStore {
-	public lessons: ILesson[] = [
+	lessons: ILesson[] = [
 		// Example lesson can be placed here by default
 		{cabinet: 'default_cabinet', teacher: 'default_teacher', title: 'default_title', uid:'default_uid'}
 	]
+
+	constructor() {
+		makeAutoObservable(this)
+	}
 
 	addLesson(newLesson: Omit<ILesson, 'uid'>) {
 		this.lessons.push({...newLesson, uid: nanoid(10)})

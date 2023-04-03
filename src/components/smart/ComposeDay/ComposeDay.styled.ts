@@ -37,7 +37,7 @@ export const StyledComposeDay = styled.div`
 	& button.custom-select-clear {
 		background: none;
 		color: ${({theme}) => theme.text.secondary};
-		font-size: 1.3em;
+		font-size: 1.6em;
 		font-weight: 100;
 	}
 
