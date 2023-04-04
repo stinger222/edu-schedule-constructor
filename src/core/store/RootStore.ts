@@ -1,17 +1,20 @@
-import { RingsSchedulesStore } from './RingsSchedulesStore'
-import { LessonsStore } from './LessonsStore'
-import { ILessonsStore, IUIStore } from './../types/store';
+import { IComposedSchedulesStore, ILessonsStore, IRingsSchedulesStore, IUIStore } from './../types/store';
+import ComposedSchedulesStore from './ComposedSchedulesStore'
+import RingsSchedulesStore from './RingsSchedulesStore'
+import LessonsStore from './LessonsStore'
 import UIStore from './UIStore';
 
 class RootStore {
 	uiStore: IUIStore
 	lessonsStore: ILessonsStore
-	ringsScheduleStore: any
+	ringsSchedulesStore: IRingsSchedulesStore
+	composedSchedulesStore: IComposedSchedulesStore
 
 	constructor() {
 		this.uiStore = new UIStore()
 		this.lessonsStore = new LessonsStore()
-		this.ringsScheduleStore = new RingsSchedulesStore()
+		this.ringsSchedulesStore = new RingsSchedulesStore()
+		this.composedSchedulesStore = new ComposedSchedulesStore()
 	}
 }
 

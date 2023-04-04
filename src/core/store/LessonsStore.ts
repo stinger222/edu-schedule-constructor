@@ -3,7 +3,7 @@ import { ILessonsStore } from './../types/store'
 import { ILesson } from './../types/types'
 import { nanoid } from 'nanoid'
 
-export class LessonsStore implements ILessonsStore {
+class LessonsStore implements ILessonsStore {
 	lessons: ILesson[] = [
 		// Example lesson can be placed here by default
 		{cabinet: 'default_cabinet', teacher: 'default_teacher', title: 'default_title', uid:'default_uid'}
@@ -38,3 +38,5 @@ export class LessonsStore implements ILessonsStore {
 		})
 	}
 }
+
+export default LessonsStore

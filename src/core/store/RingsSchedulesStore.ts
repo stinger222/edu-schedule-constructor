@@ -1,16 +1,9 @@
-import { makeAutoObservable, toJS } from 'mobx'
 import { nanoid } from "nanoid"
+import { IRingsSchedule } from './../types/types'
+import { IRingsSchedulesStore } from './../types/store'
+import { makeAutoObservable, toJS } from 'mobx'
 
-interface IRingsSchedule {
-	name: string,
-	uid: string,
-	rings: Array<{
-		start: `${number}:${number}`,
-		end: `${number}:${number}`
-	}>
-}
-
-export class RingsSchedulesStore {
+class RingsSchedulesStore implements IRingsSchedulesStore {
 	ringsSchedules: IRingsSchedule[] = []
 
 	constructor() {
@@ -19,11 +12,11 @@ export class RingsSchedulesStore {
     })
   }
 
-	addRingsSchedule(newRingsSchedule: Omit<IRingsSchedule, 'uid'>) {
-		this.ringsSchedules.push({...newRingsSchedule, uid: 'dick2'})
+	addRingsSchedule(newRingsSchedule: Omit<IRingsSchedule, 'uid'>): void {
+		this.ringsSchedules.push({...newRingsSchedule, uid: nanoid(10)})
 	}
 
-	removeSchedule(uid: string) {
+	removeSchedule(uid: string): boolean {
 		const indexToDelete = this.ringsSchedules.findIndex(schedule => schedule.uid === uid)
 		
 		if (indexToDelete != -1) {
@@ -36,3 +29,5 @@ export class RingsSchedulesStore {
 		return false
 	}
 }
+
+export default RingsSchedulesStore
