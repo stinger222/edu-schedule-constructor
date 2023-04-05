@@ -6,7 +6,6 @@ import { nanoid } from 'nanoid'
 class LessonsStore implements ILessonsStore {
 	lessons: ILesson[] = [
 		// Example lesson can be placed here by default
-		{cabinet: 'default_cabinet', teacher: 'default_teacher', title: 'default_title', uid:'default_uid'}
 	]
 
 	constructor() {
