@@ -6,6 +6,11 @@ export const StyledAddRingsSchedule = styled.div`
 		font-size: 1.2em;
 	}
 
+	& form input[name="name"] {
+		width: 100%;
+		margin-bottom: 1em;
+	}
+
 	& form .btn {
 		display: block;
 		margin-inline: auto;

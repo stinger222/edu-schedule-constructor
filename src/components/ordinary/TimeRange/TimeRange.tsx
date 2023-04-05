@@ -11,7 +11,7 @@ const TimeRange: React.FC<IProps> = ({ index }) => {
 			<InputWrapper
 				type="time"
 				label="Начало"
-				name={`ranges.${index}.start` as const}
+				name={`rings.${index}.start` as const}
 				rules={{required: true}}
 			/>
 
@@ -23,7 +23,7 @@ const TimeRange: React.FC<IProps> = ({ index }) => {
 			<InputWrapper
 				type="time"
 				label="Конец"
-				name={`ranges.${index}.end` as const}
+				name={`rings.${index}.end` as const}
 				rules={{required: true}}
 			/>
 		</StyledTimeRange>

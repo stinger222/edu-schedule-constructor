@@ -7,9 +7,7 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 	ringsSchedules: IRingsSchedule[] = []
 
 	constructor() {
-    makeAutoObservable(this, {
-      ringsSchedules: true
-    })
+    makeAutoObservable(this)
   }
 
 	addRingsSchedule(newRingsSchedule: Omit<IRingsSchedule, 'uid'>): void {
