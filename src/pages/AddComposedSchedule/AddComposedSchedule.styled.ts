@@ -4,8 +4,13 @@ export const StyledAddComposedSchedule = styled.div`
 	& form {
 		padding-inline: 0.5em;
 	}
+
 	& form > * {
 		width: 100%;
+	}
+
+	& form .input-container:has(input[name="name"]) {
+		font-size: 1.3em;
 	}
 
 	& form > h2 {

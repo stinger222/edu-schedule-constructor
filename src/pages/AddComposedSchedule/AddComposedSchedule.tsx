@@ -9,15 +9,29 @@ import Container from "../../components/containers/Container/Container"
 import ComposeDay from "../../components/smart/ComposeDay/ComposeDay"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import Button from "../../components/ui/Button/Button"
+import { useContext } from "react"
+import { StoreContext } from "../.."
+import { toJS } from "mobx"
+import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 
 const AddComposedSchedule = () => {
 	const methods = useForm({
 		defaultValues: {
+			name: '',
 			days: [{ ringsScheduleId: '', lessonIds: ['undefined'] }]
 		}
 	})
 
 	const { fields, append } = useFieldArray({ control: methods.control, name: 'days' })
+
+	const { composedSchedulesStore } = useContext(StoreContext)
+
+	const handleSubmit = (formData: any) => {
+		console.log(toJS(composedSchedulesStore.composedSchedules));
+		composedSchedulesStore.addSchedule(formData)
+		console.log(toJS(composedSchedulesStore.composedSchedules));
+		methods.reset()
+	}
 
 	return (
 		<StyledAddComposedSchedule>
@@ -29,7 +43,14 @@ const AddComposedSchedule = () => {
 				</Header>
 
 				<FormProvider {...methods}>
-					<form onSubmit={methods.handleSubmit(console.log)}>
+					<form onSubmit={methods.handleSubmit(handleSubmit)}>
+
+						<InputWrapper
+							name="name"
+							label="Название расписания"
+							placeholder="Верхняя неделя"
+							rules={{required: 'Название расписания не указано!'}}
+						/>
 
 						{
 							fields.map((_, index) => (

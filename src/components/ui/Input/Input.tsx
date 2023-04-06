@@ -13,7 +13,7 @@ const Input: React.FC<IProps & React.InputHTMLAttributes<HTMLInputElement>> = Re
 }, ref) => {
 
 	return (
-		<StyledInput  className={className}>
+		<StyledInput  className={`${className} input-container`}>
 			<span className="label">{label}</span>
 			<input placeholder="" ref={ref} {...rest} />
 		</StyledInput>
