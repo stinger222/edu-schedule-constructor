@@ -1,9 +1,13 @@
-import { StyledComposeDay } from "./ComposeDay.styled"
+import React, { useContext } from "react"
+import { StoreContext } from "../../.."
 import { useFieldArray, UseFieldArrayRemove, useFormContext } from "react-hook-form"
 
 import GhostButton from "../../ui/GhostButton/GhostButton"
 import SelectContainer from "../../containers/SelectContainer/SelectContainer"
+import { StyledComposeDay } from "./ComposeDay.styled"
+
 import { WeekDays } from "../../../core/utils/helpers"
+import { IRingsSchedule } from "../../../core/types/types"
 
 interface IProps {
 	dayIndex: number
@@ -11,19 +15,32 @@ interface IProps {
 
 const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 
-	const data = [
-		{ label: 'Условная математика', value: "math" },
-		{ label: 'Типа английский', value: "eng"  },
-		{ label: 'Ну предположим физра', value: "pe"  },
-		{ label: 'Допустим информатика', value: "cs"  },
-	]
+	const { lessonsStore, ringsSchedulesStore } = useContext(StoreContext)
+
+	const ringsSchedulesSelectData = ringsSchedulesStore.ringsSchedules
+		.map((schedule: IRingsSchedule) => {
+			return {
+				label: schedule.name, value: schedule.uid
+			}
+		})
+
+	const lessonsSelectData = lessonsStore.lessons
+		.map((lesson) => {
+			return {
+				label: lesson.title, value: lesson.uid
+			}
+		})
 
 	const methods = useFormContext()
 	
 	const {
 		fields, append: appendLessonId, remove: removeLessonId
-	} = useFieldArray({control: methods.control, name: `days.${dayIndex}.lessonIds` })
-
+	} = useFieldArray({control: methods.control, name: `days.${dayIndex}.lessonIds`})
+	
+	const validateField = (value: string) => {
+		value = value.trim()
+		return value !== '' && value !== 'undefined'
+	}
 	
 	if (dayIndex >= 5) return null
 	
@@ -33,10 +50,12 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 
 			<div className="compose-day">
 				<SelectContainer
-					name={`days.${dayIndex}.ringsScheduleId`}
 					key={0}
+					name={`days.${dayIndex}.ringsScheduleId`}
+					rules={{validate: validateField}}
 					label="Расписание звонков для этого дня"
-					data={[{label: 'Звонки для понедельника', value: '1'}, {label: 'Нормальные звонки', value: '2'}]}
+					data={ringsSchedulesSelectData}
+					defaultValue={ringsSchedulesStore.ringsSchedules[0].uid}
 				/>
 
 				<div className="hr-divider"></div>
@@ -45,12 +64,15 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 					fields.map(({id}, index) => (
 						<SelectContainer
 							rightSection= {
-								(fields.length - 1 === index && index != 0) && <RemoveFieldButton index={index} remove={removeLessonId} />
+								(fields.length - 1 === index && index != 0) && 
+									<RemoveFieldButton index={index} remove={removeLessonId}/>
 							}
-							name={`days.${dayIndex}.lessonIds.${index}`}
 							key={id}
+							name={`days.${dayIndex}.lessonIds.${index}`}
+							rules={{validate: validateField}}
 							label={`${index + 1}-ая пара`}
-							data={data}
+							data={lessonsSelectData}
+							defaultValue={lessonsStore.lessons[0].uid}
 						/>
 					))
 				}

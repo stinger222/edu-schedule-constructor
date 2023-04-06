@@ -19,16 +19,14 @@ if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
 
   root.render(
-    <React.StrictMode>
-      <StoreProvider value={rootStore}>
-        <ThemeProvider theme={LightTheme}>
-          {/* <ThemeProvider theme={DarkTheme}> */}
-          <HashRouter>
-            <App />
-          </HashRouter>
-          <GlobalStyles />
-        </ThemeProvider>
-      </StoreProvider>
-    </React.StrictMode>
+		<StoreProvider value={rootStore}>
+			<ThemeProvider theme={LightTheme}>
+				{/* <ThemeProvider theme={DarkTheme}> */}
+				<HashRouter>
+					<App />
+				</HashRouter>
+				<GlobalStyles />
+			</ThemeProvider>
+		</StoreProvider>
   );
 }

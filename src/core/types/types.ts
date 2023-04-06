@@ -35,6 +35,7 @@ export interface IRingsSchedule {
 
 export interface IComposedSchedule {
 	uid: string,
+	name: string,
 	days: {
 		ringsScheduleId: string,
 		lessonIds: string[]

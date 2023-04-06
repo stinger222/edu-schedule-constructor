@@ -13,6 +13,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 	addSchedule(newSchedule: Omit<IComposedSchedule, 'uid'>) {
 		this.composedSchedules.push({
 			uid: nanoid(10),
+			name: newSchedule.name,
 			days: [...newSchedule.days]
 		})
 	}

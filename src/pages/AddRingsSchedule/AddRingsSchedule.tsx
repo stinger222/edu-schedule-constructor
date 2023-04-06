@@ -6,11 +6,20 @@ import Container from "../../components/containers/Container/Container"
 
 import { StyledAddRingsSchedule } from "./AddRingsSchedule.styled"
 import { useForm, useFieldArray, FormProvider } from 'react-hook-form';
+import { useContext } from "react"
+import { StoreContext } from "../.."
+import { IRingsSchedule } from "../../core/types/types"
+import { toJS } from "mobx"
+import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 
 const AddRingsSchedule = () => {
+
+	const { ringsSchedulesStore } = useContext(StoreContext)
+
 	const methods = useForm({
 		defaultValues: {
-			ranges: [
+			name: '',
+			rings: [
 				{
 					start: '08:40',
 					end: '10:00'
@@ -19,7 +28,23 @@ const AddRingsSchedule = () => {
 		}
 	})
 
-	const { append, fields } = useFieldArray({control: methods.control, name: 'ranges' })
+
+
+	const handleSubmit = (formData: any) => {
+		// console.log(formData);
+
+		ringsSchedulesStore.addRingsSchedule({
+			name: formData.name.trim() || `Расписание №${ringsSchedulesStore.ringsSchedules.length+1}`,
+			rings: [...formData.rings]
+		})
+
+		console.log(toJS(ringsSchedulesStore.ringsSchedules));
+		
+
+		methods.reset()
+	}
+
+	const { append, fields } = useFieldArray({control: methods.control, name: 'rings' })
 
 	return (
 		<StyledAddRingsSchedule>
@@ -31,7 +56,15 @@ const AddRingsSchedule = () => {
 				</Header>
 
 				<FormProvider {...methods}>
-					<form onSubmit={ methods.handleSubmit(() => console.log(methods.getValues())) }>
+					<form onSubmit={ methods.handleSubmit(handleSubmit) }>
+						<InputWrapper
+							name="name"
+							label="Название расписания"
+							placeholder="Звонки на понедельник"
+						/>
+
+						<span style={{color: 'red'}}> Make me responsive, bitch!</span>
+
 						{fields.map(({ id }, index) => (
 							<TimeRange index={index} key={id}/>
 						))}
