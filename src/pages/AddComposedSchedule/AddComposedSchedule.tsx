@@ -8,23 +8,24 @@ import Header from "../../components/smart/Header/Header"
 import Container from "../../components/containers/Container/Container"
 import ComposeDay from "../../components/smart/ComposeDay/ComposeDay"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
+import Button from "../../components/ui/Button/Button"
 
 const AddComposedSchedule = () => {
 	const methods = useForm({
 		defaultValues: {
-			days: [{ringsScheduleId: 'undefined', lessonIds: ['undefined']}]
+			days: [{ ringsScheduleId: '', lessonIds: ['undefined'] }]
 		}
 	})
-	
-	const { fields, append } = useFieldArray({control: methods.control, name: 'days' })
+
+	const { fields, append } = useFieldArray({ control: methods.control, name: 'days' })
 
 	return (
 		<StyledAddComposedSchedule>
 			<Container>
 				<Header>
-					<Header.NavHome/>
+					<Header.NavHome />
 					<h1> Составить новое расписание </h1>
-					<Header.BurgerButton/>
+					<Header.BurgerButton />
 				</Header>
 
 				<FormProvider {...methods}>
@@ -37,14 +38,19 @@ const AddComposedSchedule = () => {
 						}
 
 						{fields.length < 5 && <>
-								<h2>{WeekDays.getFull(Cases.Nominative)[fields.length]}:</h2>
-								<GhostButton onClick={() => append({ ringsScheduleId: 'undefined', lessonIds: ['undefined'] })}>
-									Заполнить расписание на {WeekDays.getFull(Cases.Accusative, true)[fields.length]}
-									<br />
-									<span className="plus">+</span>
-								</GhostButton>
-							</>
+							<h2>{WeekDays.getFull(Cases.Nominative)[fields.length]}:</h2>
+							<GhostButton onClick={() => append({ ringsScheduleId: '', lessonIds: ['undefined'] })}>
+								Заполнить расписание на {WeekDays.getFull(Cases.Accusative, true)[fields.length]}
+								<br />
+								<span className="plus">+</span>
+							</GhostButton>
+						</>
 						}
+
+						<Button
+							type="submit"
+							disabled={!methods.formState.isValid}
+						>Готово</Button>
 					</form>
 				</FormProvider>
 
