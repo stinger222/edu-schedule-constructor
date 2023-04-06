@@ -1,17 +1,16 @@
+import { useContext } from "react"
+import { StoreContext } from "../.."
+import { WeekDays } from "../../core/utils/helpers"
+import { Cases, IComposedSchedule } from "../../core/types/types"
 import { StyledAddComposedSchedule } from "./AddComposedSchedule.styled"
+
 import { FormProvider, useFieldArray, useForm } from "react-hook-form"
 
-import { Cases } from "../../core/types/types"
-import { WeekDays } from "../../core/utils/helpers"
-
+import Button from "../../components/ui/Button/Button"
 import Header from "../../components/smart/Header/Header"
 import Container from "../../components/containers/Container/Container"
 import ComposeDay from "../../components/smart/ComposeDay/ComposeDay"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
-import Button from "../../components/ui/Button/Button"
-import { useContext } from "react"
-import { StoreContext } from "../.."
-import { toJS } from "mobx"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 
 const AddComposedSchedule = () => {
@@ -19,17 +18,15 @@ const AddComposedSchedule = () => {
 		defaultValues: {
 			name: '',
 			days: [{ ringsScheduleId: '', lessonIds: ['undefined'] }]
-		}
+		}, shouldFocusError: false
 	})
 
 	const { fields, append } = useFieldArray({ control: methods.control, name: 'days' })
 
 	const { composedSchedulesStore } = useContext(StoreContext)
 
-	const handleSubmit = (formData: any) => {
-		console.log(toJS(composedSchedulesStore.composedSchedules));
+	const handleSubmit = (formData: Omit<IComposedSchedule, 'uid'>) => {
 		composedSchedulesStore.addSchedule(formData)
-		console.log(toJS(composedSchedulesStore.composedSchedules));
 		methods.reset()
 	}
 
