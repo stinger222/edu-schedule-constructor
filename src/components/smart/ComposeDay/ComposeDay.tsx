@@ -55,7 +55,6 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 					rules={{validate: validateField}}
 					label="Расписание звонков для этого дня"
 					data={ringsSchedulesSelectData}
-					defaultValue={ringsSchedulesStore.ringsSchedules[0].uid}
 				/>
 
 				<div className="hr-divider"></div>
@@ -72,7 +71,6 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 							rules={{validate: validateField}}
 							label={`${index + 1}-ая пара`}
 							data={lessonsSelectData}
-							defaultValue={lessonsStore.lessons[0].uid}
 						/>
 					))
 				}

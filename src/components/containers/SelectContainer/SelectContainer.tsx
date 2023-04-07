@@ -33,7 +33,12 @@ const SelectContainer: React.FC<IProps & SelectProps> = forwardRef(({ name, rule
 	})
 
 	return (
-		<Select data={data} {...selectProps} {...rest} placeholder={rest.placeholder ?? '<Не выбрано>'}/>
+		<Select
+			data={data}
+			placeholder={data.length === 0 ? '<Пусто>' : rest.placeholder ?? '<Не выбрано>'}
+			{...selectProps}
+			{...rest}
+		/>
 	)
 })
 

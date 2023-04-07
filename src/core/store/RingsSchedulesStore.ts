@@ -5,16 +5,16 @@ import { makeAutoObservable, toJS } from 'mobx'
 
 class RingsSchedulesStore implements IRingsSchedulesStore {
 	ringsSchedules: IRingsSchedule[] = [
-		{
-			name: 'Example Rings Schedule #1',
-			rings: [{start: "08:00", end:"09:00"}],
-			uid: 'f03h-9f73'
-		},
-		{
-			name: 'Example Rings Schedule #2',
-			rings: [{start: "08:00", end:"09:00"}],
-			uid: 'd3h0-j84b'
-		}
+		// {
+		// 	name: 'Example Rings Schedule #1',
+		// 	rings: [{start: "08:00", end:"09:00"}],
+		// 	uid: 'f03h-9f73'
+		// },
+		// {
+		// 	name: 'Example Rings Schedule #2',
+		// 	rings: [{start: "08:00", end:"09:00"}],
+		// 	uid: 'd3h0-j84b'
+		// }
 	]
 
 	constructor() {

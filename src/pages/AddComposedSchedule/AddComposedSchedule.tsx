@@ -12,6 +12,7 @@ import Container from "../../components/containers/Container/Container"
 import ComposeDay from "../../components/smart/ComposeDay/ComposeDay"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
+import { toJS } from "mobx"
 
 const AddComposedSchedule = () => {
 	const methods = useForm({
@@ -27,6 +28,8 @@ const AddComposedSchedule = () => {
 
 	const handleSubmit = (formData: Omit<IComposedSchedule, 'uid'>) => {
 		composedSchedulesStore.addSchedule(formData)
+		console.log(toJS(composedSchedulesStore.composedSchedules));
+		
 		methods.reset()
 	}
 
@@ -67,7 +70,7 @@ const AddComposedSchedule = () => {
 
 						<Button
 							type="submit"
-							disabled={!methods.formState.isValid}
+							disabled={(!methods.formState.isValid) /*|| (fields.length < 5)*/}
 						>Готово</Button>
 					</form>
 				</FormProvider>

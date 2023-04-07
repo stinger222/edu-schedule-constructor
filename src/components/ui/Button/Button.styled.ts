@@ -15,11 +15,11 @@ export const StyledButton = styled.button`
   background: ${({theme}) => theme.buttons.primary};
 
 	&:disabled {
-		opacity: 0.5;
+		opacity: 0.45;
 	}
 
 	&:disabled:hover {
-		opacity: 0.6;
+		opacity: 0.5;
 	}
 
   &:has(.icon), &:has(svg), &:has(img) {
