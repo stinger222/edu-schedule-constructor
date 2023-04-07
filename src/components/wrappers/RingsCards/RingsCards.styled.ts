@@ -10,6 +10,10 @@ export const StyledRingsCards = styled.div`
 		width: 28em;
 	}
 
+	& .rings-schedule-card, & .animated-wrapper {
+		width: 100%;
+	}
+
 	& a > * {
 		width: 100%;
 	}

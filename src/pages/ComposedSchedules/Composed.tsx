@@ -2,8 +2,13 @@ import ComposedSchedules from "../../components/wrappers/ComposedSchedules/Compo
 import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
 import { StyledComposedPage } from "./Composed.styled"
+import { useContext } from "react"
+import { StoreContext } from "../.."
 
 const Composed = () => {
+
+	const { composedSchedules } = useContext(StoreContext).composedSchedulesStore
+
 	return (
 		<StyledComposedPage>
 			<Container>
@@ -13,7 +18,7 @@ const Composed = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-				<ComposedSchedules />
+				<ComposedSchedules composedSchedules={composedSchedules}/>
 
 			</Container>
 		</StyledComposedPage>

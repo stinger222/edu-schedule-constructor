@@ -2,8 +2,13 @@ import RingsCards from "../../components/wrappers/RingsCards/RingsCards"
 import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
 import { StyledRingsPage } from "./Rings.styled"
+import { useContext } from "react"
+import { StoreContext } from "../.."
 
 const Rings = () => {
+
+	const { ringsSchedules } = useContext(StoreContext).ringsSchedulesStore
+
   return (
     <StyledRingsPage>
 			<Container>
@@ -13,7 +18,7 @@ const Rings = () => {
 						<Header.BurgerButton/>
 				</Header>
 
-				<RingsCards />
+				<RingsCards ringsSchedules={ringsSchedules}/>
 
 			</Container>
     </StyledRingsPage>

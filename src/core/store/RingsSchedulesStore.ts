@@ -6,16 +6,21 @@ import { makeAutoObservable, toJS } from 'mobx'
 
 class RingsSchedulesStore implements IRingsSchedulesStore {
 	ringsSchedules: IRingsSchedule[] = [
-		// {
-		// 	name: 'Example Rings Schedule #1',
-		// 	rings: [{start: "08:00", end:"09:00"}],
-		// 	uid: 'f03h-9f73'
-		// },
-		// {
-		// 	name: 'Example Rings Schedule #2',
-		// 	rings: [{start: "08:00", end:"09:00"}],
-		// 	uid: 'd3h0-j84b'
-		// }
+		{
+			name: 'Example Rings Schedule #1',
+			rings: [{start: "08:00", end:"09:00"}],
+			uid: 'gdf4-2s39'
+		},
+		{
+			name: 'Some loong schedule',
+			rings: [
+				{start: "08:00", end:"09:00"},
+				{start: "10:00", end:"11:00"},
+				{start: "12:00", end:"13:00"},
+				{start: "14:00", end:"15:00"}
+			],
+			uid: 'f03h-9f73'
+		}
 	]
 
 	constructor() {

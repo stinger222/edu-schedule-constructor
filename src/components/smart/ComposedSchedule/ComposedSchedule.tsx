@@ -1,49 +1,34 @@
+import { IComposedDay } from "../../../core/types/types"
 import { StyledComposedSchedule } from "./ComposedSchedule.styled"
 import Day from "./Day/Day"
 
 interface IProps {
-	// scheduleData: IComposedSchedule // TODO
+	name: string,
+	days: IComposedDay[]
 }
 
 interface ComposedScheduleExtensions {
 	Day: typeof Day
 }
 
-const ComposedSchedule: React.FC<IProps> & ComposedScheduleExtensions = ({  }) => {
+const ComposedSchedule: React.FC<IProps> & ComposedScheduleExtensions = ({ name, days }) => {
 	return (
 		<StyledComposedSchedule className="composed-schedule">
-			<header>Расписание #1</header>
+			<header>{ name }</header>
 			<div className="days">
-				<Day
-					dayIndex={6}
-					lessons={2}
-					startTime="10:00"
-					endTime="11:00"
-				/>
-				<Day
-					dayIndex={6}
-					lessons={2}
-					startTime="10:00"
-					endTime="11:00"
-				/>
-				<Day
-					dayIndex={6}
-					lessons={2}
-					startTime="10:00"
-					endTime="11:00"
-				/>
-				<Day
-					dayIndex={6}
-					lessons={2}
-					startTime="10:00"
-					endTime="11:00"
-				/>
-				<Day
-					dayIndex={6}
-					lessons={2}
-					startTime="10:00"
-					endTime="11:00"
-				/>
+
+				{
+					new Array(5).fill(0).map((_, index) => {
+						const day = days[index]
+						return (
+							<Day
+								dayIndex={index}
+								day={day}
+								key={index}
+							/>
+						)
+					})
+				}
 			</div>
 		</StyledComposedSchedule>
 	)

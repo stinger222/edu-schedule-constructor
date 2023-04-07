@@ -1,21 +1,27 @@
-import { Replacements } from "../../../../core/types/types"
-import { replaceBlankProps, WeekDays } from "../../../../core/utils/helpers"
+import { useContext } from "react"
+import { StoreContext } from "../../../.."
+import { IComposedDay, Replacements } from "../../../../core/types/types"
+import { WeekDays } from "../../../../core/utils/helpers"
 import { StyledDay } from "./Day.styled"
 
 interface IProps {
-	lessons: number,
-	startTime: string,
-	endTime: string,
-	dayIndex: number
+	dayIndex: number,
+	day: IComposedDay
 }
 
-const propsReplacements: Replacements<IProps> = {
-	startTime: "??:??",
-	endTime: "??:??"
+const emptyDay: IComposedDay = {
+	lessonIds: [],
+	ringsScheduleId: 'there-is-for-sure-no-such-id'
 }
 
-const Day: React.FC<IProps> = (props: IProps) => {
-	const { lessons, startTime, endTime, dayIndex } = replaceBlankProps<IProps>(props, propsReplacements)
+const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
+	const { ringsSchedulesStore } = useContext(StoreContext)
+
+	const thisDayRingsSchedule = ringsSchedulesStore.ringsSchedules.find(s => s.uid === day.ringsScheduleId)
+
+	const startTime = thisDayRingsSchedule?.rings[0].start || "??:??"
+	const endTime = thisDayRingsSchedule?.rings[day.lessonIds.length - 1].end || "??:??"
+
 	const weekDay: string = WeekDays.getShort()[dayIndex]
 
 	return (
@@ -23,7 +29,7 @@ const Day: React.FC<IProps> = (props: IProps) => {
 			<header>{ weekDay }</header>
 			<div className="card-body">
 				<span>Пар</span>
-				<span>{ lessons }</span>
+				<span>{ day?.lessonIds?.length || "?" }</span>
 
 				<span>Начало</span>
 				<span>{ startTime }</span>

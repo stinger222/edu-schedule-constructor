@@ -7,9 +7,8 @@ import { nanoid } from 'nanoid'
 
 class LessonsStore implements ILessonsStore {
 	lessons: ILesson[] = [
-		// Example lesson can be placed here by default
-		{cabinet: '101w', teacher: 'Some Random Name', title: 'Physics', uid:'j2fd-7sk3'},
-		{cabinet: '102w', teacher: 'Some Random Name', title: 'Math', uid:'j4g9-hx44'},
+		// Empty lesson
+		{cabinet: '???', teacher: '<Никто>', title: '<Ничего>', uid:'j2fd-7sk3'}
 	]
 
 	constructor() {

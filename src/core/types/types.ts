@@ -33,13 +33,15 @@ export interface IRingsSchedule {
 	}>
 }
 
+export interface IComposedDay  {
+	ringsScheduleId: string,
+	lessonIds: string[]
+}
+
 export interface IComposedSchedule {
 	uid: string,
 	name: string,
-	days: {
-		ringsScheduleId: string,
-		lessonIds: string[]
-	}[]
+	days: IComposedDay[]
 }
 
 export enum Cases {

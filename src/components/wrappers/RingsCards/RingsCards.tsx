@@ -1,33 +1,42 @@
 import { Link } from "react-router-dom"
-import RingCard from "../../ordinary/RingsCard/RingsCard"
+import { IRingsSchedule } from "../../../core/types/types"
+import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
+import RingsScheduleCard from "../../ordinary/RingsScheduleCard/RingsScheduleCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 import { StyledRingsCards } from "./RingsCards.styled"
 
 interface IProps {
-	// This is a wrapper, so some raw data will be passed here
+	ringsSchedules: IRingsSchedule[]
 }
 
-const RingsCards: React.FC<IProps> = ({ }) => {
+const RingsCards: React.FC<IProps> = ({ ringsSchedules }) => {
+
+	const handleSwipe = () => {
+		console.log('Swiped');
+	}
+
 	return (
 		<StyledRingsCards className="rings-cards">
-			<RingCard
-				start="08:00"
-				end="10:00"
-				length={4}
-			/>
 
-			<RingCard
-				start="08:00"
-				end="10:00"
-				length={4}
-			/>
+			{	ringsSchedules.length === 0 &&
+				<h2 style={{textAlign: 'center', fontWeight: 400}}>
+					Тут нихера нет ¯\_(ツ)_/¯
+				</h2>
+			}
 
-
-			<RingCard
-				start="08:00"
-				end="10:00"
-				length={4}
-			/>
+			{
+				ringsSchedules.map(({rings, name, uid}) => (
+					<SwipeToAction onSwipe={handleSwipe} key={uid}>
+						<RingsScheduleCard
+							start={rings[0].start}
+							end={rings[rings.length-1].end}
+							length={rings.length}
+							name={name}
+							
+						/>
+					</SwipeToAction>
+				))
+			}
 
 			<Link to="/add/rings">
 				<GhostButton>Добавить расписание звонков <span className="plus">+</span></GhostButton>
