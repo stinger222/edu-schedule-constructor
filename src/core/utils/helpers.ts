@@ -49,6 +49,16 @@ export const formatTimeString = (timeString: string): string => {
 	return `${formatNumber(parseInt(hours))}:${formatNumber(parseInt(minutes))}`
 }
 
+export const capitalize = (str: string, eachWord: boolean = false): string => {
+  if (eachWord) {
+    return str
+      .split(' ')
+      .map(s => s.charAt(0).toUpperCase() + s.slice(1))
+      .join(' ')
+  }
+	return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 export class WeekDays {
 	private static readonly _week = {
 		short: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],

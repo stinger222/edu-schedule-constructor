@@ -1,3 +1,4 @@
+import { capitalize } from './../utils/helpers'
 import { nanoid } from "nanoid"
 import { IRingsSchedule } from './../types/types'
 import { IRingsSchedulesStore } from './../types/store'
@@ -22,6 +23,8 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
   }
 
 	addRingsSchedule(newRingsSchedule: Omit<IRingsSchedule, 'uid'>): void {
+		newRingsSchedule.name = capitalize(newRingsSchedule.name)
+		
 		this.ringsSchedules.push({...newRingsSchedule, uid: nanoid(10)})
 	}
 

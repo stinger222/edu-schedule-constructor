@@ -1,3 +1,4 @@
+import { capitalize } from './../utils/helpers'
 import { IComposedSchedulesStore } from './../types/store'
 import { IComposedSchedule } from './../types/types'
 import { makeAutoObservable, toJS } from 'mobx'
@@ -11,6 +12,8 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 	}
 
 	addSchedule(newSchedule: Omit<IComposedSchedule, 'uid'>) {
+		newSchedule.name = capitalize(newSchedule.name)
+
 		this.composedSchedules.push({
 			uid: nanoid(10),
 			name: newSchedule.name,

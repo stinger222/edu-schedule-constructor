@@ -1,3 +1,5 @@
+import { capitalize } from './../utils/helpers'
+import { toJS } from 'mobx'
 import { makeAutoObservable } from 'mobx'
 import { ILessonsStore } from './../types/store'
 import { ILesson } from './../types/types'
@@ -15,7 +17,11 @@ class LessonsStore implements ILessonsStore {
 	}
 
 	addLesson(newLesson: Omit<ILesson, 'uid'>) {
+		newLesson.title = capitalize(newLesson.title)
+		newLesson.teacher = capitalize(newLesson.teacher, true)
+
 		this.lessons.push({...newLesson, uid: nanoid(10)})
+		console.log(toJS(this.lessons));
 	}
 
 	removeLesson(uid: string): boolean {
