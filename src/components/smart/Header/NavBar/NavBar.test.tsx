@@ -1,3 +1,4 @@
+import { formatNumber } from "../../../../core/utils/helpers"
 import { render, screen } from "../../../../core/utils/test-utils"
 import NavBar from "./NavBar"
 
@@ -20,8 +21,7 @@ describe('Testing NavBar component', () => {
 		expect(selectedDays.length).toBe(1)
 		expect(selectedDays[0]
 			.getElementsByClassName('day')[0].textContent)
-			.toBe(new Date().getDate().toString()
-		)
+			.toBe(formatNumber(new Date().getDate()))
 	})
 })
 
