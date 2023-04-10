@@ -9,6 +9,7 @@ const Lessons = () => {
 
 	const { lessons } = useContext(StoreContext).lessonsStore
 
+
   return (
 		<StyledLessonsPage>
 			<Container>

@@ -7,6 +7,7 @@ export interface IUIStore {
 }
 
 export interface ILessonsStore {
+	_lessons: ILesson[],
 	lessons: ILesson[],
 	addLesson(newLesson: Omit<ILesson, 'uid'>): void,
 	removeLesson(uid: string): boolean,

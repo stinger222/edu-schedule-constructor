@@ -24,7 +24,7 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 			}
 		})
 
-	const lessonsSelectData = lessonsStore.lessons
+	const lessonsSelectData = lessonsStore._lessons
 		.map((lesson) => {
 			return {
 				label: lesson.title, value: lesson.uid

@@ -20,8 +20,8 @@ if (rootElement) {
 
   root.render(
 		<StoreProvider value={rootStore}>
-			<ThemeProvider theme={LightTheme}>
-				{/* <ThemeProvider theme={DarkTheme}> */}
+			{/* <ThemeProvider theme={LightTheme}> */}
+				<ThemeProvider theme={DarkTheme}>
 				<HashRouter>
 					<App />
 				</HashRouter>
