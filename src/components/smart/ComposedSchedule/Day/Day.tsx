@@ -19,8 +19,8 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 
 	const thisDayRingsSchedule = ringsSchedulesStore.ringsSchedules.find(s => s.uid === day.ringsScheduleId)
 
-	const startTime = thisDayRingsSchedule?.rings[0].start || "??:??"
-	const endTime = thisDayRingsSchedule?.rings[day.lessonIds.length - 1].end || "??:??"
+	const startTime = thisDayRingsSchedule?.rings?.[0]?.start || "??:??"
+	const endTime = thisDayRingsSchedule?.rings?.[day.lessonIds.length - 1]?.end || "??:??"
 
 	const weekDay: string = WeekDays.getShort()[dayIndex]
 

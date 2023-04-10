@@ -1,9 +1,12 @@
 import React, { ReactElement } from "react"
+import { HashRouter } from "react-router-dom"
+import { render, RenderOptions } from "@testing-library/react"
+
+import RootStore from "../store/RootStore"
+
 import { DarkTheme } from "../themes/Dark"
 import { ThemeProvider } from "styled-components"
-import { render, RenderOptions } from "@testing-library/react"
-import { BrowserRouter, HashRouter, MemoryRouter } from "react-router-dom"
-import RootStore from "../store/RootStore"
+
 
 const AllTheProviders: React.FC<{children: ReactElement}> = ({children}) => {
 
@@ -21,9 +24,9 @@ const AllTheProviders: React.FC<{children: ReactElement}> = ({children}) => {
 	)
 }
 
-const myRender = (ui: React.ReactElement, options?: Omit<RenderOptions, 'queries'>) => {
+const customRender = (ui: React.ReactElement, options?: Omit<RenderOptions, 'queries'>) => {
 	return render(ui, { wrapper: AllTheProviders, ...options,})
 }
 
 export * from '@testing-library/react'
-export {myRender as render}
+export {customRender as render}

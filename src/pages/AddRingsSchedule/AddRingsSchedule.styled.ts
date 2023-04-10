@@ -14,7 +14,7 @@ export const StyledAddRingsSchedule = styled.div`
 	& form .btn {
 		display: block;
 		margin-inline: auto;
-		font-size: 1.2em;
+		font-size: 1em;
 	}
 
 	& .append {
@@ -27,18 +27,13 @@ export const StyledAddRingsSchedule = styled.div`
 
 	@media (max-width: 640px) {
 		& form {
-			font-size: 1.3em;
+			font-size: 1.5em;
 			padding-inline: 1em;
 		}
-	}
 
-	@media (max-width: 400px) {
-		& .append {
-			font-size: 1.4em;
+		& form button {
+			font-size: 1.2em !important;
 		}
 
-		& button[type=submit] {
-			font-size: 1.5em;
-		}
 	}
 `
