@@ -1,6 +1,5 @@
 import LessonsStore from "../LessonsStore"
 
-
 describe('Testing LessonsStore', () => {
 	it('Tests default values', () => {
 		const lessonsStore = new LessonsStore()
@@ -13,7 +12,7 @@ describe('Testing LessonsStore', () => {
 		})
 	})
 
-	it('Tests AddLesson action', () => {
+	it('Tests addLesson action', () => {
 		const lessonsStore = new LessonsStore()
 		
 		// With uid passed
@@ -85,7 +84,6 @@ describe('Testing LessonsStore', () => {
 		expect(removedSuccuessfully).toBe(true)
 		expect(lessonsStore._lessons).toHaveLength(1)
 	})
-
 
 	it('Tests updateLesson action', () => {
 		const lessonsStore = new LessonsStore()

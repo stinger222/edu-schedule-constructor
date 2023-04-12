@@ -22,7 +22,10 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+	"typeRoots": [
+		"src/core/configs"
+	],
   "include": [
     "src", "react-app-env.d.ts"
-	]
+, "module-name.d.ts"	]
 }
