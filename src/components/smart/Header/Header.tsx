@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from "react"
+import { ReactNode } from "react"
 import { observer } from "mobx-react"
 
 import { StyledHeader } from "./Header.styled"
@@ -21,7 +21,7 @@ const Header: React.FC<IProps> & IHeaderExtensions = ({ children }) => {
 	return (
 		<StyledHeader className="app-header">
 			{children}
-      <Dropdown/>
+			<Dropdown/>
 		</StyledHeader>
 	)
 }

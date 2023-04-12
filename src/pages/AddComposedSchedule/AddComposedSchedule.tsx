@@ -17,18 +17,18 @@ import { toJS } from "mobx"
 const AddComposedSchedule = () => {
 	const methods = useForm({
 		defaultValues: {
-			name: '',
-			days: [{ ringsScheduleId: '', lessonIds: ['undefined'] }]
+			name: "",
+			days: [{ ringsScheduleId: "", lessonIds: ["undefined"] }]
 		}, shouldFocusError: false
 	})
 
-	const { fields, append } = useFieldArray({ control: methods.control, name: 'days' })
+	const { fields, append } = useFieldArray({ control: methods.control, name: "days" })
 
 	const { composedSchedulesStore } = useContext(StoreContext)
 
-	const handleSubmit = (formData: Omit<IComposedSchedule, 'uid'>) => {
+	const handleSubmit = (formData: Omit<IComposedSchedule, "uid">) => {
 		composedSchedulesStore.addSchedule(formData)
-		console.log(toJS(composedSchedulesStore.composedSchedules));
+		console.log(toJS(composedSchedulesStore.composedSchedules))
 		
 		methods.reset()
 	}
@@ -49,7 +49,7 @@ const AddComposedSchedule = () => {
 							name="name"
 							label="Название расписания"
 							placeholder="Верхняя неделя"
-							rules={{required: 'Название расписания не указано!'}}
+							rules={{required: "Название расписания не указано!"}}
 						/>
 
 						{
@@ -60,7 +60,7 @@ const AddComposedSchedule = () => {
 
 						{fields.length < 5 && <>
 							<h2>{WeekDays.getFull(Cases.Nominative)[fields.length]}:</h2>
-							<GhostButton onClick={() => append({ ringsScheduleId: '', lessonIds: ['undefined'] })}>
+							<GhostButton onClick={() => append({ ringsScheduleId: "", lessonIds: ["undefined"] })}>
 								Заполнить расписание на {WeekDays.getFull(Cases.Accusative, true)[fields.length]}
 								<br />
 								<span className="plus">+</span>

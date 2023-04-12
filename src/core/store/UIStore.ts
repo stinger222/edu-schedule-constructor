@@ -1,6 +1,6 @@
-import { getCurrentWeekDates, formatNumber } from './../utils/helpers'
-import { makeAutoObservable } from 'mobx';
-import { IUIStore } from './../types/store';
+import { getCurrentWeekDates, formatNumber } from "./../utils/helpers"
+import { makeAutoObservable } from "mobx"
+import { IUIStore } from "./../types/store"
 
 class UIStore implements IUIStore {
 	isDropdownOpen = false

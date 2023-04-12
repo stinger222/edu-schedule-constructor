@@ -20,7 +20,7 @@ const AddLesson = () => {
 
 	const { lessonsStore } = useContext(StoreContext)
 
-	const handleSubmit = (formData: Omit<ILesson, 'uid'>) => {
+	const handleSubmit = (formData: Omit<ILesson, "uid">) => {
 		lessonsStore.addLesson(formData)
 		methods.reset()
 	}
@@ -29,44 +29,44 @@ const AddLesson = () => {
 		<StyledAddLesson>
 			<Container>
 				<Header>
-						<Header.NavHome/>
-						<h1> Добавить предмет </h1>
-						<Header.BurgerButton/>
-					</Header>
+					<Header.NavHome/>
+					<h1> Добавить предмет </h1>
+					<Header.BurgerButton/>
+				</Header>
 
-					<FormProvider {...methods}>
-						<form onSubmit={methods.handleSubmit(handleSubmit)}>
-							<InputWrapper
-								label="Название пары"
-								placeholder="Основы алгоритмизации"
-								name="title"
-								rules={{required: true}}
-								className="title"
-							/>
-							<InputWrapper
-								label="Имя препода"
-								placeholder="Иванов Иван Иванович"
-								name="teacher"
-								rules={{required: true}}
-								className="teacher"
-							/>
-							<InputWrapper
-								label="Кабинет"
-								placeholder="302у"
-								name="cabinet"
-								rules={{required: true}}
-								className="cabinet"
-							/>
+				<FormProvider {...methods}>
+					<form onSubmit={methods.handleSubmit(handleSubmit)}>
+						<InputWrapper
+							label="Название пары"
+							placeholder="Основы алгоритмизации"
+							name="title"
+							rules={{required: true}}
+							className="title"
+						/>
+						<InputWrapper
+							label="Имя препода"
+							placeholder="Иванов Иван Иванович"
+							name="teacher"
+							rules={{required: true}}
+							className="teacher"
+						/>
+						<InputWrapper
+							label="Кабинет"
+							placeholder="302у"
+							name="cabinet"
+							rules={{required: true}}
+							className="cabinet"
+						/>
 
-							{
-								Object.keys(methods.formState.errors).length !== 0 
+						{
+							Object.keys(methods.formState.errors).length !== 0 
 									&&
 								<p className="error-message">Все поля должны быть заполнены!</p>
-							}
+						}
 
-							<Button type="submit">Готово</Button>
-						</form>
-					</FormProvider>
+						<Button type="submit">Готово</Button>
+					</form>
+				</FormProvider>
 			</Container>
 		</StyledAddLesson>
 	)

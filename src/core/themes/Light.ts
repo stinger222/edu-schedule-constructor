@@ -1,4 +1,4 @@
-import { ITheme, ThemeEnum } from './../types/styled'
+import { ITheme, ThemeEnum } from "./../types/styled"
 
 export const LightTheme: ITheme = {
 	type: ThemeEnum.light,
@@ -26,7 +26,7 @@ export const LightTheme: ITheme = {
 		dashed: "#838383"
 	},
 	boxShadows: {
-		primary: '0.1em 0.2em 0.35em 0 #00000050, 0 -0.1em 0.5em -0.3em #00000050',
-		secondary: '0.05em 0.1em 0.1em 0 #00000090',
+		primary: "0.1em 0.2em 0.35em 0 #00000050, 0 -0.1em 0.5em -0.3em #00000050",
+		secondary: "0.05em 0.1em 0.1em 0 #00000090",
 	}
 }

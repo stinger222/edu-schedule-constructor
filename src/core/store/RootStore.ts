@@ -1,8 +1,8 @@
-import { IComposedSchedulesStore, ILessonsStore, IRingsSchedulesStore, IUIStore } from './../types/store';
-import ComposedSchedulesStore from './ComposedSchedulesStore'
-import RingsSchedulesStore from './RingsSchedulesStore'
-import LessonsStore from './LessonsStore'
-import UIStore from './UIStore';
+import { IComposedSchedulesStore, ILessonsStore, IRingsSchedulesStore, IUIStore } from "./../types/store"
+import ComposedSchedulesStore from "./ComposedSchedulesStore"
+import RingsSchedulesStore from "./RingsSchedulesStore"
+import LessonsStore from "./LessonsStore"
+import UIStore from "./UIStore"
 
 class RootStore {
 	uiStore: IUIStore

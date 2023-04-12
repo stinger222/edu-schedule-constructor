@@ -15,10 +15,10 @@ const TimeRange: React.FC<IProps> = ({ index }) => {
 				rules={{required: true}}
 			/>
 
-				<span className="divider">
-					<div className="label">{index + 1} пара</div>
-					<div className="line"></div>
-				</span>
+			<span className="divider">
+				<div className="label">{index + 1} пара</div>
+				<div className="line"></div>
+			</span>
 
 			<InputWrapper
 				type="time"

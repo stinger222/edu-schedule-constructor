@@ -23,7 +23,7 @@ const InputWrapper: React.FC<IProps> = ({ name, rules, label, ...rest }) => {
 	return (
 		<Input
 			label={label}
-			{...methods?.register(name || 'value' , rules )}
+			{...methods?.register(name || "value" , rules )}
 			{...rest}
 		/>
 	)

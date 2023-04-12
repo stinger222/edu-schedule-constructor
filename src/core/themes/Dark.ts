@@ -1,4 +1,4 @@
-import { ThemeEnum, ITheme } from './../types/styled'
+import { ThemeEnum, ITheme } from "./../types/styled"
 
 export const DarkTheme: ITheme = {
 	type: ThemeEnum.dark,
@@ -26,7 +26,7 @@ export const DarkTheme: ITheme = {
 		dashed: "#9B9B9B"
 	},
 	boxShadows: {
-		primary: '0.05em 0.2em 0.2em 0.08em #00000080',
-		secondary: '0.05em 0.15em 0.1em 0em #00000080',
+		primary: "0.05em 0.2em 0.2em 0.08em #00000080",
+		secondary: "0.05em 0.15em 0.1em 0em #00000080",
 	}
 }

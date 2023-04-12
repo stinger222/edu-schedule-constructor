@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { StoreContext } from "../../../.."
-import { IComposedDay, Replacements } from "../../../../core/types/types"
+import { IComposedDay } from "../../../../core/types/types"
 import { WeekDays } from "../../../../core/utils/helpers"
 import { StyledDay } from "./Day.styled"
 
@@ -11,7 +11,7 @@ interface IProps {
 
 const emptyDay: IComposedDay = {
 	lessonIds: [],
-	ringsScheduleId: 'there-is-for-sure-no-such-id'
+	ringsScheduleId: "there-is-for-sure-no-such-id"
 }
 
 const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {

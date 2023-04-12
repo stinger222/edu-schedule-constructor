@@ -9,20 +9,20 @@ const Rings = () => {
 
 	const { ringsSchedules } = useContext(StoreContext).ringsSchedulesStore
 
-  return (
-    <StyledRingsPage>
+	return (
+		<StyledRingsPage>
 			<Container>
 				<Header>
-						<Header.NavHome/>
-						<h1> Расписания звонков </h1>
-						<Header.BurgerButton/>
+					<Header.NavHome/>
+					<h1> Расписания звонков </h1>
+					<Header.BurgerButton/>
 				</Header>
 
 				<RingsCards ringsSchedules={ringsSchedules}/>
 
 			</Container>
-    </StyledRingsPage>
-  )
+		</StyledRingsPage>
+	)
 }
 
 export default Rings

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const StyledGhostButton = styled.button`
 	background: transparent;
@@ -22,7 +22,7 @@ export const StyledGhostButton = styled.button`
 	border-image-slice: 130 !important;
 	border-image-width: 3.125em !important;
 	border-image-repeat: round round  !important;
-	border-image-source: url(${require('../../../assets/icons/dashed-border.png')})  !important;
+	border-image-source: url(${require("../../../assets/icons/dashed-border.png")})  !important;
 	border-style: solid !important; 
 
 	& > span {

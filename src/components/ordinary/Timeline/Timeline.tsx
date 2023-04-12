@@ -16,19 +16,11 @@ const propsReplacements: Replacements<IProps> = {
 
 const Timeline: React.FC<IProps> = (props) => {
 	let { startTime, endTime, active } = replaceBlankProps<IProps>(props, propsReplacements)
-
 	startTime = formatTimeString(startTime)
 	endTime = formatTimeString(endTime)
 
-	const validValue = /^[0-9]{2}:[0-9]{2}$/
-	if (validValue.test(startTime) && validValue.test(endTime)) {
-		if (new Date(`1/1/2000 ${startTime}`) > new Date(`1/1/2000 ${endTime}`)) { // if startTime bigger that endTime...
-			[startTime, endTime] = [endTime, startTime] // ...swap them
-		}
-	}
-
 	return (
-		<StyledTimeline className={active ? 'active' : ''}>
+		<StyledTimeline className={active ? "active" : ""}>
 			<div className="label">
 				<div className="label-start">{ startTime }</div>
 				<div className="label-end">{ endTime }</div>

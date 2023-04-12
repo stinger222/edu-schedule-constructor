@@ -1,5 +1,5 @@
-import { ITheme, ThemeEnum } from './../types/styled'
-import { createGlobalStyle } from "styled-components";
+import { ITheme, ThemeEnum } from "./../types/styled"
+import { createGlobalStyle } from "styled-components"
 
 const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 	* {
@@ -57,8 +57,8 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 		margin: 0;
 		outline: none;
 		filter:
-			invert(${({theme}) => theme.type == ThemeEnum.light ? '0' : '1'})
-			brightness(${({theme}) => theme.type == ThemeEnum.light ? '0' : '10'})
+			invert(${({theme}) => theme.type == ThemeEnum.light ? "0" : "1"})
+			brightness(${({theme}) => theme.type == ThemeEnum.light ? "0" : "10"})
 	}
 
 	select {

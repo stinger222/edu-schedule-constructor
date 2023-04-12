@@ -12,14 +12,14 @@ interface IProps {
 const LessonCards: React.FC<IProps> = ({ lessons }) => {
 
 	const handleSwipe = () => {
-		console.log(window.confirm("Are you sure?") ? 'Done 👌' : '¯\\_(ツ)_/¯')
+		console.log(window.confirm("Are you sure?") ? "Done 👌" : "¯\\_(ツ)_/¯")
 	}
 
 	return (
 		<StyledLessonCards className="lesson-cards">
 
 			{ lessons.length === 0 &&
-				<h2 style={{textAlign: 'center', fontWeight: 400}}>
+				<h2 style={{textAlign: "center", fontWeight: 400}}>
 					Тут нихера нет ¯\_(ツ)_/¯
 				</h2>
 			}

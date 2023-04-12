@@ -39,7 +39,7 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 	
 	const validateField = (value: string) => {
 		value = value.trim()
-		return value !== '' && value !== 'undefined'
+		return value !== "" && value !== "undefined"
 	}
 	
 	if (dayIndex >= 5) return null
@@ -78,7 +78,7 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 				<br />
 
 				{ fields.length < 9 &&
-					<GhostButton onClick={() => appendLessonId('undefined')}>
+					<GhostButton onClick={() => appendLessonId("undefined")}>
 						Добавить {fields.length + 1}-ую пару
 					</GhostButton>
 				}

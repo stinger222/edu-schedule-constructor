@@ -1,14 +1,14 @@
-import { capitalize } from './../utils/helpers'
-import { toJS } from 'mobx'
-import { makeAutoObservable } from 'mobx'
-import { ILessonsStore } from './../types/store'
-import { ILesson } from './../types/types'
-import { nanoid } from 'nanoid'
+import { capitalize } from "./../utils/helpers"
+import { toJS } from "mobx"
+import { makeAutoObservable } from "mobx"
+import { ILessonsStore } from "./../types/store"
+import { ILesson } from "./../types/types"
+import { nanoid } from "nanoid"
 
 class LessonsStore implements ILessonsStore {
 	public _lessons: ILesson[] = [
 		// Empty lesson
-		{cabinet: '???', teacher: '<Никто>', title: '<Ничего>', uid:'hidden'}
+		{cabinet: "???", teacher: "<Никто>", title: "<Ничего>", uid:"hidden"}
 	]
 
 	constructor() {
@@ -16,15 +16,15 @@ class LessonsStore implements ILessonsStore {
 	}
 
 	get lessons() {
-		return this._lessons.filter(l => l.uid !== 'hidden')
+		return this._lessons.filter(l => l.uid !== "hidden")
 	}
 
-	addLesson(newLesson: Omit<ILesson, 'uid'>, uid?: string) {
+	addLesson(newLesson: Omit<ILesson, "uid">, uid?: string) {
 		newLesson.title = capitalize(newLesson.title)
 		newLesson.teacher = capitalize(newLesson.teacher, true)
 
 		this._lessons.push({...newLesson, uid: uid || nanoid(10)})
-		console.log(toJS(this._lessons));
+		console.log(toJS(this._lessons))
 	}
 
 	removeLesson(uid: string): boolean {
@@ -36,11 +36,11 @@ class LessonsStore implements ILessonsStore {
 		}
 		
 		const deletedLesson = this._lessons.splice(indexToDelete, 1)
-		console.log('Lesson deleted from store.', deletedLesson);
+		console.log("Lesson deleted from store.", deletedLesson)
 		return deletedLesson.length === 1
 	}
 
-	updateLesson(uid: string, newLesson: Omit<ILesson, 'uid'>): boolean {
+	updateLesson(uid: string, newLesson: Omit<ILesson, "uid">): boolean {
 		const indexToUpdate = this._lessons.findIndex(l => l.uid === uid)
 
 		if (indexToUpdate === -1) {
@@ -55,7 +55,7 @@ class LessonsStore implements ILessonsStore {
 			teacher: capitalize(newLesson.teacher, true)
 		}
 
-		console.log('Lesson modified successfully.')
+		console.log("Lesson modified successfully.")
 		return true
 	}
 }

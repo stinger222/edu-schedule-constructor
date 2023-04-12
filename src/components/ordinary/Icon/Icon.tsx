@@ -1,5 +1,5 @@
 import { Icons } from "../../../core/types/types"
-import * as icons from '../../../assets/icons'
+import * as icons from "../../../assets/icons"
 
 interface IProps {
 	name: Icons,

@@ -16,17 +16,17 @@ const Dropdown = () => {
 
 	return !uiStore.isDropdownOpen ? null : (
 		<StyledDropdown>
-      <header>
+			<header>
         Меню
-      </header>
+			</header>
 
 			<Link to='/composed'>
 				<Button>Составленные расписания</Button>
 			</Link>
 
 			<Link to="/rings">
-        <Button>Расписания звонков</Button>
-      </Link>
+				<Button>Расписания звонков</Button>
+			</Link>
 
 			<Link to='/lessons'>
 				<Button>Добавленные предметы</Button>

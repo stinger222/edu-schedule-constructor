@@ -48,7 +48,7 @@ export const StyledSelect = styled(MantineSelect)`
 			& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"]
 		) {
 			background: ${({theme}) => theme.backgrounds.primary};
-			color: ${({theme}) => theme.type === ThemeEnum.dark ? '#FFFFFF' : '#000000'}
+			color: ${({theme}) => theme.type === ThemeEnum.dark ? "#FFFFFF" : "#000000"}
 		}
 
 		& .mantine-Select-dropdown .mantine-Select-item:hover {

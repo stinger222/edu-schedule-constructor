@@ -1,4 +1,4 @@
-import * as icons from '../../assets/icons'
+import * as icons from "../../assets/icons"
 
 export type weekDates = [string, string, string, string, string, string, string]
 
@@ -45,6 +45,6 @@ export interface IComposedSchedule {
 }
 
 export enum Cases {
-	Nominative = 'nominative',
-	Accusative = 'accusative',
+	Nominative = "nominative",
+	Accusative = "accusative",
 }

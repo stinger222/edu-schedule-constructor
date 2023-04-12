@@ -1,15 +1,15 @@
-import { weekDates, Replacements, Cases } from './../types/types'
+import { weekDates, Replacements, Cases } from "./../types/types"
 
 export const getCurrentWeekDates = (): weekDates => {
-  const date = new Date()
-  date.setDate(date.getDate() - (date.getDay() === 0 ? 7 : date.getDay())) // now it's current week sunday date:
+	const date = new Date()
+	date.setDate(date.getDate() - (date.getDay() === 0 ? 7 : date.getDay())) // now it's current week sunday date:
 
-  const result = Array.from({ length: 7 }, () => {
-    date.setDate(date.getDate() + 1) // and now it's monday
-    return formatNumber(date.getDate())
-  })
+	const result = Array.from({ length: 7 }, () => {
+		date.setDate(date.getDate() + 1) // and now it's monday
+		return formatNumber(date.getDate())
+	})
 
-  return result as weekDates
+	return result as weekDates
 }
 
 export const formatNumbers = (numbers: number[]): string[] => {
@@ -19,8 +19,8 @@ export const formatNumbers = (numbers: number[]): string[] => {
 export function replaceBlankProps<P extends {[key: string]: any}> (props: P , replacements: Replacements<P>): P {
 	const result: any = {}
 	for (const [key, value] of Object.entries(props)) {
-		if (typeof value === 'string') {
-			if (value.trim() == '') {
+		if (typeof value === "string") {
+			if (value.trim() == "") {
 				result[key] = replacements[key as keyof typeof replacements]
 			} else {
 				result[key] = value
@@ -32,42 +32,42 @@ export function replaceBlankProps<P extends {[key: string]: any}> (props: P , re
 	return result as P
 }
 
- export const formatNumber = (number: number, digits: number = 2): string => {
-	if (isNaN(number)) return '??'
+export const formatNumber = (number: number, digits: number = 2): string => {
+	if (isNaN(number)) return "??"
   
-  const formatter = new Intl.NumberFormat('en-US', {
-    minimumIntegerDigits: digits,
-    useGrouping: true
-  })
+	const formatter = new Intl.NumberFormat("en-US", {
+		minimumIntegerDigits: digits,
+		useGrouping: true
+	})
   
-  return formatter.format(Math.abs(number))
+	return formatter.format(Math.abs(number))
 }
 
 export const formatTimeString = (timeString: string): string => {
-	const [hours, minutes] = timeString.split(':')
+	const [hours, minutes] = timeString.split(":")
 
 	return `${formatNumber(parseInt(hours))}:${formatNumber(parseInt(minutes))}`
 }
 
 export const capitalize = (str: string, eachWord: boolean = false): string => {
-  if (eachWord) {
-    return str
-      .split(' ')
-      .map(s => s.charAt(0).toUpperCase() + s.slice(1))
-      .join(' ')
-  }
+	if (eachWord) {
+		return str
+			.split(" ")
+			.map(s => s.charAt(0).toUpperCase() + s.slice(1))
+			.join(" ")
+	}
 	return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
 export class WeekDays {
 	private static readonly _week = {
-		short: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+		short: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
 		full: {
 			nominative: [
-				'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'
+				"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"
 			],
 			accusative: [
-				'Понедельник', 'Вторник', 'Среду', 'Четверг', 'Пятницу', 'Субботу', 'Воскресенье'
+				"Понедельник", "Вторник", "Среду", "Четверг", "Пятницу", "Субботу", "Воскресенье"
 			]
 		}
 	}
@@ -77,7 +77,7 @@ export class WeekDays {
 	}
 
 	static getFull(caseType: Cases = Cases.Nominative, toLowerCase: boolean = false): ReadonlyArray<string> {
-		let result: ReadonlyArray<string> = this._week.full[caseType]
+		const result: ReadonlyArray<string> = this._week.full[caseType]
 		return toLowerCase ? result.map(i => i.toLowerCase()) : result
 	}
 }

@@ -24,9 +24,9 @@ const AllTheProviders: React.FC<{children: ReactElement}> = ({children}) => {
 	)
 }
 
-const customRender = (ui: React.ReactElement, options?: Omit<RenderOptions, 'queries'>) => {
+const customRender = (ui: React.ReactElement, options?: Omit<RenderOptions, "queries">) => {
 	return render(ui, { wrapper: AllTheProviders, ...options,})
 }
 
-export * from '@testing-library/react'
+export * from "@testing-library/react"
 export {customRender as render}

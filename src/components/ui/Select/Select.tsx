@@ -4,9 +4,9 @@ import { StyledSelect } from "./Select.styled"
 
 
 const Select: React.FC<SelectProps> = (props) => {
-  return (
-    <StyledSelect {...props} size="1em"/>
-  )
+	return (
+		<StyledSelect {...props} size="1em"/>
+	)
 }
 
 export default Select

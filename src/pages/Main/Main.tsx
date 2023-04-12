@@ -5,7 +5,7 @@ import Header from "../../components/smart/Header/Header"
 import { StyledMainPage } from "./Main.styled"
 
 const Main = () => {
-  return (
+	return (
 		<StyledMainPage>
 			<Container>
 				<Header>
@@ -49,7 +49,7 @@ const Main = () => {
 				</div>
 			</Container>
 		</StyledMainPage>
-  )
+	)
 }
 
 export default Main

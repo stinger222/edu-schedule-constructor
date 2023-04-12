@@ -1,8 +1,8 @@
-import { capitalize } from './../utils/helpers'
-import { IComposedSchedulesStore } from './../types/store'
-import { IComposedSchedule } from './../types/types'
-import { makeAutoObservable, toJS } from 'mobx'
-import { nanoid } from 'nanoid'
+import { capitalize } from "./../utils/helpers"
+import { IComposedSchedulesStore } from "./../types/store"
+import { IComposedSchedule } from "./../types/types"
+import { makeAutoObservable, toJS } from "mobx"
+import { nanoid } from "nanoid"
 
 class ComposedSchedulesStore implements IComposedSchedulesStore {
 	composedSchedules: IComposedSchedule[] = []
@@ -11,7 +11,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 		makeAutoObservable(this)
 	}
 
-	addSchedule(newSchedule: Omit<IComposedSchedule, 'uid'>) {
+	addSchedule(newSchedule: Omit<IComposedSchedule, "uid">) {
 		newSchedule.name = capitalize(newSchedule.name)
 
 		this.composedSchedules.push({
@@ -26,7 +26,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 		
 		if (indexToDelete != -1) {
 			const deletedSchedule = this.composedSchedules.splice(indexToDelete, 1)
-			console.log('Lesson deleted from store.', toJS(deletedSchedule[0]));
+			console.log("Lesson deleted from store.", toJS(deletedSchedule[0]))
 			return deletedSchedule.length === 1 
 		}
 		

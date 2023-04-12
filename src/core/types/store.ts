@@ -1,4 +1,4 @@
-import { ILesson, IRingsSchedule, IComposedSchedule } from './types'
+import { ILesson, IRingsSchedule, IComposedSchedule } from "./types"
 export interface IUIStore {
 	selectedDayIndex: number,
 	isDropdownOpen: boolean,
@@ -9,20 +9,20 @@ export interface IUIStore {
 export interface ILessonsStore {
 	_lessons: ILesson[],
 	lessons: ILesson[],
-	addLesson(newLesson: Omit<ILesson, 'uid'>): void,
+	addLesson(newLesson: Omit<ILesson, "uid">): void,
 	removeLesson(uid: string): boolean,
-	updateLesson(uid: string, newLesson: Omit<ILesson, 'uid'>): void
+	updateLesson(uid: string, newLesson: Omit<ILesson, "uid">): void
 }
 
 
 export interface IRingsSchedulesStore {
 	ringsSchedules: IRingsSchedule[],
-	addRingsSchedule(newRingsSchedule: Omit<IRingsSchedule, 'uid'>): void,
+	addRingsSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">): void,
 	removeSchedule(uid: string): boolean
 }
 
 export interface IComposedSchedulesStore {
 	composedSchedules: IComposedSchedule[],
-	addSchedule(newSchedule: Omit<IComposedSchedule, 'uid'>): void,
+	addSchedule(newSchedule: Omit<IComposedSchedule, "uid">): void,
 	removeSchedule(uid: string): boolean
 }

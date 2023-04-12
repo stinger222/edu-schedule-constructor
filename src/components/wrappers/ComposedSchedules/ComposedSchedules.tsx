@@ -13,7 +13,7 @@ const ComposedSchedules: React.FC<IProps> = ({ composedSchedules }) => {
 		<StyledComposedSchedules className="composed-schedules">
 			
 			{ composedSchedules.length === 0 &&
-				<h2 style={{textAlign: 'center', fontWeight: 400}}>
+				<h2 style={{textAlign: "center", fontWeight: 400}}>
 					Тут нихера нет ¯\_(ツ)_/¯
 				</h2>
 			}

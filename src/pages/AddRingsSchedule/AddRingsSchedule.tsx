@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { StoreContext } from "../.."
 
-import { useForm, useFieldArray, FormProvider } from 'react-hook-form';
+import { useForm, useFieldArray, FormProvider } from "react-hook-form"
 import { StyledAddRingsSchedule } from "./AddRingsSchedule.styled"
 import { toJS } from "mobx"
 
@@ -18,11 +18,11 @@ const AddRingsSchedule = () => {
 
 	const methods = useForm({
 		defaultValues: {
-			name: '',
+			name: "",
 			rings: [
 				{
-					start: '08:40',
-					end: '10:00'
+					start: "08:40",
+					end: "10:00"
 				}
 			]
 		}
@@ -34,11 +34,11 @@ const AddRingsSchedule = () => {
 			rings: [...formData.rings]
 		})
 
-		console.log(toJS(ringsSchedulesStore.ringsSchedules));
+		console.log(toJS(ringsSchedulesStore.ringsSchedules))
 		methods.reset()
 	}
 
-	const { append, fields } = useFieldArray({control: methods.control, name: 'rings'})
+	const { append, fields } = useFieldArray({control: methods.control, name: "rings"})
 
 	return (
 		<StyledAddRingsSchedule>
@@ -63,12 +63,12 @@ const AddRingsSchedule = () => {
 						))}
 
 						{ fields.length < 9
-								?
-							<Button className="append" onClick={() => append({start: '', end: ''})}>
+							?
+							<Button className="append" onClick={() => append({start: "", end: ""})}>
 								<Icon fill="white" name="Plus"/>
 							</Button> 
-								:
-							<div style={{textAlign: 'center', fontSize: '1.2em', marginBottom: '1em'}}> а ой))))) 👉👈 </div>
+							:
+							<div style={{textAlign: "center", fontSize: "1.2em", marginBottom: "1em"}}> а ой))))) 👉👈 </div>
 						}
 
 						<Button type="submit" disabled={!methods.formState.isValid}>Готово</Button>

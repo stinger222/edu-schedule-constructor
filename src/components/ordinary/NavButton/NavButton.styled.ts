@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const StyledNavButton = styled.div`
 	width: 3.5em;

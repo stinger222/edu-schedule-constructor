@@ -12,14 +12,14 @@ interface IProps {
 const RingsCards: React.FC<IProps> = ({ ringsSchedules }) => {
 
 	const handleSwipe = () => {
-		console.log('Swiped');
+		console.log("Swiped")
 	}
 
 	return (
 		<StyledRingsCards className="rings-cards">
 
 			{	ringsSchedules.length === 0 &&
-				<h2 style={{textAlign: 'center', fontWeight: 400}}>
+				<h2 style={{textAlign: "center", fontWeight: 400}}>
 					Тут нихера нет ¯\_(ツ)_/¯
 				</h2>
 			}

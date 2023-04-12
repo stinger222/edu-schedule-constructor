@@ -10,16 +10,16 @@ interface IProps {
 }
 
 const Button: React.FC<IProps> = ({ children, onClick, className, type, disabled }) => {
-  return (
-    <StyledButton
+	return (
+		<StyledButton
 			type={type}
 			onClick={onClick}
-			className={`btn ${className || ''}`}
+			className={`btn ${className || ""}`}
 			disabled={disabled} 
 		>
-      { children }
-    </StyledButton>
-  )
+			{ children }
+		</StyledButton>
+	)
 }
 
 export default Button

@@ -1,6 +1,6 @@
 import { useDrag } from "react-use-gesture"
 import { ReactNode, useState } from "react"
-import { useSpring, animated, config } from "@react-spring/web"
+import { useSpring, animated } from "@react-spring/web"
 
 import { StyledSwipeToAction } from "./SwipeToAction.styled"
 import { SWIPE_BOUND_PROCENTAGE } from "../../../core/constants/constants"
@@ -11,7 +11,7 @@ interface IProps {
 	confirm?: boolean
 }
 
-const SwipeToAction: React.FC<IProps> = ({ children, onSwipe, confirm }) => {
+const SwipeToAction: React.FC<IProps> = ({ children, onSwipe }) => {
 	const [containerRef, setContainerRef] = useState<any>(null)
 	const wrapperRef = (node: any) => {
 		setContainerRef(node)
@@ -27,8 +27,6 @@ const SwipeToAction: React.FC<IProps> = ({ children, onSwipe, confirm }) => {
 	}))
 	
 	const bind = useDrag(({active, movement, last, _bounds}) => {
-		// console.log(movement[0], " / ", _bounds[0][0], " = ", movement[0] / _bounds[0][0]);
-		
 		api.start({
 			to: {
 				x: active ? movement[0]: 0,
@@ -41,12 +39,12 @@ const SwipeToAction: React.FC<IProps> = ({ children, onSwipe, confirm }) => {
 	}, {
 		bounds: {
 			left: -containerRef?.offsetWidth / 100 * SWIPE_BOUND_PROCENTAGE, right: 0
-		}, axis: 'x'
+		}, axis: "x"
 	})
 
 	return (
 		<StyledSwipeToAction className="swipe-action-wrapper" {...bind()} ref={wrapperRef}>
-			<animated.div className="animated-wrapper" style={{ x, opacity, touchAction: 'pan-y' }}>
+			<animated.div className="animated-wrapper" style={{ x, opacity, touchAction: "pan-y" }}>
 				{children}
 			</animated.div>
 			<div className="action-label">Do smth?</div>

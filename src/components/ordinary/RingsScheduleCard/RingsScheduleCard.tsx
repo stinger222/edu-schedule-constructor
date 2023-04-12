@@ -12,7 +12,7 @@ interface IProps {
 const replacements: Replacements<IProps> = {
 	start: "??:??",
 	end: "??:??",
-	name: 'Расписание звонков №??'
+	name: "Расписание звонков №??"
 }
 
 const RingsScheduleCard: React.FC<IProps> = (props) => {

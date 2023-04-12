@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const StyledLessonsPage = styled.div`
 	@media(max-width: 500px) {

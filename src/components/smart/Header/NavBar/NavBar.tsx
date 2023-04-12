@@ -25,7 +25,7 @@ const NavBar = () => {
 					onSelect={handleSelect}
 					key={date}
 				/>
-		))}
+			))}
 		</StyledNavBar>
 	)
 }

@@ -1,8 +1,8 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom"
 
-import Main from "./pages/Main/Main";
-import Lessons from "./pages/Lessons/Lessons";
-import Rings from "./pages/RingsSchedules/Rings";
+import Main from "./pages/Main/Main"
+import Lessons from "./pages/Lessons/Lessons"
+import Rings from "./pages/RingsSchedules/Rings"
 import Composed from "./pages/ComposedSchedules/Composed"
 
 import AddLesson from "./pages/AddLesson/AddLesson"

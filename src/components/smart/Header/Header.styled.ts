@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const StyledHeader = styled.header`
 	--header-height: 4.375em;

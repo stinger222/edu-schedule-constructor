@@ -2,7 +2,7 @@ import { cleanup, render, screen } from "../../../core/utils/test-utils"
 import Timeline from "./Timeline"
 
 
-describe('Testing Timeline render with different props', () => {
+describe("Testing Timeline render with different props", () => {
 	it("Renders Timeline with valid props", () => {
 		render(<Timeline startTime="10:00" endTime="11:00"/>)
 

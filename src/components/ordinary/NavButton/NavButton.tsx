@@ -11,7 +11,7 @@ interface IProps {
 const NavButton: React.FC<IProps> = ({ label, date, selectedDayIndex, index, onSelect }) => {
 	return (
 		<StyledNavButton
-			className={selectedDayIndex === index ? 'selected' : ''}
+			className={selectedDayIndex === index ? "selected" : ""}
 			onClick={() => onSelect(index)}
 		>
 			<div className="label">{label}</div>

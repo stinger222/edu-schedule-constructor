@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const StyledDropdown = styled.div`
 	--dropdown-font-size: 1.1;

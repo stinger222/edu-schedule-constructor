@@ -10,7 +10,7 @@ const Lessons = () => {
 	const { lessons } = useContext(StoreContext).lessonsStore
 
 
-  return (
+	return (
 		<StyledLessonsPage>
 			<Container>
 				<Header>
@@ -23,7 +23,7 @@ const Lessons = () => {
 
 			</Container>
 		</StyledLessonsPage>
-  )
+	)
 }
 
 export default Lessons
