@@ -1,4 +1,4 @@
-import { formatNumber } from "../../../../core/utils/helpers"
+import { formatNumber } from "../../../../core/utils/stringUtils"
 import { render, screen } from "../../../../core/utils/test-utils"
 import NavBar from "./NavBar"
 

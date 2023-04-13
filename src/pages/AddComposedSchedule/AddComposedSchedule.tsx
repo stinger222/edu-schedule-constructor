@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { StoreContext } from "../.."
-import { WeekDays } from "../../core/utils/helpers"
 import { Cases, IComposedSchedule } from "../../core/types/types"
 import { StyledAddComposedSchedule } from "./AddComposedSchedule.styled"
 
@@ -13,6 +12,8 @@ import ComposeDay from "../../components/smart/ComposeDay/ComposeDay"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 import { toJS } from "mobx"
+import { WeekDays } from "../../core/utils/dateTimeUtils"
+import { validateField } from "../../core/utils/stringUtils"
 
 const AddComposedSchedule = () => {
 	const methods = useForm({
@@ -49,7 +50,8 @@ const AddComposedSchedule = () => {
 							name="name"
 							label="Название расписания"
 							placeholder="Верхняя неделя"
-							rules={{required: "Название расписания не указано!"}}
+							rules={{validate: validateField}}
+							
 						/>
 
 						{

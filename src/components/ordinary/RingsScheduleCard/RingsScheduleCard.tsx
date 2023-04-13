@@ -1,5 +1,4 @@
-import { Replacements } from "../../../core/types/types"
-import { formatTimeString, replaceBlankProps } from "../../../core/utils/helpers"
+import { formatTimeString } from "../../../core/utils/stringUtils"
 import { StyledRingsScheduleCard } from "./RingsScheduleCard.styled"
 
 interface IProps {
@@ -9,19 +8,12 @@ interface IProps {
 	name: string
 }
 
-const replacements: Replacements<IProps> = {
-	start: "??:??",
-	end: "??:??",
-	name: "Расписание звонков №??"
-}
-
-const RingsScheduleCard: React.FC<IProps> = (props) => {
-	const { length, start, end } = replaceBlankProps<IProps>(props, replacements)
+const RingsScheduleCard: React.FC<IProps> = ({ length, start, end, name }) => {
 
 	return (
 		<StyledRingsScheduleCard className="rings-schedule-card">
 			<header>
-				{props.name}
+				{name}
 			</header>
 			<div className="details">
 				<div>Пар - <span className="value">{length}</span></div>

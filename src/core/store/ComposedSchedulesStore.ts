@@ -1,8 +1,8 @@
-import { capitalize } from "./../utils/helpers"
 import { IComposedSchedulesStore } from "./../types/store"
 import { IComposedSchedule } from "./../types/types"
 import { makeAutoObservable, toJS } from "mobx"
 import { nanoid } from "nanoid"
+import { capitalize } from "../utils/stringUtils"
 
 class ComposedSchedulesStore implements IComposedSchedulesStore {
 	composedSchedules: IComposedSchedule[] = []

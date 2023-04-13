@@ -1,9 +1,9 @@
-import { capitalize } from "./../utils/helpers"
 import { toJS } from "mobx"
 import { makeAutoObservable } from "mobx"
 import { ILessonsStore } from "./../types/store"
 import { ILesson } from "./../types/types"
 import { nanoid } from "nanoid"
+import { capitalize } from "../utils/stringUtils"
 
 class LessonsStore implements ILessonsStore {
 	public _lessons: ILesson[] = [
@@ -20,6 +20,8 @@ class LessonsStore implements ILessonsStore {
 	}
 
 	addLesson(newLesson: Omit<ILesson, "uid">, uid?: string) {
+		
+
 		this._lessons.push({
 			...newLesson,
 			uid: uid || nanoid(10),

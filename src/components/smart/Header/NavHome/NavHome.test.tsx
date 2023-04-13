@@ -1,4 +1,4 @@
-import { render } from "../../../../core/utils/test-utils"
+import { act, render } from "../../../../core/utils/test-utils"
 import NavHome from "./NavHome"
 
 describe("Testing NavHome component", () => {
@@ -17,7 +17,9 @@ describe("Testing NavHome component", () => {
 		expect(window.location.hash).toBe("#/something/something-else")
 
 		const ancors = container.getElementsByTagName("a")
-		ancors[0].click()
+		act(() => {
+			ancors[0].click()
+		})
 		expect(window.location.hash).toBe("#/")
 	})
 })

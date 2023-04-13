@@ -1,5 +1,6 @@
-import { getCurrentWeekDates, formatNumber } from "./../utils/helpers"
 import { makeAutoObservable } from "mobx"
+import { getCurrentWeekDates } from "../utils/dateTimeUtils"
+import { formatNumber } from "../utils/stringUtils"
 import { IUIStore } from "./../types/store"
 
 class UIStore implements IUIStore {

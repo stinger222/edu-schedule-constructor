@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { StoreContext } from "../../../.."
 import { IComposedDay } from "../../../../core/types/types"
-import { WeekDays } from "../../../../core/utils/helpers"
+import { WeekDays } from "../../../../core/utils/dateTimeUtils"
 import { StyledDay } from "./Day.styled"
 
 interface IProps {

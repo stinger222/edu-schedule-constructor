@@ -1,7 +1,6 @@
 import React from "react"
 import { StyledTimeline } from "./Timeline.styled."
-import { Replacements } from "../../../core/types/types"
-import { formatTimeString, replaceBlankProps } from "../../../core/utils/helpers"
+import { formatTimeString } from "../../../core/utils/stringUtils"
 
 interface IProps {
 	startTime: string,
@@ -9,13 +8,7 @@ interface IProps {
 	active?: boolean
 }
 
-const propsReplacements: Replacements<IProps> = {
-	startTime: "??:??",
-	endTime: "??:??",
-}
-
-const Timeline: React.FC<IProps> = (props) => {
-	let { startTime, endTime, active } = replaceBlankProps<IProps>(props, propsReplacements)
+const Timeline: React.FC<IProps> = ({ startTime, endTime, active }) => {
 	startTime = formatTimeString(startTime)
 	endTime = formatTimeString(endTime)
 

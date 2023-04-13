@@ -9,6 +9,7 @@ import { useContext } from "react"
 import { ILesson } from "../../core/types/types"
 
 import { StyledAddLesson } from "./AddLesson.styled"
+import { validateField } from "../../core/utils/stringUtils"
 
 const AddLesson = () => {
 	
@@ -40,21 +41,21 @@ const AddLesson = () => {
 							label="Название пары"
 							placeholder="Основы алгоритмизации"
 							name="title"
-							rules={{required: true}}
+							rules={{validate: validateField}}
 							className="title"
 						/>
 						<InputWrapper
 							label="Имя препода"
 							placeholder="Иванов Иван Иванович"
 							name="teacher"
-							rules={{required: true}}
+							rules={{validate: validateField}}
 							className="teacher"
 						/>
 						<InputWrapper
 							label="Кабинет"
 							placeholder="302у"
 							name="cabinet"
-							rules={{required: true}}
+							rules={{validate: validateField}}
 							className="cabinet"
 						/>
 

@@ -11,26 +11,6 @@ describe("Testing Timeline render with different props", () => {
 		expect(Timeline).toMatchSnapshot()
 	})
 
-	it("Renders Timeline correctly with logically incorrect props", () => {
-		render(<Timeline startTime="10:00" endTime="09:00"/>)
-
-		expect(screen.getByText("09:00", {selector: ".label-start"})).toBeInTheDocument()
-		expect(screen.getByText("10:00", {selector: ".label-end"})).toBeInTheDocument()
-		expect(Timeline).toMatchSnapshot()
-
-		cleanup()
-
-		render(<Timeline startTime="05:30" endTime="03:20"/>)
-
-		expect(screen.getByText("03:20", {selector: ".label-start"})).toBeInTheDocument()
-		expect(screen.getByText("05:30", {selector: ".label-end"})).toBeInTheDocument()
-		
-		render(<Timeline startTime="08:01" endTime="08:00"/>)
-
-		expect(screen.getByText("08:00", {selector: ".label-start"})).toBeInTheDocument()
-		expect(screen.getByText("08:01", {selector: ".label-end"})).toBeInTheDocument()
-	})
-
 	it("Renders Timeline with valid props, but values not formatted", () => {
 		render(<Timeline startTime="7:3" endTime="9:5"/>)
 

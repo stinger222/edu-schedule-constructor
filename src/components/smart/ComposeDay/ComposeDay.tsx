@@ -6,8 +6,9 @@ import GhostButton from "../../ui/GhostButton/GhostButton"
 import SelectContainer from "../../containers/SelectContainer/SelectContainer"
 import { StyledComposeDay } from "./ComposeDay.styled"
 
-import { WeekDays } from "../../../core/utils/helpers"
 import { IRingsSchedule } from "../../../core/types/types"
+import { WeekDays } from "../../../core/utils/dateTimeUtils"
+import { validateField } from "../../../core/utils/stringUtils"
 
 interface IProps {
 	dayIndex: number
@@ -36,11 +37,6 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 	const {
 		fields, append: appendLessonId, remove: removeLessonId
 	} = useFieldArray({control: methods.control, name: `days.${dayIndex}.lessonIds`})
-	
-	const validateField = (value: string) => {
-		value = value.trim()
-		return value !== "" && value !== "undefined"
-	}
 	
 	if (dayIndex >= 5) return null
 	

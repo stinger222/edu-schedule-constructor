@@ -6,8 +6,6 @@ export type KeyOfType<T, V> = keyof {
 	[S in keyof T as T[S] extends V? S: never]: any
 }
 
-export type Replacements<P> = Record<KeyOfType<P, string>, string>
-
 export type PartialField<O, K extends keyof O> = Omit<O, K> & Partial<Pick<O, K>>
 
 export type Icons = keyof typeof icons

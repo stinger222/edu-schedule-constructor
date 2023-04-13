@@ -11,6 +11,7 @@ import Header from "../../components/smart/Header/Header"
 import TimeRange from "../../components/ordinary/TimeRange/TimeRange"
 import Container from "../../components/containers/Container/Container"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
+import { validateField } from "../../core/utils/stringUtils"
 
 const AddRingsSchedule = () => {
 
@@ -55,7 +56,7 @@ const AddRingsSchedule = () => {
 							name="name"
 							label="Название расписания"
 							placeholder="Звонки на понедельник"
-							rules={{required: "Название расписания не указано!"}}
+							rules={{validate: validateField}}
 						/>
 
 						{fields.map(({ id }, index) => (

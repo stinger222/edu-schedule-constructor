@@ -1,26 +1,26 @@
-import { capitalize } from "./../utils/helpers"
 import { nanoid } from "nanoid"
 import { IRingsSchedule } from "./../types/types"
 import { IRingsSchedulesStore } from "./../types/store"
 import { makeAutoObservable, toJS } from "mobx"
+import { capitalize } from "../utils/stringUtils"
 
 class RingsSchedulesStore implements IRingsSchedulesStore {
 	ringsSchedules: IRingsSchedule[] = [
-		// {
-		// 	name: "Example Rings Schedule #1",
-		// 	rings: [{start: "08:00", end:"09:00"}],
-		// 	uid: "gdf4-2s39"
-		// },
-		// {
-		// 	name: "Some loong schedule",
-		// 	rings: [
-		// 		{start: "08:00", end:"09:00"},
-		// 		{start: "10:00", end:"11:00"},
-		// 		{start: "12:00", end:"13:00"},
-		// 		{start: "14:00", end:"15:00"}
-		// 	],
-		// 	uid: "f03h-9f73"
-		// }
+		{
+			name: "Example Rings Schedule #1",
+			rings: [{start: "08:00", end:"09:00"}],
+			uid: "gdf4-2s39"
+		},
+		{
+			name: "Some loong schedule",
+			rings: [
+				{start: "08:00", end:"09:00"},
+				{start: "10:00", end:"11:00"},
+				{start: "12:00", end:"13:00"},
+				{start: "14:00", end:"15:00"}
+			],
+			uid: "f03h-9f73"
+		}
 	]
 
 	constructor() {
