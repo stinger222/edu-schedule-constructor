@@ -27,7 +27,7 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 		makeAutoObservable(this)
 	}
 
-	addRingsSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">, uid?: string): void {
+	addSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">, uid?: string): void {
 		newRingsSchedule.name = capitalize(newRingsSchedule.name)
 
 		this.ringsSchedules.push({...newRingsSchedule, uid: uid || nanoid(10)})
@@ -58,7 +58,7 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 			...newSchedule
 		}
 
-		console.log("Schedule modified successfully.")
+		console.log("Schedule updated successfully.")
 		return true
 	}
 }

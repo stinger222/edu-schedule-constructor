@@ -7,7 +7,7 @@ describe("Testing RingsSchedulesStore", () => {
 		expect(ringsSchedulesStore.ringsSchedules).toHaveLength(0)
 
 		// With uid passed
-		ringsSchedulesStore.addRingsSchedule({
+		ringsSchedulesStore.addSchedule({
 			name: "New schedule 1",
 			rings: [
 				{start: "10:00", end: "11:00"},
@@ -25,7 +25,7 @@ describe("Testing RingsSchedulesStore", () => {
 		})
 
 		// Without uid passed
-		ringsSchedulesStore.addRingsSchedule({
+		ringsSchedulesStore.addSchedule({
 			name: "New schedule 2",
 			rings: [
 				{start: "10:40", end: "12:20"}
@@ -41,7 +41,7 @@ describe("Testing RingsSchedulesStore", () => {
 		})
 
 		// Test formatting for "name" property
-		ringsSchedulesStore.addRingsSchedule({
+		ringsSchedulesStore.addSchedule({
 			name: "new schedule 3",
 			rings: [
 				{start: "13:30", end: "13:50"}
@@ -54,7 +54,7 @@ describe("Testing RingsSchedulesStore", () => {
 	it("Tests removeSchedule action", () => {
 		const ringsSchedulesStore = new RingsSchedulesStore()
 
-		ringsSchedulesStore.addRingsSchedule({
+		ringsSchedulesStore.addSchedule({
 			name: "New schedule 1",
 			rings: [
 				{start: "10:00", end: "11:00"},
@@ -78,7 +78,7 @@ describe("Testing RingsSchedulesStore", () => {
 	it("Tests updateSchedule action", () => {
 		const ringsSchedulesStore = new RingsSchedulesStore()
 
-		ringsSchedulesStore.addRingsSchedule({
+		ringsSchedulesStore.addSchedule({
 			name: "New schedule 1",
 			rings: [
 				{start: "10:00", end: "11:00"},

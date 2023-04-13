@@ -17,7 +17,7 @@ export interface ILessonsStore {
 
 export interface IRingsSchedulesStore {
 	ringsSchedules: IRingsSchedule[],
-	addRingsSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">): void,
+	addSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">): void,
 	removeSchedule(uid: string): boolean
 }
 

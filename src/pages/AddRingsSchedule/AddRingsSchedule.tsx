@@ -29,7 +29,7 @@ const AddRingsSchedule = () => {
 	})
 
 	const handleSubmit = (formData: any) => {
-		ringsSchedulesStore.addRingsSchedule({
+		ringsSchedulesStore.addSchedule({
 			name: formData.name.trim() || `Расписание №${ringsSchedulesStore.ringsSchedules.length+1}`,
 			rings: [...formData.rings]
 		})
