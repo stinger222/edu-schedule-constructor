@@ -23,6 +23,7 @@
 		"prefer-const": ["error", {
 			"destructuring": "all"
 		}],
+		"comma-dangle":"error",
 		"indent": [ "warn", "tab" ],
 		"linebreak-style": [ "error", "windows" ],
 		"quotes": [ "error", "double" ],

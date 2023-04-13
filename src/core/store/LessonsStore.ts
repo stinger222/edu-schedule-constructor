@@ -24,7 +24,6 @@ class LessonsStore implements ILessonsStore {
 		newLesson.teacher = capitalize(newLesson.teacher, true)
 
 		this._lessons.push({...newLesson, uid: uid || nanoid(10)})
-		console.log(toJS(this._lessons))
 	}
 
 	removeLesson(uid: string): boolean {
@@ -36,7 +35,7 @@ class LessonsStore implements ILessonsStore {
 		}
 		
 		const deletedLesson = this._lessons.splice(indexToDelete, 1)
-		console.log("Lesson deleted from store.", deletedLesson)
+		console.log("Lesson deleted from store.", toJS(deletedLesson))
 		return deletedLesson.length === 1
 	}
 

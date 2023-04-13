@@ -64,7 +64,10 @@ const AddLesson = () => {
 								<p className="error-message">Все поля должны быть заполнены!</p>
 						}
 
-						<Button type="submit">Готово</Button>
+						<Button
+							disabled={(!methods.formState.isValid)}
+							type="submit"
+						>Готово</Button>
 					</form>
 				</FormProvider>
 			</Container>

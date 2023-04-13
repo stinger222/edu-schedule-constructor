@@ -21,7 +21,6 @@ describe("Testing LessonsStore", () => {
 			teacher: "Some Teacher's Name",
 			title: "Math or whatever"
 		}, "some-uid")
-
 		expect(lessonsStore._lessons[1]).toEqual({
 			cabinet: "202w",
 			teacher: "Some Teacher's Name",
@@ -35,20 +34,20 @@ describe("Testing LessonsStore", () => {
 			teacher: "Some Teacher's Name 2",
 			title: "Math or whatever 2"
 		})
+		expect(lessonsStore._lessons).toHaveLength(3)
+		expect(lessonsStore._lessons[2]).toMatchObject({
+			cabinet: "202w",
+			teacher: "Some Teacher's Name 2",
+			title: "Math or whatever 2"
+		})
+		expect(lessonsStore._lessons[2]).toHaveProperty("uid")
 
-		expect(lessonsStore._lessons[2].cabinet).toBe("202w")
-		expect(lessonsStore._lessons[2].teacher).toBe("Some Teacher's Name 2")
-		expect(lessonsStore._lessons[2].title).toBe("Math or whatever 2")
-		expect(lessonsStore._lessons[2].uid).not.toBe("this :/")
-
-
-		// Test formatting
+		// Test formatting for "teacher" & "title" properties
 		lessonsStore.addLesson({
 			cabinet: "202w",
 			teacher: "not capitalized name",
 			title: "math or whatever"
 		}, "some-uid-2")
-
 		expect(lessonsStore._lessons[3]).toEqual({
 			cabinet: "202w",
 			teacher: "Not Capitalized Name",
@@ -130,7 +129,6 @@ describe("Testing LessonsStore", () => {
 			title: "New title",
 			uid: "some-uid"
 		})
-
 
 		// Test formatting
 		updatedSuccessfully = null
