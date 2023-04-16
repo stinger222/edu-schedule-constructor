@@ -4,10 +4,11 @@ import Header from "../../components/smart/Header/Header"
 import { StyledLessonsPage } from "./Lessons.styled"
 import { useContext } from "react"
 import { StoreContext } from "../.."
+import { observer } from "mobx-react"
 
 const Lessons = () => {
 
-	const { lessons } = useContext(StoreContext).lessonsStore
+	const lessonsStore = useContext(StoreContext).lessonsStore
 
 
 	return (
@@ -19,11 +20,13 @@ const Lessons = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-				<LessonCards lessons={lessons}/>
+				<LessonCards 
+					lessons={lessonsStore.lessons}
+					removeLesson={lessonsStore.removeLesson.bind(lessonsStore)}/>
 
 			</Container>
 		</StyledLessonsPage>
 	)
 }
 
-export default Lessons
+export default observer(Lessons)

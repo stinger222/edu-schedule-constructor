@@ -1,5 +1,5 @@
 import { useDrag } from "react-use-gesture"
-import { ReactNode, useState } from "react"
+import { ReactNode } from "react"
 import { useSpring, animated } from "@react-spring/web"
 
 import { StyledSwipeToAction } from "./SwipeToAction.styled"
@@ -23,7 +23,7 @@ const SwipeToAction: React.FC<IProps> = ({ children, onSwipe }) => {
 		},
 		config: {
 			tension: 300, friction: 25 
-		},
+		}
 	}))
 	
 	const bind = useDrag(({active, movement, last, _bounds}) => {
@@ -47,7 +47,7 @@ const SwipeToAction: React.FC<IProps> = ({ children, onSwipe }) => {
 			<animated.div className="animated-wrapper" style={{ x, opacity, touchAction: "pan-y" }}>
 				{children}
 			</animated.div>
-			<div className="action-label">Do smth?</div>
+			<div className="action-label">Delete?</div>
 		</StyledSwipeToAction>
 	)
 }

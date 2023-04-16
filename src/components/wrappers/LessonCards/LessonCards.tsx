@@ -7,12 +7,14 @@ import { StyledLessonCards } from "./LessonCards.styled"
 
 interface IProps {
 	lessons: ILesson[]
+	removeLesson: (uid: string) => boolean 
 }
 
-const LessonCards: React.FC<IProps> = ({ lessons }) => {
-
-	const handleSwipe = () => {
-		console.log(window.confirm("Are you sure?") ? "Done 👌" : "¯\\_(ツ)_/¯")
+const LessonCards: React.FC<IProps> = ({ lessons, removeLesson }) => {
+	
+	const handleSwipe = (uid: string) => {
+		// console.log(window.confirm("Are you sure?") ? "Done 👌" : "¯\\_(ツ)_/¯")
+		removeLesson(uid)
 	}
 
 	return (
@@ -26,7 +28,7 @@ const LessonCards: React.FC<IProps> = ({ lessons }) => {
 
 			{
 				lessons.map(lesson => (
-					<SwipeToAction onSwipe={handleSwipe} key={lesson.uid}>
+					<SwipeToAction onSwipe={() => handleSwipe(lesson.uid)} key={lesson.uid}>
 						<LessonCard 
 							cabinet={lesson.cabinet}
 							teacher={lesson.teacher}

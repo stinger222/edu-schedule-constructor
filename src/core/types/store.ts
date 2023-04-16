@@ -6,12 +6,20 @@ export interface IUIStore {
 	selectDayIndex: (newIndex: number) => void
 }
 
-export interface ILessonsStore {
+interface IStoreable {
+	storageKey: string
+
+	memorizeState(): void
+	restoreState(): void
+}
+
+export interface ILessonsStore extends IStoreable {
 	_lessons: ILesson[],
 	lessons: ILesson[],
 	addLesson(newLesson: Omit<ILesson, "uid">): void,
 	removeLesson(uid: string): boolean,
 	updateLesson(uid: string, newLesson: Omit<ILesson, "uid">): void
+	restoreState(): void
 }
 
 

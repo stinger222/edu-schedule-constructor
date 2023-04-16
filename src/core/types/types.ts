@@ -9,12 +9,10 @@ export type KeyOfType<T, V> = keyof {
 export type PartialField<O, K extends keyof O> = Omit<O, K> & Partial<Pick<O, K>>
 
 export type Icons = keyof typeof icons
-
 export interface IOption {
 	label: string,
 	id: string
 }
-
 export interface ILesson {
 	title: string,
 	teacher: string,

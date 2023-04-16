@@ -5,32 +5,48 @@ import { ILesson } from "./../types/types"
 import { nanoid } from "nanoid"
 import { capitalize } from "../utils/stringUtils"
 
-class LessonsStore implements ILessonsStore {
-	public _lessons: ILesson[] = [
-		// Empty lesson
-		{cabinet: "???", teacher: "<Никто>", title: "<Ничего>", uid:"hidden"}
-	]
+class LessonsStore implements ILessonsStore  {
+	public _lessons: ILesson[] = [{
+		"cabinet": "???",
+		"teacher": "<Никто>",
+		"title": "<Ничего>",
+		"uid":"hidden"
+	}]
+	storageKey: string = "lessons"
 
 	constructor() {
 		makeAutoObservable(this)
+		this.restoreState()
 	}
 
 	get lessons() {
 		return this._lessons.filter(l => l.uid !== "hidden")
 	}
 
-	addLesson(newLesson: Omit<ILesson, "uid">, uid?: string) {
-		
+	restoreState() {
+		this._lessons = JSON.parse(localStorage.getItem(this.storageKey) ?? 
+			`[{"cabinet": "???", "teacher": "<Никто>", "title": "<Ничего>", "uid":"hidden"}]`
+		)
+	}
 
+	memorizeState() {
+		localStorage.setItem(this.storageKey, JSON.stringify(this._lessons))
+	}
+
+	addLesson(newLesson: Omit<ILesson, "uid">, uid?: string) {
 		this._lessons.push({
 			...newLesson,
 			uid: uid || nanoid(10),
 			title: capitalize(newLesson.title),
 			teacher: capitalize(newLesson.teacher, true)
 		})
+
+		this.memorizeState()
 	}
 
 	removeLesson(uid: string): boolean {
+		console.log("REMOVEE!", this)
+		
 		const indexToDelete = this._lessons.findIndex(lesson => lesson.uid === uid)
 		
 		if (indexToDelete === -1) {
@@ -40,6 +56,7 @@ class LessonsStore implements ILessonsStore {
 		
 		const deletedLesson = this._lessons.splice(indexToDelete, 1)
 		console.log("Lesson deleted from store.", toJS(deletedLesson[0]))
+		this.memorizeState()
 		return deletedLesson.length === 1
 	}
 
