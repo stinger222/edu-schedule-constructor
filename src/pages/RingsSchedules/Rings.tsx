@@ -7,7 +7,7 @@ import { StoreContext } from "../.."
 
 const Rings = () => {
 
-	const { ringsSchedules } = useContext(StoreContext).ringsSchedulesStore
+	const ringsSchedulesStore = useContext(StoreContext).ringsSchedulesStore
 
 	return (
 		<StyledRingsPage>
@@ -18,7 +18,10 @@ const Rings = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-				<RingsCards ringsSchedules={ringsSchedules}/>
+				<RingsCards
+					ringsSchedules={ringsSchedulesStore.ringsSchedules}
+					removeSchedule={ringsSchedulesStore.removeSchedule.bind(ringsSchedulesStore)}
+				/>
 
 			</Container>
 		</StyledRingsPage>

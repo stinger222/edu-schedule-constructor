@@ -1,5 +1,5 @@
 import { useDrag } from "react-use-gesture"
-import { ReactNode } from "react"
+import { ReactNode, useState } from "react"
 import { useSpring, animated } from "@react-spring/web"
 
 import { StyledSwipeToAction } from "./SwipeToAction.styled"

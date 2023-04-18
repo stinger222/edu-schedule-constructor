@@ -6,8 +6,7 @@ import { useContext } from "react"
 import { StoreContext } from "../.."
 
 const Composed = () => {
-
-	const { composedSchedules } = useContext(StoreContext).composedSchedulesStore
+	const composedSchedulesStore = useContext(StoreContext).composedSchedulesStore
 
 	return (
 		<StyledComposedPage>
@@ -18,7 +17,10 @@ const Composed = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-				<ComposedSchedules composedSchedules={composedSchedules}/>
+				<ComposedSchedules
+					composedSchedules={composedSchedulesStore.composedSchedules}
+					removeSchedule={composedSchedulesStore.removeSchedule.bind(composedSchedulesStore)}
+				/>
 
 			</Container>
 		</StyledComposedPage>

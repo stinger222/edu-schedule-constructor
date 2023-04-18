@@ -23,13 +23,13 @@ export interface ILessonsStore extends IStoreable {
 }
 
 
-export interface IRingsSchedulesStore {
+export interface IRingsSchedulesStore extends IStoreable {
 	ringsSchedules: IRingsSchedule[],
 	addSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">): void,
 	removeSchedule(uid: string): boolean
 }
 
-export interface IComposedSchedulesStore {
+export interface IComposedSchedulesStore extends IStoreable {
 	composedSchedules: IComposedSchedule[],
 	addSchedule(newSchedule: Omit<IComposedSchedule, "uid">): void,
 	removeSchedule(uid: string): boolean

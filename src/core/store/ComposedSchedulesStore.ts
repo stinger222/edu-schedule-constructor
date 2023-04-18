@@ -6,9 +6,19 @@ import { capitalize } from "../utils/stringUtils"
 
 class ComposedSchedulesStore implements IComposedSchedulesStore {
 	composedSchedules: IComposedSchedule[] = []
+	storageKey: string = "composed-schedules"
 
 	constructor() {
 		makeAutoObservable(this)
+		this.restoreState()
+	}
+	
+	memorizeState() {
+		localStorage.setItem(this.storageKey, JSON.stringify(this.composedSchedules))
+	}
+
+	restoreState() {
+		this.composedSchedules = JSON.parse(localStorage.getItem(this.storageKey) ?? `[]`)
 	}
 
 	addSchedule(newSchedule: Omit<IComposedSchedule, "uid">, uid?: string) {
@@ -17,6 +27,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 			uid: uid || nanoid(10),
 			name: capitalize(newSchedule.name)
 		})
+		this.memorizeState()
 	}
 
 	removeSchedule(uid: string): boolean {
@@ -28,6 +39,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 		
 		const deletedSchedule = this.composedSchedules.splice(indexToDelete, 1)
 		console.log("Lesson deleted from store.", toJS(deletedSchedule[0]))
+		this.memorizeState()
 		return deletedSchedule.length === 1 
 	}
 

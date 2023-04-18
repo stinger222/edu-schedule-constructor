@@ -1,3 +1,4 @@
+import { observer } from "mobx-react"
 import { Link } from "react-router-dom"
 import { IRingsSchedule } from "../../../core/types/types"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
@@ -6,14 +7,13 @@ import GhostButton from "../../ui/GhostButton/GhostButton"
 import { StyledRingsCards } from "./RingsCards.styled"
 
 interface IProps {
-	ringsSchedules: IRingsSchedule[]
+	ringsSchedules: IRingsSchedule[],
+	removeSchedule: (uid: string) => boolean
 }
 
-const RingsCards: React.FC<IProps> = ({ ringsSchedules }) => {
+const RingsCards: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) => {
 
-	const handleSwipe = () => {
-		console.log("Swiped")
-	}
+
 
 	return (
 		<StyledRingsCards className="rings-cards">
@@ -26,7 +26,7 @@ const RingsCards: React.FC<IProps> = ({ ringsSchedules }) => {
 
 			{
 				ringsSchedules.map(({rings, name, uid}) => (
-					<SwipeToAction onSwipe={handleSwipe} key={uid}>
+					<SwipeToAction onSwipe={() => removeSchedule(uid)} key={uid}>
 						<RingsScheduleCard
 							start={rings[0].start}
 							end={rings[rings.length-1].end}
@@ -45,4 +45,4 @@ const RingsCards: React.FC<IProps> = ({ ringsSchedules }) => {
 	)
 }
 
-export default RingsCards
+export default observer(RingsCards)

@@ -22,15 +22,26 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 			uid: "f03h-9f73"
 		}
 	]
+	storageKey: string = "rings"
 
 	constructor() {
 		makeAutoObservable(this)
+		this.restoreState()
+	}
+
+	memorizeState(): void {
+		localStorage.setItem(this.storageKey, JSON.stringify(this.ringsSchedules))
+	}
+
+	restoreState(): void {
+		this.ringsSchedules = JSON.parse(localStorage.getItem(this.storageKey) ?? `[]`)
 	}
 
 	addSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">, uid?: string): void {
 		newRingsSchedule.name = capitalize(newRingsSchedule.name)
 
 		this.ringsSchedules.push({...newRingsSchedule, uid: uid || nanoid(10)})
+		this.memorizeState()
 	}
 
 	removeSchedule(uid: string): boolean {
@@ -42,6 +53,7 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 
 		const deletedSchedule = this.ringsSchedules.splice(indexToDelete, 1)
 		console.log("Schedule deleted from store.", toJS(deletedSchedule[0]))
+		this.memorizeState()
 		return deletedSchedule.length === 1 
 	}
 

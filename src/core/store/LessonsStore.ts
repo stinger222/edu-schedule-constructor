@@ -22,15 +22,15 @@ class LessonsStore implements ILessonsStore  {
 	get lessons() {
 		return this._lessons.filter(l => l.uid !== "hidden")
 	}
+	
+	memorizeState() {
+		localStorage.setItem(this.storageKey, JSON.stringify(this._lessons))
+	}
 
 	restoreState() {
 		this._lessons = JSON.parse(localStorage.getItem(this.storageKey) ?? 
 			`[{"cabinet": "???", "teacher": "<Никто>", "title": "<Ничего>", "uid":"hidden"}]`
 		)
-	}
-
-	memorizeState() {
-		localStorage.setItem(this.storageKey, JSON.stringify(this._lessons))
 	}
 
 	addLesson(newLesson: Omit<ILesson, "uid">, uid?: string) {
