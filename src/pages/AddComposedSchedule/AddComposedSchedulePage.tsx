@@ -8,7 +8,7 @@ import { FormProvider, useFieldArray, useForm } from "react-hook-form"
 import Button from "../../components/ui/Button/Button"
 import Header from "../../components/smart/Header/Header"
 import Container from "../../components/containers/Container/Container"
-import ComposeDay from "../../components/smart/ComposeDay/ComposeDay"
+import ComposeDayForm from "../../components/smart/ComposeDay/ComposeDayForm"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 import { toJS } from "mobx"
@@ -54,7 +54,7 @@ const AddComposedSchedulePage = () => {
             />
 
             {fields.map((_, index) => (
-              <ComposeDay
+              <ComposeDayForm
                 dayIndex={index}
                 key={index}
               />

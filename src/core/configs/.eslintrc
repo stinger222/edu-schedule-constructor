@@ -23,7 +23,8 @@
 		"prefer-const": ["error", {
 			"destructuring": "all"
 		}],
-		"comma-dangle":"error",
+		"comma-dangle": "error",
+    "no-debugger": "warn",
 		"linebreak-style": [ "error", "windows" ],
 		"quotes": [ "error", "double", {"allowTemplateLiterals": true} ],
 		"semi": [ "error", "never" ]

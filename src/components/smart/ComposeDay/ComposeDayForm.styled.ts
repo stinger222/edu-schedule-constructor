@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledComposeDay = styled.div`
+export const StyledComposeDayForm = styled.div`
 	background: inherit;
 	margin-inline: auto;
 	width: fit-content;

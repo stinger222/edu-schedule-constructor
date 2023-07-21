@@ -45,7 +45,8 @@ export const StyledSelect = styled(MantineSelect)`
 		}
 		
 		& .mantine-Select-dropdown .mantine-Select-item:nth-child(2n+1) {
-			filter: brightness(0.9);
+			filter: brightness(0.95);
+      margin-block: 0.15em;
 		}
 
 		& .mantine-Select-dropdown .mantine-Select-item:not(
@@ -57,7 +58,7 @@ export const StyledSelect = styled(MantineSelect)`
 
 		& .mantine-Select-dropdown .mantine-Select-item:hover {
 			background: ${({theme}) => theme.backgrounds.primary};
-			filter: brightness(${({theme}) => theme.type === ThemeEnum.dark ? 1.2 : 0.95});
+			filter: brightness(${({theme}) => theme.type === ThemeEnum.dark ? 1.2 : 0.92});
 		}
 
 		& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"] {

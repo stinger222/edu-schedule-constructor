@@ -3,6 +3,7 @@ import { StoreContext } from "../../../.."
 import { IComposedDay } from "../../../../core/types/types"
 import { WeekDays } from "../../../../core/utils/dateTimeUtils"
 import { StyledDay } from "./Day.styled"
+import { toJS } from "mobx"
 
 interface IProps {
 	dayIndex: number,
@@ -17,10 +18,19 @@ const emptyDay: IComposedDay = {
 const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 	const { ringsSchedulesStore } = useContext(StoreContext)
 
-	const thisDayRingsSchedule = ringsSchedulesStore.ringsSchedules.find(s => s.uid === day.ringsScheduleId)
+  // Can be undefined if used deleted rings schedule but we still store it's id
+	const thisDayRingsSchedule = ringsSchedulesStore.ringsSchedules.find(s => (
+    s.uid === day.ringsScheduleId
+  ))
 
-	const startTime = thisDayRingsSchedule?.rings?.[0]?.start || "??:??"
-	const endTime = thisDayRingsSchedule?.rings?.[day.lessonIds.length - 1]?.end || "??:??"
+  
+  let startTime = "??:??"
+  let endTime = "??:??"
+
+  if (thisDayRingsSchedule) {
+    startTime = thisDayRingsSchedule.rings[0].start
+    endTime = thisDayRingsSchedule.rings?.[day.lessonIds.length - 1]?.end || "?"
+  }
 
 	const weekDay: string = WeekDays.getShort()[dayIndex]
 

@@ -1,23 +1,33 @@
-import React, { useContext } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { StoreContext } from "../../.."
 import { useFieldArray, UseFieldArrayRemove, useFormContext } from "react-hook-form"
 
 import GhostButton from "../../ui/GhostButton/GhostButton"
 import SelectContainer from "../../containers/SelectContainer/SelectContainer"
-import { StyledComposeDay } from "./ComposeDay.styled"
+import { StyledComposeDayForm } from "./ComposeDayForm.styled"
 
 import { IRingsSchedule } from "../../../core/types/types"
 import { WeekDays } from "../../../core/utils/dateTimeUtils"
 import { validateField } from "../../../core/utils/stringUtils"
 
+
 interface IProps {
 	dayIndex: number
 }
 
-const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
+const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 
+  const methods = useFormContext()
 	const { lessonsStore, ringsSchedulesStore } = useContext(StoreContext)
 
+  const selectedRingsScheduleId: string = methods.watch(`days.${dayIndex}.ringsScheduleId`)
+	
+  const { fields, append: appendLessonId, remove: removeLessonId } = useFieldArray({
+    control: methods.control, name: `days.${dayIndex}.lessonIds`
+  })
+
+  const [canAddNewLessons, setCanAddNewLessons] = useState(false)
+	
 	const ringsSchedulesSelectData = ringsSchedulesStore.ringsSchedules
 		.map((schedule: IRingsSchedule) => {
 			return {
@@ -32,16 +42,31 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 			}
 		})
 
-	const methods = useFormContext()
-	
-	const {
-		fields, append: appendLessonId, remove: removeLessonId
-	} = useFieldArray({control: methods.control, name: `days.${dayIndex}.lessonIds`})
-	
+
+  useEffect(() => {
+    const selectedRingsSchedule = ringsSchedulesStore.ringsSchedules.find(s => (
+      s.uid === selectedRingsScheduleId
+    ))
+
+    
+    
+    const lessonsInsideSelectedRingsSchedule = selectedRingsSchedule?.rings?.length || 1
+
+    console.log("lessonsInsideSelectedRingsSchedule", lessonsInsideSelectedRingsSchedule)
+    console.log("fields.length", fields.length)
+    
+    if (fields.length < lessonsInsideSelectedRingsSchedule) {
+      setCanAddNewLessons(true)
+    } else {
+      setCanAddNewLessons(false)
+    }
+  }, [selectedRingsScheduleId, fields.length])
+
+
 	if (dayIndex >= 5) return null
 	
 	return (
-		<StyledComposeDay>
+		<StyledComposeDayForm>
 			<h2>{WeekDays.getFull()[dayIndex]}:</h2>
 
 			<div className="compose-day">
@@ -73,13 +98,13 @@ const ComposeDay: React.FC<IProps> = ({ dayIndex }) => {
 
 				<br />
 
-				{ fields.length < 9 &&
+				{ canAddNewLessons &&  fields.length < 9 &&
 					<GhostButton onClick={() => appendLessonId("undefined")}>
 						Добавить {fields.length + 1}-ую пару
 					</GhostButton>
 				}
 			</div>
-		</StyledComposeDay>
+		</StyledComposeDayForm>
 	)
 }
 
@@ -94,4 +119,4 @@ const RemoveFieldButton = ({index, remove}: IRemoveFieldButtonProps) => {
 	)
 }
 
-export default ComposeDay
+export default ComposeDayForm

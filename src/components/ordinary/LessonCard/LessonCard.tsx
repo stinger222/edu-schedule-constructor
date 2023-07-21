@@ -10,10 +10,10 @@ interface IProps {
 const LessonCard: React.FC<IProps> = ({ title, teacher, cabinet }) => {
 	return (
 		<StyledLessonCard className="lesson-card">
-			<h1>{ title }</h1>
+			<h1>{ title || "<Название пары не указано>" }</h1>
 			<footer>
-				<span>{ teacher }</span>
-				<span>каб. { cabinet }</span>
+				<span>{ teacher || "<Имя препода не указано>" }</span>
+				<span>каб. { cabinet || "???" }</span>
 			</footer>
 		</StyledLessonCard>
 	)
