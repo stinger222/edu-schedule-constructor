@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { StoreContext } from "../.."
 
 import { useForm, useFieldArray, FormProvider } from "react-hook-form"
-import { StyledAddRingsSchedule } from "./AddRingsSchedule.styled"
+import { StyledAddRingsSchedulePage } from "./AddRingsSchedulePage.styled"
 import { toJS } from "mobx"
 
 import Icon from "../../components/ordinary/Icon/Icon"
@@ -13,7 +13,7 @@ import Container from "../../components/containers/Container/Container"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 import { validateField } from "../../core/utils/stringUtils"
 
-const AddRingsSchedule = () => {
+const AddRingsSchedulePage = () => {
 
 	const { ringsSchedulesStore } = useContext(StoreContext)
 
@@ -42,7 +42,7 @@ const AddRingsSchedule = () => {
 	const { append, fields } = useFieldArray({control: methods.control, name: "rings"})
 
 	return (
-		<StyledAddRingsSchedule>
+		<StyledAddRingsSchedulePage>
 			<Container>
 				<Header>
 					<Header.NavHome/>
@@ -77,8 +77,8 @@ const AddRingsSchedule = () => {
 				</FormProvider>
 
 			</Container>
-		</StyledAddRingsSchedule>
+		</StyledAddRingsSchedulePage>
 	)
 }
 
-export default AddRingsSchedule
+export default AddRingsSchedulePage

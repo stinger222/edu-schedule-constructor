@@ -8,10 +8,10 @@ import { StoreContext } from "../.."
 import { useContext } from "react"
 import { ILesson } from "../../core/types/types"
 
-import { StyledAddLesson } from "./AddLesson.styled"
+import { StyledAddLessonPage } from "./AddLessonPage.styled"
 import { validateField } from "../../core/utils/stringUtils"
 
-const AddLesson = () => {
+const AddLessonPage = () => {
 	
 	const methods = useForm({defaultValues: {
 		title: "",
@@ -27,7 +27,7 @@ const AddLesson = () => {
 	}
 
 	return (
-		<StyledAddLesson>
+		<StyledAddLessonPage>
 			<Container>
 				<Header>
 					<Header.NavHome/>
@@ -72,8 +72,8 @@ const AddLesson = () => {
 					</form>
 				</FormProvider>
 			</Container>
-		</StyledAddLesson>
+		</StyledAddLessonPage>
 	)
 }
 
-export default AddLesson
+export default AddLessonPage

@@ -1,16 +1,17 @@
-import RingsCards from "../../components/wrappers/RingsCards/RingsCards"
+import { StyledRingsSchedulesPage } from "./RingsPage.styled"
+import { StoreContext } from "../.."
+import { useContext } from "react"
+
+import RingsCardsList from "../../components/wrappers/RingsCards/RingsCardsList"
 import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
-import { StyledRingsPage } from "./Rings.styled"
-import { useContext } from "react"
-import { StoreContext } from "../.."
 
-const Rings = () => {
+const RingsPage = () => {
 
 	const ringsSchedulesStore = useContext(StoreContext).ringsSchedulesStore
 
 	return (
-		<StyledRingsPage>
+		<StyledRingsSchedulesPage>
 			<Container>
 				<Header>
 					<Header.NavHome/>
@@ -18,14 +19,14 @@ const Rings = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-				<RingsCards
+				<RingsCardsList
 					ringsSchedules={ringsSchedulesStore.ringsSchedules}
 					removeSchedule={ringsSchedulesStore.removeSchedule.bind(ringsSchedulesStore)}
 				/>
 
 			</Container>
-		</StyledRingsPage>
+		</StyledRingsSchedulesPage>
 	)
 }
 
-export default Rings
+export default RingsPage

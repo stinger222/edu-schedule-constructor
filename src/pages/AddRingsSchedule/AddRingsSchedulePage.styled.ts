@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledAddRingsSchedule = styled.div`
+export const StyledAddRingsSchedulePage = styled.div`
 	& form {
 		padding-inline: 4em;
 		font-size: 1.2em;

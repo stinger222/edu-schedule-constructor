@@ -2,9 +2,9 @@ import Container from "../../components/containers/Container/Container"
 import LessonCard from "../../components/ordinary/LessonCard/LessonCard"
 import Timeline from "../../components/ordinary/Timeline/Timeline"
 import Header from "../../components/smart/Header/Header"
-import { StyledMainPage } from "./Main.styled"
+import { StyledMainPage } from "./MainPage.styled"
 
-const Main = () => {
+const MainPage = () => {
 	return (
 		<StyledMainPage>
 			<Container>
@@ -52,4 +52,4 @@ const Main = () => {
 	)
 }
 
-export default Main
+export default MainPage

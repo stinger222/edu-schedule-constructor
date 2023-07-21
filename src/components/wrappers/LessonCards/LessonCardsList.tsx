@@ -3,14 +3,14 @@ import { ILesson } from "../../../core/types/types"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
 import LessonCard from "../../ordinary/LessonCard/LessonCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
-import { StyledLessonCards } from "./LessonCards.styled"
+import { StyledLessonCardsList } from "./LessonCardsList.styled"
 
 interface IProps {
 	lessons: ILesson[]
 	removeLesson: (uid: string) => boolean 
 }
 
-const LessonCards: React.FC<IProps> = ({ lessons, removeLesson }) => {
+const LessonCardsList: React.FC<IProps> = ({ lessons, removeLesson }) => {
 	
 	const handleSwipe = (uid: string) => {
 		// console.log(window.confirm("Are you sure?") ? "Done 👌" : "¯\\_(ツ)_/¯")
@@ -18,7 +18,7 @@ const LessonCards: React.FC<IProps> = ({ lessons, removeLesson }) => {
 	}
 
 	return (
-		<StyledLessonCards className="lesson-cards">
+		<StyledLessonCardsList className="lesson-cards">
 
 			{ lessons.length === 0 &&
 				<h2 style={{textAlign: "center", fontWeight: 400}}>
@@ -41,8 +41,8 @@ const LessonCards: React.FC<IProps> = ({ lessons, removeLesson }) => {
 			<Link to="/add/lesson">
 				<GhostButton> Добавить предмет <span className="plus">+</span></GhostButton>
 			</Link>
-		</StyledLessonCards>
+		</StyledLessonCardsList>
 	)
 }
 
-export default LessonCards
+export default LessonCardsList

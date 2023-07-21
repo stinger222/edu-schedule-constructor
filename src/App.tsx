@@ -1,26 +1,26 @@
 import { Route, Routes } from "react-router-dom"
 
-import Main from "./pages/Main/Main"
-import Lessons from "./pages/Lessons/Lessons"
-import Rings from "./pages/RingsSchedules/Rings"
-import Composed from "./pages/ComposedSchedules/Composed"
+import MainPage from "./pages/Main/MainPage"
+import LessonsPage from "./pages/Lessons/LessonsPage"
+import RingsPage from "./pages/RingsSchedules/RingsPage"
+import ComposedSchedulesPage from "./pages/ComposedSchedules/ComposedSchedulesPage"
 
-import AddLesson from "./pages/AddLesson/AddLesson"
-import AddRingsSchedule from "./pages/AddRingsSchedule/AddRingsSchedule"
-import AddComposedSchedule from "./pages/AddComposedSchedule/AddComposedSchedule"
+import AddLessonPage from "./pages/AddLesson/AddLessonPage"
+import AddRingsSchedulePage from "./pages/AddRingsSchedule/AddRingsSchedulePage"
+import AddComposedSchedulePage from "./pages/AddComposedSchedule/AddComposedSchedulePage"
 
 const App = () => {
 	return (
 		<Routes>
-			<Route path="/" element={<Main />} />
-			<Route path="/composed" element={<Composed />} />
-			<Route path="/lessons" element={<Lessons />} />
-			<Route path="/rings" element={<Rings />} />
+			<Route path="/" element={<MainPage />} />
+			<Route path="/composed" element={<ComposedSchedulesPage />} />
+			<Route path="/lessons" element={<LessonsPage />} />
+			<Route path="/rings" element={<RingsPage />} />
 
 			<Route path="/add">
-				<Route path="rings" element={<AddRingsSchedule />} />
-				<Route path="lesson" element={<AddLesson />} />
-				<Route path="composed" element={<AddComposedSchedule />} />
+				<Route path="rings" element={<AddRingsSchedulePage />} />
+				<Route path="lesson" element={<AddLessonPage />} />
+				<Route path="composed" element={<AddComposedSchedulePage />} />
 			</Route>
 		</Routes>
 	)

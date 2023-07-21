@@ -1,12 +1,12 @@
-import LessonCards from "../../components/wrappers/LessonCards/LessonCards"
+import LessonCardsList from "../../components/wrappers/LessonCards/LessonCardsList"
 import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
-import { StyledLessonsPage } from "./Lessons.styled"
+import { StyledLessonsPage } from "./LessonsPage.styled"
 import { useContext } from "react"
 import { StoreContext } from "../.."
 import { observer } from "mobx-react"
 
-const Lessons = () => {
+const LessonsPage = () => {
 
 	const lessonsStore = useContext(StoreContext).lessonsStore
 
@@ -20,7 +20,7 @@ const Lessons = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-				<LessonCards 
+				<LessonCardsList 
 					lessons={lessonsStore.lessons}
 					removeLesson={lessonsStore.removeLesson.bind(lessonsStore)}/>
 
@@ -29,4 +29,4 @@ const Lessons = () => {
 	)
 }
 
-export default observer(Lessons)
+export default observer(LessonsPage)

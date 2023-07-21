@@ -9,24 +9,23 @@ import { LightTheme } from "./core/themes/Light"
 import { ThemeProvider } from "styled-components"
 import { Provider as StoreProvider } from "mobx-react"
 
-
 const rootStore = new RootStore()
 export const StoreContext = React.createContext<typeof rootStore>(rootStore)
 
 const rootElement = document.getElementById("root")
 
 if (rootElement) {
-	const root = ReactDOM.createRoot(rootElement)
+  const root = ReactDOM.createRoot(rootElement)
 
-	root.render(
-		<StoreProvider value={rootStore}>
-			{/* <ThemeProvider theme={LightTheme}> */}
-			<ThemeProvider theme={DarkTheme}>
-				<HashRouter>
-					<App />
-				</HashRouter>
-				<GlobalStyles />
-			</ThemeProvider>
-		</StoreProvider>
-	)
+  root.render(
+    <StoreProvider value={rootStore}>
+      <ThemeProvider theme={LightTheme}>
+        {/* <ThemeProvider theme={DarkTheme}> */}
+        <HashRouter>
+          <App />
+        </HashRouter>
+        <GlobalStyles />
+      </ThemeProvider>
+    </StoreProvider>
+  )
 }

@@ -44,6 +44,10 @@ export const StyledSelect = styled(MantineSelect)`
 			font-weight: 200;
 		}
 		
+		& .mantine-Select-dropdown .mantine-Select-item:nth-child(2n+1) {
+			filter: brightness(0.9);
+		}
+
 		& .mantine-Select-dropdown .mantine-Select-item:not(
 			& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"]
 		) {
@@ -57,7 +61,7 @@ export const StyledSelect = styled(MantineSelect)`
 		}
 
 		& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"] {
-			background:  ${({theme}) => theme.colors.primary}CC;
+			background: ${({theme}) => theme.colors.primary}CC;
 			color: "#FFFFFF";
 		}
 

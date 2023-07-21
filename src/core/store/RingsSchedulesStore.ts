@@ -34,7 +34,7 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 	}
 
 	restoreState(): void {
-		this.ringsSchedules = JSON.parse(localStorage.getItem(this.storageKey) ?? `[]`)
+		this.ringsSchedules = JSON.parse(localStorage.getItem(this.storageKey) || `[]`)
 	}
 
 	addSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">, uid?: string): void {

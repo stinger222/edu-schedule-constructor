@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledRingsPage = styled.div`
+export const StyledRingsSchedulesPage = styled.div`
 	@media(max-width: 500px) {
 		& .rings-cards {
 			font-size: 1.1em
