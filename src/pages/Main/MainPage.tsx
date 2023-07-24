@@ -1,10 +1,18 @@
-import Container from "../../components/containers/Container/Container"
-import LessonCard from "../../components/ordinary/LessonCard/LessonCard"
-import Timeline from "../../components/ordinary/Timeline/Timeline"
 import Header from "../../components/smart/Header/Header"
+import Container from "../../components/containers/Container/Container"
+import ScheduleItemsList from "../../components/smart/ScheduleItemsList/ScheduleItemsList"
+import ErrorFallback from "../../components/ordinary/ErrorFallback/ErrorFallback"
+import { ErrorBoundary } from "react-error-boundary"
+
 import { StyledMainPage } from "./MainPage.styled"
+import { useContext } from "react"
+import { StoreContext } from "../.."
+import { observer } from "mobx-react"
 
 const MainPage = () => {
+  
+  const { uiStore } = useContext(StoreContext)
+
 	return (
 		<StyledMainPage>
 			<Container>
@@ -12,44 +20,14 @@ const MainPage = () => {
 					<Header.NavBar/>
 					<Header.BurgerButton/>
 				</Header>
-				
-				<div className="schedule-item">
-					<Timeline
-						startTime="10:30"
-						endTime="9:50"
-					/>
-					<LessonCard
-						teacher=" "
-						cabinet=" "
-						title=" "
-					/>
-				</div>
-				<div className="schedule-item">
-					<Timeline
-						startTime="8:30"
-						endTime="9:50"
-						active
-					/>
-					<LessonCard
-						teacher="Some name"
-						cabinet=""
-						title="Some title"
-					/>
-				</div>
-				<div className="schedule-item">
-					<Timeline
-						startTime="8:30"
-						endTime="9:50"
-					/>
-					<LessonCard
-						teacher=" "
-						cabinet="101г"
-						title="Some really really really really reeeeeeally long title"
-					/>
-				</div>
+
+       <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex]}>
+          <ScheduleItemsList />
+       </ErrorBoundary>
+
 			</Container>
 		</StyledMainPage>
 	)
 }
 
-export default MainPage
+export default observer(MainPage)

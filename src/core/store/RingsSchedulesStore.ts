@@ -5,23 +5,7 @@ import { makeAutoObservable, toJS } from "mobx"
 import { capitalize } from "../utils/stringUtils"
 
 class RingsSchedulesStore implements IRingsSchedulesStore {
-	ringsSchedules: IRingsSchedule[] = [
-		{
-			name: "Example Rings Schedule #1",
-			rings: [{start: "08:00", end:"09:00"}],
-			uid: "gdf4-2s39"
-		},
-		{
-			name: "Some loong schedule",
-			rings: [
-				{start: "08:00", end:"09:00"},
-				{start: "10:00", end:"11:00"},
-				{start: "12:00", end:"13:00"},
-				{start: "14:00", end:"15:00"}
-			],
-			uid: "f03h-9f73"
-		}
-	]
+	ringsSchedules: IRingsSchedule[] = []
 	storageKey: string = "rings"
 
 	constructor() {
@@ -73,6 +57,10 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 		console.log("Schedule updated successfully.")
 		return true
 	}
+
+  findById(uid: string): IRingsSchedule | undefined {
+    return this.ringsSchedules.find(s => s.uid === uid)
+  }
 }
 
 export default RingsSchedulesStore

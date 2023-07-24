@@ -19,14 +19,15 @@ export interface ILessonsStore extends IStoreable {
 	addLesson(newLesson: Omit<ILesson, "uid">): void,
 	removeLesson(uid: string): boolean,
 	updateLesson(uid: string, newLesson: Omit<ILesson, "uid">): void
-	restoreState(): void
+  findById(uid: string): ILesson | undefined
 }
 
 
 export interface IRingsSchedulesStore extends IStoreable {
 	ringsSchedules: IRingsSchedule[],
 	addSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">): void,
-	removeSchedule(uid: string): boolean
+	removeSchedule(uid: string): boolean,
+  findById(uid: string): IRingsSchedule | undefined
 }
 
 export interface IComposedSchedulesStore extends IStoreable {

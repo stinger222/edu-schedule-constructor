@@ -81,6 +81,10 @@ class LessonsStore implements ILessonsStore {
     console.log("Lesson modified successfully.")
     return true
   }
+
+  findById(uid: string): ILesson | undefined {
+    return this._lessons.find(l => l.uid === uid)
+  }
 }
 
 export default LessonsStore
