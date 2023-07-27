@@ -13,10 +13,19 @@ const ErrorFallback: React.FC<IProps> = ({ error }) => {
   return (
     <StyledErrorFallback>
       <Container>
-        {isWarning ? <WarningLayout warning={error} /> : <ErrorLayout error={error}/>}
+        {isWarning ? <WarningLayout warning={error} /> : <ErrorLayout error={error} />}
       </Container>
     </StyledErrorFallback>
   )
+}
+
+const WarningLayout = ({ warning }: { warning: Warning }) => {
+  return <>
+    <h1 className="warning-header header">Warning!</h1>
+    <div className="warning-message-wrapper message-wrapper">
+      <pre className="warning-message message">{warning.message}</pre>
+    </div>
+  </>
 }
 
 const ErrorLayout: React.FC<IProps>= ({ error }) => {
@@ -24,15 +33,6 @@ const ErrorLayout: React.FC<IProps>= ({ error }) => {
     <h1 className="error-header header">An Error occurred</h1>
     <div className="error-message-wrapper message-wrapper">
       <pre className="error-message message">{error.message}</pre>
-    </div>
-  </>
-}
-
-const WarningLayout = ({ warning }: {warning: Warning}) => {
-  return <>
-    <h1 className="warning-header header">Warning!</h1>
-    <div className="warning-message-wrapper message-wrapper">
-      <pre className="warning-message message">{warning.message}</pre>
     </div>
   </>
 }

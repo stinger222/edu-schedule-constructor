@@ -2,7 +2,7 @@ import { StyledRingsSchedulesPage } from "./RingsPage.styled"
 import { StoreContext } from "../.."
 import { useContext } from "react"
 
-import RingsCardsList from "../../components/wrappers/RingsCards/RingsCardsList"
+import RingsCardsList from "../../components/wrappers/RingsCardsList/RingsCardsList"
 import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
 

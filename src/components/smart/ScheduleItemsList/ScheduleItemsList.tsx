@@ -13,7 +13,7 @@ const ScheduleItemsList = () => {
 
   const stores = useContext(StoreContext)
 
-  const activeComposedSchedule = stores.composedSchedulesStore.composedSchedules[2] // uiStore.activeComposedSchID
+  const activeComposedSchedule = stores.composedSchedulesStore.composedSchedules[1] // uiStore.activeComposedSchID
   const selectedDayIndex = stores.uiStore.selectedDayIndex
 
   const [lessons, ringsSchedule] = getDataForSelectedDay(activeComposedSchedule, selectedDayIndex, stores)
@@ -21,8 +21,8 @@ const ScheduleItemsList = () => {
   return (
     <div>
       {lessons.map((lesson: ILesson, index: number) => (
-        <div className="schedule-item" key={lesson.uid}>
-          
+        <div className="schedule-item" key={Math.random()}>
+
           <Timeline
             startTime={ringsSchedule.rings[index].start}
             endTime={ringsSchedule.rings[index].end}
@@ -72,7 +72,7 @@ const getDataForSelectedDay = (
   const ringsScheduleForSelectedDay = stores.ringsSchedulesStore.findById(ringsScheduleIdForSelectedDay)
 
   if (!ringsScheduleForSelectedDay) {
-    throw new Error(`This day in "${activeComposedSchedule.name}" composed schedule is refering to rings schedule that was deleted!\n\nTo fix that, change rings schedule for this day in "${activeComposedSchedule.name}" composed schedule to existing one.\n\nYou can to that by swiping mentioned composed schedule card to the rigth in:\nMenu > Composed Schedules`)
+    throw new Error(`This day in "${activeComposedSchedule.name}" composed schedule is refering to rings schedule that was deleted!\n\nTo fix that, change rings schedule for this day in "${activeComposedSchedule.name}" composed schedule to existing one.\n\nYou can to that by swiping mentioned composed schedule card to the right in:\nMenu > Composed Schedules`)
   }
 
   const lessonIdsForSelectedDay = activeComposedSchedule.days[selectedDayIndex].lessonIds

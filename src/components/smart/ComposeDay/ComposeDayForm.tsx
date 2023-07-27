@@ -1,14 +1,15 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
+import { UseFieldArrayRemove, useFieldArray, useFormContext } from "react-hook-form"
 import { StoreContext } from "../../.."
-import { useFieldArray, UseFieldArrayRemove, useFormContext } from "react-hook-form"
 
-import GhostButton from "../../ui/GhostButton/GhostButton"
 import SelectContainer from "../../containers/SelectContainer/SelectContainer"
+import GhostButton from "../../ui/GhostButton/GhostButton"
 import { StyledComposeDayForm } from "./ComposeDayForm.styled"
 
+import { ILessonsStore, IRingsSchedulesStore } from "../../../core/types/store"
 import { IRingsSchedule } from "../../../core/types/types"
-import { WeekDays } from "../../../core/utils/dateTimeUtils"
 import { validateField } from "../../../core/utils/stringUtils"
+import { WeekDays } from "../../../core/utils/dateTimeUtils"
 
 
 interface IProps {
@@ -17,51 +18,30 @@ interface IProps {
 
 const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 
-  const methods = useFormContext()
+  const [canAddNewLessons, setCanAddNewLessons] = useState(false)
 	const { lessonsStore, ringsSchedulesStore } = useContext(StoreContext)
-
-  const selectedRingsScheduleId: string = methods.watch(`days.${dayIndex}.ringsScheduleId`)
-	
+  
+  const methods = useFormContext()
   const { fields, append: appendLessonId, remove: removeLessonId } = useFieldArray({
     control: methods.control, name: `days.${dayIndex}.lessonIds`
   })
 
-  const [canAddNewLessons, setCanAddNewLessons] = useState(false)
-	
-	const ringsSchedulesSelectData = ringsSchedulesStore.ringsSchedules
-		.map((schedule: IRingsSchedule) => {
-			return {
-				label: schedule.name, value: schedule.uid
-			}
-		})
+  const selectedRingsScheduleId: string = methods.watch(`days.${dayIndex}.ringsScheduleId`)
 
-	const lessonsSelectData = lessonsStore._lessons
-		.map((lesson) => {
-			return {
-				label: lesson.title, value: lesson.uid
-			}
-		})
-
-
+  // Prevents user from adding more lessons that described in selected rings schedule.
   useEffect(() => {
     const selectedRingsSchedule = ringsSchedulesStore.ringsSchedules.find(s => (
       s.uid === selectedRingsScheduleId
     ))
 
-    
-    
-    const lessonsInsideSelectedRingsSchedule = selectedRingsSchedule?.rings?.length || 1
+    const ringsInSelectedRingsSchedule = selectedRingsSchedule?.rings?.length || 1
 
-    console.log("lessonsInsideSelectedRingsSchedule", lessonsInsideSelectedRingsSchedule)
-    console.log("fields.length", fields.length)
-    
-    if (fields.length < lessonsInsideSelectedRingsSchedule) {
+    if (fields.length < ringsInSelectedRingsSchedule) {
       setCanAddNewLessons(true)
     } else {
       setCanAddNewLessons(false)
     }
-  }, [selectedRingsScheduleId, fields.length])
-
+  }, [selectedRingsScheduleId, fields.length]) // On new rings schedule selet or addition of new lesson. 
 
 	if (dayIndex >= 5) return null
 	
@@ -75,7 +55,7 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 					name={`days.${dayIndex}.ringsScheduleId`}
 					rules={{validate: validateField}}
 					label="Расписание звонков для этого дня"
-					data={ringsSchedulesSelectData}
+					data={getRingsSchedulesSelectData(ringsSchedulesStore)}
 				/>
 
 				<div className="hr-divider"></div>
@@ -91,7 +71,7 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 							name={`days.${dayIndex}.lessonIds.${index}`}
 							rules={{validate: validateField}}
 							label={`${index + 1}-ая пара`}
-							data={lessonsSelectData}
+							data={getLessonsSelectData(lessonsStore)}
 						/>
 					))
 				}
@@ -108,15 +88,31 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 	)
 }
 
+export default ComposeDayForm
+
+
 interface IRemoveFieldButtonProps {
   index: number;
   remove: UseFieldArrayRemove;
 }
 
-const RemoveFieldButton = ({index, remove}: IRemoveFieldButtonProps) => {
+const RemoveFieldButton = ({ index, remove }: IRemoveFieldButtonProps) => {
 	return (
 		<button className="btn custom-select-clear" onClick={() => remove(index)}>×</button>
 	)
 }
 
-export default ComposeDayForm
+
+// Takes necessary data from the store, and returns it in the format that Mantine Select component demand
+const getRingsSchedulesSelectData = (ringsSchedulesStore: IRingsSchedulesStore) => {
+  return ringsSchedulesStore.ringsSchedules.map((schedule: IRingsSchedule) => ({
+      label: schedule.name, value: schedule.uid
+  }))
+}
+
+// Same shit. And yes, I have no idea how to make it look better, sry
+const getLessonsSelectData = (lessonsStore: ILessonsStore) => {
+  return lessonsStore._lessons.map((lesson) => ({
+      label: lesson.title, value: lesson.uid
+  }))
+}
