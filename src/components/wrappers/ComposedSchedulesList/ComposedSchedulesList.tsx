@@ -1,17 +1,20 @@
-import { StyledComposedSchedulesList } from "./ComposedSchedulesList.styles"
-import { Link } from "react-router-dom"
-import GhostButton from "../../ui/GhostButton/GhostButton"
-import ComposedSchedule from "../../smart/ComposedSchedule/ComposedSchedule"
-import { IComposedSchedule } from "../../../core/types/types"
 import { observer } from "mobx-react"
+import { Link } from "react-router-dom"
+
+import { IComposedSchedule } from "../../../core/types/types"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
+import ComposedSchedule from "../../smart/ComposedSchedule/ComposedSchedule"
+import GhostButton from "../../ui/GhostButton/GhostButton"
+
+import { StyledComposedSchedulesList } from "./ComposedSchedulesList.styles"
 
 interface IProps {
   composedSchedules: IComposedSchedule[]
   removeSchedule: (uid: string) => boolean
+  editSchedule: (uid: string) => void
 }
 
-const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSchedule }) => {
+const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSchedule, editSchedule }) => {
   return (
     <StyledComposedSchedulesList className="composed-schedules-list">
       {composedSchedules.length === 0 && (
@@ -20,7 +23,7 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
 
       {composedSchedules.map((schedule) => (
         <SwipeToAction
-          onSwipe={() => removeSchedule(schedule.uid)}
+          onSwipe={() => editSchedule(schedule.uid)}
           key={schedule.uid}
         >
           <ComposedSchedule

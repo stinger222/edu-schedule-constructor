@@ -1,4 +1,5 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
+import { useLocation } from "react-router-dom"
 import { StoreContext } from "../.."
 import { Cases, IComposedSchedule } from "../../core/types/types"
 import { StyledAddComposedSchedulePage } from "./AddComposedSchedulePage.styled"
@@ -23,10 +24,13 @@ const AddComposedSchedulePage = () => {
     },
     shouldFocusError: false
   })
-
+  
   const { fields, append } = useFieldArray({ control: methods.control, name: "days" })
 
   const { composedSchedulesStore } = useContext(StoreContext)
+
+  const routeState = useLocation().state
+
 
   const handleSubmit = (formData: Omit<IComposedSchedule, "uid">) => {
     composedSchedulesStore.addSchedule(formData)
@@ -34,6 +38,18 @@ const AddComposedSchedulePage = () => {
 
     methods.reset()
   }
+
+  useEffect(() => {
+    if (routeState && routeState.mode === "edit") {
+      const scheduleToEdit = JSON.parse(localStorage.getItem("composed-schedules") || "null")
+        .find((schedule: IComposedSchedule) => {
+          return schedule.uid === routeState.uid
+        })
+      console.log(scheduleToEdit)
+      
+      methods.reset(scheduleToEdit)
+    }
+  }, [])
 
   return (
     <StyledAddComposedSchedulePage>

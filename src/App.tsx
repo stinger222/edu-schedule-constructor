@@ -18,9 +18,9 @@ const App = () => {
 			<Route path="/rings" element={<RingsPage />} />
 
 			<Route path="/add">
-				<Route path="rings" element={<AddRingsSchedulePage />} />
-				<Route path="lesson" element={<AddLessonPage />} />
 				<Route path="composed" element={<AddComposedSchedulePage />} />
+				<Route path="lesson" element={<AddLessonPage />} />
+				<Route path="rings" element={<AddRingsSchedulePage />} />
 			</Route>
 		</Routes>
 	)
