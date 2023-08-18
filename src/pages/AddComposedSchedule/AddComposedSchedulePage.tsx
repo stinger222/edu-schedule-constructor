@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { StoreContext } from "../.."
 import { Cases, IComposedSchedule } from "../../core/types/types"
 import { StyledAddComposedSchedulePage } from "./AddComposedSchedulePage.styled"
@@ -12,17 +12,17 @@ import Container from "../../components/containers/Container/Container"
 import ComposeDayForm from "../../components/smart/ComposeDay/ComposeDayForm"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
-import { toJS } from "mobx"
 import { WeekDays } from "../../core/utils/dateTimeUtils"
 import { validateField } from "../../core/utils/stringUtils"
 
 const AddComposedSchedulePage = () => {
+  const navigate = useNavigate()
+
   const methods = useForm({
     defaultValues: {
       name: "",
       days: [{ ringsScheduleId: "", lessonIds: ["undefined"] }]
-    },
-    shouldFocusError: false
+    }
   })
   
   const { fields, append } = useFieldArray({ control: methods.control, name: "days" })
@@ -31,23 +31,27 @@ const AddComposedSchedulePage = () => {
 
   const routeState = useLocation().state
 
-
   const handleSubmit = (formData: Omit<IComposedSchedule, "uid">) => {
-    composedSchedulesStore.addSchedule(formData)
-    console.log(toJS(composedSchedulesStore.composedSchedules))
-
+    if (routeState?.mode === "edit") {
+      composedSchedulesStore.removeSchedule(routeState.uid)
+      composedSchedulesStore.addSchedule(formData, routeState.uid)
+    } else {
+      composedSchedulesStore.addSchedule(formData)
+    }
+    
     methods.reset()
+    navigate(-1)
   }
 
   useEffect(() => {
-    if (routeState && routeState.mode === "edit") {
-      const scheduleToEdit = JSON.parse(localStorage.getItem("composed-schedules") || "null")
+    if (routeState?.mode === "edit") {
+      const scheduleToEdit = composedSchedulesStore.composedSchedules
         .find((schedule: IComposedSchedule) => {
           return schedule.uid === routeState.uid
         })
-      console.log(scheduleToEdit)
-      
+
       methods.reset(scheduleToEdit)
+      methods.trigger()
     }
   }, [])
 

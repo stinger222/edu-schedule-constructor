@@ -7,6 +7,7 @@ import ComposedSchedule from "../../smart/ComposedSchedule/ComposedSchedule"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
 import { StyledComposedSchedulesList } from "./ComposedSchedulesList.styles"
+import { lableConfigs } from "../../../core/constants/constants"
 
 interface IProps {
   composedSchedules: IComposedSchedule[]
@@ -15,6 +16,12 @@ interface IProps {
 }
 
 const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSchedule, editSchedule }) => {
+
+  const handleRemove = (uid: string) => {
+    if (!window.confirm("Are you sure?")) return
+    removeSchedule(uid)
+  }
+
   return (
     <StyledComposedSchedulesList className="composed-schedules-list">
       {composedSchedules.length === 0 && (
@@ -23,7 +30,9 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
 
       {composedSchedules.map((schedule) => (
         <SwipeToAction
-          onSwipe={() => editSchedule(schedule.uid)}
+          onRightSwipe={() => editSchedule(schedule.uid)}
+          onLeftSwipe={() => handleRemove(schedule.uid)}
+          lableConfig={lableConfigs.EDIT_DELETE}
           key={schedule.uid}
         >
           <ComposedSchedule

@@ -32,6 +32,6 @@ export interface IRingsSchedulesStore extends IStoreable {
 
 export interface IComposedSchedulesStore extends IStoreable {
 	composedSchedules: IComposedSchedule[],
-	addSchedule(newSchedule: Omit<IComposedSchedule, "uid">): void,
+	addSchedule(newSchedule: Omit<IComposedSchedule, "uid">,  uid?: string): void,
 	removeSchedule(uid: string): boolean
 }

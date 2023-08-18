@@ -6,14 +6,21 @@ import { StyledRingsCardsList } from "./RingsCardsList.styled"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
 import RingsScheduleCard from "../../ordinary/RingsScheduleCard/RingsScheduleCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
+import { lableConfigs } from "../../../core/constants/constants"
 
 interface IProps {
 	ringsSchedules: IRingsSchedule[],
 	removeSchedule: (uid: string) => boolean
 }
 
-const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) => (
-  <StyledRingsCardsList className="rings-cards">
+const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) => {
+ 
+  const handleRemove = (uid: string) => {
+    if (!window.confirm("Are you sure?")) return
+    removeSchedule(uid)
+  }
+return (
+    <StyledRingsCardsList className="rings-cards">
 
     {	ringsSchedules?.length === 0 &&
       <h2 style={{textAlign: "center", fontWeight: 400}}>
@@ -23,13 +30,16 @@ const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) =>
 
     {
       ringsSchedules.map(({rings, name, uid}) => (
-        <SwipeToAction onSwipe={() => removeSchedule(uid)} key={uid}>
+        <SwipeToAction
+          onLeftSwipe={() => handleRemove(uid)}
+          lableConfig={lableConfigs.EDIT_DELETE}
+          key={uid}
+        >
           <RingsScheduleCard
             start={rings[0].start}
             end={rings[rings.length-1].end}
             length={rings.length}
             name={name}
-            
           />
         </SwipeToAction>
       ))
@@ -39,6 +49,7 @@ const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) =>
       <GhostButton>Добавить расписание звонков <span className="plus">+</span></GhostButton>
     </Link>
   </StyledRingsCardsList>
-)
+  )
+}
 
 export default observer(RingsCardsList)

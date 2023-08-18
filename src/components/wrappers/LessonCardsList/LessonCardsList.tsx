@@ -4,6 +4,7 @@ import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
 import LessonCard from "../../ordinary/LessonCard/LessonCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 import { StyledLessonCardsList } from "./LessonCardsList.styled"
+import { lableConfigs } from "../../../core/constants/constants"
 
 interface IProps {
 	lessons: ILesson[]
@@ -12,8 +13,8 @@ interface IProps {
 
 const LessonCardsList: React.FC<IProps> = ({ lessons, removeLesson }) => {
 	
-	const handleSwipe = (uid: string) => {
-		// console.log(window.confirm("Are you sure?") ? "Done 👌" : "¯\\_(ツ)_/¯")
+	const handleRemove = (uid: string) => {
+		if (!window.confirm("Are you sure?")) return
 		removeLesson(uid)
 	}
 
@@ -28,7 +29,10 @@ const LessonCardsList: React.FC<IProps> = ({ lessons, removeLesson }) => {
 
 			{
 				lessons.map(lesson => (
-					<SwipeToAction onSwipe={() => handleSwipe(lesson.uid)} key={lesson.uid}>
+					<SwipeToAction
+            onLeftSwipe={() => handleRemove(lesson.uid)} key={lesson.uid}
+            lableConfig={lableConfigs.EDIT_DELETE}
+          >
 						<LessonCard 
 							cabinet={lesson.cabinet}
 							teacher={lesson.teacher}

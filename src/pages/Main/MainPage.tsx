@@ -8,7 +8,7 @@ import { StyledMainPage } from "./MainPage.styled"
 import { useContext } from "react"
 import { StoreContext } from "../.."
 import { observer } from "mobx-react"
-import { Link } from "react-router-dom"
+
 
 const MainPage = () => {
   
@@ -21,8 +21,7 @@ const MainPage = () => {
 					<Header.NavBar/>
 					<Header.BurgerButton/>
 				</Header>
-        <Link to={"/add/composed"} state={{mode: "edit", uidToEdit: ""}}>Hello</Link>
-
+        
        <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex]}>
           <ScheduleItemsList />
        </ErrorBoundary>
