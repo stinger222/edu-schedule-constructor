@@ -1,4 +1,33 @@
-export const SWIPE_BOUND_PROCENTAGE = 25
+export const SWIPE_BOUND_PROCENTAGE = 20
+
+export interface ILableConfig {
+  left:  {
+    caption: string,
+    color: string
+  },
+  right: {
+    caption: string,
+    color: string
+  }
+}
+
+export interface ILableConfigs {
+  EDIT_DELETE: ILableConfig
+}
+
+export const lableConfigs = {
+  EDIT_DELETE: {
+    left: {
+      caption: "Edit?",
+      color: "#265ce8"
+    },
+    right: {
+      caption: "Delete?",
+      color: "#e82626"
+    }
+  }
+}
+
 export const LS_KEY = "cum"
 export const MOCK_LESSONS = [
 	{

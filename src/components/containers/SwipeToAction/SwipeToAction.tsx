@@ -3,21 +3,22 @@ import { ReactNode, useState } from "react"
 import { useSpring, animated } from "@react-spring/web"
 
 import { StyledSwipeToAction } from "./SwipeToAction.styled"
-import { SWIPE_BOUND_PROCENTAGE } from "../../../core/constants/constants"
+import { ILableConfig, SWIPE_BOUND_PROCENTAGE } from "../../../core/constants/constants"
 
 interface IProps {
 	children: ReactNode,
-	onSwipe: () => void,
-	confirm?: boolean
+	onLeftSwipe?: () => void,
+	onRightSwipe?: () => void,
+  lableConfig: ILableConfig
 }
 
-const SwipeToAction: React.FC<IProps> = ({ children, onSwipe }) => {
+const SwipeToAction: React.FC<IProps> = ({ children, onLeftSwipe, onRightSwipe, lableConfig }) => {
 	const [containerRef, setContainerRef] = useState<any>(null)
-	const wrapperRef = (node: any) => {
+	const wrapperRef = (node: HTMLDivElement | null) => {
 		setContainerRef(node)
 	}
 
-	const [{x, opacity}, api] = useSpring(() => ({
+	const [{ x }, api] = useSpring(() => ({
 		from: {
 			x: 0, opacity: 1
 		},
@@ -29,25 +30,38 @@ const SwipeToAction: React.FC<IProps> = ({ children, onSwipe }) => {
 	const bind = useDrag(({active, movement, last, _bounds}) => {
 		api.start({
 			to: {
-				x: active ? movement[0]: 0,
-				opacity: active ? 1 - (movement[0] / _bounds[0][0]) / 1.3 : 1
+				x: active ? movement[0]: 0
 			}
 		})
-		
-		// if swiped far enough
-		if (last && movement[0] < (_bounds[0][0] + 2)) onSwipe()
+
+    // If swiped far enough and released...
+    if (last && (movement[0] < 0 && movement[0] < _bounds[0][0] + 2)) onLeftSwipe?.()
+    if (last && (movement[0] > 0 && movement[0] > Math.abs(_bounds[0][0]) - 2)) onRightSwipe?.()
+    
 	}, {
-		bounds: {
-			left: -containerRef?.offsetWidth / 100 * SWIPE_BOUND_PROCENTAGE, right: 0
+		bounds: { // Prevents swiping if corresponding function is not provided
+			left: onLeftSwipe ? -containerRef?.offsetWidth / 100 * SWIPE_BOUND_PROCENTAGE : 0,
+      right: onRightSwipe ? containerRef?.offsetWidth / 100 * SWIPE_BOUND_PROCENTAGE : 0
 		}, axis: "x"
 	})
 
 	return (
 		<StyledSwipeToAction className="swipe-action-wrapper" {...bind()} ref={wrapperRef}>
-			<animated.div className="animated-wrapper" style={{ x, opacity, touchAction: "pan-y" }}>
+			<animated.div className="animated-wrapper" style={{ x, touchAction: "pan-y" }}>
 				{children}
 			</animated.div>
-			<div className="action-label">Delete?</div>
+
+			{onRightSwipe && 
+        <div className="left-action-label action-label" style={{background: lableConfig.left.color}}>
+          {lableConfig.left.caption}
+        </div>
+      }
+			{onLeftSwipe &&
+        <div className="right-action-label action-label" style={{background: lableConfig.right.color}}>
+          {lableConfig.right.caption}
+        </div>
+      }
+
 		</StyledSwipeToAction>
 	)
 }
