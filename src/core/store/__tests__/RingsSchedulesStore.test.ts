@@ -14,6 +14,7 @@ describe("Testing RingsSchedulesStore", () => {
 				{start: "11:00", end: "12:00"}
 			]
 		}, "some-uid-1")
+
 		expect(ringsSchedulesStore.ringsSchedules).toHaveLength(1)
 		expect(ringsSchedulesStore.ringsSchedules[0]).toEqual({
 			name: "New schedule 1",

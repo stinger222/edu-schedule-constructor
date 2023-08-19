@@ -56,14 +56,16 @@ describe("Testing ComposedSchedulesStore", () => {
 
 	it("Tests removeSchedule action", () => {
 		const composedSchedulesStore = new ComposedSchedulesStore()
-
+    expect(composedSchedulesStore.composedSchedules).toHaveLength(0)
+    
 		composedSchedulesStore.addSchedule({
-			name: "New composed schedule 1",
+      name: "New composed schedule 1",
 			days: [
-				{lessonIds: ["l-id-1", "l-id-2"], ringsScheduleId: "r-id-1"},
+        {lessonIds: ["l-id-1", "l-id-2"], ringsScheduleId: "r-id-1"},
 				{lessonIds: ["l-id-3", "l-id-1"], ringsScheduleId: "r-id-2"}
 			]
 		}, "new-uid-1")
+    expect(composedSchedulesStore.composedSchedules).toHaveLength(1)
 
 		// Try removing non-existing schedule
 		let removedSuccessfully: boolean | null = composedSchedulesStore.removeSchedule("some-non-existing-uid")

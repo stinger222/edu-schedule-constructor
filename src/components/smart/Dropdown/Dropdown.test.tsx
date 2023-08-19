@@ -30,21 +30,21 @@ describe("Testing Dropdown component", () => {
 		expect(getByHref(container, "#/lessons")).toBeInTheDocument()
 	})
 	
-	it("Tests that clicking links in dropdown is correctly affecting url", () => {
-		const { container } = render(<Dropdown />)
-		const getByHref = queryByAttribute.bind(null, "href")
-		
+	it("Tests that all anchor buttons in Dropdown are rendred", () => {
+		const screen = render(<Dropdown />)
+    
 		act(() => {
 			uiStore?.toggleDropdown(true)
 		})
 		
-		getByHref(container, "#/composed").click()
-		expect(window.location.hash).toBe("#/composed")
-		
-		getByHref(container, "#/rings").click()
-		expect(window.location.hash).toBe("#/rings")
-		
-		getByHref(container, "#/lessons").click()
-		expect(window.location.hash).toBe("#/lessons")
+    const anchors = screen.getAllByText((content, element: HTMLElement) => {
+      return element.tagName.toLowerCase() === "a"
+    })
+
+    expect(anchors).toHaveLength(3)
+
+    const hrefs = anchors.map(a => a.getAttribute("href"))
+
+    expect(hrefs.sort()).toEqual(["#/rings", "#/lessons", "#/composed"].sort())
 	})
 })

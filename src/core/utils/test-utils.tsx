@@ -7,7 +7,6 @@ import RootStore from "../store/RootStore"
 import { DarkTheme } from "../themes/Dark"
 import { ThemeProvider } from "styled-components"
 
-
 const AllTheProviders: React.FC<{children: ReactElement}> = ({children}) => {
 
 	const rootStore = new RootStore()

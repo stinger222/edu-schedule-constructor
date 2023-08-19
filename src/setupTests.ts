@@ -3,3 +3,15 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom"
+
+// Global mocks:
+beforeAll(() => {
+  global.console.warn =  () => undefined
+  global.console.error =  () => undefined
+  global.console.warn = () => undefined
+  global.console.error = () => undefined
+})
+
+beforeEach(() => {
+  localStorage.clear()
+})

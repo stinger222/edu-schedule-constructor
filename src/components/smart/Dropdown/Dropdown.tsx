@@ -5,13 +5,16 @@ import { Link, useLocation } from "react-router-dom"
 
 import { StyledDropdown } from "./Dropdown.styled"
 import Button from "../../ui/Button/Button"
+import { act } from "react-dom/test-utils"
 
 const Dropdown = () => {
 	const { uiStore } = useContext(StoreContext)
 	const location = useLocation()
 	
 	useEffect(() => {
-		uiStore.toggleDropdown(false)
+    act(() => {
+      uiStore.toggleDropdown(false)
+    })
 	}, [location])
 
 	return !uiStore.isDropdownOpen ? null : (

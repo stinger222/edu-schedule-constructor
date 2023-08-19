@@ -48,8 +48,6 @@ class LessonsStore implements ILessonsStore {
   }
 
   removeLesson(uid: string): boolean {
-    console.log("REMOVEE!", this)
-
     const indexToDelete = this._lessons.findIndex((lesson) => lesson.uid === uid)
 
     if (indexToDelete === -1) {
