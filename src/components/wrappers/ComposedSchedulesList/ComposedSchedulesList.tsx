@@ -3,11 +3,10 @@ import { Link } from "react-router-dom"
 
 import { IComposedSchedule } from "../../../core/types/types"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
-import ComposedSchedule from "../../smart/ComposedSchedule/ComposedSchedule"
+import ComposedSchedule from "../../smart/ComposedScheduleCard/ComposedScheduleCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
 import { StyledComposedSchedulesList } from "./ComposedSchedulesList.styles"
-import { lableConfigs } from "../../../core/constants/constants"
 
 interface IProps {
   composedSchedules: IComposedSchedule[]
@@ -30,14 +29,16 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
 
       {composedSchedules.map((schedule) => (
         <SwipeToAction
-          onRightSwipe={() => editSchedule(schedule.uid)}
           onLeftSwipe={() => handleRemove(schedule.uid)}
-          lableConfig={lableConfigs.EDIT_DELETE}
+          onRightSwipe={() => editSchedule(schedule.uid)}
+          LeftActionLabel={SwipeToAction.RemoveActionLabel}
+          RightActionLabel={SwipeToAction.RemoveActionLabel}
           key={schedule.uid}
         >
-          <ComposedSchedule
-            name={schedule.name}
-            days={schedule.days}
+        <ComposedSchedule
+        name={schedule.name}
+        days={schedule.days}
+                key={schedule.uid}
           />
         </SwipeToAction>
       ))}

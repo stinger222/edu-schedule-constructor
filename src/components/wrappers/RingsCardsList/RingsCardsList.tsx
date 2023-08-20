@@ -6,7 +6,6 @@ import { StyledRingsCardsList } from "./RingsCardsList.styled"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
 import RingsScheduleCard from "../../ordinary/RingsScheduleCard/RingsScheduleCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
-import { lableConfigs } from "../../../core/constants/constants"
 
 interface IProps {
 	ringsSchedules: IRingsSchedule[],
@@ -21,7 +20,6 @@ const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) =>
   }
 return (
     <StyledRingsCardsList className="rings-cards">
-
     {	ringsSchedules?.length === 0 &&
       <h2 style={{textAlign: "center", fontWeight: 400}}>
         Тут нихера нет ¯\_(ツ)_/¯
@@ -32,10 +30,13 @@ return (
       ringsSchedules.map(({rings, name, uid}) => (
         <SwipeToAction
           onLeftSwipe={() => handleRemove(uid)}
-          lableConfig={lableConfigs.EDIT_DELETE}
+          onRightSwipe={() => handleRemove(uid)}
+          LeftActionLabel={SwipeToAction.RemoveActionLabel}
+          RightActionLabel={SwipeToAction.RemoveActionLabel}
           key={uid}
-        >
+          >
           <RingsScheduleCard
+                            key={uid}
             start={rings[0].start}
             end={rings[rings.length-1].end}
             length={rings.length}

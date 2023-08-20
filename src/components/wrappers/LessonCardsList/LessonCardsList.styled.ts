@@ -5,23 +5,17 @@ export const StyledLessonCardsList = styled.div`
 	flex-direction: column;
 	align-items: center;
 	padding-inline: 1em;
+  
+  --action-label-icon-size: 2.3em;
 	
 	& > * {
 		margin-bottom: 1.5em;
-		width: 28em;
-	}
-
-	& .lesson-card, & .animated-wrapper {
-		width: 100%;
-	}
-
-	& a > * {
-		width: 100%;
 	}
 
 	& .btn-ghost {
 		font-size: 0.75em;
 		height: 9em;
+    width: calc(28em * 1.33);
 	}
 
 	& .btn-ghost span {

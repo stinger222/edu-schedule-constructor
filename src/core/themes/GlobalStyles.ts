@@ -10,6 +10,10 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 		font-family: 'JetBrains Mono', 'Segoe UI', 'Arial', 'Tahoma', 'Verdana', 'Arial Narrow', sans-serif;
 	}
 
+  :root {
+    --action-label-icon-size: 2em;
+  }
+
 	::-webkit-scrollbar {
 		width: 15px;
 		background-color: #ffffff;

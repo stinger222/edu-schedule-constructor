@@ -44,3 +44,7 @@ export enum Cases {
 	Nominative = "nominative",
 	Accusative = "accusative",
 }
+
+export interface IActionLabelProps {
+  className?: string
+}

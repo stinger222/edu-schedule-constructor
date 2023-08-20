@@ -6,18 +6,16 @@ export const StyledComposedSchedulesList = styled.div`
   align-items: center;
   padding-inline: 0.5em;
 
+  --action-label-icon-size: 3em;
+
   & > * {
     margin-bottom: 1.5em;
-    width: 100%;
-  }
-
-  & a > * {
-    width: 100%;
   }
 
   .btn-ghost {
     font-size: 0.85em;
     height: 18em;
+    width: calc(37em * 1.18);
   }
 
   & .btn-ghost span {

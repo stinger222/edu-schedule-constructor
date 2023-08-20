@@ -5,22 +5,16 @@ export const StyledRingsCardsList = styled.div`
 	flex-direction: column;
 	align-items: center;
 
+  --action-label-icon-size: 2.3em;
+
 	& > * {
 		margin-bottom: 1.5em;
-		width: 28em;
 	}
-
-	& .rings-schedule-card, & .animated-wrapper {
-		width: 100%;
-	}
-
-	& a > * {
-		width: 100%;
-	}
-	
+  
 	.btn-ghost {
 		font-size: 0.7em;
 		height: 9.8em;
+    width: calc(28em * 1.47);
 	}
 
 	& .btn-ghost span {

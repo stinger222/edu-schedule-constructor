@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
+
 import { ILesson } from "../../../core/types/types"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
 import LessonCard from "../../ordinary/LessonCard/LessonCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
+
 import { StyledLessonCardsList } from "./LessonCardsList.styled"
-import { lableConfigs } from "../../../core/constants/constants"
 
 interface IProps {
 	lessons: ILesson[]
@@ -30,8 +31,11 @@ const LessonCardsList: React.FC<IProps> = ({ lessons, removeLesson }) => {
 			{
 				lessons.map(lesson => (
 					<SwipeToAction
-            onLeftSwipe={() => handleRemove(lesson.uid)} key={lesson.uid}
-            lableConfig={lableConfigs.EDIT_DELETE}
+            onLeftSwipe={() => handleRemove(lesson.uid)}
+            onRightSwipe={() => handleRemove(lesson.uid)}
+            LeftActionLabel={SwipeToAction.RemoveActionLabel}
+            RightActionLabel={SwipeToAction.RemoveActionLabel}
+            key={lesson.uid}
           >
 						<LessonCard 
 							cabinet={lesson.cabinet}

@@ -1,10 +1,8 @@
 import styled from "styled-components"
 
 export const StyledSwipeToAction = styled.div`
-	/* height: fit-content !important; */
 	position: relative;
 	z-index: 5;
-	width: fit-content;
 	border-radius: 1.4em;
 
 	& .animated-wrapper {
@@ -16,31 +14,42 @@ export const StyledSwipeToAction = styled.div`
 
   & .action-label {
     position: absolute;
-		top: 0;
-		bottom: 0;
-		width: 23%;
+		top: 1px;
+		bottom: 1px;
+		width: 25%;
 		z-index: 4;
     
     color: white;
 		font-weight: 400;
-		font-size: 1.2em;
 
 		display: flex;
-		justify-content: center;
 		align-items: center;
+    justify-content: center;
   }
 
+  & .action-label svg {
+    height: var(--action-label-icon-size);
+    width: var(--action-label-icon-size);
+    fill: white;
+  }
+  
 	& .right-action-label {
-		right: 0;
-
-		border-top-right-radius: 1.4em;
-		border-bottom-right-radius: 1.4em;
+    right: 1px;
+		border-top-right-radius: 1.3em;
+		border-bottom-right-radius: 1.3em;
 	}
 
+  & .right-action-label svg {
+    transform: translateX(30%)
+  }
+  
   & .left-action-label {
-		left: 0;
-
-		border-top-left-radius: 1.4em;
-		border-bottom-left-radius: 1.4em;
+    left: 1px;
+		border-top-left-radius: 1.3em;
+		border-bottom-left-radius: 1.3em;
 	}
+
+  & .left-action-label svg {
+    transform: translateX(-30%)
+  }
 `

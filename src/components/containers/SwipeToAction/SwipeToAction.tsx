@@ -3,20 +3,43 @@ import { ReactNode, useState } from "react"
 import { useSpring, animated } from "@react-spring/web"
 
 import { StyledSwipeToAction } from "./SwipeToAction.styled"
-import { ILableConfig, SWIPE_BOUND_PROCENTAGE } from "../../../core/constants/constants"
+import {SWIPE_BOUND_PROCENTAGE } from "../../../core/constants/constants"
+import RemoveActionLabel from "./RemoveActionLabel/RemoveActionLabel"
+import { IActionLabelProps } from "../../../core/types/types"
 
-interface IProps {
-	children: ReactNode,
-	onLeftSwipe?: () => void,
-	onRightSwipe?: () => void,
-  lableConfig: ILableConfig
+interface ISwipeToActionExtensions {
+  RemoveActionLabel: typeof RemoveActionLabel
 }
 
-const SwipeToAction: React.FC<IProps> = ({ children, onLeftSwipe, onRightSwipe, lableConfig }) => {
+// I've tried, but react just not happy with it ¯\_(ツ)_/¯
+
+// type IProps = {
+//   children: ReactNode,
+// } & ({
+//   onLeftSwipe: () => void,
+//   RightActionLabel: () => JSX.Element
+// } | {
+//   onRightSwipe: () => void,
+//   LeftActionLabel: () => JSX.Element
+// })
+
+interface IProps {
+  children: ReactNode,
+  onLeftSwipe?: () => void,
+  onRightSwipe?: () => void,
+  RightActionLabel?: React.FC<IActionLabelProps>
+  LeftActionLabel?: React.FC<IActionLabelProps>
+}
+
+const SwipeToAction: React.FC<IProps> & ISwipeToActionExtensions = ({
+  children,
+  onLeftSwipe,
+  onRightSwipe,
+  RightActionLabel,
+  LeftActionLabel
+}) => {
 	const [containerRef, setContainerRef] = useState<any>(null)
-	const wrapperRef = (node: HTMLDivElement | null) => {
-		setContainerRef(node)
-	}
+	const wrapperRef = (node: HTMLDivElement | null) => { setContainerRef(node) }
 
 	const [{ x }, api] = useSpring(() => ({
 		from: {
@@ -51,19 +74,18 @@ const SwipeToAction: React.FC<IProps> = ({ children, onLeftSwipe, onRightSwipe, 
 				{children}
 			</animated.div>
 
-			{onRightSwipe && 
-        <div className="left-action-label action-label" style={{background: lableConfig.left.color}}>
-          {lableConfig.left.caption}
-        </div>
+			{(onRightSwipe && LeftActionLabel) && 
+        <LeftActionLabel className="action-label left-action-label"/>
       }
-			{onLeftSwipe &&
-        <div className="right-action-label action-label" style={{background: lableConfig.right.color}}>
-          {lableConfig.right.caption}
-        </div>
+
+			{(onLeftSwipe && RightActionLabel) &&
+        <RightActionLabel className="action-label right-action-label"/>
       }
 
 		</StyledSwipeToAction>
 	)
 }
+
+SwipeToAction.RemoveActionLabel = RemoveActionLabel
 
 export default SwipeToAction
