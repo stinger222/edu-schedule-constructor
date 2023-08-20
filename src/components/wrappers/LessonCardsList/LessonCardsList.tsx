@@ -32,8 +32,6 @@ const LessonCardsList: React.FC<IProps> = ({ lessons, removeLesson }) => {
 				lessons.map(lesson => (
 					<SwipeToAction
             onLeftSwipe={() => handleRemove(lesson.uid)}
-            onRightSwipe={() => handleRemove(lesson.uid)}
-            LeftActionLabel={SwipeToAction.RemoveActionLabel}
             RightActionLabel={SwipeToAction.RemoveActionLabel}
             key={lesson.uid}
           >

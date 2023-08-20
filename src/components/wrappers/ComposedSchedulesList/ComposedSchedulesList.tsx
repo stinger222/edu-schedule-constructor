@@ -31,14 +31,13 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
         <SwipeToAction
           onLeftSwipe={() => handleRemove(schedule.uid)}
           onRightSwipe={() => editSchedule(schedule.uid)}
-          LeftActionLabel={SwipeToAction.RemoveActionLabel}
+          LeftActionLabel={SwipeToAction.EditActionLabel}
           RightActionLabel={SwipeToAction.RemoveActionLabel}
           key={schedule.uid}
         >
-        <ComposedSchedule
-        name={schedule.name}
-        days={schedule.days}
-                key={schedule.uid}
+          <ComposedSchedule
+            name={schedule.name}
+            days={schedule.days}
           />
         </SwipeToAction>
       ))}

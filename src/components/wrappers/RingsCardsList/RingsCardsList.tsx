@@ -30,13 +30,10 @@ return (
       ringsSchedules.map(({rings, name, uid}) => (
         <SwipeToAction
           onLeftSwipe={() => handleRemove(uid)}
-          onRightSwipe={() => handleRemove(uid)}
-          LeftActionLabel={SwipeToAction.RemoveActionLabel}
           RightActionLabel={SwipeToAction.RemoveActionLabel}
           key={uid}
-          >
+        >
           <RingsScheduleCard
-                            key={uid}
             start={rings[0].start}
             end={rings[rings.length-1].end}
             length={rings.length}

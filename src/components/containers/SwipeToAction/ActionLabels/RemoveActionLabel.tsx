@@ -1,10 +1,10 @@
 import { IActionLabelProps } from "../../../../core/types/types"
-import { ReactComponent as TrashCan } from "../../../../assets/icons/trash-can.svg"
+import { ReactComponent as TrashCanIcon } from "../../../../assets/icons/trash-can.svg"
 
 const RemoveActionLabel: React.FC<IActionLabelProps> = ({ className }) => {
   return (
     <div className={className} style={{background: "#e82626"}}>
-      <TrashCan fill="white"/>
+      <TrashCanIcon fill="white"/>
     </div>
   )
 }

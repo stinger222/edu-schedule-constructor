@@ -13,7 +13,7 @@ const ScheduleItemsList = () => {
 
   const stores = useContext(StoreContext)
 
-  const activeComposedSchedule = stores.composedSchedulesStore.composedSchedules[1] // uiStore.activeComposedSchID
+  const activeComposedSchedule = stores.composedSchedulesStore.composedSchedules[0] // uiStore.activeComposedSchID
   const selectedDayIndex = stores.uiStore.selectedDayIndex
 
   const [lessons, ringsSchedule] = getDataForSelectedDay(activeComposedSchedule, selectedDayIndex, stores)

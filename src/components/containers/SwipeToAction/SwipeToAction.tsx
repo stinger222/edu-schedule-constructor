@@ -1,14 +1,17 @@
-import { useDrag } from "react-use-gesture"
+import { animated, useSpring } from "@react-spring/web"
 import { ReactNode, useState } from "react"
-import { useSpring, animated } from "@react-spring/web"
+import { useDrag } from "react-use-gesture"
 
-import { StyledSwipeToAction } from "./SwipeToAction.styled"
-import {SWIPE_BOUND_PROCENTAGE } from "../../../core/constants/constants"
-import RemoveActionLabel from "./RemoveActionLabel/RemoveActionLabel"
+import { SWIPE_BOUND_PROCENTAGE } from "../../../core/constants/constants"
 import { IActionLabelProps } from "../../../core/types/types"
 
+import { StyledSwipeToAction } from "./SwipeToAction.styled"
+import EditActionLabel from "./ActionLabels/EditActionLabel"
+import RemoveActionLabel from "./ActionLabels/RemoveActionLabel"
+
 interface ISwipeToActionExtensions {
-  RemoveActionLabel: typeof RemoveActionLabel
+  RemoveActionLabel: typeof RemoveActionLabel,
+  EditActionLabel: typeof EditActionLabel
 }
 
 // I've tried, but react just not happy with it ¯\_(ツ)_/¯
@@ -17,10 +20,10 @@ interface ISwipeToActionExtensions {
 //   children: ReactNode,
 // } & ({
 //   onLeftSwipe: () => void,
-//   RightActionLabel: () => JSX.Element
+//   RightActionLabel: React.FC<IActionLabelProps>
 // } | {
 //   onRightSwipe: () => void,
-//   LeftActionLabel: () => JSX.Element
+//   LeftActionLabel: React.FC<IActionLabelProps>
 // })
 
 interface IProps {
@@ -87,5 +90,6 @@ const SwipeToAction: React.FC<IProps> & ISwipeToActionExtensions = ({
 }
 
 SwipeToAction.RemoveActionLabel = RemoveActionLabel
+SwipeToAction.EditActionLabel = EditActionLabel
 
 export default SwipeToAction
