@@ -5,7 +5,8 @@ export const StyledRingsCardsList = styled.div`
 	flex-direction: column;
 	align-items: center;
 
-  --action-label-icon-size: 2.3em;
+  --action-label-icon-size: 2.3em;  /* 2em by default */
+  --action-label-border-radius: 1.3em;  /* 1.3em by default */
 
 	& > * {
 		margin-bottom: 1.5em;

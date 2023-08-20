@@ -6,7 +6,8 @@ export const StyledLessonCardsList = styled.div`
 	align-items: center;
 	padding-inline: 1em;
   
-  --action-label-icon-size: 2.3em;
+  --action-label-icon-size: 2.3em; /* 2em by default */
+  --action-label-border-radius: 1.3em;  /* 1.3em by default */
 	
 	& > * {
 		margin-bottom: 1.5em;

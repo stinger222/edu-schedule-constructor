@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 
   :root {
     --action-label-icon-size: 2em;
+    --action-label-border-radius: 1.3em
   }
 
 	::-webkit-scrollbar {

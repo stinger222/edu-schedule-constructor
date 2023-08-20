@@ -6,7 +6,8 @@ export const StyledComposedSchedulesList = styled.div`
   align-items: center;
   padding-inline: 0.5em;
 
-  --action-label-icon-size: 3em;
+  --action-label-icon-size: 3em;  /* 2em by default */
+  --action-label-border-radius: 1.3em;  /* 1.3em by default */
 
   & > * {
     margin-bottom: 1.5em;

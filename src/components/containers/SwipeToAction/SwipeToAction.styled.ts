@@ -35,8 +35,8 @@ export const StyledSwipeToAction = styled.div`
   
 	& .right-action-label {
     right: 1px;
-		border-top-right-radius: 1.3em;
-		border-bottom-right-radius: 1.3em;
+		border-top-right-radius: var(--action-label-border-radius);
+		border-bottom-right-radius: var(--action-label-border-radius);
 	}
 
   & .right-action-label svg {
@@ -45,8 +45,8 @@ export const StyledSwipeToAction = styled.div`
   
   & .left-action-label {
     left: 1px;
-		border-top-left-radius: 1.3em;
-		border-bottom-left-radius: 1.3em;
+		border-top-left-radius: var(--action-label-border-radius);
+		border-bottom-left-radius: var(--action-label-border-radius);
 	}
 
   & .left-action-label svg {

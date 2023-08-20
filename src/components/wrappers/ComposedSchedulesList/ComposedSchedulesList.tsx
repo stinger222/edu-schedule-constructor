@@ -6,7 +6,7 @@ import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
 import ComposedSchedule from "../../smart/ComposedScheduleCard/ComposedScheduleCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
-import { StyledComposedSchedulesList } from "./ComposedSchedulesList.styles"
+import { StyledComposedSchedulesList } from "./ComposedSchedulesList.styled"
 
 interface IProps {
   composedSchedules: IComposedSchedule[]
