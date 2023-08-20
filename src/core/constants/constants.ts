@@ -1,6 +1,6 @@
-export const SWIPE_BOUND_PROCENTAGE = 20
+export const SWIPE_BOUND_PROCENTAGE = 19
 
-export interface ILableConfig {
+export interface IlabelConfig {
   left:  {
     caption: string,
     color: string
@@ -11,11 +11,11 @@ export interface ILableConfig {
   }
 }
 
-export interface ILableConfigs {
-  EDIT_DELETE: ILableConfig
+export interface IlabelConfigs {
+  EDIT_DELETE: IlabelConfig
 }
 
-export const lableConfigs = {
+export const labelConfigs = {
   EDIT_DELETE: {
     left: {
       caption: "Edit?",

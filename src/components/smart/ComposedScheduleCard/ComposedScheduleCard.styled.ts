@@ -1,11 +1,11 @@
 import styled from "styled-components"
 
 export const StyledComposedSchedule = styled.div`
-	width: fit-content;
+	width: 37em;
 	height: fit-content;
 	padding: 0 0.3em 1em 0.3em;
-	
-	border-radius: 1.5em;
+
+	border-radius: 1.3em;
 	border: 0.08em solid #00000035;
 	box-shadow: ${({theme}) => theme.boxShadows.primary};
 	background: ${({theme}) => theme.backgrounds.secondary};

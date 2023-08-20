@@ -12,9 +12,7 @@ const Dropdown = () => {
 	const location = useLocation()
 	
 	useEffect(() => {
-    act(() => {
-      uiStore.toggleDropdown(false)
-    })
+    uiStore.toggleDropdown(false)
 	}, [location])
 
 	return !uiStore.isDropdownOpen ? null : (

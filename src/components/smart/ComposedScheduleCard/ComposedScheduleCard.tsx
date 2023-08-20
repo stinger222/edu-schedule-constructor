@@ -1,5 +1,5 @@
 import { IComposedDay } from "../../../core/types/types"
-import { StyledComposedSchedule } from "./ComposedSchedule.styled"
+import { StyledComposedSchedule } from "./ComposedScheduleCard.styled"
 import Day from "./Day/Day"
 
 interface IProps {

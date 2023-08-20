@@ -1,9 +1,8 @@
 import { useContext } from "react"
-import { StoreContext } from "../../../.."
-import { IComposedDay } from "../../../../core/types/types"
 import { WeekDays } from "../../../../core/utils/dateTimeUtils"
+import { IComposedDay } from "../../../../core/types/types"
+import { StoreContext } from "../../../.."
 import { StyledDay } from "./Day.styled"
-import { toJS } from "mobx"
 
 interface IProps {
 	dayIndex: number,

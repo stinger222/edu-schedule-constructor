@@ -1,6 +1,6 @@
 import Header from "../../components/smart/Header/Header"
 import Container from "../../components/containers/Container/Container"
-import ScheduleItemsList from "../../components/smart/ScheduleItemsList/ScheduleItemsList"
+import ScheduleItemsList from "../../components/wrappers/ScheduleItemsList/ScheduleItemsList"
 import ErrorFallback from "../../components/ordinary/ErrorFallback/ErrorFallback"
 import { ErrorBoundary } from "react-error-boundary"
 
