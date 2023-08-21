@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { ILesson } from "../../../core/types/types"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
@@ -13,11 +13,16 @@ interface IProps {
 }
 
 const LessonCardsList: React.FC<IProps> = ({ lessons, removeLesson }) => {
-	
+  const navigate = useNavigate()
+
 	const handleRemove = (uid: string) => {
 		if (!window.confirm("Are you sure?")) return
 		removeLesson(uid)
 	}
+
+  const handleEdit = (uid: string) => {
+    navigate("/add/lesson", {state: { mode: "edit", uid }})    
+  }
 
 	return (
 		<StyledLessonCardsList className="lesson-cards">
@@ -32,7 +37,9 @@ const LessonCardsList: React.FC<IProps> = ({ lessons, removeLesson }) => {
 				lessons.map(lesson => (
 					<SwipeToAction
             onLeftSwipe={() => handleRemove(lesson.uid)}
+            onRightSwipe={() => handleEdit(lesson.uid)}
             RightActionLabel={SwipeToAction.RemoveActionLabel}
+            LeftActionLabel={SwipeToAction.EditActionLabel}
             key={lesson.uid}
           >
 						<LessonCard 
@@ -43,7 +50,7 @@ const LessonCardsList: React.FC<IProps> = ({ lessons, removeLesson }) => {
 					</SwipeToAction>
 				))
 			}
-
+      
 			<Link to="/add/lesson">
 				<GhostButton> Добавить предмет <span className="plus">+</span></GhostButton>
 			</Link>

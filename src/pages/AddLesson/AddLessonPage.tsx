@@ -1,30 +1,53 @@
+import { useLocation, useNavigate } from "react-router-dom"
+import { FormProvider, useForm } from "react-hook-form"
+import { useContext, useEffect } from "react"
+
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
 import Button from "../../components/ui/Button/Button"
 
-import { FormProvider, useForm } from "react-hook-form"
-import { StoreContext } from "../.."
-import { useContext } from "react"
+import { StoreContext } from "../.." 
 import { ILesson } from "../../core/types/types"
-
-import { StyledAddLessonPage } from "./AddLessonPage.styled"
 import { validateField } from "../../core/utils/stringUtils"
 
+import { StyledAddLessonPage } from "./AddLessonPage.styled"
+
 const AddLessonPage = () => {
-	
+  const { lessonsStore } = useContext(StoreContext)
+  
+  const navigate = useNavigate()
+  const routeState = useLocation().state
+
 	const methods = useForm({defaultValues: {
 		title: "",
 		teacher: "",
 		cabinet: ""
 	}})
 
-	const { lessonsStore } = useContext(StoreContext)
-
 	const handleSubmit = (formData: Omit<ILesson, "uid">) => {
-		lessonsStore.addLesson(formData)
+    if (routeState?.mode === "edit") { // TODO: Should this be moved to store?...
+      lessonsStore.removeLesson(routeState.uid)
+      lessonsStore.addLesson(formData, routeState.uid)
+    } else {
+      lessonsStore.addLesson(formData)
+    }
 		methods.reset()
+    navigate(-1)
 	}
+
+  // TODO: Maybe this can be moved to custom hook?...
+  useEffect(() => {
+    if (routeState?.mode === "edit") {
+      const lessonToEdit = lessonsStore.lessons
+        .find((lesson: ILesson) => {
+          return lesson.uid === routeState.uid
+        })
+
+      methods.reset(lessonToEdit)
+      methods.trigger()
+    }
+  }, [])
 
 	return (
 		<StyledAddLessonPage>

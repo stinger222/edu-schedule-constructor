@@ -16,8 +16,11 @@ import { WeekDays } from "../../core/utils/dateTimeUtils"
 import { validateField } from "../../core/utils/stringUtils"
 
 const AddComposedSchedulePage = () => {
-  const navigate = useNavigate()
+  const { composedSchedulesStore } = useContext(StoreContext)
 
+  const navigate = useNavigate()
+  const routeState = useLocation().state
+  
   const methods = useForm({
     defaultValues: {
       name: "",
@@ -27,12 +30,8 @@ const AddComposedSchedulePage = () => {
   
   const { fields, append } = useFieldArray({ control: methods.control, name: "days" })
 
-  const { composedSchedulesStore } = useContext(StoreContext)
-
-  const routeState = useLocation().state
-
   const handleSubmit = (formData: Omit<IComposedSchedule, "uid">) => {
-    if (routeState?.mode === "edit") {
+    if (routeState?.mode === "edit") { // TODO: Should this be moved to store?...
       composedSchedulesStore.removeSchedule(routeState.uid)
       composedSchedulesStore.addSchedule(formData, routeState.uid)
     } else {
@@ -43,6 +42,7 @@ const AddComposedSchedulePage = () => {
     navigate(-1)
   }
 
+  // TODO: Maybe this can be moved to custom hook?...
   useEffect(() => {
     if (routeState?.mode === "edit") {
       const scheduleToEdit = composedSchedulesStore.composedSchedules
