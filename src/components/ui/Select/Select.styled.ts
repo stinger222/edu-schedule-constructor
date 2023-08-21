@@ -12,7 +12,7 @@ export const StyledSelect = styled(MantineSelect)`
 		}
 
 		& .mantine-Input-input {
-			padding: 0.85em 0.5em;
+			padding: 0.85em 1.1em 0.85em 0.5em;
 			
 			background: ${({theme}) => theme.backgrounds.secondary};
 			border: 0.05em solid ${({theme}) => theme.colors.secondary};
@@ -22,7 +22,7 @@ export const StyledSelect = styled(MantineSelect)`
 			font-family: 'JetBrains Mono', 'Segoe UI', 'Arial', 'Tahoma', 'Verdana', 'Arial Narrow', sans-serif;
 			color: ${({theme}) => theme.text.primary};
 		}
-
+    
 		& .mantine-Input-input::placeholder {
 			color: ${({theme}) => theme.text.secondary}; 
 		}
@@ -48,7 +48,7 @@ export const StyledSelect = styled(MantineSelect)`
 			filter: brightness(0.95);
       margin-block: 0.15em;
 		}
-
+    
 		& .mantine-Select-dropdown .mantine-Select-item:not(
 			& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"]
 		) {
