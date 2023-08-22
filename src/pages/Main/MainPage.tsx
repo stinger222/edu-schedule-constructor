@@ -21,7 +21,7 @@ const MainPage = () => {
 					<Header.NavBar/>
 					<Header.BurgerButton/>
 				</Header>
-        
+
        <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex]}>
           <ScheduleItemsList />
        </ErrorBoundary>

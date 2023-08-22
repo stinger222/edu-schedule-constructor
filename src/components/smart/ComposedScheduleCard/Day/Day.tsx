@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { WeekDays } from "../../../../core/utils/dateTimeUtils"
-import { IComposedDay } from "../../../../core/types/types"
+import { IComposedDay, IRingsSchedule } from "../../../../core/types/types"
 import { StoreContext } from "../../../.."
 import { StyledDay } from "./Day.styled"
 
@@ -17,19 +17,20 @@ const emptyDay: IComposedDay = {
 const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 	const { ringsSchedulesStore } = useContext(StoreContext)
 
-  // Can be undefined if used deleted rings schedule but we still store it's id
+  // Can be "undefined" if user deleted schedule that id is reffering to
 	const thisDayRingsSchedule = ringsSchedulesStore.ringsSchedules.find(s => (
     s.uid === day.ringsScheduleId
   ))
-
   
   let startTime = "??:??"
   let endTime = "??:??"
 
   if (thisDayRingsSchedule) {
-    startTime = thisDayRingsSchedule.rings[0].start
-    endTime = thisDayRingsSchedule.rings?.[day.lessonIds.length - 1]?.end || "?"
+    [startTime, endTime] = getStartAndEndTime(thisDayRingsSchedule, day.lessonIds)
   }
+
+  // If passed day contains <nothing> card, then it's filtered out
+  const amountOfLessons = day.lessonIds.filter((i: string) => i !== "hidden").length
 
 	const weekDay: string = WeekDays.getShort()[dayIndex]
 
@@ -38,7 +39,7 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 			<header>{ weekDay }</header>
 			<div className="card-body">
 				<span>Пар</span>
-				<span>{ day?.lessonIds?.length || "?" }</span>
+				<span>{ amountOfLessons || "?" }</span>
 
 				<span>Начало</span>
 				<span>{ startTime }</span>
@@ -51,3 +52,12 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 }
 
 export default Day
+
+const getStartAndEndTime = (ringsSchedule: IRingsSchedule, lessonIds: string[]): [string, string] => {
+  const firstLessonIndex = lessonIds.findIndex(i => i !== "hidden") // index of first lesson that is not <nothing> plug
+
+  const startTime = ringsSchedule.rings[firstLessonIndex].start
+  const endTime = ringsSchedule.rings[lessonIds.length - 1]?.end || "?" // considering that user will not put <nothing> lesson(s) at the end... (yea, sure :D)
+
+  return [startTime, endTime]
+}
