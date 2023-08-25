@@ -39,7 +39,7 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 			<header>{ weekDay }</header>
 			<div className="card-body">
 				<span>Пар</span>
-				<span>{ amountOfLessons || "?" }</span>
+				<span>{ amountOfLessons || "0" }</span>
 
 				<span>Начало</span>
 				<span>{ startTime }</span>
@@ -54,10 +54,14 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 export default Day
 
 const getStartAndEndTime = (ringsSchedule: IRingsSchedule, lessonIds: string[]): [string, string] => {
+  if (lessonIds.filter(l => l !== "hidden").length === 0) {
+    return ["??:??", "??:??"]
+  }
+  
   const firstLessonIndex = lessonIds.findIndex(i => i !== "hidden") // index of first lesson that is not <nothing> plug
 
-  const startTime = ringsSchedule.rings[firstLessonIndex].start
-  const endTime = ringsSchedule.rings[lessonIds.length - 1]?.end || "?" // considering that user will not put <nothing> lesson(s) at the end... (yea, sure :D)
+  const startTime = ringsSchedule.rings[firstLessonIndex]?.start || "??:??"
+  const endTime = ringsSchedule.rings[lessonIds.length - 1]?.end || "??:??"
 
   return [startTime, endTime]
 }
