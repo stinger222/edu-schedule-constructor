@@ -21,11 +21,12 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 		this.composedSchedules = JSON.parse(localStorage.getItem(this.storageKey) ?? `[]`)
 	}
 
-	addSchedule(newSchedule: Omit<IComposedSchedule, "uid">, uid?: string) {
+	addSchedule(newSchedule: Omit<IComposedSchedule, "uid" | "isSelected">, uid?: string) {
 		this.composedSchedules.push({
 			...newSchedule,
 			uid: uid || nanoid(10),
-			name: capitalize(newSchedule.name)
+			name: capitalize(newSchedule.name),
+      isSelected: false
 		})
 		this.memorizeState()
 	}
@@ -43,7 +44,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 		return deletedSchedule.length === 1 
 	}
 
-	updateSchedule(uid: string, newSchedule: Omit<IComposedSchedule, "uid">): boolean {
+	updateSchedule(uid: string, newSchedule: Partial<Omit<IComposedSchedule, "uid">>): boolean {
 		const indexToUpdate = this.composedSchedules.findIndex(s => s.uid === uid)
 
 		if (indexToUpdate === -1) {
@@ -52,13 +53,20 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 		}
 
 		this.composedSchedules[indexToUpdate] = {
-			uid,
+      ...this.composedSchedules[indexToUpdate],
 			...newSchedule
 		}
 
 		console.log("Composed Sschedule updated successfully.")
 		return true
 	}
+
+  // selectSchedule(uid: string) {
+  //   this.updateSchedule(uid, {
+  //     isSelected: true
+  //   })
+  // }
 }
 
 export default ComposedSchedulesStore
+

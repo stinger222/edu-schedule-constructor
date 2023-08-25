@@ -42,7 +42,7 @@ const SwipeToAction: React.FC<IProps> & ISwipeToActionExtensions = ({
   LeftActionLabel
 }) => {
 	const [containerRef, setContainerRef] = useState<any>(null)
-	const wrapperRef = (node: HTMLDivElement | null) => { setContainerRef(node) }
+	const wrapperRef = (node: HTMLDivElement | null) => setContainerRef(node)
 
 	const [{ x }, api] = useSpring(() => ({
 		from: {

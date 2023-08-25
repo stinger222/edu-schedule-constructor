@@ -18,7 +18,7 @@ export const LightTheme: ITheme = {
   backgrounds: {
     primary: "#FFFFFF",
     secondary: "#FFFFFF",
-    tertiary: "#F3F3F3"
+    tertiary: "#F4F5F6"
   },
   borders: {
     primary: "#000000",

@@ -1,9 +1,9 @@
-import { toJS } from "mobx"
-import { makeAutoObservable } from "mobx"
+import { makeAutoObservable, toJS } from "mobx"
+import { nanoid } from "nanoid"
+
+import { capitalize } from "../utils/stringUtils"
 import { ILessonsStore } from "./../types/store"
 import { ILesson } from "./../types/types"
-import { nanoid } from "nanoid"
-import { capitalize } from "../utils/stringUtils"
 
 class LessonsStore implements ILessonsStore {
   public _lessons: ILesson[] = [
@@ -61,7 +61,7 @@ class LessonsStore implements ILessonsStore {
     return deletedLesson.length === 1
   }
 
-  updateLesson(uid: string, newLesson: Omit<ILesson, "uid">): boolean {
+  updateLesson(uid: string, newLesson: Partial<Omit<ILesson, "uid">>): boolean {
     const indexToUpdate = this._lessons.findIndex((l) => l.uid === uid)
 
     if (indexToUpdate === -1) {
@@ -70,10 +70,8 @@ class LessonsStore implements ILessonsStore {
     }
 
     this._lessons[indexToUpdate] = {
-      uid,
-      ...newLesson,
-      title: capitalize(newLesson.title),
-      teacher: capitalize(newLesson.teacher, true)
+      ...this._lessons[indexToUpdate],
+      ...newLesson
     }
 
     console.log("Lesson modified successfully.")

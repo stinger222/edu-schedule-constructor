@@ -1,8 +1,9 @@
-import { nanoid } from "nanoid"
-import { IRingsSchedule } from "./../types/types"
-import { IRingsSchedulesStore } from "./../types/store"
 import { makeAutoObservable, toJS } from "mobx"
+import { nanoid } from "nanoid"
+
 import { capitalize } from "../utils/stringUtils"
+import { IRingsSchedulesStore } from "./../types/store"
+import { IRingsSchedule } from "./../types/types"
 
 class RingsSchedulesStore implements IRingsSchedulesStore {
 	ringsSchedules: IRingsSchedule[] = []
@@ -41,7 +42,7 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 		return deletedSchedule.length === 1 
 	}
 
-	updateSchedule(uid: string, newSchedule: Omit<IRingsSchedule, "uid">): boolean {
+	updateSchedule(uid: string, newSchedule: Partial<Omit<IRingsSchedule, "uid">>): boolean {
 		const indexToUpdate = this.ringsSchedules.findIndex(s => s.uid === uid)
 
 		if (indexToUpdate === -1) {
@@ -50,7 +51,7 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 		}
 
 		this.ringsSchedules[indexToUpdate] = {
-			uid,
+			...this.ringsSchedules[indexToUpdate],
 			...newSchedule
 		}
 
