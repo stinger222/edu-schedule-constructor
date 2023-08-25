@@ -1,5 +1,10 @@
 import LessonsStore from "../LessonsStore"
 
+/*
+  BTW Im intentionally not moving all of these "sub-tests" in one "it" to their own "it"s.
+  Despite testing itself is shit, I want to sure that bunch of subsequent calls will not break anything
+*/
+
 describe("Testing LessonsStore", () => {
 	it("Tests default values", () => {
 		const lessonsStore = new LessonsStore()
@@ -86,6 +91,8 @@ describe("Testing LessonsStore", () => {
 
 	it("Tests updateLesson action", () => {
 		const lessonsStore = new LessonsStore()
+    expect(lessonsStore._lessons).toHaveLength(1)
+    expect(lessonsStore.lessons).toHaveLength(0)
 
 		// Add new lesson
 		lessonsStore.addLesson({
@@ -101,56 +108,65 @@ describe("Testing LessonsStore", () => {
 			uid: "some-uid"
 		})
 
-		// Modify it
-		let updatedSuccessfully: boolean | null = lessonsStore.updateLesson("some-uid", {
-			cabinet: "105-new",
-			teacher: "New Teacher's Name",
-			title: "New title"
-		})
-		expect(lessonsStore._lessons[1]).toEqual({
-			cabinet: "105-new",
-			teacher: "New Teacher's Name",
-			title: "New title",
-			uid: "some-uid"
-		})
-		expect(updatedSuccessfully).toBe(true)
-
-		// Try modifying non-existing uid
-		updatedSuccessfully = null
-		updatedSuccessfully = lessonsStore.updateLesson("some-non-existing-uid", {
+    // Try updating non-existing lesson:
+		let updatedSuccessfully: boolean | null = lessonsStore.updateLesson("some-non-existing-uid", {
 			cabinet: "whatever",
 			teacher: "whatever",
 			title: "whatever"
 		})
 		expect(updatedSuccessfully).toBe(false)
 		expect(lessonsStore._lessons[1]).toEqual({
-			cabinet: "105-new",
-			teacher: "New Teacher's Name",
-			title: "New title",
+			cabinet: "202w",
+			teacher: "Some Teacher's Name",
+			title: "Math or whatever",
 			uid: "some-uid"
 		})
 
-		// Test formatting
-		updatedSuccessfully = null
-		updatedSuccessfully = lessonsStore.updateLesson("some-uid", {
-			cabinet: "500g",
-			teacher: "not capitalized name",
-			title: "smol title"
+    // Update only "cabinet" property:
+    updatedSuccessfully = null
+    updatedSuccessfully = lessonsStore.updateLesson("some-uid", {
+			cabinet: "New cabinet"
 		})
 		expect(updatedSuccessfully).toBe(true)
 		expect(lessonsStore._lessons[1]).toEqual({
-			cabinet: "500g",
-			teacher: "Not Capitalized Name",
-			title: "Smol title",
+			cabinet: "New cabinet",
+			teacher: "Some Teacher's Name",
+			title: "Math or whatever",
 			uid: "some-uid"
 		})
-	})
 
-	it("Tests that getters / public values return correct result", () => {
+    // Update only "teacher" property:
+    updatedSuccessfully = null
+    updatedSuccessfully = lessonsStore.updateLesson("some-uid", {
+      teacher: "New teacher"
+    })
+    expect(updatedSuccessfully).toBe(true)
+    expect(lessonsStore._lessons[1]).toEqual({
+      cabinet: "New cabinet",
+      teacher: "New teacher",
+      title: "Math or whatever",
+      uid: "some-uid"
+    })
+    
+    // Update only "title" property:
+    updatedSuccessfully = null
+    updatedSuccessfully = lessonsStore.updateLesson("some-uid", {
+      title: "New title"
+    })
+    expect(updatedSuccessfully).toBe(true)
+    expect(lessonsStore._lessons[1]).toEqual({
+      cabinet: "New cabinet",
+      teacher: "New teacher",
+      title: "New title",
+      uid: "some-uid"
+    })
+  })
+
+	it("Tests that getters return correct result", () => {
 		const lessonsStore = new LessonsStore()
 		
 		lessonsStore.addLesson({cabinet: "101w", teacher: "Some Name", title: "Some title"}, "some-uid")
-
+    
 		expect(lessonsStore._lessons).toHaveLength(2)
 		expect(lessonsStore._lessons[1]).toEqual({
 			cabinet: "101w",
