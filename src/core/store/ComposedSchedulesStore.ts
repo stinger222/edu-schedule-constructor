@@ -7,26 +7,28 @@ import { capitalize } from "../utils/stringUtils"
 class ComposedSchedulesStore implements IComposedSchedulesStore {
 	composedSchedules: IComposedSchedule[] = []
 	storageKey: string = "composed-schedules"
+  activeScheduleUid: string | null = null
 
 	constructor() {
 		makeAutoObservable(this)
 		this.restoreState()
 	}
-	
+
 	memorizeState() {
 		localStorage.setItem(this.storageKey, JSON.stringify(this.composedSchedules))
+    this.activeScheduleUid && localStorage.setItem("active-composed-schedule-uid", this.activeScheduleUid)
 	}
 
 	restoreState() {
 		this.composedSchedules = JSON.parse(localStorage.getItem(this.storageKey) ?? `[]`)
+    this.activeScheduleUid = localStorage.getItem("active-composed-schedule-uid") || null
 	}
 
-	addSchedule(newSchedule: Omit<IComposedSchedule, "uid" | "isSelected">, uid?: string) {
+	addSchedule(newSchedule: Omit<IComposedSchedule, "uid">, uid?: string) {
 		this.composedSchedules.push({
 			...newSchedule,
 			uid: uid || nanoid(10),
-			name: capitalize(newSchedule.name),
-      isSelected: false
+			name: capitalize(newSchedule.name)
 		})
 		this.memorizeState()
 	}
@@ -61,12 +63,28 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 		return true
 	}
 
-  // selectSchedule(uid: string) {
-  //   this.updateSchedule(uid, {
-  //     isSelected: true
-  //   })
-  // }
+  activateSchedule(uid: string) {
+    this.activeScheduleUid = uid
+    this.memorizeState()
+  }
+
+  // "get" doesn't really fit here, but neither anything else I can think of...
+  getActiveSchedule(): IComposedSchedule | null {
+    // it's can only be null if activeScheduleUid === null, or activeScheduleUid is refering deleted schedule
+    const activeSchedule = this.composedSchedules.find(s => s.uid === this.activeScheduleUid) || null
+    
+    // if it's there - return it
+    if (activeSchedule) return activeSchedule
+
+    // if not, then it tries to activate and return first schedule
+    if (!activeSchedule && this.composedSchedules.length !== 0) {
+      this.activateSchedule(this.composedSchedules[0].uid)
+      return this.composedSchedules[0]
+    }
+    
+    // and only if there is no composed schedules...
+    return null
+  }
 }
 
 export default ComposedSchedulesStore
-

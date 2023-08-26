@@ -10,10 +10,9 @@ import Timeline from "../../ordinary/Timeline/Timeline"
 import Warning from "../../../core/utils/Warning"
 
 const ScheduleItemsList = () => {
-
   const stores = useContext(StoreContext)
 
-  const activeComposedSchedule = stores.composedSchedulesStore.composedSchedules[0] // uiStore.activeComposedSchID
+  const activeComposedSchedule = stores.composedSchedulesStore.getActiveSchedule()
   const selectedDayIndex = stores.uiStore.selectedDayIndex
 
   const [lessons, ringsSchedule] = getDataForSelectedDay(activeComposedSchedule, selectedDayIndex, stores)
@@ -21,7 +20,7 @@ const ScheduleItemsList = () => {
   return (
     <div>
       {lessons.map((lesson: ILesson, index: number) => (
-        <div className="schedule-item" key={Math.random()}>
+        <div className="schedule-item" key={lesson.uid + index}>
 
           <Timeline
             startTime={ringsSchedule.rings[index].start}
@@ -51,11 +50,11 @@ export default observer(ScheduleItemsList)
  * @param stores - Is root store that combines all other mobx stores
  * 
  * @returns Array of lesson objects, data from witch will be used to rednder LessonCards on the right,
- * and ringsSchedule object that will be used to render Timeline segments on the lefts
+ * and ringsSchedule object that will be used to render Timeline segments on the left
 */
 
 const getDataForSelectedDay = (
-  activeComposedSchedule: IComposedSchedule | undefined,
+  activeComposedSchedule: IComposedSchedule | undefined | null,
   selectedDayIndex: number,
   stores: RootStore
 ): [(ILesson | undefined)[], IRingsSchedule]  => {

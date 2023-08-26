@@ -14,7 +14,7 @@ interface ISwipeToActionExtensions {
   EditActionLabel: typeof EditActionLabel
 }
 
-// I've tried, but react just not happy with it ¯\_(ツ)_/¯
+// I've tried, but I apparently TS doesn't work like that ¯\_(ツ)_/¯
 
 // type IProps = {
 //   children: ReactNode,

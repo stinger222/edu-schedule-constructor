@@ -6,6 +6,7 @@ import Header from "../../components/smart/Header/Header"
 import ComposedSchedulesList from "../../components/wrappers/ComposedSchedulesList/ComposedSchedulesList"
 
 import { StyledComposedSchedulesPage } from "./ComposedSchedulesPage.styled"
+import { observer } from "mobx-react"
 
 const ComposedSchedulesPage = () => {
   const composedSchedulesStore = useContext(StoreContext).composedSchedulesStore
@@ -18,6 +19,7 @@ const ComposedSchedulesPage = () => {
           <h1> Составленные расписания </h1>
           <Header.BurgerButton />
         </Header>
+        {`Active: ${composedSchedulesStore.activeScheduleUid}`} {/* <=== DEBUG SHIT!! */}
 
         <ComposedSchedulesList
           composedSchedules={composedSchedulesStore.composedSchedules}
@@ -28,4 +30,4 @@ const ComposedSchedulesPage = () => {
   )
 }
 
-export default ComposedSchedulesPage
+export default observer(ComposedSchedulesPage) // <=== DEBUG OBSERVER!!

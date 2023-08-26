@@ -31,7 +31,7 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
       {composedSchedules.length === 0 && (
         <h2 style={{ textAlign: "center", fontWeight: 400 }}>Тут нихера нет ¯\_(ツ)_/¯</h2>
       )}
-
+      
       {composedSchedules.map((schedule) => (
         <SwipeToAction
           onLeftSwipe={() => handleRemove(schedule.uid)}
@@ -43,6 +43,7 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
           <ComposedSchedule
             name={schedule.name}
             days={schedule.days}
+            uid={schedule.uid}
           />
         </SwipeToAction>
       ))}

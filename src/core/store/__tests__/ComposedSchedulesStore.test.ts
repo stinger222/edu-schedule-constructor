@@ -24,7 +24,6 @@ describe("Testing ComposedSchedulesStore", () => {
 		expect(composedSchedulesStore.composedSchedules[0]).toEqual({
 			name: "New composed schedule 1",
 			uid: "new-uid-1",
-      isSelected: false,
 			days: [
 				{lessonIds: ["l-id-1", "l-id-2"], ringsScheduleId: "r-id-1"},
 				{lessonIds: ["l-id-3", "l-id-1"], ringsScheduleId: "r-id-2"}
@@ -44,7 +43,6 @@ describe("Testing ComposedSchedulesStore", () => {
       expect.objectContaining({
         uid: expect.any(String),
         name: "New composed schedule 2",
-        isSelected: false,
         days: [
           {lessonIds: ["l-id-1", "l-id-2"], ringsScheduleId: "r-id-1"},
           {lessonIds: ["l-id-3", "l-id-1"], ringsScheduleId: "r-id-2"}
@@ -111,7 +109,6 @@ describe("Testing ComposedSchedulesStore", () => {
 		expect(composedSchedulesStore.composedSchedules).toHaveLength(1)
 		expect(composedSchedulesStore.composedSchedules[0]).toEqual({
 			name: "New composed schedule 1",
-      isSelected: false,
 			uid: "new-uid-1",
 			days: [
 				{lessonIds: ["l-id-1", "l-id-2"], ringsScheduleId: "r-id-1"},
@@ -126,7 +123,6 @@ describe("Testing ComposedSchedulesStore", () => {
 		expect(composedSchedulesStore.composedSchedules).toHaveLength(1)
 		expect(composedSchedulesStore.composedSchedules[0]).toEqual({
 			name: "Updated name of composed schedule 1",
-      isSelected: false,
 			uid: "new-uid-1",
 			days: [
 				{lessonIds: ["l-id-1", "l-id-2"], ringsScheduleId: "r-id-1"},
@@ -144,22 +140,6 @@ describe("Testing ComposedSchedulesStore", () => {
 		expect(composedSchedulesStore.composedSchedules).toHaveLength(1)
 		expect(composedSchedulesStore.composedSchedules[0]).toEqual({
 			name: "Updated name of composed schedule 1",
-      isSelected: false,
-			uid: "new-uid-1",
-      days: [
-				{lessonIds: ["3129", "2389"], ringsScheduleId: "gdfpjo"},
-				{lessonIds: ["923487", "2937"], ringsScheduleId: "cdwklm"}
-			]
-		})
-
-    // Update only "isSelected" property:
-		composedSchedulesStore.updateSchedule("new-uid-1", {
-      isSelected: true
-		})
-		expect(composedSchedulesStore.composedSchedules).toHaveLength(1)
-		expect(composedSchedulesStore.composedSchedules[0]).toEqual({
-			name: "Updated name of composed schedule 1",
-      isSelected: true,
 			uid: "new-uid-1",
       days: [
 				{lessonIds: ["3129", "2389"], ringsScheduleId: "gdfpjo"},
@@ -170,7 +150,6 @@ describe("Testing ComposedSchedulesStore", () => {
 		// Update all properies in one go:
 		composedSchedulesStore.updateSchedule("new-uid-1", {
 			name: "Once again updated name of composed schedule 1",
-      isSelected: false,
 			days: [
 				{lessonIds: ["3490287", "746567"], ringsScheduleId: "jklfhds"},
 				{lessonIds: ["5346", "72685"], ringsScheduleId: "ncdjvqs"}
@@ -180,7 +159,6 @@ describe("Testing ComposedSchedulesStore", () => {
 		expect(composedSchedulesStore.composedSchedules[0]).toEqual({
 			name: "Once again updated name of composed schedule 1",
       uid: "new-uid-1",
-      isSelected: false,
 			days: [
 				{lessonIds: ["3490287", "746567"], ringsScheduleId: "jklfhds"},
 				{lessonIds: ["5346", "72685"], ringsScheduleId: "ncdjvqs"}
