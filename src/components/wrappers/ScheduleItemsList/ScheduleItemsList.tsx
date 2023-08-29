@@ -7,7 +7,7 @@ import { IComposedSchedule, ILesson, IRingsSchedule} from "../../../core/types/t
 
 import LessonCard from "../../ordinary/LessonCard/LessonCard"
 import Timeline from "../../ordinary/Timeline/Timeline"
-import Warning from "../../../core/utils/Warning"
+import EmptyDay from "../../../core/utils/EmptyDay"
 
 const ScheduleItemsList = () => {
   const stores = useContext(StoreContext)
@@ -59,16 +59,16 @@ const getDataForSelectedDay = (
   stores: RootStore
 ): [(ILesson | undefined)[], IRingsSchedule]  => {
   
-  if (!activeComposedSchedule) {
+  if (!activeComposedSchedule) { //TODO: First case is impossible btw...
     throw new Error("Composed shcedule not selected.\n\nOr if you haven't created any yet, please go to:\nMenu > Composed Schedules > Compose new schedule")
   }
 
-  if (!activeComposedSchedule.days[selectedDayIndex]) {
-    throw new Warning("You didn't compose this day")
+  if (stores.composedSchedulesStore.dayIsEmptyOrUndefined(activeComposedSchedule.uid, selectedDayIndex)) {
+    throw new EmptyDay("Nothing for today :D")
   }
-  
+
   const ringsScheduleIdForSelectedDay = activeComposedSchedule.days[selectedDayIndex].ringsScheduleId
-  const ringsScheduleForSelectedDay = stores.ringsSchedulesStore.findById(ringsScheduleIdForSelectedDay)
+  const ringsScheduleForSelectedDay = stores.ringsSchedulesStore.getById(ringsScheduleIdForSelectedDay)
 
   if (!ringsScheduleForSelectedDay) {
     throw new Error(`This day in "${activeComposedSchedule.name}" composed schedule is refering to rings schedule that was deleted!\n\nTo fix that, change rings schedule for this day in "${activeComposedSchedule.name}" composed schedule to existing one.\n\nYou can to that by swiping mentioned composed schedule card to the right in:\nMenu > Composed Schedules`)
@@ -82,7 +82,7 @@ const getDataForSelectedDay = (
     That's weird cause you literally can't submit new composed schedule if you not selected at least one lesson.\n\n
     So since I don't even know how it is possible, I can't really give any advices on how to fix that :/\n\n
     Try to cmpose new schedule but... more careful? idk.\n\n
-    Also I would appreciate if you will open issue on github with some ideas why this happend <3`)
+    Also I would appreciate if you will open issue on github with some ideas why this happened <3`)
   }
 
   return [lessonsForSelectedDay, ringsScheduleForSelectedDay]

@@ -7,7 +7,7 @@ import { capitalize } from "../utils/stringUtils"
 class ComposedSchedulesStore implements IComposedSchedulesStore {
 	composedSchedules: IComposedSchedule[] = []
 	storageKey: string = "composed-schedules"
-  activeScheduleUid: string | null = null
+  activeScheduleUid: string | null = null // schedule that will be rendered on the main page
 
 	constructor() {
 		makeAutoObservable(this)
@@ -68,7 +68,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
     this.memorizeState()
   }
 
-  // "get" doesn't really fit here, but neither anything else I can think of...
+  // "get" doesn't really fits here, but neither anything else I can think of...
   getActiveSchedule(): IComposedSchedule | null {
     // it's can only be null if activeScheduleUid === null, or activeScheduleUid is refering deleted schedule
     const activeSchedule = this.composedSchedules.find(s => s.uid === this.activeScheduleUid) || null
@@ -84,6 +84,22 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
     
     // and only if there is no composed schedules...
     return null
+  }
+
+  getById(uid: string) {
+    return this.composedSchedules.find(s => s.uid === uid)
+  }
+
+  dayIsEmptyOrUndefined(scheduleUid: string, dayIndex: number) {
+    const targetSchedule = this.getById(scheduleUid)
+
+    if (!targetSchedule) throw new Error(`Composed schedule with passed id: ${scheduleUid} is not present in the store`)
+    
+    const targetDay = targetSchedule.days[dayIndex]
+
+    if (!targetDay) return true
+
+    return targetDay.lessonIds.filter(l => l !== "hidden").length === 0
   }
 }
 

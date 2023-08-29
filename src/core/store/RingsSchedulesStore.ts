@@ -59,7 +59,7 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 		return true
 	}
 
-  findById(uid: string): IRingsSchedule | undefined {
+  getById(uid: string): IRingsSchedule | undefined {
     return this.ringsSchedules.find(s => s.uid === uid)
   }
 }

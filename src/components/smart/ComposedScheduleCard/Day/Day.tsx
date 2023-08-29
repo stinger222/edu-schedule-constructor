@@ -22,8 +22,8 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
     s.uid === day.ringsScheduleId
   ))
   
-  let startTime = "??:??"
-  let endTime = "??:??"
+  let startTime = "-:-"
+  let endTime = "-:-"
 
   if (thisDayRingsSchedule) {
     [startTime, endTime] = getStartAndEndTime(thisDayRingsSchedule, day.lessonIds)
@@ -55,13 +55,13 @@ export default Day
 
 const getStartAndEndTime = (ringsSchedule: IRingsSchedule, lessonIds: string[]): [string, string] => {
   if (lessonIds.filter(l => l !== "hidden").length === 0) {
-    return ["??:??", "??:??"]
+    return ["-:-", "-:-"]
   }
   
   const firstLessonIndex = lessonIds.findIndex(i => i !== "hidden") // index of first lesson that is not <nothing> plug
 
-  const startTime = ringsSchedule.rings[firstLessonIndex]?.start || "??:??"
-  const endTime = ringsSchedule.rings[lessonIds.length - 1]?.end || "??:??"
+  const startTime = ringsSchedule.rings[firstLessonIndex]?.start || "-:-"
+  const endTime = ringsSchedule.rings[lessonIds.length - 1]?.end || "-:-"
 
   return [startTime, endTime]
 }

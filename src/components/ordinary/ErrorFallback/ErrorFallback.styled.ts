@@ -37,18 +37,33 @@ export const StyledErrorFallback = styled.div`
   }
 
   // ======== Warning: ========
-
-    & .warning-header {
+  
+  & .warning-header {
     color: #f5cd11;
   }
 
   & .warning-message-wrapper {
     background: #ffb90424;
   }
-
+  
   & .warning-message {
     color: #ffc800;
   }
+  
+  // ======== EmptyDay: ========
+
+  & .empty-day-header {
+    color: #11A3F5;
+  }
+
+  & .empty-day-message-wrapper {
+    background: #00B2FF24;
+  }
+  
+  & .empty-day-message {
+    color: #11A3F5;
+  }
+  
 
   @supports not (text-wrap: balance) {
     & .message {
@@ -64,9 +79,5 @@ export const StyledErrorFallback = styled.div`
     & .message {
       font-size: 1.7em;
     }
-
-    /* & .message-wrapper {
-      background: #f22f2f19;
-    } */
   }
 `

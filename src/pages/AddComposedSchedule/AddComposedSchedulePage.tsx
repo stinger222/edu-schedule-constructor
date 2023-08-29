@@ -51,7 +51,6 @@ const AddComposedSchedulePage = () => {
         })
 
       methods.reset(scheduleToEdit)
-      methods.trigger()
     }
   }, [])
 
