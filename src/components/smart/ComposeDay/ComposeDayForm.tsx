@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from "react"
 import { UseFieldArrayRemove, useFieldArray, useFormContext } from "react-hook-form"
+
 import { StoreContext } from "../../.."
+import { ILessonsStore, IRingsSchedulesStore } from "../../../core/types/store"
+import { IRingsSchedule } from "../../../core/types/types"
+import { WeekDays } from "../../../core/utils/dateTimeUtils"
+import { validateField } from "../../../core/utils/stringUtils"
 
 import SelectContainer from "../../containers/SelectContainer/SelectContainer"
 import GhostButton from "../../ui/GhostButton/GhostButton"
-import { StyledComposeDayForm } from "./ComposeDayForm.styled"
 
-import { ILessonsStore, IRingsSchedulesStore } from "../../../core/types/store"
-import { IRingsSchedule } from "../../../core/types/types"
-import { validateField } from "../../../core/utils/stringUtils"
-import { WeekDays } from "../../../core/utils/dateTimeUtils"
+import { StyledComposeDayForm } from "./ComposeDayForm.styled"
 
 
 interface IProps {
@@ -17,7 +18,6 @@ interface IProps {
 }
 
 const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
-
   const [canAddNewLessons, setCanAddNewLessons] = useState(false)
 	const { lessonsStore, ringsSchedulesStore } = useContext(StoreContext)
   
@@ -28,7 +28,13 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 
   const selectedRingsScheduleId: string = methods.watch(`days.${dayIndex}.ringsScheduleId`)
 
-  // Prevents user from adding more lessons that described in selected rings schedule.
+  const getRightSection = (index: number) => {
+    if (fields.length - 1 === index && index != 0) {
+      return <RemoveFieldButton index={index} remove={removeLessonId}/>
+    }
+  }
+
+  // Prevents user from adding more lessons that described in selected rings schedule
   useEffect(() => {
     const selectedRingsSchedule = ringsSchedulesStore.ringsSchedules.find(s => (
       s.uid === selectedRingsScheduleId
@@ -41,7 +47,7 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
     } else {
       setCanAddNewLessons(false)
     }
-  }, [selectedRingsScheduleId, fields.length]) // On new rings schedule selet or addition of new lesson. 
+  }, [selectedRingsScheduleId, fields.length]) // On new rings schedule select or addition of new lesson
 
 	if (dayIndex >= 5) return null
 	
@@ -51,11 +57,11 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 
 			<div className="compose-day">
 				<SelectContainer
-					key={0}
-					name={`days.${dayIndex}.ringsScheduleId`}
-					rules={{validate: validateField}}
-					label="Расписание звонков для этого дня"
 					data={getRingsSchedulesSelectData(ringsSchedulesStore)}
+					name={`days.${dayIndex}.ringsScheduleId`}
+					label="Расписание звонков для этого дня"
+					rules={{validate: validateField}}
+					key={0}
 				/>
 
 				<div className="hr-divider"></div>
@@ -63,15 +69,12 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 				{
 					fields.map(({id}, index) => (
 						<SelectContainer
-							rightSection= {
-								(fields.length - 1 === index && index != 0) && 
-									<RemoveFieldButton index={index} remove={removeLessonId}/>
-							}
+              data={getLessonsSelectData(lessonsStore)}
+              name={`days.${dayIndex}.lessonIds.${index}`}
+              label={`${index + 1}-ая пара`}
+              rules={{validate: validateField}}
+              rightSection={getRightSection(index)}
 							key={id}
-							name={`days.${dayIndex}.lessonIds.${index}`}
-							rules={{validate: validateField}}
-							label={`${index + 1}-ая пара`}
-							data={getLessonsSelectData(lessonsStore)}
 						/>
 					))
 				}
