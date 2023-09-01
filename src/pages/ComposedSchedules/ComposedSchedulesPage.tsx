@@ -10,6 +10,8 @@ import { observer } from "mobx-react"
 
 const ComposedSchedulesPage = () => {
   const composedSchedulesStore = useContext(StoreContext).composedSchedulesStore
+  const __DEV__ = process.env.NODE_ENV  === "development"
+
 
   return (
     <StyledComposedSchedulesPage>
@@ -19,7 +21,12 @@ const ComposedSchedulesPage = () => {
           <h1> Составленные расписания </h1>
           <Header.BurgerButton />
         </Header>
-        {`Active: ${composedSchedulesStore.activeScheduleUid}`} {/* <=== DEBUG SHIT!! */}
+
+        {__DEV__ &&
+          <div style={{textAlign: "center", padding: "0.5em", fontSize: "1.3em"}}>
+            Active: {composedSchedulesStore.activeScheduleUid}
+          </div>
+        }
 
         <ComposedSchedulesList
           composedSchedules={composedSchedulesStore.composedSchedules}
