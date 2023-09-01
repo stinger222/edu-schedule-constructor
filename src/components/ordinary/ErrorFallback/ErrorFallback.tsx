@@ -1,6 +1,5 @@
-import EmptyDay from "../../../core/utils/EmptyDay"
-import Warning from "../../../core/utils/Warning"
-import Container from "../../containers/Container/Container"  
+import Container from "../../containers/Container/Container"
+import { EmptyDay, Warning } from "../../../core/utils/CustomErrors"
 import { StyledErrorFallback } from "./ErrorFallback.styled"
 
 interface IProps {

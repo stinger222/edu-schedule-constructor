@@ -7,7 +7,7 @@ import { IComposedSchedule, ILesson, IRingsSchedule} from "../../../core/types/t
 
 import LessonCard from "../../ordinary/LessonCard/LessonCard"
 import Timeline from "../../ordinary/Timeline/Timeline"
-import EmptyDay from "../../../core/utils/EmptyDay"
+import { EmptyDay } from "../../../core/utils/CustomErrors"
 
 const ScheduleItemsList = () => {
   const stores = useContext(StoreContext)

@@ -59,7 +59,7 @@ const AddComposedSchedulePage = () => {
       <Container>
         <Header>
           <Header.NavHome />
-          <h1> Составить новое расписание </h1>
+          <h1>{routeState?.mode === "edit" ? "Редактировать расписание" : "Составить новое расписание"}</h1>
           <Header.BurgerButton />
         </Header>
 
