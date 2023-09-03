@@ -14,12 +14,12 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 		this.restoreState()
 	}
 
-	memorizeState() {
+	memorizeState(): void {
 		localStorage.setItem(this.storageKey, JSON.stringify(this.composedSchedules))
     this.activeScheduleUid && localStorage.setItem("active-composed-schedule-uid", this.activeScheduleUid)
 	}
 
-	restoreState() {
+	restoreState(): void {
 		this.composedSchedules = JSON.parse(localStorage.getItem(this.storageKey) ?? `[]`)
     this.activeScheduleUid = localStorage.getItem("active-composed-schedule-uid") || null
 	}
@@ -36,7 +36,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 	removeSchedule(uid: string): boolean {
 		const indexToDelete = this.composedSchedules.findIndex(schedule => schedule.uid === uid)
 		if (indexToDelete === -1) {
-			console.warn(`Can't remove\n.Composed shcedule with id "${uid}" not found.`)
+			console.warn(`Can't remove\n.Composed shcedule with id: "${uid}" not found.`)
 			return false
 		}
 		
@@ -48,9 +48,8 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 
 	updateSchedule(uid: string, newSchedule: Partial<Omit<IComposedSchedule, "uid">>): boolean {
 		const indexToUpdate = this.composedSchedules.findIndex(s => s.uid === uid)
-
 		if (indexToUpdate === -1) {
-			console.warn(`Can't update.\nComposed schedule with id "${uid}" not found.`)
+			console.warn(`Can't update.\nComposed schedule with id: "${uid}" not found.`)
 			return false
 		}
 
@@ -59,7 +58,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 			...newSchedule
 		}
 
-		console.log("Composed Sschedule updated successfully.")
+		console.log("Composed Schedule updated successfully.")
 		return true
 	}
 
@@ -68,7 +67,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
     this.memorizeState()
   }
 
-  // "get" doesn't really fits here, but neither anything else I can think of...
+  // "get" doesn't really fit here, but neither anything else I can think of...
   getActiveSchedule(): IComposedSchedule | null {
     // it's can only be null if activeScheduleUid === null, or activeScheduleUid is refering deleted schedule
     const activeSchedule = this.composedSchedules.find(s => s.uid === this.activeScheduleUid) || null
@@ -90,7 +89,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
     return this.composedSchedules.find(s => s.uid === uid)
   }
 
-  dayIsEmptyOrUndefined(scheduleUid: string, dayIndex: number) {
+  dayIsEmptyOrUndefined(scheduleUid: string, dayIndex: number): boolean {
     const targetSchedule = this.getById(scheduleUid)
 
     if (!targetSchedule) throw new Error(`Composed schedule with passed id: ${scheduleUid} is not present in the store`)

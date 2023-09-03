@@ -1,25 +1,56 @@
 import { Cases, weekDates } from "../types/types"
 import { formatNumber } from "./stringUtils"
 
+
+interface IData {
+  ru: {
+    short: readonly string[],
+    full: {
+      nominative: readonly string[],
+      accusative: readonly string[]
+    }
+  },
+  en: {
+    short: readonly string[],
+    full: {
+      nominative: readonly string[],
+      accusative: readonly string[]
+    }
+  }
+}
 export class WeekDays {
-	private static readonly _week = {
-		short: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
-		full: {
-			nominative: [
-				"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"
-			],
-			accusative: [
-				"Понедельник", "Вторник", "Среду", "Четверг", "Пятницу", "Субботу", "Воскресенье"
-			]
-		}
+
+  private static readonly data: IData = {
+    ru: {
+      short: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
+      full: {
+        nominative: [
+          "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"
+        ],
+        accusative: [
+          "Понедельник", "Вторник", "Среду", "Четверг", "Пятницу", "Субботу", "Воскресенье"
+        ]
+      }
+    },
+    en: {
+      short: ["M", "T", "W", "T", "F", "S", "S"],
+      full: {
+        nominative: [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        accusative: [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ]
+      }
+    }
+  }
+
+	static getShort(lang: "ru" | "en"): ReadonlyArray<string> {
+		return this.data[lang].short as ReadonlyArray<string>
 	}
 
-	static getShort(): ReadonlyArray<string> {
-		return this._week.short as ReadonlyArray<string>
-	}
-
-	static getFull(caseType: Cases = Cases.Nominative, toLowerCase: boolean = false): ReadonlyArray<string> {
-		const result: ReadonlyArray<string> = this._week.full[caseType]
+	static getFull(lang: "ru" | "en", caseType: Cases = Cases.Nominative, toLowerCase: boolean = false): ReadonlyArray<string> {
+		const result: ReadonlyArray<string> = this.data[lang].full[caseType]
 		return toLowerCase ? result.map(i => i.toLowerCase()) : result
 	}
 }

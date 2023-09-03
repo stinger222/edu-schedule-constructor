@@ -14,13 +14,16 @@ import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 import { WeekDays } from "../../core/utils/dateTimeUtils"
 import { validateField } from "../../core/utils/stringUtils"
+import { useTranslation } from "react-i18next"
 
 const AddComposedSchedulePage = () => {
   const { composedSchedulesStore } = useContext(StoreContext)
 
   const navigate = useNavigate()
   const routeState = useLocation().state
-  
+  const { t, i18n } = useTranslation()
+  const lang = i18n.resolvedLanguage as "ru" | "en"
+
   const methods = useForm({
     defaultValues: {
       name: "",
@@ -81,9 +84,9 @@ const AddComposedSchedulePage = () => {
 
             {fields.length < 5 && (
               <>
-                <h2>{WeekDays.getFull(Cases.Nominative)[fields.length]}:</h2>
+                <h2>{WeekDays.getFull(lang, Cases.Nominative)[fields.length]}:</h2>
                 <GhostButton onClick={() => append({ ringsScheduleId: "", lessonIds: ["undefined"] })}>
-                  Заполнить расписание на {WeekDays.getFull(Cases.Accusative, true)[fields.length]}
+                  Заполнить расписание на {WeekDays.getFull(lang, Cases.Accusative, true)[fields.length]}
                   <br />
                   <span className="plus">+</span>
                 </GhostButton>

@@ -1,13 +1,17 @@
-import App from "./App"
 import React from "react"
 import ReactDOM from "react-dom/client"
-import RootStore from "./core/store/RootStore"
-import GlobalStyles from "./core/themes/GlobalStyles"
-import { DarkTheme } from "./core/themes/Dark"
 import { HashRouter } from "react-router-dom"
-import { LightTheme } from "./core/themes/Light"
 import { ThemeProvider } from "styled-components"
 import { Provider as StoreProvider } from "mobx-react"
+
+import RootStore from "./core/store/RootStore"
+import GlobalStyles from "./core/themes/GlobalStyles"
+import { LightTheme } from "./core/themes/Light"
+import { DarkTheme } from "./core/themes/Dark"
+import "./core/configs/i18next"
+
+import App from "./App"
+
 
 const rootStore = new RootStore()
 export const StoreContext = React.createContext<typeof rootStore>(rootStore)

@@ -14,8 +14,7 @@ export const StyledSwitch = styled.input`
   border-radius: 10em;
   background: white;
 
-  transition-property: left right;
-  transition: var(--transition-duration);
+  transition: all var(--transition-duration);
 
   &:after {
     content: "";

@@ -11,6 +11,7 @@ import SelectContainer from "../../containers/SelectContainer/SelectContainer"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
 import { StyledComposeDayForm } from "./ComposeDayForm.styled"
+import { useTranslation } from "react-i18next"
 
 
 interface IProps {
@@ -20,6 +21,9 @@ interface IProps {
 const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
   const [canAddNewLessons, setCanAddNewLessons] = useState(false)
 	const { lessonsStore, ringsSchedulesStore } = useContext(StoreContext)
+  
+  const { t, i18n } = useTranslation()
+  const lang = i18n.resolvedLanguage as "ru" | "en"
   
   const methods = useFormContext()
   const { fields, append: appendLessonId, remove: removeLessonId } = useFieldArray({
@@ -53,7 +57,7 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 	
 	return (
 		<StyledComposeDayForm>
-			<h2>{WeekDays.getFull()[dayIndex]}:</h2>
+			<h2>{WeekDays.getFull(lang)[dayIndex]}:</h2>
 
 			<div className="compose-day">
 				<SelectContainer

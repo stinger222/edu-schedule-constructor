@@ -3,6 +3,7 @@ import { WeekDays } from "../../../../core/utils/dateTimeUtils"
 import { IComposedDay, IRingsSchedule } from "../../../../core/types/types"
 import { StoreContext } from "../../../.."
 import { StyledDay } from "./Day.styled"
+import { useTranslation } from "react-i18next"
 
 interface IProps {
 	dayIndex: number,
@@ -16,6 +17,9 @@ const emptyDay: IComposedDay = {
 
 const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 	const { ringsSchedulesStore } = useContext(StoreContext)
+  
+  const { t, i18n } = useTranslation()
+  const lang = i18n.resolvedLanguage as "ru" | "en"
 
   // Can be "undefined" if user deleted schedule that id is reffering to
 	const thisDayRingsSchedule = ringsSchedulesStore.ringsSchedules.find(s => (
@@ -32,7 +36,7 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
   // If passed day contains <nothing> card, then it's filtered out
   const amountOfLessons = day.lessonIds.filter((i: string) => i !== "hidden").length
 
-	const weekDay: string = WeekDays.getShort()[dayIndex]
+	const weekDay: string = WeekDays.getShort(lang)[dayIndex]
 
 	return (
 		<StyledDay>

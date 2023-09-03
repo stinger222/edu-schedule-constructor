@@ -11,7 +11,6 @@ import { observer } from "mobx-react"
 
 
 const MainPage = () => {
-  
   const { uiStore } = useContext(StoreContext)
 
 	return (
@@ -22,9 +21,9 @@ const MainPage = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-       <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex]}>
-          <ScheduleItemsList />
-       </ErrorBoundary>
+        <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex]}>
+            <ScheduleItemsList />
+        </ErrorBoundary>
 
 			</Container>
 		</StyledMainPage>
