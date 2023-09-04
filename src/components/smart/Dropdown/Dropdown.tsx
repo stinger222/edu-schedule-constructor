@@ -5,11 +5,12 @@ import { Link, useLocation } from "react-router-dom"
 
 import { StyledDropdown } from "./Dropdown.styled"
 import Button from "../../ui/Button/Button"
-import { act } from "react-dom/test-utils"
+import { useTranslation } from "react-i18next"
 
 const Dropdown = () => {
 	const { uiStore } = useContext(StoreContext)
 	const location = useLocation()
+  const { t } = useTranslation()
 	
 	useEffect(() => {
     uiStore.toggleDropdown(false)
@@ -18,19 +19,19 @@ const Dropdown = () => {
 	return !uiStore.isDropdownOpen ? null : (
 		<StyledDropdown>
 			<header>
-        Меню
+        {t("dropdown.menu")}
 			</header>
 
 			<Link to='/composed'>
-				<Button>Составленные расписания</Button>
+				<Button> {t("dropdown.composed")} </Button>
 			</Link>
 
 			<Link to="/rings">
-				<Button>Расписания звонков</Button>
+				<Button> {t("dropdown.rings")} </Button>
 			</Link>
 
 			<Link to='/lessons'>
-				<Button>Добавленные предметы</Button>
+				<Button> {t("dropdown.lessons")} </Button>
 			</Link>
 
 		</StyledDropdown>

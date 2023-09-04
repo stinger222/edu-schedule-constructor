@@ -1,8 +1,8 @@
 export class EmptyDay extends Error {
   readonly name = "EmptyDay"
 
-  constructor(message: string) {
-    super(message)
+  constructor() {
+    super()
   }
 }
 

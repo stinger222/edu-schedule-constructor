@@ -6,6 +6,7 @@ import LessonCard from "../../ordinary/LessonCard/LessonCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
 import { StyledLessonCardsList } from "./LessonCardsList.styled"
+import { useTranslation } from "react-i18next"
 
 interface IProps {
 	lessons: ILesson[]
@@ -14,9 +15,10 @@ interface IProps {
 
 const LessonCardsList: React.FC<IProps> = ({ lessons, removeLesson }) => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
 	const handleRemove = (uid: string) => {
-		if (!window.confirm("Are you sure?")) return
+		if (!window.confirm(t("confirmPrompt.deleteCard"))) return
 		removeLesson(uid)
 	}
 
@@ -52,7 +54,7 @@ const LessonCardsList: React.FC<IProps> = ({ lessons, removeLesson }) => {
 			}
       
 			<Link to="/add/lesson">
-				<GhostButton> Добавить предмет <span className="plus">+</span></GhostButton>
+				<GhostButton> {t("ghostButton.addLesson")} <span className="plus">+</span></GhostButton>
 			</Link>
 		</StyledLessonCardsList>
 	)

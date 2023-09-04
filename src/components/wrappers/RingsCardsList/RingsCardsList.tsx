@@ -6,6 +6,7 @@ import { StyledRingsCardsList } from "./RingsCardsList.styled"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
 import RingsScheduleCard from "../../ordinary/RingsScheduleCard/RingsScheduleCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
+import { useTranslation } from "react-i18next"
 
 interface IProps {
 	ringsSchedules: IRingsSchedule[],
@@ -13,9 +14,10 @@ interface IProps {
 }
 
 const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) => {
- 
+  const { t } = useTranslation()
+
   const handleRemove = (uid: string) => {
-    if (!window.confirm("Are you sure?")) return
+    if (!window.confirm(t("confirmPrompt.deleteCard"))) return
     removeSchedule(uid)
   }
 return (
@@ -44,7 +46,7 @@ return (
     }
 
     <Link to="/add/rings">
-      <GhostButton>Добавить расписание звонков <span className="plus">+</span></GhostButton>
+      <GhostButton> {t("ghostButton.addRingsSchedule")} <span className="plus">+</span></GhostButton>
     </Link>
   </StyledRingsCardsList>
   )

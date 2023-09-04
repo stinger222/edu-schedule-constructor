@@ -5,18 +5,19 @@ import { StyledLessonsPage } from "./LessonsPage.styled"
 import { useContext } from "react"
 import { StoreContext } from "../.."
 import { observer } from "mobx-react"
+import { useTranslation } from "react-i18next"
 
 const LessonsPage = () => {
 
+  const { t } = useTranslation()
 	const lessonsStore = useContext(StoreContext).lessonsStore
-
 
 	return (
 		<StyledLessonsPage>
 			<Container>
 				<Header>
 					<Header.NavHome/>
-					<h1> Добавленные предметы </h1>
+					<h1> {t("headerTitle.lessonsPage")} </h1>
 					<Header.BurgerButton/>
 				</Header>
 

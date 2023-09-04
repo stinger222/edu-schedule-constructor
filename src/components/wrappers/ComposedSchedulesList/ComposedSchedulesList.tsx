@@ -7,6 +7,7 @@ import ComposedSchedule from "../../smart/ComposedScheduleCard/ComposedScheduleC
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
 import { StyledComposedSchedulesList } from "./ComposedSchedulesList.styled"
+import { useTranslation } from "react-i18next"
 
 interface IProps {
   composedSchedules: IComposedSchedule[]
@@ -14,11 +15,11 @@ interface IProps {
 }
 
 const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSchedule }) => {
-
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const handleRemove = (uid: string) => {
-    if (!window.confirm("Are you sure?")) return
+    if (!window.confirm(t("confirmPrompt.deleteCard"))) return
     removeSchedule(uid)
   }
 
@@ -50,7 +51,7 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
 
       <Link to="/add/composed">
         <GhostButton>
-          Составить новое расписание <br /> <span className="plus">+</span>
+          {t("headerTitle.addComposedSchedule")} <br /> <span className="plus">+</span>
         </GhostButton>
       </Link>
     </StyledComposedSchedulesList>

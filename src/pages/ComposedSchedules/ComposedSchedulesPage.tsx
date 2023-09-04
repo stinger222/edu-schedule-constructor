@@ -7,18 +7,20 @@ import ComposedSchedulesList from "../../components/wrappers/ComposedSchedulesLi
 
 import { StyledComposedSchedulesPage } from "./ComposedSchedulesPage.styled"
 import { observer } from "mobx-react"
+import { useTranslation } from "react-i18next"
 
 const ComposedSchedulesPage = () => {
   const composedSchedulesStore = useContext(StoreContext).composedSchedulesStore
-  const __DEV__ = process.env.NODE_ENV  === "development"
+  const { t } = useTranslation()
 
+  const __DEV__ = process.env.NODE_ENV  === "development"
 
   return (
     <StyledComposedSchedulesPage>
       <Container>
         <Header>
           <Header.NavHome />
-          <h1> Составленные расписания </h1>
+          <h1> {t("headerTitle.composedPage")} </h1>
           <Header.BurgerButton />
         </Header>
 

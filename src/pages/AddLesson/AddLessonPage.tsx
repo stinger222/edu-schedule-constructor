@@ -12,12 +12,15 @@ import { ILesson } from "../../core/types/types"
 import { validateField } from "../../core/utils/stringUtils"
 
 import { StyledAddLessonPage } from "./AddLessonPage.styled"
+import { useTranslation } from "react-i18next"
 
 const AddLessonPage = () => {
   const { lessonsStore } = useContext(StoreContext)
-  
+
   const navigate = useNavigate()
   const routeState = useLocation().state
+
+  const { t } = useTranslation()
 
 	const methods = useForm({defaultValues: {
 		title: "",
@@ -54,29 +57,30 @@ const AddLessonPage = () => {
 			<Container>
 				<Header>
 					<Header.NavHome/>
-					<h1> Добавить предмет </h1>
+					<h1>{routeState?.mode === "edit" ? t("headerTitle.editLesson") : t("headerTitle.addLesson")}</h1>
+          {/* <h1>{routeState?.mode === "edit" ? "Редактировать расписание" : "Составить новое расписание"}</h1> */}
 					<Header.BurgerButton/>
 				</Header>
 
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(handleSubmit)}>
 						<InputWrapper
-							label="Название пары"
-							placeholder="Основы алгоритмизации"
+							label={t("addLessonForm.lessonNameInputCaption")}
+							placeholder={t("addLessonForm.lessonNameInputPlaceholder")}
 							name="title"
 							rules={{validate: validateField}}
 							className="title"
 						/>
 						<InputWrapper
-							label="Имя препода"
-							placeholder="Иванов Иван Иванович"
+							label={t("addLessonForm.teacherNameInputCaption")}
+							placeholder={t("addLessonForm.teacherNameInputPlaceholder")}
 							name="teacher"
 							rules={{validate: validateField}}
 							className="teacher"
 						/>
 						<InputWrapper
-							label="Кабинет"
-							placeholder="302у"
+							label={t("addLessonForm.cabinetInputCaption")}
+							placeholder={t("addLessonForm.cabinetInputPlaceholder")}
 							name="cabinet"
 							rules={{validate: validateField}}
 							className="cabinet"
@@ -91,7 +95,7 @@ const AddLessonPage = () => {
 						<Button
 							disabled={(!methods.formState.isValid)}
 							type="submit"
-						>Готово</Button>
+						>{t("button.submit")}</Button>
 					</form>
 				</FormProvider>
 			</Container>

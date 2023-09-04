@@ -62,7 +62,7 @@ const AddComposedSchedulePage = () => {
       <Container>
         <Header>
           <Header.NavHome />
-          <h1>{routeState?.mode === "edit" ? "Редактировать расписание" : "Составить новое расписание"}</h1>
+          <h1>{routeState?.mode === "edit" ? t("headerTitle.editComposedSchedule") : t("headerTitle.addComposedSchedule")}</h1>
           <Header.BurgerButton />
         </Header>
 
@@ -70,8 +70,8 @@ const AddComposedSchedulePage = () => {
           <form onSubmit={methods.handleSubmit(handleSubmit)}>
             <InputWrapper
               name="name"
-              label="Название расписания"
-              placeholder="Верхняя неделя"
+              label={t("composeScheduleForm.schNameInputCaption")}
+              placeholder={t("composeScheduleForm.schNameInputPlaceholder")}
               rules={{ validate: validateField }}
             />
 
@@ -86,7 +86,7 @@ const AddComposedSchedulePage = () => {
               <>
                 <h2>{WeekDays.getFull(lang, Cases.Nominative)[fields.length]}:</h2>
                 <GhostButton onClick={() => append({ ringsScheduleId: "", lessonIds: ["undefined"] })}>
-                  Заполнить расписание на {WeekDays.getFull(lang, Cases.Accusative, true)[fields.length]}
+                  {t("ghostButton.fillScheduleFor")} {WeekDays.getFull(lang, Cases.Accusative, true)[fields.length]}
                   <br />
                   <span className="plus">+</span>
                 </GhostButton>
@@ -97,7 +97,7 @@ const AddComposedSchedulePage = () => {
               type="submit"
               disabled={!methods.formState.isValid /*|| (fields.length < 5)*/}
             >
-              Готово
+              {t("button.submit")}
             </Button>
           </form>
         </FormProvider>

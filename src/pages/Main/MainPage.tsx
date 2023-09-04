@@ -8,10 +8,12 @@ import { StyledMainPage } from "./MainPage.styled"
 import { useContext } from "react"
 import { StoreContext } from "../.."
 import { observer } from "mobx-react"
+import { useTranslation } from "react-i18next"
 
 
 const MainPage = () => {
   const { uiStore } = useContext(StoreContext)
+  const { t } = useTranslation()
 
 	return (
 		<StyledMainPage>
@@ -20,7 +22,7 @@ const MainPage = () => {
 					<Header.NavBar/>
 					<Header.BurgerButton/>
 				</Header>
-
+        
         <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex]}>
             <ScheduleItemsList />
         </ErrorBoundary>

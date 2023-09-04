@@ -12,9 +12,11 @@ import TimeRange from "../../components/ordinary/TimeRange/TimeRange"
 import Container from "../../components/containers/Container/Container"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 import { validateField } from "../../core/utils/stringUtils"
+import { useTranslation } from "react-i18next"
 
 const AddRingsSchedulePage = () => {
 
+  const { t } = useTranslation()
 	const { ringsSchedulesStore } = useContext(StoreContext)
 
 	const methods = useForm({
@@ -46,7 +48,8 @@ const AddRingsSchedulePage = () => {
 			<Container>
 				<Header>
 					<Header.NavHome/>
-					<h1>Добавить расписание звонков</h1>
+					<h1> {t("headerTitle.addRingsSchedule")} </h1>
+          {/* <h1>{routeState?.mode === "edit" ? t("headerTitle.editRingsSchedule") : t("headerTitle.ringsPage")}</h1> */}
 					<Header.BurgerButton/>
 				</Header>
 
@@ -54,8 +57,8 @@ const AddRingsSchedulePage = () => {
 					<form onSubmit={ methods.handleSubmit(handleSubmit) }>
 						<InputWrapper
 							name="name"
-							label="Название расписания"
-							placeholder="Звонки на понедельник"
+							label={t("addRingsScheduleForm.schNameInputCaption")}
+							placeholder={t("addRingsScheduleForm.schNameInputPlaceholder")}
 							rules={{validate: validateField}}
 						/>
 
@@ -72,7 +75,7 @@ const AddRingsSchedulePage = () => {
 							<div style={{textAlign: "center", fontSize: "1.2em", marginBottom: "1em"}}> а ой))))) 👉👈 </div>
 						}
 
-						<Button type="submit" disabled={!methods.formState.isValid}>Готово</Button>
+						<Button type="submit" disabled={!methods.formState.isValid}> {t("button.submit")} </Button>
 					</form>
 				</FormProvider>
 

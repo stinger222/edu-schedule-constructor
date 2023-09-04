@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next"
 import { formatTimeString } from "../../../core/utils/stringUtils"
 import { StyledRingsScheduleCard } from "./RingsScheduleCard.styled"
 
@@ -9,6 +10,7 @@ interface IProps {
 }
 
 const RingsScheduleCard: React.FC<IProps> = ({ length, start, end, name }) => {
+  const { t } = useTranslation()
 
 	return (
 		<StyledRingsScheduleCard className="rings-schedule-card">
@@ -16,9 +18,9 @@ const RingsScheduleCard: React.FC<IProps> = ({ length, start, end, name }) => {
 				{name}
 			</header>
 			<div className="details">
-				<div>Пар - <span className="value">{length}</span></div>
-				<div>Начало - <span className="value">{ formatTimeString(start) }</span></div>
-				<div>Конец - <span className="value">{ formatTimeString(end) }</span></div>
+				<div>{t("ringsScheduleCard.lessonsAmount")} <span className="value">{length}</span></div>
+				<div>{t("ringsScheduleCard.start")} <span className="value">{ formatTimeString(start) }</span></div>
+				<div>{t("ringsScheduleCard.end")} <span className="value">{ formatTimeString(end) }</span></div>
 			</div>
 		</StyledRingsScheduleCard>
 	)

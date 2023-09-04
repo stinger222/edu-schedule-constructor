@@ -63,7 +63,7 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 				<SelectContainer
 					data={getRingsSchedulesSelectData(ringsSchedulesStore)}
 					name={`days.${dayIndex}.ringsScheduleId`}
-					label="Расписание звонков для этого дня"
+					label={t("composeScheduleForm.ringsSchForThisDayInputCaption")}
 					rules={{validate: validateField}}
 					key={0}
 				/>
@@ -75,7 +75,8 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 						<SelectContainer
               data={getLessonsSelectData(lessonsStore)}
               name={`days.${dayIndex}.lessonIds.${index}`}
-              label={`${index + 1}-ая пара`}
+              label={t("composeScheduleForm.nthLessonSelectCaption", {value: index + 1})}
+              // label={`${index + 1}-ая пара`}
               rules={{validate: validateField}}
               rightSection={getRightSection(index)}
 							key={id}
@@ -87,7 +88,8 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 
 				{ canAddNewLessons &&  fields.length < 9 &&
 					<GhostButton onClick={() => appendLessonId("undefined")}>
-						Добавить {fields.length + 1}-ую пару
+						{/* Добавить {fields.length + 1}-ую пару */}
+            {t("ghostButton.addNthLesson", {value: fields.length + 1})}
 					</GhostButton>
 				}
 			</div>

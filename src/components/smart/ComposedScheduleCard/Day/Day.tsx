@@ -17,7 +17,7 @@ const emptyDay: IComposedDay = {
 
 const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 	const { ringsSchedulesStore } = useContext(StoreContext)
-  
+    
   const { t, i18n } = useTranslation()
   const lang = i18n.resolvedLanguage as "ru" | "en"
 
@@ -41,14 +41,14 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 	return (
 		<StyledDay>
 			<header>{ weekDay }</header>
-			<div className="card-body">
-				<span>Пар</span>
+      <div className="card-body">
+				<span> {t("composedScheduleCard.lessonsAmount")} </span>
 				<span>{ amountOfLessons || "0" }</span>
 
-				<span>Начало</span>
+				<span> {t("composedScheduleCard.start")} </span>
 				<span>{ startTime }</span>
 
-				<span>Конец</span>
+				<span> {t("composedScheduleCard.end")} </span>
 				<span>{ endTime }</span>
 			</div>
 		</StyledDay>

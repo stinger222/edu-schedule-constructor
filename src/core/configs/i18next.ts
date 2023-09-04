@@ -6,12 +6,9 @@ i18n
   // .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: true,
+    debug: process.env.NODE_ENV === "development",
     // fallbackLng: "en",
     fallbackLng: "ru",
-    interpolation: {
-      escapeValue: false
-    },
     resources: {
       ru: {
         translation: {
@@ -27,66 +24,81 @@ i18n
             addComposedSchedule: "Составить новое расписание"
           },
           dropdown: {
-            composed: "Составленные распиания",
+            menu: "Меню",
+            composed: "Составленные расписания",
             rings: "Расписания звонков",
             lessons: "Добавленные предметы"
           },
 
           lessonCard: {
-            cabinetPrefix: "каб."
+            cabinetPrefix: "каб.",
+            lessonWasRemoved: "<Пара была удалена>",
+            nobody: "<Никто>",
+            noCabinet: "???"
+
           },
           ringsScheduleCard: {
-            lessonsAmount: "Пар - ",
-            start: "Начало - ",
-            end: "Конец - "
+            lessonsAmount: "Пар -",
+            start: "Начало -",
+            end: "Конец -"
           },
           composedScheduleCard: {
-            lessonsAmount: "Пар - ",
-            start: "Начало - ",
-            end: "Конец - "
+            lessonsAmount: "Пар",
+            start: "Начало",
+            end: "Конец"
           },
 
           composeScheduleForm: {
             schNameInputCaption: "Название расписания",
+            schNameInputPlaceholder: "Верхняя неделя",
             ringsSchForThisDayInputCaption: "Расписание звонков для этого дня",
-            nthLesson: "lesson" // TODO: I believe i18 have tools for numerals (?) https://www.i18next.com/translation-function/formatting
+            nthLessonSelectCaption: "{{value}}-ая пара" // TODO: I believe i18 have tools for numerals (?) https://www.i18next.com/translation-function/formatting
           },
           addRingsScheduleForm: {
             schNameInputCaption: "Название расписания",
             schNameInputPlaceholder: "Звонки на понедельник",
             startInputcaption: "Начало",
             endInputcaption: "Конец",
-            dividerCaption: "пара"
+            dividerCaption: "{{value}}-я пара"
           },
           addLessonForm: {
             lessonNameInputCaption: "Название пары",
-            lessonNameInputPlaceholder: "Основа алгоритмизации",
+            lessonNameInputPlaceholder: "Основы алгоритмизации",
             teacherNameInputCaption: "Имя препода",
             teacherNameInputPlaceholder: "Иванов Иван Иванович",
-            cabinetInputCaption: "Имя препода",
-            cabinetInputPlaceholder: "302п" // <= is there should be postfixes in english? 
+            cabinetInputCaption: "Кабинет",
+            cabinetInputPlaceholder: "302п" // <= should there be postfixes in english? 
           },
 
           button: {
             submit: "Готово"
           },
           ghostButton: {
-            addLesson: "",
-            addRingsSchedule: "",
+            addLesson: "Добавить предмет",
+            addRingsSchedule: "Добавить расписание звонков",
             composeNewSchedule: "",
-            fillScheduleFor: "Заполнить расписание на ",
-            addNthLesson: "Add {n}th lesson" // TODO: (?) https://www.i18next.com/translation-function/formatting
+            fillScheduleFor: "Заполнить расписание на",
+            addNthLesson: "Добавить {{value}}-ую пару"
           },
 
           emptyDayErr: {
             header: "Уиииии",
             caption: "На сегодня ничего OwO"
           },
-          Warning: {
+          warning: {
             header: "Внимание!"
           },
-          Error: {
-            header: "Ошибка"
+          error: {
+            header: "Ошибка" // An Error occurred 
+          },
+
+          select: { // it's just a draft, todo
+            emptyPlaceholder: "<Пусто>",
+            nothingCard: "<Ничего>"
+          },
+
+          confirmPrompt: {
+            deleteCard: "Вы уверены, что хотите удалить эту карточку?"
           }
         }
       }

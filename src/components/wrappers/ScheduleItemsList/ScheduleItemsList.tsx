@@ -8,9 +8,11 @@ import { IComposedSchedule, ILesson, IRingsSchedule} from "../../../core/types/t
 import LessonCard from "../../ordinary/LessonCard/LessonCard"
 import Timeline from "../../ordinary/Timeline/Timeline"
 import { EmptyDay } from "../../../core/utils/CustomErrors"
+import { useTranslation } from "react-i18next"
 
 const ScheduleItemsList = () => {
   const stores = useContext(StoreContext)
+  const { t } = useTranslation()
 
   const activeComposedSchedule = stores.composedSchedulesStore.getActiveSchedule()
   const selectedDayIndex = stores.uiStore.selectedDayIndex
@@ -20,7 +22,7 @@ const ScheduleItemsList = () => {
   return (
     <div>
       {lessons.map((lesson: ILesson, index: number) => (
-        <div className="schedule-item" key={lesson.uid + index}>
+        <div className="schedule-item" key={Math.random()}>
 
           <Timeline
             startTime={ringsSchedule.rings[index].start}
@@ -28,9 +30,9 @@ const ScheduleItemsList = () => {
           />
 
           <LessonCard
-            title={lesson?.title || "<Пара была удалена>"}
-            teacher={lesson?.teacher || "<Никто>"}
-            cabinet={lesson?.cabinet || "???"}
+            title={lesson?.title || t("lessonCard.lessonWasRemoved")}
+            teacher={lesson?.teacher || t("lessonCard.nobody")}
+            cabinet={lesson?.cabinet || t("lessonCard.noCabinet")}
           />
 
         </div>
@@ -64,7 +66,7 @@ const getDataForSelectedDay = (
   }
 
   if (stores.composedSchedulesStore.dayIsEmptyOrUndefined(activeComposedSchedule.uid, selectedDayIndex)) {
-    throw new EmptyDay("Nothing for today :D")
+    throw new EmptyDay()
   }
 
   const ringsScheduleIdForSelectedDay = activeComposedSchedule.days[selectedDayIndex].ringsScheduleId

@@ -22,7 +22,7 @@ interface IProps {
  * @param data - data to show in dropdown
 */
 
-const SelectContainer: React.FC<IProps & SelectProps> = forwardRef(({ name, rules, data, ...rest}) => {
+const SelectContainer: React.FC<IProps & SelectProps> = forwardRef(({ name, rules, data, ...rest}, ref) => {
 
 	const methods = useFormContext()
 
