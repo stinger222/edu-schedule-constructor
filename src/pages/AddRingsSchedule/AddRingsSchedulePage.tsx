@@ -75,7 +75,7 @@ const AddRingsSchedulePage = () => {
 							<div style={{textAlign: "center", fontSize: "1.2em", marginBottom: "1em"}}> а ой))))) 👉👈 </div>
 						}
 
-						<Button type="submit" disabled={!methods.formState.isValid}> {t("button.submit")} </Button>
+						<Button type="submit" disabled={!methods.formState.isValid}> {t("button.done")} </Button>
 					</form>
 				</FormProvider>
 

@@ -95,7 +95,7 @@ const AddLessonPage = () => {
 						<Button
 							disabled={(!methods.formState.isValid)}
 							type="submit"
-						>{t("button.submit")}</Button>
+						>{t("button.done")}</Button>
 					</form>
 				</FormProvider>
 			</Container>

@@ -17,6 +17,10 @@ export const StyledAddRingsSchedulePage = styled.div`
 		font-size: 1em;
 	}
 
+  & form .btn[type="submit"] {
+    width: 5.5em;
+  }
+
 	& .append {
 		margin-block: 1em 1.5em;
 	}

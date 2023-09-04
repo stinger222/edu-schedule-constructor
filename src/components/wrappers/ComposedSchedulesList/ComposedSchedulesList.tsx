@@ -51,7 +51,7 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
 
       <Link to="/add/composed">
         <GhostButton>
-          {t("headerTitle.addComposedSchedule")} <br /> <span className="plus">+</span>
+          {t("ghostButton.composeNewSchedule")} <br /> <span className="plus">+</span>
         </GhostButton>
       </Link>
     </StyledComposedSchedulesList>

@@ -97,7 +97,7 @@ const AddComposedSchedulePage = () => {
               type="submit"
               disabled={!methods.formState.isValid /*|| (fields.length < 5)*/}
             >
-              {t("button.submit")}
+              {t("button.done")}
             </Button>
           </form>
         </FormProvider>
