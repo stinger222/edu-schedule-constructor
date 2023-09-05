@@ -1,38 +1,76 @@
-import { StoreContext } from "../../.."
-import { useContext, useEffect } from "react"
 import { observer } from "mobx-react"
-import { Link, useLocation } from "react-router-dom"
+import { useContext, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useLocation } from "react-router-dom"
 
+import { StoreContext } from "../../.."
 import { StyledDropdown } from "./Dropdown.styled"
-import Button from "../../ui/Button/Button"
-import { useTranslation } from "react-i18next"
+import { CSSTransition } from "react-transition-group"
+import DropdownMain from "./DropdownMain"
+import DropdownSettings from "./DropdownSettings"
 
 const Dropdown = () => {
 	const { uiStore } = useContext(StoreContext)
+  const activeMenu = uiStore.activeDropdownMenu
+  
 	const location = useLocation()
-  const { t } = useTranslation()
-	
+  
+  const [menuHeight, setMenuHeight] = useState<number | null>(null)  
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  const calculateHeight = (element: HTMLDivElement) => {
+    if (!element.parentElement) return
+
+    const DropdownComputesStyles = getComputedStyle(element.parentElement)
+    const paddingTopPx = parseInt(DropdownComputesStyles.paddingTop)
+    const paddingBottomPx = parseInt(DropdownComputesStyles.paddingBottom)
+    
+    setMenuHeight(element.offsetHeight + paddingTopPx + paddingBottomPx)
+  }
+
 	useEffect(() => {
     uiStore.toggleDropdown(false)
 	}, [location])
 
-	return !uiStore.isDropdownOpen ? null : (
-		<StyledDropdown>
-			<header>
-        {t("dropdown.menu")}
-			</header>
+  useLayoutEffect(() => {
+    if (menuRef.current) calculateHeight(menuRef.current); console.log(menuRef.current)
+  }, [uiStore.isDropdownOpen])
 
-			<Link to='/composed'>
-				<Button> {t("dropdown.composed")} </Button>
-			</Link>
+  if (!uiStore.isDropdownOpen) return null
 
-			<Link to="/rings">
-				<Button> {t("dropdown.rings")} </Button>
-			</Link>
+	return (
+		<StyledDropdown
+      ref={menuRef}
+      style={{height: menuHeight ?? "max-content"}}
+    >
+      <CSSTransition
+        in={activeMenu === "main"}
+        unmountOnExit
+        timeout={200}
+        onEnter={calculateHeight}
+        classNames={{
+          enterActive: "mainMenuEnterActive",
+          enterDone: "mainMenuEnterDone",
+          exitActive: "mainMenuExitActive",
+          exitDone: "mainMenuExitDone"
+        }}
+      >
+        <DropdownMain />
+      </CSSTransition>
 
-			<Link to='/lessons'>
-				<Button> {t("dropdown.lessons")} </Button>
-			</Link>
+      <CSSTransition
+        in={activeMenu === "settings"}
+        unmountOnExit
+        onEnter={calculateHeight}
+        timeout={200}
+        classNames={{
+          enterActive: "settingsMenuEnterActive",
+          enterDone: "settingsMenuEnterDone",
+          exitActive: "settingsMenuExitActive",
+          exitDone: "settingsMenuExitDone"
+        }}
+      >
+        <DropdownSettings />
+      </CSSTransition>
 
 		</StyledDropdown>
 	)

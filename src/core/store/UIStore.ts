@@ -2,10 +2,12 @@ import { makeAutoObservable } from "mobx"
 import { getCurrentWeekDates } from "../utils/dateTimeUtils"
 import { formatNumber } from "../utils/stringUtils"
 import { IUIStore } from "./../types/store"
+import { DropdownMenu } from "../types/types"
 
 class UIStore implements IUIStore {
 	isDropdownOpen = false
 	selectedDayIndex: number
+  activeDropdownMenu: DropdownMenu = "main"
 
 	constructor() {
 		makeAutoObservable(this)

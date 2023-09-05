@@ -48,3 +48,5 @@ export enum Cases {
 export interface IActionLabelProps {
   className?: string
 }
+
+export type DropdownMenu = "main" | "settings"

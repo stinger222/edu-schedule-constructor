@@ -1,7 +1,8 @@
-import { ILesson, IRingsSchedule, IComposedSchedule } from "./types"
+import { ILesson, IRingsSchedule, IComposedSchedule, DropdownMenu } from "./types"
 export interface IUIStore {
 	selectedDayIndex: number,
 	isDropdownOpen: boolean,
+  activeDropdownMenu: DropdownMenu,
 	toggleDropdown: (newState?: boolean) => void,
 	selectDayIndex: (newIndex: number) => void
 }
