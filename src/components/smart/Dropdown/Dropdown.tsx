@@ -1,12 +1,12 @@
-import { observer } from "mobx-react"
-import { useContext, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
+import { CSSTransition } from "react-transition-group"
 import { useLocation } from "react-router-dom"
+import { observer } from "mobx-react"
 
 import { StoreContext } from "../../.."
 import { StyledDropdown } from "./Dropdown.styled"
-import { CSSTransition } from "react-transition-group"
-import DropdownMain from "./DropdownMain"
 import DropdownSettings from "./DropdownSettings"
+import DropdownMain from "./DropdownMain"
 
 const Dropdown = () => {
 	const { uiStore } = useContext(StoreContext)
@@ -18,21 +18,25 @@ const Dropdown = () => {
   const menuRef = useRef<HTMLDivElement>(null)
 
   const calculateHeight = (element: HTMLDivElement) => {
-    if (!element.parentElement) return
+    const dropdownContent: HTMLElement = element.closest(".dropdown-content") || element.querySelector(".dropdown-content") as HTMLElement
 
-    const DropdownComputesStyles = getComputedStyle(element.parentElement)
-    const paddingTopPx = parseInt(DropdownComputesStyles.paddingTop)
-    const paddingBottomPx = parseInt(DropdownComputesStyles.paddingBottom)
-    
-    setMenuHeight(element.offsetHeight + paddingTopPx + paddingBottomPx)
+    if (!dropdownContent) return
+
+    setMenuHeight(dropdownContent.offsetHeight)
   }
 
 	useEffect(() => {
     uiStore.toggleDropdown(false)
 	}, [location])
 
-  useLayoutEffect(() => {
-    if (menuRef.current) calculateHeight(menuRef.current); console.log(menuRef.current)
+  useEffect(() => {
+    if (menuRef.current) calculateHeight(menuRef.current)
+
+    return () => {  // When dropdown closed...
+      uiStore.activeDropdownMenu = "main"
+      setMenuHeight(null)
+      menuRef.current && calculateHeight(menuRef.current) // set menuHeight to height of the "main"
+    }
   }, [uiStore.isDropdownOpen])
 
   if (!uiStore.isDropdownOpen) return null
@@ -53,9 +57,7 @@ const Dropdown = () => {
           exitActive: "mainMenuExitActive",
           exitDone: "mainMenuExitDone"
         }}
-      >
-        <DropdownMain />
-      </CSSTransition>
+      ><DropdownMain /></CSSTransition>
 
       <CSSTransition
         in={activeMenu === "settings"}
@@ -68,10 +70,7 @@ const Dropdown = () => {
           exitActive: "settingsMenuExitActive",
           exitDone: "settingsMenuExitDone"
         }}
-      >
-        <DropdownSettings />
-      </CSSTransition>
-
+      ><DropdownSettings /></CSSTransition>
 		</StyledDropdown>
 	)
 }

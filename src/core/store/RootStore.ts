@@ -1,9 +1,9 @@
+import { configure } from "mobx"
 import { IComposedSchedulesStore, ILessonsStore, IRingsSchedulesStore, IUIStore } from "./../types/store"
 import ComposedSchedulesStore from "./ComposedSchedulesStore"
 import RingsSchedulesStore from "./RingsSchedulesStore"
 import LessonsStore from "./LessonsStore"
 import UIStore from "./UIStore"
-
 class RootStore {
 	uiStore: IUIStore
 	lessonsStore: ILessonsStore
@@ -17,5 +17,9 @@ class RootStore {
 		this.composedSchedulesStore = new ComposedSchedulesStore()
 	}
 }
+
+configure({
+    enforceActions: "never"
+})
 
 export default RootStore

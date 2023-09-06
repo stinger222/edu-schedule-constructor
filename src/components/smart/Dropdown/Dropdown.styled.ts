@@ -15,6 +15,7 @@ export const StyledDropdown = styled.div`
   
 	border-radius: 1em;
 	box-shadow: 0 0 0 0.07em ${({theme}) => theme.borders.secondary}, 0.2em 0.3em 0.4em 0 rgb(0 0 0 / 45%);
+  box-sizing: content-box;
 
 	z-index: 350;
   overflow: hidden;
@@ -32,7 +33,6 @@ export const StyledDropdown = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 0.6em;
-    box-sizing: border-box;
   }
 
   & .dropdown-content header {
