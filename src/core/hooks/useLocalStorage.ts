@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export function useLocalStorage<T>(
+function useLocalStorage<T>(
   key: string, defaultValue: T
 ): [T, React.Dispatch<React.SetStateAction<T>>] {
   
@@ -19,3 +19,5 @@ export function useLocalStorage<T>(
 
   return [state, setState]
 }
+
+export default useLocalStorage
