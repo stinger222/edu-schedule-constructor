@@ -1,9 +1,11 @@
-import { fireEvent, render, screen, renderHook, act } from "../../../../core/utils/test-utils"
-import { StoreContext } from "../../../.."
 import { useContext } from "react"
-
+import { StoreContext } from "../../../.."
+import i18n from "../../../../core/configs/i18next"
+import { act, fireEvent, render, renderHook, screen } from "../../../../core/utils/test-utils"
 import Dropdown from "../../Dropdown/Dropdown"
 import BurgerButton from "./BurgerButton"
+
+const t = i18n.t
 
 describe("Testing BurgerButton component", () => {
 	it("Renders BurgerButton", () => {
@@ -17,20 +19,20 @@ describe("Testing BurgerButton component", () => {
 			<Dropdown />
 		</>)
 
-		expect(screen.queryByText("Меню")).toBe(null)
+		expect(screen.queryByText(t("dropdown.menu"))).toBe(null)
 		expect(uiStore.isDropdownOpen).toBe(false)
 		
 		act(() => {
 			fireEvent.click(container.children[0])
 			fireEvent.click(container.children[0])
 		})
-		expect(screen.queryByText("Меню")).toBe(null)
+		expect(screen.queryByText(t("dropdown.menu"))).toBe(null)
 		expect(uiStore.isDropdownOpen).toBe(false)
 
 		act(() => {
 			fireEvent.click(container.children[0])
 		})
-		expect(screen.queryByText("Меню")).not.toBe(null)
+		expect(screen.queryByText(t("dropdown.menu"))).not.toBe(null)
 		expect(uiStore.isDropdownOpen).toBe(true)
 	})
 })

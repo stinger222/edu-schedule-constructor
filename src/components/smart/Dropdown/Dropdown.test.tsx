@@ -4,6 +4,9 @@ import { StoreContext } from "../../.."
 import { IUIStore } from "../../../core/types/store"
 import { act, queryByAttribute, render, renderHook,  screen } from "../../../core/utils/test-utils"
 import Dropdown from "./Dropdown"
+import i18n from "../../../core/configs/i18next"
+
+const t = i18n.t
 
 describe("Testing Dropdown component", () => {
 	let uiStore: IUIStore | null
@@ -24,7 +27,7 @@ describe("Testing Dropdown component", () => {
 			uiStore?.toggleDropdown(true)
 		})
 		
-		expect(screen.queryByText("Меню")).not.toBe(null)
+		expect(screen.queryByText(t("dropdown.menu"))).not.toBe(null)
 		expect(getByHref(container, "#/composed")).toBeInTheDocument()
 		expect(getByHref(container, "#/rings")).toBeInTheDocument()
 		expect(getByHref(container, "#/lessons")).toBeInTheDocument()
