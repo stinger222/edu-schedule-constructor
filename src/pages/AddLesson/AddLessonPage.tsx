@@ -1,18 +1,19 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { FormProvider, useForm } from "react-hook-form"
-import { useContext, useEffect } from "react"
+import { useTranslation } from "react-i18next"
+import { useContext } from "react"
 
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
 import Button from "../../components/ui/Button/Button"
 
-import { StoreContext } from "../.." 
-import { ILesson } from "../../core/types/types"
+import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
 import { validateField } from "../../core/utils/stringUtils"
+import { ILesson } from "../../core/types/types"
+import { StoreContext } from "../.." 
 
 import { StyledAddLessonPage } from "./AddLessonPage.styled"
-import { useTranslation } from "react-i18next"
 
 const AddLessonPage = () => {
   const { lessonsStore } = useContext(StoreContext)
@@ -39,18 +40,7 @@ const AddLessonPage = () => {
     navigate(-1)
 	}
 
-  // TODO: Maybe this can be moved to custom hook?...
-  useEffect(() => {
-    if (routeState?.mode === "edit") {
-      const lessonToEdit = lessonsStore.lessons
-        .find((lesson: ILesson) => {
-          return lesson.uid === routeState.uid
-        })
-
-      methods.reset(lessonToEdit)
-      methods.trigger()
-    }
-  }, [])
+  useInitializeFormForEditMode(lessonsStore.lessons, routeState, methods)
 
 	return (
 		<StyledAddLessonPage>

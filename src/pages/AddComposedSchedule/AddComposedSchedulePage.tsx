@@ -1,20 +1,22 @@
-import { useContext, useEffect } from "react"
+import { useTranslation } from "react-i18next"
+import { useContext } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import { StoreContext } from "../.."
-import { Cases, IComposedSchedule } from "../../core/types/types"
-import { StyledAddComposedSchedulePage } from "./AddComposedSchedulePage.styled"
-
 import { FormProvider, useFieldArray, useForm } from "react-hook-form"
 
 import Button from "../../components/ui/Button/Button"
 import Header from "../../components/smart/Header/Header"
+import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import Container from "../../components/containers/Container/Container"
 import ComposeDayForm from "../../components/smart/ComposeDay/ComposeDayForm"
-import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
-import { WeekDays } from "../../core/utils/dateTimeUtils"
+
+import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
+import { Cases, IComposedSchedule } from "../../core/types/types"
 import { validateField } from "../../core/utils/stringUtils"
-import { useTranslation } from "react-i18next"
+import { WeekDays } from "../../core/utils/dateTimeUtils"
+import { StoreContext } from "../.."
+
+import { StyledAddComposedSchedulePage } from "./AddComposedSchedulePage.styled"
 
 const AddComposedSchedulePage = () => {
   const { composedSchedulesStore } = useContext(StoreContext)
@@ -45,17 +47,7 @@ const AddComposedSchedulePage = () => {
     navigate(-1)
   }
 
-  // TODO: Maybe this can be moved to custom hook?...
-  useEffect(() => {
-    if (routeState?.mode === "edit") {
-      const scheduleToEdit = composedSchedulesStore.composedSchedules
-        .find((schedule: IComposedSchedule) => {
-          return schedule.uid === routeState.uid
-        })
-
-      methods.reset(scheduleToEdit)
-    }
-  }, [])
+  useInitializeFormForEditMode<IComposedSchedule>(composedSchedulesStore.composedSchedules, routeState, methods)
 
   return (
     <StyledAddComposedSchedulePage>
@@ -95,7 +87,7 @@ const AddComposedSchedulePage = () => {
 
             <Button
               type="submit"
-              disabled={!methods.formState.isValid /*|| (fields.length < 5)*/}
+              disabled={!methods.formState.isValid}
             >
               {t("button.done")}
             </Button>
