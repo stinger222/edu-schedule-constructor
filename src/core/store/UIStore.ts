@@ -2,21 +2,43 @@ import { makeAutoObservable } from "mobx"
 import { getCurrentWeekDates } from "../utils/dateTimeUtils"
 import { formatNumber } from "../utils/stringUtils"
 import { IUIStore } from "./../types/store"
-import { DropdownMenu } from "../types/types"
+import { DropdownMenu, ISettings } from "../types/types"
+import { ThemeEnum } from "../types/styled"
 
 class UIStore implements IUIStore {
 	isDropdownOpen = false
 	selectedDayIndex: number
   activeDropdownMenu: DropdownMenu = "main"
+  storageKey: string = "settings"
+
+  defaultSettings: ISettings = {
+    theme: ThemeEnum.light
+  }
+
+  // will be parsed from ls
+  userSettings: ISettings
 
 	constructor() {
 		makeAutoObservable(this)
-		this.initialize()
+		this.setupSelectedDayIndex()
+    this.restoreState()
 	}
 
-	private initialize() {
-		this.setupSelectedDayIndex()
-	}
+  memorizeState() {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.userSettings))
+  }
+
+  restoreState() {
+    //  "{}" || "{lang, theme}"
+    const storedSettings = JSON.parse(localStorage.getItem(this.storageKey) || "{}")
+
+    if (Object.keys(storedSettings).length === 0) {
+      this.userSettings = this.defaultSettings
+      this.memorizeState()
+    }
+
+    this.userSettings = storedSettings
+  }
 
 	private setupSelectedDayIndex() {
 		const week = getCurrentWeekDates()

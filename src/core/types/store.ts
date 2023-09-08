@@ -1,8 +1,10 @@
-import { ILesson, IRingsSchedule, IComposedSchedule, DropdownMenu } from "./types"
-export interface IUIStore {
+import { ILesson, IRingsSchedule, IComposedSchedule, DropdownMenu, ISettings } from "./types"
+export interface IUIStore extends IStoreable {
 	selectedDayIndex: number,
 	isDropdownOpen: boolean,
   activeDropdownMenu: DropdownMenu,
+  defaultSettings: ISettings,
+  userSettings: ISettings,
 	toggleDropdown: (newState?: boolean) => void,
 	selectDayIndex: (newIndex: number) => void
 }

@@ -3,12 +3,11 @@ import { initReactI18next } from "react-i18next"
 import LanguageDetector from "i18next-browser-languagedetector"
 
 i18n
-  // .use(LanguageDetector)
+  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     debug: process.env.NODE_ENV === "development",
-    fallbackLng: "en",
-    // fallbackLng: "ru",
+    fallbackLng: "ru",
     resources: {
       ru: {
         translation: {

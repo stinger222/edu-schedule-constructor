@@ -1,4 +1,5 @@
 import * as icons from "../../assets/icons"
+import { ThemeEnum } from "./styled"
 
 export type weekDates = [string, string, string, string, string, string, string]
 
@@ -47,6 +48,10 @@ export enum Cases {
 
 export interface IActionLabelProps {
   className?: string
+}
+
+export interface ISettings {
+  theme: ThemeEnum
 }
 
 export type DropdownMenu = "main" | "settings"

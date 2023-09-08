@@ -30,7 +30,6 @@
 		}],
 		"comma-dangle": "error",
     "no-debugger": "warn",
-		"linebreak-style": [ "error", "windows" ],
 		"quotes": [ "error", "double", {"allowTemplateLiterals": true} ],
 		"semi": [ "error", "never" ]
 	}

@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { UseFormReturn } from "react-hook-form"
 
-// T - type of card in passed cards array
 /**
  * @param T Type of card that is being edited, aka object inside `cardsArray` param. (e.g. `IComposedSchedule`, `ILesson` or `IRingsSchedule`)
  * @param cardsArray Array where target card will be searched
