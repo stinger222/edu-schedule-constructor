@@ -16,13 +16,14 @@ import AddLessonPage from "./pages/AddLesson/AddLessonPage"
 import RingsPage from "./pages/RingsSchedules/RingsPage"
 import LessonsPage from "./pages/Lessons/LessonsPage"
 import MainPage from "./pages/Main/MainPage"
+import { NewDarkTheme } from "./core/themes/NewDark"
 
 const App = () => {
   const { uiStore } = useContext(StoreContext)
   const theme = uiStore.userSettings.theme === ThemeEnum.dark ? DarkTheme : LightTheme
 
 	return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={NewDarkTheme}>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/composed" element={<ComposedSchedulesPage />} />

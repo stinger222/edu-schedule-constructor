@@ -8,19 +8,20 @@ export const StyledSelect = styled(MantineSelect)`
 		& .mantine-Select-label {
 			font-weight: 200;
 			margin-left: 0.4em;
-			color: ${({theme}) => theme.text.primary};
+			color: ${({theme}) => theme.select.text.label};
 		}
 
 		& .mantine-Input-input {
 			padding: 0.85em 1.1em 0.85em 0.5em;
 			
-			background: ${({theme}) => theme.backgrounds.secondary};
-			border: 0.05em solid ${({theme}) => theme.colors.secondary};
+			background: ${({theme}) => theme.select.background};
+			border: 0.13rem solid ${({theme}) => theme.select.border};
 			border-radius: 0.4em;
 			
-			font-size: 1.2em;
+			font-size: 1em;
 			font-family: 'JetBrains Mono', 'Segoe UI', 'Arial', 'Tahoma', 'Verdana', 'Arial Narrow', sans-serif;
-			color: ${({theme}) => theme.text.primary};
+      font-weight: 300;
+			color: ${({theme}) => theme.select.text.input};
 		}
     
 		& .mantine-Input-input::placeholder {
@@ -37,32 +38,35 @@ export const StyledSelect = styled(MantineSelect)`
 		}
 
 		& .mantine-Select-dropdown {
-			background: ${({theme}) => theme.backgrounds.primary};
+			background: ${({theme}) => theme.select.dropdown.background};
+			border: 0.01em solid ${({theme}) => theme.select.dropdown.border};
+      border-radius: 0.4em;
+      padding-inline: 0.1em;
 		}
 		
 		& .mantine-Select-dropdown .mantine-Select-item {
 			font-weight: 200;
+      border-radius: 0.3em;
 		}
 		
 		& .mantine-Select-dropdown .mantine-Select-item:nth-child(2n+1) {
-			filter: brightness(0.95);
+			filter: brightness(1.15);
       margin-block: 0.15em;
 		}
     
 		& .mantine-Select-dropdown .mantine-Select-item:not(
 			& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"]
 		) {
-			background: ${({theme}) => theme.backgrounds.primary};
+			background: ${({theme}) => theme.select.dropdown.item};
 			color: ${({theme}) => theme.type === ThemeEnum.dark ? "#FFFFFF" : "#000000"}
 		}
 
 		& .mantine-Select-dropdown .mantine-Select-item:hover {
-			background: ${({theme}) => theme.backgrounds.primary};
 			filter: brightness(${({theme}) => theme.type === ThemeEnum.dark ? 1.2 : 0.92});
 		}
 
 		& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"] {
-			background: ${({theme}) => theme.colors.primary}CC;
+			background: ${({theme}) => theme.select.dropdown.activeItem};
 			color: "#FFFFFF";
 		}
 

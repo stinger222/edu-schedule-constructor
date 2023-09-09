@@ -15,7 +15,7 @@ export const StyledTimeRange = styled.div`
 	& .line {
 		height: 0.15em;
 		width: 100%;
-		background: ${({theme}) => theme.colors.secondary};
+		background: ${({theme}) => theme.text.primary};
 		border-radius: 1em;
 		margin-top: 1em;
 		transform: translateY(-0.5em);

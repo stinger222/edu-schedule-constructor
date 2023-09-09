@@ -12,7 +12,7 @@ export const StyledButton = styled.button`
 
   border-radius: 20em;
 	box-shadow: 0.1em 0.2em 0.3em 0 #00000060;
-  background: ${({theme}) => theme.buttons.primary};
+  background: ${({theme}) => theme.button.active};
 
 	&:disabled {
 		opacity: 0.45;

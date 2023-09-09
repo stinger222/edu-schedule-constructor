@@ -20,9 +20,9 @@ export const StyledInput = styled.div`
 		margin-top: 0.8em;
 		
 		border-radius: 0.45em;
-		border: 0.05em solid  ${({theme}) => theme.colors.secondary};
+		border: 0.13rem solid  ${({theme}) => theme.input.border};
 
-		background: ${({theme}) => theme.backgrounds.secondary};
+		background: ${({theme}) => theme.input.background};
 		color: ${({theme}) => theme.text.primary};
 		box-shadow: 0.1em 0.15em 0.2em 0 #00000015;
 	}

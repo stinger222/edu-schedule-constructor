@@ -11,15 +11,15 @@ export const StyledDropdown = styled.div`
 	width: 20em;
 	min-width: 17em;
   padding: 0.7em 0.8em;
-	background: ${({theme}) => theme.backgrounds.primary};
+	background: ${({theme}) => theme.dropdown.background};
   
 	border-radius: 1em;
-	box-shadow: 0 0 0 0.07em ${({theme}) => theme.borders.secondary}, 0.2em 0.3em 0.4em 0 rgb(0 0 0 / 45%);
+	box-shadow: ${({theme}) => theme.dropdown.border}, ${({theme}) => theme.dropdown.boxShadow};
   box-sizing: content-box;
 
 	z-index: 350;
-  overflow: hidden;
-  transition: height .5s ease;
+  overflow: hidden; 
+  transition: height .4s ease;
 
 	position: absolute;
 	right: 1em;
@@ -51,14 +51,14 @@ export const StyledDropdown = styled.div`
     font-family: inherit;
     font-size: 1.15em;
     font-weight: 200;
-		background: ${({theme}) => theme.buttons.secondary};
-		box-shadow: ${({theme}) => theme.boxShadows.secondary};
+		background: ${({theme}) => theme.dropdown.buttons};
+		box-shadow: ${({theme}) => theme.dropdown.buttonBoxShadow};
   }
 
   & .divider {
     max-height: 0;
     width: 100%;
-    box-shadow: 0 0 0.02em 0.03em #bdbdbd;
+    box-shadow: 0 0 0.02em 0.03em ${({theme}) => theme.dropdown.divider};
     margin: 0.2em 0;
   }
 
@@ -72,35 +72,27 @@ export const StyledDropdown = styled.div`
 
   & .mainMenuEnterDone {
     transform: translateX(0);
-    transition: all .5s ease;
+    transition: all .4s ease;
   }
 
   & .mainMenuExitActive {
-    transform: translateX(150%);
-    transition: all .5s ease;
-  }
-
-  & .mainMenuExitDone {
-    transform: translateX(-150%);
+    transform: translateX(130%);
+    transition: all .4s ease;
   }
 
   & .settingsMenuEnterActive {
     position: absolute;
-    transform: translateX(-150%);
+    transform: translateX(-130%);
   }
 
   & .settingsMenuEnterDone {
     transform: translateX(0);
-    transition: all .5s ease;
+    transition: all .4s ease;
   }
 
   & .settingsMenuExitActive {
-    transform: translateX(-150%);
-    transition: all .5s ease;
-  }
-
-  & .settingsMenuExitDone {
-    transform: translateX(150%);
+    transform: translateX(-130%);
+    transition: all .4s ease;
   }
 
   & a:has(button) {

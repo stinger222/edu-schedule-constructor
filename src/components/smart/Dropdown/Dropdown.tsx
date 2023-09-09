@@ -34,8 +34,7 @@ const Dropdown = () => {
         classNames={{
           enterActive: "mainMenuEnterActive",
           enterDone: "mainMenuEnterDone",
-          exitActive: "mainMenuExitActive",
-          exitDone: "mainMenuExitDone"
+          exitActive: "mainMenuExitActive"
         }}
       ><DropdownMain /></CSSTransition>
 
@@ -47,8 +46,7 @@ const Dropdown = () => {
         classNames={{
           enterActive: "settingsMenuEnterActive",
           enterDone: "settingsMenuEnterDone",
-          exitActive: "settingsMenuExitActive",
-          exitDone: "settingsMenuExitDone"
+          exitActive: "settingsMenuExitActive"
         }}
       ><DropdownSettings /></CSSTransition>
 		</StyledDropdown>

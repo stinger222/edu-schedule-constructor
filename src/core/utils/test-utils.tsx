@@ -6,6 +6,7 @@ import RootStore from "../store/RootStore"
 
 import { DarkTheme } from "../themes/Dark"
 import { ThemeProvider } from "styled-components"
+import { NewDarkTheme } from "../themes/NewDark"
 
 const AllTheProviders: React.FC<{children: ReactElement}> = ({children}) => {
 
@@ -13,7 +14,7 @@ const AllTheProviders: React.FC<{children: ReactElement}> = ({children}) => {
 	const StoreContext = React.createContext<typeof rootStore>(rootStore)
 
 	return (
-		<ThemeProvider theme={DarkTheme}>
+		<ThemeProvider theme={NewDarkTheme}>
 			<StoreContext.Provider value={rootStore}>
 				<HashRouter>
 					{children}

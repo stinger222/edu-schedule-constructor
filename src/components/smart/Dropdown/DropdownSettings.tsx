@@ -1,9 +1,9 @@
 import { useContext } from "react"
-import Button from "../../ui/Button/Button"
-import { StoreContext } from "../../.."
-import { StyledSelect } from "../../ui/Select/Select.styled"
 import { useTranslation } from "react-i18next"
+import { StoreContext } from "../../.."
 import { ThemeEnum } from "../../../core/types/styled"
+import { StyledSelect } from "../../ui/Select/Select.styled"
+import Button from "../../ui/Button/Button"
 
 /**
  * Settings menu inside dropdown

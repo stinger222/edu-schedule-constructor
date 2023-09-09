@@ -7,7 +7,8 @@ export const StyledGhostButton = styled.button`
 	font-size: 1em;
 	font-weight: 400;
 	letter-spacing: 0.05em;
-	color: ${({theme}) => theme.borders.dashed};
+	/* color: $ {({theme}) => theme.borders.dashed}; */
+	color: red;
 
 	display: flex;
 	align-items: center;

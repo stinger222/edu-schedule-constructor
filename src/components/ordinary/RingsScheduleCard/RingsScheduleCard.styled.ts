@@ -6,8 +6,8 @@ export const StyledRingsScheduleCard = styled.div`
 	justify-content: space-between;
 	
 	border-radius: 1em;
-	box-shadow: ${({theme}) => theme.boxShadows.primary};
-	background: ${({theme}) => theme.backgrounds.secondary};
+	background: ${({theme}) => theme.ringsScheduleCard.background};
+	box-shadow: ${({theme}) => theme.ringsScheduleCard.boxShadow};
 	
 	width: 29em;
 	height: 7em;

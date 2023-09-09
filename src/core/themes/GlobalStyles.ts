@@ -1,7 +1,7 @@
-import { ITheme, ThemeEnum } from "./../types/styled"
+import { INewTheme, ITheme, ThemeEnum } from "./../types/styled"
 import { createGlobalStyle } from "styled-components"
 
-const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
+const GlobalStyles = createGlobalStyle<{theme: INewTheme}>`
 	* {
 		margin: 0;
 		padding: 0;
@@ -30,7 +30,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 		font-weight: 100;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		background: ${({theme}) => theme.backgrounds.primary};
+		background: ${({theme}) => theme.background.primary};
 		color: ${({theme}) => theme.text.primary};
 	}
 	

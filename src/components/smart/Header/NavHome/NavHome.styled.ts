@@ -6,7 +6,7 @@ export const StyledNavHome = styled.div`
 	min-width: 2em;
 	padding: 0.35em;
 
-	border: 0.14em solid ${({theme}) => theme.colors.secondary};
+	border: 0.14em solid ${({theme}) => theme.text.primary};
 	border-radius: 2em;
 	
 	cursor: pointer;
@@ -22,6 +22,6 @@ export const StyledNavHome = styled.div`
 	}
 
 	& svg path {
-		stroke: ${({theme}) => theme.colors.secondary};
+		stroke: ${({theme}) => theme.text.primary};
 	}
 `
