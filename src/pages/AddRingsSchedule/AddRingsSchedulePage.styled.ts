@@ -21,11 +21,11 @@ export const StyledAddRingsSchedulePage = styled.div`
     width: 5.5em;
   }
 
-	& .append {
+	& form .append {
 		margin-block: 1em 1.5em;
 	}
 
-	& input {
+	& form input {
 		width: 6em;
 	}
 

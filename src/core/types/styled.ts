@@ -3,56 +3,23 @@ export enum ThemeEnum  {
 	dark = "dark"
 }
 
-type colorString = `#${string}`
+export type HexColor = `#${string}`
 
 export interface ITheme {
 	type: ThemeEnum,
 	
 	colors: {
-		primary: colorString,
-		secondary: colorString
-	},
-	buttons: {
-		primary: colorString,
-		secondary: colorString,
-	},
-	text: {
-		primary: colorString,
-		secondary: colorString
-	},
-	backgrounds: {
-		primary: colorString,
-		secondary: colorString,
-		tertiary: colorString
-	},
-	borders: {
-		primary: colorString,
-		secondary: colorString,
-		dashed: colorString
-	},
-	boxShadows: {
-		primary: string,
-		secondary: string
-	}
-}
-
-export type HexColor = `#${string}`
-
-export interface INewTheme {
-	type: ThemeEnum,
-	
-	colors: {
-		primary: HexColor // RoyalBlue вот этот вот
+		primary: HexColor
 	},
 	button: {
-		active: HexColor, // Black
+		active: HexColor,
 	},
 	text: {
-		primary: HexColor, // White / Black
-		secondary: HexColor // Gray
+		primary: HexColor,
+		secondary: HexColor
 	},
 	background: {
-		primary: HexColor, // White / Gray
+		primary: HexColor,
 	},
 
   dropdown: {
@@ -85,7 +52,6 @@ export interface INewTheme {
     background: HexColor,
     border: HexColor
   },
-
   select: {
     border: HexColor,
     background: HexColor,
@@ -101,5 +67,9 @@ export interface INewTheme {
       activeItem: HexColor,
       item: HexColor
     }
+  },
+  switch: {
+    background: HexColor,
+    active: HexColor
   }
 }

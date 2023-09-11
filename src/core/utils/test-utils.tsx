@@ -4,9 +4,9 @@ import { render, RenderOptions } from "@testing-library/react"
 
 import RootStore from "../store/RootStore"
 
-import { DarkTheme } from "../themes/Dark"
+
 import { ThemeProvider } from "styled-components"
-import { NewDarkTheme } from "../themes/NewDark"
+import { DarkTheme } from "../themes/Dark"
 
 const AllTheProviders: React.FC<{children: ReactElement}> = ({children}) => {
 
@@ -14,7 +14,7 @@ const AllTheProviders: React.FC<{children: ReactElement}> = ({children}) => {
 	const StoreContext = React.createContext<typeof rootStore>(rootStore)
 
 	return (
-		<ThemeProvider theme={NewDarkTheme}>
+		<ThemeProvider theme={DarkTheme}>
 			<StoreContext.Provider value={rootStore}>
 				<HashRouter>
 					{children}

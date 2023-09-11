@@ -12,9 +12,9 @@ export const StyledSwitch = styled.input`
 
   box-shadow: inset 0 0 0.4em #00000060;
   border-radius: 10em;
-  background: white;
+  background: ${({theme}) => theme.switch.background};
 
-  transition: all var(--transition-duration);
+  transition: all 0.5s;
 
   &:after {
     content: "";
@@ -34,7 +34,7 @@ export const StyledSwitch = styled.input`
   }
 
   &:checked {
-    background: ${({theme}) => theme.colors.primary}99;
+    background: ${({theme}) => theme.switch.active};
     box-shadow: none;
   }
   

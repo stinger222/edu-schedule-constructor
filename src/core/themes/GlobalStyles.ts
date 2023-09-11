@@ -1,7 +1,7 @@
-import { INewTheme, ITheme, ThemeEnum } from "./../types/styled"
+import { ITheme, ThemeEnum } from "./../types/styled"
 import { createGlobalStyle } from "styled-components"
 
-const GlobalStyles = createGlobalStyle<{theme: INewTheme}>`
+const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 	* {
 		margin: 0;
 		padding: 0;
@@ -9,6 +9,10 @@ const GlobalStyles = createGlobalStyle<{theme: INewTheme}>`
 		-webkit-tap-highlight-color: transparent;
 		font-family: 'JetBrains Mono', 'Segoe UI', 'Arial', 'Tahoma', 'Verdana', 'Arial Narrow', sans-serif;
 	}
+
+  *:focus {
+    outline: none;
+  }
 
   :root {
     --action-label-icon-size: 2em;
@@ -82,7 +86,7 @@ const GlobalStyles = createGlobalStyle<{theme: INewTheme}>`
 	}
 	
   .btn:hover {
-    opacity: 0.75;
+    opacity: 0.80;
 		filter: brightness(0.97);
   }
 

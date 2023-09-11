@@ -14,7 +14,7 @@ export const StyledDropdown = styled.div`
 	background: ${({theme}) => theme.dropdown.background};
   
 	border-radius: 1em;
-	box-shadow: ${({theme}) => theme.dropdown.border}, ${({theme}) => theme.dropdown.boxShadow};
+	box-shadow: 0 0 0 0.07em ${({theme}) => theme.dropdown.border}, ${({theme}) => theme.dropdown.boxShadow};
   box-sizing: content-box;
 
 	z-index: 350;
@@ -54,6 +54,15 @@ export const StyledDropdown = styled.div`
 		background: ${({theme}) => theme.dropdown.buttons};
 		box-shadow: ${({theme}) => theme.dropdown.buttonBoxShadow};
   }
+
+  & .dropdown-content .mantine-Select-root {
+    font-size: 1.2em;
+  }
+  
+  & .dropdown-content .mantine-Select-label {
+    font-size: 0.9em;
+  }
+
 
   & .divider {
     max-height: 0;

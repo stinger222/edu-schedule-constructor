@@ -7,6 +7,7 @@ export const StyledSelect = styled(MantineSelect)`
 
 		& .mantine-Select-label {
 			font-weight: 200;
+      font-size: 1em;
 			margin-left: 0.4em;
 			color: ${({theme}) => theme.select.text.label};
 		}
@@ -46,6 +47,7 @@ export const StyledSelect = styled(MantineSelect)`
 		
 		& .mantine-Select-dropdown .mantine-Select-item {
 			font-weight: 200;
+      font-size: 0.9em;
       border-radius: 0.3em;
 		}
 		
@@ -54,9 +56,7 @@ export const StyledSelect = styled(MantineSelect)`
       margin-block: 0.15em;
 		}
     
-		& .mantine-Select-dropdown .mantine-Select-item:not(
-			& .mantine-Select-dropdown .mantine-Select-item[data-selected="true"]
-		) {
+		& .mantine-Select-dropdown .mantine-Select-item{
 			background: ${({theme}) => theme.select.dropdown.item};
 			color: ${({theme}) => theme.type === ThemeEnum.dark ? "#FFFFFF" : "#000000"}
 		}

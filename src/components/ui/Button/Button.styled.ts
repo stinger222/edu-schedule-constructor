@@ -14,12 +14,13 @@ export const StyledButton = styled.button`
 	box-shadow: 0.1em 0.2em 0.3em 0 #00000060;
   background: ${({theme}) => theme.button.active};
 
+  
 	&:disabled {
-		opacity: 0.45;
+    opacity: 0.45;
 	}
-
+  
 	&:disabled:hover {
-		opacity: 0.5;
+    opacity: 0.5;
 	}
 
   &:has(.icon), &:has(svg), &:has(img) {

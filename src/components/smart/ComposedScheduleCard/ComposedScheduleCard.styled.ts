@@ -7,7 +7,7 @@ export const StyledComposedSchedule = styled.div`
   position: relative;
 
 	border-radius: 1.3em;
-	border: 0.08em solid #00000035;
+	/* border: 0.08em solid #00000035; */
 	background: ${({theme}) => theme.composedScheduleCard.background};
 	box-shadow: ${({theme}) => theme.composedScheduleCard.boxShadow};
 	

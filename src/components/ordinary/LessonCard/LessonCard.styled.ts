@@ -48,10 +48,12 @@ export const StyledLessonCard = styled.div`
 		-webkit-line-clamp: 1;
 		text-overflow: ellipsis;
 		overflow: hidden;
+    word-break: break-all;
 	}
 	
 	& footer span:nth-child(2) {
 		flex-shrink: 0;
 		margin-left: 0.5em;
+    word-spacing: -0.35em;
 	}
 `
