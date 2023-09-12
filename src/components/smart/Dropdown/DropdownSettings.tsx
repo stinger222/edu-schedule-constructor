@@ -25,24 +25,30 @@ const DropdownSettings = () => {
   return (
     <div className="dropdown-content">
     <header>
-      Settings
+      {t("dropdown.settings.title")}
     </header>
 
     <div className="divider"></div>
 
     <StyledSelect
-      label="Language"
-      data={[{label: "Russian", value: "ru"}, {label: "English", value: "en"}]}
+      label={t("dropdown.settings.language")}
+      data={[
+        {label: t("dropdown.settings.rus"), value: "ru"},
+        {label: t("dropdown.settings.eng"), value: "en"}
+      ]}
       defaultValue={i18n.language || localStorage.getItem("i18nextLng")}
       onChange={handleLangChange}
     />
     <StyledSelect
-      label="Theme"
-      data={[{label: "Light", value: "light"}, {label: "Dark", value: "dark"}]}
+      label={t("dropdown.settings.theme")}
+      data={[
+        {label: t("dropdown.settings.light"), value: "light"},
+        {label: t("dropdown.settings.dark"), value: "dark"}
+      ]}
       defaultValue={uiStore.userSettings.theme}
       onChange={handleThemeChange}
     />
-    <Button onClick={() => uiStore.activeDropdownMenu = "main"}> BACCCK </Button>
+    <Button onClick={() => uiStore.activeDropdownMenu = "main"}> {t("dropdown.settings.back")} </Button>
   </div>
   )
 }

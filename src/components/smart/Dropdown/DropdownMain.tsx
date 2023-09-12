@@ -15,26 +15,26 @@ const DropdownMain = () => {
   return (
     <div className="dropdown-content">
       <header>
-        {t("dropdown.menu")}
+        {t("dropdown.main.title")}
 			</header>
 
       <div className="divider"></div>
 
 			<Link to='/composed'>
-				<Button> {t("dropdown.composed")} </Button>
+				<Button> {t("dropdown.main.composed")} </Button>
 			</Link>
 
 			<Link to="/rings">
-				<Button> {t("dropdown.rings")} </Button>
+				<Button> {t("dropdown.main.rings")} </Button>
 			</Link>
 
 			<Link to='/lessons'>
-				<Button> {t("dropdown.lessons")} </Button>
+				<Button> {t("dropdown.main.lessons")} </Button>
 			</Link>
 
       <div className="divider"></div>
 
-      <Button onClick={() => uiStore.activeDropdownMenu = "settings"}> Settings </Button>
+      <Button onClick={() => uiStore.activeDropdownMenu = "settings"}> {t("dropdown.main.settings")} </Button>
     </div>
   )
 }

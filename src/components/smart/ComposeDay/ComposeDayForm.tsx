@@ -38,7 +38,7 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
     }
   }
 
-  // Prevents user from adding more lessons that described in selected rings schedule
+  // Prevents user from adding more lessons than described in selected rings schedule
   useEffect(() => {
     const selectedRingsSchedule = ringsSchedulesStore.ringsSchedules.find(s => (
       s.uid === selectedRingsScheduleId
@@ -76,7 +76,6 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
               data={getLessonsSelectData(lessonsStore)}
               name={`days.${dayIndex}.lessonIds.${index}`}
               label={t("composeScheduleForm.nthLessonSelectCaption", {value: index + 1})}
-              // label={`${index + 1}-ая пара`}
               rules={{validate: validateField}}
               rightSection={getRightSection(index)}
 							key={id}
@@ -88,7 +87,6 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 
 				{ canAddNewLessons &&  fields.length < 9 &&
 					<GhostButton onClick={() => appendLessonId("undefined")}>
-						{/* Добавить {fields.length + 1}-ую пару */}
             {t("ghostButton.addNthLesson", {value: fields.length + 1})}
 					</GhostButton>
 				}
@@ -119,7 +117,7 @@ const getRingsSchedulesSelectData = (ringsSchedulesStore: IRingsSchedulesStore) 
   }))
 }
 
-// Same shit. And yes, I have no idea how to make it look better, sry
+// Same
 const getLessonsSelectData = (lessonsStore: ILessonsStore) => {
   return lessonsStore._lessons.map((lesson) => ({
       label: lesson.title, value: lesson.uid

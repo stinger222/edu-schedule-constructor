@@ -32,7 +32,7 @@ describe("Testing BurgerButton component", () => {
 		act(() => {
 			fireEvent.click(container.children[0])
 		})
-		expect(screen.queryByText(t("dropdown.menu"))).not.toBe(null)
+		expect(screen.queryByText(t("dropdown.main.title"))).not.toBe(null)
 		expect(uiStore.isDropdownOpen).toBe(true)
 	})
 })

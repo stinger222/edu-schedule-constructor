@@ -23,10 +23,23 @@ i18n
             addComposedSchedule: "Составить новое расписание"
           },
           dropdown: {
-            menu: "Меню",
-            composed: "Составленные расписания",
-            rings: "Расписания звонков",
-            lessons: "Добавленные предметы"
+            main: {
+              title: "Меню",
+              composed: "Составленные расписания",
+              rings: "Расписания звонков",
+              lessons: "Добавленные предметы",
+              settings: "Настройки"
+            },
+            settings: {
+              title: "Настройки",
+              language: "Язык",
+              rus: "Русский",
+              eng: "Английский",
+              theme: "Тема",
+              dark: "Тёмная",
+              light: "Светлая",
+              back: "Назад =>"
+            }
           },
 
           lessonCard: {
@@ -115,11 +128,24 @@ i18n
             addComposedSchedule: "Compose new schedule"
           },
           dropdown: {
-            menu: "Menu",
-            composed: "Composed schedules",
-            rings: "Rings schedules",
-            lessons: "Added lessons"
-          },
+            main: {
+              title: "Menu",
+              composed: "Composed schedules",
+              rings: "Rings schedules",
+              lessons: "Added lessons",
+              settings: "Settings"
+            },
+            settings: {
+              title: "Settings",
+              language: "Language",
+              rus: "Russiаn",
+              eng: "English",
+              theme: "Theme",
+              dark: "Dark",
+              light: "Light",
+              back: "Back =>"
+            }
+        },
 
           lessonCard: {
             cabinetPrefix: "cab.",
