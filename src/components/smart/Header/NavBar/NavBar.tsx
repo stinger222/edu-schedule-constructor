@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { StoreContext } from "../../../.."
 import { StyledNavBar } from "./NavBar.styled"
 import NavButton from "../../../ordinary/NavButton/NavButton"
-import { getCurrentWeekDates, WeekDays } from "../../../../core/utils/dateTimeUtils"
+import { getCurrentWeekDates, WeekUtils } from "../../../../core/utils/dateTimeUtils"
 import { useTranslation } from "react-i18next"
 
 const NavBar = () => {
@@ -22,7 +22,7 @@ const NavBar = () => {
 		<StyledNavBar>
 			{currentWeekDates.map((date: string, index: number) => (
 				<NavButton
-					label={WeekDays.getShort(lang)[index]}
+					label={WeekUtils.getShort(lang)[index]}
 					date={date}
 					index={index}
 					selectedDayIndex={uiStore.selectedDayIndex}

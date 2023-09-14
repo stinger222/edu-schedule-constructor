@@ -18,7 +18,7 @@ interface IData {
     }
   }
 }
-export class WeekDays {
+export class WeekUtils {
 
   private static readonly data: IData = {
     ru: {

@@ -13,7 +13,7 @@ import InputWrapper from "../../components/containers/InputContainer/InputContai
 import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
 import { Cases, IComposedSchedule } from "../../core/types/types"
 import { validateField } from "../../core/utils/stringUtils"
-import { WeekDays } from "../../core/utils/dateTimeUtils"
+import { WeekUtils } from "../../core/utils/dateTimeUtils"
 import { StoreContext } from "../.."
 
 import { StyledAddComposedSchedulePage } from "./AddComposedSchedulePage.styled"
@@ -76,9 +76,9 @@ const AddComposedSchedulePage = () => {
 
             {fields.length < 5 && (
               <>
-                <h2>{WeekDays.getFull(lang, Cases.Nominative)[fields.length]}:</h2>
+                <h2>{WeekUtils.getFull(lang, Cases.Nominative)[fields.length]}:</h2>
                 <GhostButton onClick={() => append({ ringsScheduleId: "", lessonIds: ["undefined"] })}>
-                  {t("ghostButton.fillScheduleFor")} {WeekDays.getFull(lang, Cases.Accusative, true)[fields.length]}
+                  {t("ghostButton.fillScheduleFor")} {WeekUtils.getFull(lang, Cases.Accusative, true)[fields.length]}
                   <br />
                   <span className="plus">+</span>
                 </GhostButton>

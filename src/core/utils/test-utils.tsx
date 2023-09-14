@@ -11,15 +11,15 @@ import { DarkTheme } from "../themes/Dark"
 const AllTheProviders: React.FC<{children: ReactElement}> = ({children}) => {
 
 	const rootStore = new RootStore()
-	const StoreContext = React.createContext<typeof rootStore>(rootStore)
+	const TestStoreContext = React.createContext<typeof rootStore>(rootStore)
 
 	return (
 		<ThemeProvider theme={DarkTheme}>
-			<StoreContext.Provider value={rootStore}>
+			<TestStoreContext.Provider value={rootStore}>
 				<HashRouter>
 					{children}
 				</HashRouter>
-			</StoreContext.Provider>
+			</TestStoreContext.Provider>
 		</ThemeProvider>
 	)
 }

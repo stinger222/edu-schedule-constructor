@@ -25,4 +25,16 @@ describe("Testing helper functions with different arguments", () => {
 		expect(utils.formatTimeString(":")).toBe("??:??")
 		expect(utils.formatTimeString("")).toBe("??:??")
 	})
+
+	it("Testing formatTimeString", () => {
+		expect(utils.validateField("")).toBe(false)
+		expect(utils.validateField(" ")).toBe(false)
+		expect(utils.validateField("  ")).toBe(false)
+		expect(utils.validateField(" anything ")).toBe(true)
+		expect(utils.validateField("a")).toBe(true)
+		expect(utils.validateField(" b")).toBe(true)
+		expect(utils.validateField("undefined")).toBe(false)
+		expect(utils.validateField(" undefined ")).toBe(false)
+		expect(utils.validateField("  undefined ")).toBe(false)
+	})
 })

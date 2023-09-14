@@ -4,7 +4,7 @@ import { UseFieldArrayRemove, useFieldArray, useFormContext } from "react-hook-f
 import { StoreContext } from "../../.."
 import { ILessonsStore, IRingsSchedulesStore } from "../../../core/types/store"
 import { IRingsSchedule } from "../../../core/types/types"
-import { WeekDays } from "../../../core/utils/dateTimeUtils"
+import { WeekUtils } from "../../../core/utils/dateTimeUtils"
 import { validateField } from "../../../core/utils/stringUtils"
 
 import SelectContainer from "../../containers/SelectContainer/SelectContainer"
@@ -57,7 +57,7 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 	
 	return (
 		<StyledComposeDayForm>
-			<h2>{WeekDays.getFull(lang)[dayIndex]}:</h2>
+			<h2>{WeekUtils.getFull(lang)[dayIndex]}:</h2>
 
 			<div className="compose-day">
 				<SelectContainer

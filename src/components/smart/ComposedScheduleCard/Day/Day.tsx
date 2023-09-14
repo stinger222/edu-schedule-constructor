@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { WeekDays } from "../../../../core/utils/dateTimeUtils"
+import { WeekUtils } from "../../../../core/utils/dateTimeUtils"
 import { IComposedDay, IRingsSchedule } from "../../../../core/types/types"
 import { StoreContext } from "../../../.."
 import { StyledDay } from "./Day.styled"
@@ -36,7 +36,7 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
   // If passed day contains <nothing> card, then it's filtered out
   const amountOfLessons = day.lessonIds.filter((i: string) => i !== "hidden").length
 
-	const weekDay: string = WeekDays.getShort(lang)[dayIndex]
+	const weekDay: string = WeekUtils.getShort(lang)[dayIndex]
 
 	return (
 		<StyledDay>
