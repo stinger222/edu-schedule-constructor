@@ -1,23 +1,30 @@
 import { useContext } from "react"
+import { useTranslation } from "react-i18next"
+import { useLocation, useNavigate } from "react-router-dom"
+import { FormProvider, useFieldArray, useForm } from "react-hook-form"
+
 import { StoreContext } from "../.."
-
-import { useForm, useFieldArray, FormProvider } from "react-hook-form"
-import { StyledAddRingsSchedulePage } from "./AddRingsSchedulePage.styled"
-import { toJS } from "mobx"
-
-import Icon from "../../components/ordinary/Icon/Icon"
 import Button from "../../components/ui/Button/Button"
+import Icon from "../../components/ordinary/Icon/Icon"
 import Header from "../../components/smart/Header/Header"
 import TimeRange from "../../components/ordinary/TimeRange/TimeRange"
 import Container from "../../components/containers/Container/Container"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
+
+import { IRingsSchedule } from "../../core/types/types"
 import { validateField } from "../../core/utils/stringUtils"
-import { useTranslation } from "react-i18next"
+import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
+
+import { StyledAddRingsSchedulePage } from "./AddRingsSchedulePage.styled"
+
 
 const AddRingsSchedulePage = () => {
 
   const { t } = useTranslation()
 	const { ringsSchedulesStore } = useContext(StoreContext)
+
+  const routeState = useLocation().state
+  const navigate = useNavigate()
 
 	const methods = useForm({
 		defaultValues: {
@@ -31,25 +38,28 @@ const AddRingsSchedulePage = () => {
 		}
 	})
 
-	const handleSubmit = (formData: any) => {
-		ringsSchedulesStore.addSchedule({
-			name: formData.name.trim() || `Расписание №${ringsSchedulesStore.ringsSchedules.length+1}`,
-			rings: [...formData.rings]
-		})
+  const { append, fields } = useFieldArray({control: methods.control, name: "rings"})
+  
+	const handleSubmit = (formData: Omit<IRingsSchedule, "uid">) => {
+    if (routeState?.mode === "edit") { // TODO: Should this be moved to store?...
+      ringsSchedulesStore.removeSchedule(routeState.uid)
+      ringsSchedulesStore.addSchedule(formData, routeState.uid)
+    } else {
+      ringsSchedulesStore.addSchedule(formData)
+    }
 
-		console.log(toJS(ringsSchedulesStore.ringsSchedules))
 		methods.reset()
+    navigate(-1)
 	}
 
-	const { append, fields } = useFieldArray({control: methods.control, name: "rings"})
+  useInitializeFormForEditMode<IRingsSchedule>(ringsSchedulesStore.ringsSchedules, routeState, methods)
 
 	return (
 		<StyledAddRingsSchedulePage>
 			<Container>
 				<Header>
 					<Header.NavHome/>
-					<h1> {t("headerTitle.addRingsSchedule")} </h1>
-          {/* <h1>{routeState?.mode === "edit" ? t("headerTitle.editRingsSchedule") : t("headerTitle.ringsPage")}</h1> */}
+          <h1>{routeState?.mode === "edit" ? t("headerTitle.editRingsSchedule") : t("headerTitle.addRingsSchedule")}</h1>
 					<Header.BurgerButton/>
 				</Header>
 

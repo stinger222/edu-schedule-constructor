@@ -20,7 +20,9 @@ export const formatTimeString = (timeString: string): string => {
 }
 
 export const capitalize = (str: string, eachWord: boolean = false): string => {
-	if (eachWord) {
+  str = str.trim()
+  
+  if (eachWord) {
 		return str
 			.split(" ")
 			.map(s => s.charAt(0).toUpperCase() + s.slice(1))

@@ -25,8 +25,8 @@ export interface IRingsSchedule {
 	name: string,
 	uid: string,
 	rings: Array<{
-		start: `${number}:${number}`,
-		end: `${number}:${number}`
+		start: string,
+		end: string
 	}>
 }
 

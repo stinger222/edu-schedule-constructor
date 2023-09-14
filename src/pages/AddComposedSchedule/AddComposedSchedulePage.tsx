@@ -1,8 +1,9 @@
-import { useTranslation } from "react-i18next"
 import { useContext } from "react"
+import { useTranslation } from "react-i18next"
 import { useLocation, useNavigate } from "react-router-dom"
 import { FormProvider, useFieldArray, useForm } from "react-hook-form"
 
+import { StoreContext } from "../.."
 import Button from "../../components/ui/Button/Button"
 import Header from "../../components/smart/Header/Header"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
@@ -10,21 +11,21 @@ import Container from "../../components/containers/Container/Container"
 import ComposeDayForm from "../../components/smart/ComposeDay/ComposeDayForm"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 
-import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
-import { Cases, IComposedSchedule } from "../../core/types/types"
-import { validateField } from "../../core/utils/stringUtils"
 import { WeekUtils } from "../../core/utils/dateTimeUtils"
-import { StoreContext } from "../.."
+import { validateField } from "../../core/utils/stringUtils"
+import { Cases, IComposedSchedule } from "../../core/types/types"
+import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
 
 import { StyledAddComposedSchedulePage } from "./AddComposedSchedulePage.styled"
 
+
 const AddComposedSchedulePage = () => {
   const { composedSchedulesStore } = useContext(StoreContext)
+  const { t, i18n } = useTranslation()
+  const lang = i18n.resolvedLanguage as "ru" | "en"
 
   const navigate = useNavigate()
   const routeState = useLocation().state
-  const { t, i18n } = useTranslation()
-  const lang = i18n.resolvedLanguage as "ru" | "en"
 
   const methods = useForm({
     defaultValues: {

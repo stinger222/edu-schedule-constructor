@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { observer } from "mobx-react"
 import { IRingsSchedule } from "../../../core/types/types"
 import { StyledRingsCardsList } from "./RingsCardsList.styled"
@@ -15,12 +15,18 @@ interface IProps {
 
 const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   const handleRemove = (uid: string) => {
     if (!window.confirm(t("confirmPrompt.deleteCard"))) return
     removeSchedule(uid)
   }
-return (
+
+  const handleEdit = (uid: string) => {
+    navigate("/add/rings", {state: { mode: "edit", uid }})    
+  }
+
+  return (
     <StyledRingsCardsList className="rings-cards">
     {	ringsSchedules?.length === 0 &&
       <h2 style={{textAlign: "center", fontWeight: 400}}>
@@ -32,14 +38,16 @@ return (
       ringsSchedules.map(({rings, name, uid}) => (
         <SwipeToAction
           onLeftSwipe={() => handleRemove(uid)}
+          onRightSwipe={() => handleEdit(uid)}
           RightActionLabel={SwipeToAction.RemoveActionLabel}
+          LeftActionLabel={SwipeToAction.EditActionLabel}
           key={uid}
         >
           <RingsScheduleCard
+            name={name}
+            length={rings.length}
             start={rings[0].start}
             end={rings[rings.length-1].end}
-            length={rings.length}
-            name={name}
           />
         </SwipeToAction>
       ))

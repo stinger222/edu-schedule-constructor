@@ -40,7 +40,7 @@ class LessonsStore implements ILessonsStore {
     this._lessons.push({
       ...newLesson,
       uid: uid || nanoid(10),
-      title: capitalize(newLesson.title),
+      title: capitalize(newLesson.title) || `Lesson №${this.lessons.length+1}`,
       teacher: capitalize(newLesson.teacher, true)
     })
 

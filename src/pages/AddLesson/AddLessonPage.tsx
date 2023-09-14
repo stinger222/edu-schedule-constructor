@@ -1,27 +1,27 @@
-import { useLocation, useNavigate } from "react-router-dom"
-import { FormProvider, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
 import { useContext } from "react"
+import { useTranslation } from "react-i18next"
+import { FormProvider, useForm } from "react-hook-form"
+import { useLocation, useNavigate } from "react-router-dom"
 
-import InputWrapper from "../../components/containers/InputContainer/InputContainer"
-import Container from "../../components/containers/Container/Container"
-import Header from "../../components/smart/Header/Header"
-import Button from "../../components/ui/Button/Button"
-
-import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
-import { validateField } from "../../core/utils/stringUtils"
-import { ILesson } from "../../core/types/types"
 import { StoreContext } from "../.." 
+import Button from "../../components/ui/Button/Button"
+import Header from "../../components/smart/Header/Header"
+import Container from "../../components/containers/Container/Container"
+import InputWrapper from "../../components/containers/InputContainer/InputContainer"
+
+import { ILesson } from "../../core/types/types"
+import { validateField } from "../../core/utils/stringUtils"
+import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
 
 import { StyledAddLessonPage } from "./AddLessonPage.styled"
 
+
 const AddLessonPage = () => {
   const { lessonsStore } = useContext(StoreContext)
+  const { t } = useTranslation()
 
   const navigate = useNavigate()
   const routeState = useLocation().state
-
-  const { t } = useTranslation()
 
 	const methods = useForm({defaultValues: {
 		title: "",
@@ -40,7 +40,7 @@ const AddLessonPage = () => {
     navigate(-1)
 	}
 
-  useInitializeFormForEditMode(lessonsStore.lessons, routeState, methods)
+  useInitializeFormForEditMode<ILesson>(lessonsStore.lessons, routeState, methods)
 
 	return (
 		<StyledAddLessonPage>
@@ -48,7 +48,6 @@ const AddLessonPage = () => {
 				<Header>
 					<Header.NavHome/>
 					<h1>{routeState?.mode === "edit" ? t("headerTitle.editLesson") : t("headerTitle.addLesson")}</h1>
-          {/* <h1>{routeState?.mode === "edit" ? "Редактировать расписание" : "Составить новое расписание"}</h1> */}
 					<Header.BurgerButton/>
 				</Header>
 

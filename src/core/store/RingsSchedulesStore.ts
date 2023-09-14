@@ -23,9 +23,12 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 	}
 
 	addSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">, uid?: string): void {
-		newRingsSchedule.name = capitalize(newRingsSchedule.name)
+		this.ringsSchedules.push({
+      ...newRingsSchedule,
+      name: capitalize(newRingsSchedule.name) || `Rings Schedule №${this.ringsSchedules.length+1}`, 
+      uid: uid || nanoid(10)
+    })
 
-		this.ringsSchedules.push({...newRingsSchedule, uid: uid || nanoid(10)})
 		this.memorizeState()
 	}
 
