@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 import { IComposedSchedule } from "../../../core/types/types"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
-import ComposedSchedule from "../../smart/ComposedScheduleCard/ComposedScheduleCard"
+import ComposedScheduleCard from "../../smart/ComposedScheduleCard/ComposedScheduleCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
 import { StyledComposedSchedulesList } from "./ComposedSchedulesList.styled"
@@ -41,7 +41,7 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
           RightActionLabel={SwipeToAction.RemoveActionLabel}
           key={schedule.uid}
         >
-          <ComposedSchedule
+          <ComposedScheduleCard
             name={schedule.name}
             days={schedule.days}
             uid={schedule.uid}

@@ -26,7 +26,7 @@ export interface ILessonsStore extends IStoreable {
 
 export interface IRingsSchedulesStore extends IStoreable {
 	ringsSchedules: IRingsSchedule[],
-	addSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">): void,
+	addSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">, uid?: string): void,
 	removeSchedule(uid: string): boolean,
   updateSchedule(uid: string, newSchedule: Partial<Omit<IRingsSchedule, "uid">>): boolean,
   getById(uid: string): IRingsSchedule | undefined

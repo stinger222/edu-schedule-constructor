@@ -12,7 +12,7 @@ interface IProps {
   uid: string
 }
 
-const ComposedSchedule: React.FC<IProps> = ({ name, days, uid }) => {
+const ComposedScheduleCard: React.FC<IProps> = ({ name, days, uid }) => {
 
   const { composedSchedulesStore } = useContext(StoreContext)
   const thisIsActive = composedSchedulesStore.activeScheduleUid === uid
@@ -45,4 +45,4 @@ const ComposedSchedule: React.FC<IProps> = ({ name, days, uid }) => {
 	)
 }
 
-export default ComposedSchedule
+export default ComposedScheduleCard
