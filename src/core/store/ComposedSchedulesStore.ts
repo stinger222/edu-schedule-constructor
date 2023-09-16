@@ -36,7 +36,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 	removeSchedule(uid: string): boolean {
 		const indexToDelete = this.composedSchedules.findIndex(schedule => schedule.uid === uid)
 		if (indexToDelete === -1) {
-			console.warn(`Can't remove\n.Composed shcedule with id: "${uid}" not found.`)
+			console.warn(`Can't remove\n.Composed schedule with id: "${uid}" not found.`)
 			return false
 		}
 		

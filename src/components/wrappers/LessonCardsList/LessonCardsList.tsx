@@ -6,7 +6,7 @@ import LessonCard from "../../ordinary/LessonCard/LessonCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
 import { StyledLessonCardsList } from "./LessonCardsList.styled"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 
 interface IProps {
 	lessons: ILesson[]
@@ -30,9 +30,15 @@ const LessonCardsList: React.FC<IProps> = ({ lessons, removeLesson }) => {
 		<StyledLessonCardsList className="lesson-cards">
 
 			{ lessons.length === 0 &&
-				<h2 style={{textAlign: "center", fontWeight: 400}}>
-					Тут нихера нет ¯\_(ツ)_/¯
-				</h2>
+        <h2 className="nothing-here-message">
+        ¯\_(ツ)_/¯
+        <br/>
+        <br/>
+        <Trans
+          i18nKey="lessonsPage.nothingHereMsg"
+          components={{Link: <Link className="link" to='/composed' />}}
+        /> 
+    </h2>
 			}
 
 			{

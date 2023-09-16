@@ -16,7 +16,9 @@ class UIStore implements IUIStore {
   }
 
   // will be parsed from ls
-  userSettings: ISettings
+  userSettings: ISettings = {
+    theme: ThemeEnum.light
+  }
 
 	constructor() {
 		makeAutoObservable(this)

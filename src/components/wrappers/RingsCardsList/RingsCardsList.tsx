@@ -6,7 +6,7 @@ import { StyledRingsCardsList } from "./RingsCardsList.styled"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
 import RingsScheduleCard from "../../ordinary/RingsScheduleCard/RingsScheduleCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 
 interface IProps {
 	ringsSchedules: IRingsSchedule[],
@@ -29,9 +29,18 @@ const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) =>
   return (
     <StyledRingsCardsList className="rings-cards">
     {	ringsSchedules?.length === 0 &&
-      <h2 style={{textAlign: "center", fontWeight: 400}}>
-        Тут нихера нет ¯\_(ツ)_/¯
-      </h2>
+        <h2 className="nothing-here-message">
+        ¯\_(ツ)_/¯
+        <br/>
+        <br/>
+        <Trans
+          i18nKey="ringsSchedulesPage.nothingHereMsg"
+          components={{
+            RingsLink: <Link className="link" to='/rings' />,
+            LessonsLink: <Link className="link" to='/lessons' />
+          }}
+        /> 
+    </h2>
     }
 
     {

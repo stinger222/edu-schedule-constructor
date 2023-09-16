@@ -24,11 +24,11 @@ const ComposedSchedulesPage = () => {
           <Header.BurgerButton />
         </Header>
 
-        {__DEV__ &&
+        {/* {__DEV__ &&
           <div style={{textAlign: "center", padding: "0.5em", fontSize: "1.3em"}}>
             Active: {composedSchedulesStore.activeScheduleUid}
           </div>
-        }
+        } */}
 
         <ComposedSchedulesList
           composedSchedules={composedSchedulesStore.composedSchedules}

@@ -63,5 +63,5 @@ export interface IComposedSchedulesStore extends IStoreable {
    * 
    * @returns In both described cases `true` will be returned. Otherwise - false
   */
-  dayIsEmptyOrUndefined(shceduleUid: string, dayIndex: number): boolean 
+  dayIsEmptyOrUndefined(scheduleUid: string, dayIndex: number): boolean 
 }

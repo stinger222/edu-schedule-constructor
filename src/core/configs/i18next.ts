@@ -60,11 +60,23 @@ i18n
             end: "Конец"
           },
 
-          composeScheduleForm: {
-            schNameInputCaption: "Название расписания",
-            schNameInputPlaceholder: "Верхняя неделя",
-            ringsSchForThisDayInputCaption: "Расписание звонков для этого дня",
-            nthLessonSelectCaption: "{{value}}-ая пара"
+          lessonsPage: {
+            nothingHereMsg: "Добавьте предметы из которых можно будет <Link>составлять расписания</Link> на неделю"
+          },
+          ringsSchedulesPage: {
+            nothingHereMsg: "Добавьте расписание звонков, что бы приложение могло понимать когда начинаются и кончаются пары"
+          },
+          composedSchedulesPage: {
+            nothingHereMsg: "Составьте своё первое расписание на неделю используя созданные <RingsLink>расписания звонков</RingsLink> и <LessonsLink>карточки пар</LessonsLink>"
+          },
+
+          addLessonForm: {
+            lessonNameInputCaption: "Название пары",
+            lessonNameInputPlaceholder: "Основы алгоритмизации",
+            teacherNameInputCaption: "Имя препода",
+            teacherNameInputPlaceholder: "Иванов Иван Иванович",
+            cabinetInputCaption: "Кабинет",
+            cabinetInputPlaceholder: "302п"
           },
           addRingsScheduleForm: {
             schNameInputCaption: "Название расписания",
@@ -73,13 +85,11 @@ i18n
             endInputcaption: "Конец",
             dividerCaption: "{{value}}-я пара"
           },
-          addLessonForm: {
-            lessonNameInputCaption: "Название пары",
-            lessonNameInputPlaceholder: "Основы алгоритмизации",
-            teacherNameInputCaption: "Имя препода",
-            teacherNameInputPlaceholder: "Иванов Иван Иванович",
-            cabinetInputCaption: "Кабинет",
-            cabinetInputPlaceholder: "302п"
+          composeScheduleForm: {
+            schNameInputCaption: "Название расписания",
+            schNameInputPlaceholder: "Верхняя неделя",
+            ringsSchForThisDayInputCaption: "Расписание звонков для этого дня",
+            nthLessonSelectCaption: "{{value}}-ая пара"
           },
 
           button: {
@@ -165,19 +175,16 @@ i18n
             end: "End"
           },
 
-          composeScheduleForm: {
-            schNameInputCaption: "Schedule name",
-            schNameInputPlaceholder: "Some name, idk", // TODO: ???
-            ringsSchForThisDayInputCaption: "Rings schedule for this day",
-            nthLessonSelectCaption: "Lesson #{{value}}"
+          lessonsPage: {
+            nothingHereMsg: "Add lesson cards which you can then use to <Link>compose schedules</Link> for the entire week"
           },
-          addRingsScheduleForm: {
-            schNameInputCaption: "Schedule name",
-            schNameInputPlaceholder: "rings schedule #1? idk", // TODO: ??? 
-            startInputcaption: "Start",
-            endInputcaption: "End",
-            dividerCaption: "Lesson #{{value}}"
+          ringsSchedulesPage: {
+            nothingHereMsg: "Add a class schedule so the app can highlight current/next class on the timeline"
           },
+          composedSchedulesPage: {
+            nothingHereMsg: "Assemble your very first schedule using previously made <LessonsLink>lesson cards</LessonsLink> and <RingsLink>class schedules</RingsLink>"
+          },
+
           addLessonForm: {
             lessonNameInputCaption: "Lesson name",
             lessonNameInputPlaceholder: "COBOL programming",
@@ -185,6 +192,19 @@ i18n
             teacherNameInputPlaceholder: "Mr. Dickhead",
             cabinetInputCaption: "Cabinet",
             cabinetInputPlaceholder: "302m" // <= should there be postfixes in english? 
+          },
+          addRingsScheduleForm: {
+            schNameInputCaption: "Schedule name",
+            schNameInputPlaceholder: "class schedule #1? idk", // TODO: ??? 
+            startInputcaption: "Start",
+            endInputcaption: "End",
+            dividerCaption: "Lesson #{{value}}"
+          },
+          composeScheduleForm: {
+            schNameInputCaption: "Schedule name",
+            schNameInputPlaceholder: "Some name, idk", // TODO: ???
+            ringsSchForThisDayInputCaption: "Rings schedule for this day",
+            nthLessonSelectCaption: "Lesson #{{value}}"
           },
 
           button: {

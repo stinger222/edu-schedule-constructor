@@ -103,6 +103,17 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 		margin-inline: 0.5em;
 	}
 
+  .link {
+    color: royalblue;
+    text-decoration: underline;
+  }
+
+  .nothing-here-message {
+    text-align: center;
+    font-weight: 200;
+    margin-bottom: 4em;
+  }
+
 	/* TEMP AS WELL */
 	@media (max-width: 625px) {
 		.schedule-item {

@@ -62,7 +62,7 @@ const getDataForSelectedDay = (
 ): [(ILesson | undefined)[], IRingsSchedule]  => {
   
   if (!activeComposedSchedule) { //TODO: First case is impossible btw...
-    throw new Error("Composed shcedule not selected.\n\nOr if you haven't created any yet, please go to:\nMenu > Composed Schedules > Compose new schedule")
+    throw new Error("Composed schedule not selected.\n\nOr if you haven't created any yet, please go to:\nMenu > Composed Schedules > Compose new schedule")
   }
 
   if (stores.composedSchedulesStore.dayIsEmptyOrUndefined(activeComposedSchedule.uid, selectedDayIndex)) {

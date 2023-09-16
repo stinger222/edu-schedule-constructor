@@ -1,5 +1,6 @@
 import { observer } from "mobx-react"
 import { Link, useNavigate } from "react-router-dom"
+import { useTranslation, Trans } from "react-i18next"
 
 import { IComposedSchedule } from "../../../core/types/types"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
@@ -7,7 +8,6 @@ import ComposedScheduleCard from "../../smart/ComposedScheduleCard/ComposedSched
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
 import { StyledComposedSchedulesList } from "./ComposedSchedulesList.styled"
-import { useTranslation } from "react-i18next"
 
 interface IProps {
   composedSchedules: IComposedSchedule[]
@@ -30,7 +30,18 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
   return (
     <StyledComposedSchedulesList className="composed-schedules-list">
       {composedSchedules.length === 0 && (
-        <h2 style={{ textAlign: "center", fontWeight: 400 }}>Тут нихера нет ¯\_(ツ)_/¯</h2>
+        <h2 className="nothing-here-message">
+          ¯\_(ツ)_/¯
+          <br/>
+          <br/>
+          <Trans
+            i18nKey="composedSchedulesPage.nothingHereMsg"
+            components={{
+              RingsLink: <Link className="link" to='/rings' />,
+              LessonsLink: <Link className="link" to='/lessons' />
+            }}
+          /> 
+      </h2>
       )}
       
       {composedSchedules.map((schedule) => (
