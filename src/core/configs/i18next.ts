@@ -90,7 +90,7 @@ i18n
             schNameInputCaption: "Название расписания",
             schNameInputPlaceholder: "Звонки на понедельник",
             startInputcaption: "Начало",
-            endInputСaption: "Конец",
+            endInputCaption: "Конец",
             dividerCaption: "{{value}}-я пара"
           },
           composeScheduleForm: {
@@ -213,7 +213,7 @@ i18n
             schNameInputCaption: "Schedule name",
             schNameInputPlaceholder: "Class schedule #1", // TODO: ??? 
             startInputcaption: "Start",
-            endInputСaption: "End",
+            endInputCaption: "End",
             dividerCaption: "Lesson #{{value}}"
           },
           composeScheduleForm: {

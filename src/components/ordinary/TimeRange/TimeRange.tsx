@@ -25,7 +25,7 @@ const TimeRange: React.FC<IProps> = ({ index }) => {
 
 			<InputWrapper
 				type="time"
-				label={t("addRingsScheduleForm.endInputcaption")}
+				label={t("addRingsScheduleForm.endInputCaption")}
 				name={`rings.${index}.end` as const}
 				rules={{required: true}}
 			/>

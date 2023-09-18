@@ -18,6 +18,7 @@ interface IStoreable {
 export interface ILessonsStore extends IStoreable {
 	_lessons: ILesson[],
 	lessons: ILesson[],
+  setDefaultItems(): void,
 	addLesson(newLesson: Omit<ILesson, "uid">, uid?: string): void,
 	removeLesson(uid: string): boolean,
 	updateLesson(uid: string, newLesson: Partial<Omit<ILesson, "uid">>): void,

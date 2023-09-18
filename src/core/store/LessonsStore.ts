@@ -4,21 +4,16 @@ import { nanoid } from "nanoid"
 import { capitalize } from "../utils/stringUtils"
 import { ILessonsStore } from "./../types/store"
 import { ILesson } from "./../types/types"
+import i18n from "../configs/i18next"
 
 class LessonsStore implements ILessonsStore {
-  public _lessons: ILesson[] = [
-    {
-      "cabinet": "???",
-      "teacher": "<Никто>",
-      "title": "<Ничего>",
-      "uid": "hidden"
-    }
-  ]
+  public _lessons: ILesson[] = []
   storageKey: string = "lessons"
 
   constructor() {
     makeAutoObservable(this)
     this.restoreState()
+    this.setDefaultItems()
   }
 
   get lessons() {
@@ -26,14 +21,36 @@ class LessonsStore implements ILessonsStore {
   }
 
   memorizeState() {
-    localStorage.setItem(this.storageKey, JSON.stringify(this._lessons))
+    localStorage.setItem(this.storageKey, JSON.stringify(this.lessons))
   }
 
   restoreState() {
-    this._lessons = JSON.parse(
-      localStorage.getItem(this.storageKey) ||
-        `[{"cabinet": "???", "teacher": "<Никто>", "title": "<Ничего>", "uid":"hidden"}]`
-    )
+    try {
+      const storedClasses = JSON.parse(localStorage.getItem(this.storageKey) || "[]") 
+      this._lessons = storedClasses
+      this.setDefaultItems()
+    } catch(err) {
+      console.error("Error occurred during parsing class cards from local storage: ", err.message)
+      console.log(`Looks like "${this.storageKey}" in the local storage is invalid... is it mine or your fault, my curious friend?... 😑`)
+      
+      localStorage.setItem(this.storageKey, "[]")
+      this._lessons = []
+      this.setDefaultItems()
+    }
+
+    console.log("Class cards restored:", toJS(this._lessons))
+  }
+
+  setDefaultItems(): void {
+    this._lessons = [
+      {
+        "cabinet": i18n.t("lessonCard.noCabinet"),
+        "teacher": i18n.t("lessonCard.nobody"),
+        "title": i18n.t("lessonCard.nothing"),
+        "uid": "hidden"
+      },
+      ...this.lessons
+    ]
   }
 
   addLesson(newLesson: Omit<ILesson, "uid">, uid?: string) {

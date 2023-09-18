@@ -14,7 +14,7 @@ import { StyledSelect } from "../../ui/Select/Select.styled"
  */
 
 const DropdownSettings = () => {
-  const { uiStore } = useContext(StoreContext)
+  const { uiStore, lessonsStore } = useContext(StoreContext)
   const { t, i18n } = useTranslation()
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -31,6 +31,7 @@ const DropdownSettings = () => {
 
   const handleLangChange = (value: "ru" | "en") => {
     i18n.changeLanguage(value)
+    lessonsStore.setDefaultItems()
   }
 
   const handleThemeChange = (theme: "light" | "dark") => {
