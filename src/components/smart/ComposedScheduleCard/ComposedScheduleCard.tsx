@@ -5,6 +5,7 @@ import { StyledComposedSchedule } from "./ComposedScheduleCard.styled"
 
 import Day from "./Day/Day"
 import Switch from "../../ui/Switch/Switch"
+import { observer } from "mobx-react"
 
 interface IProps {
 	name: string,
@@ -45,4 +46,4 @@ const ComposedScheduleCard: React.FC<IProps> = ({ name, days, uid }) => {
 	)
 }
 
-export default ComposedScheduleCard
+export default observer(ComposedScheduleCard)

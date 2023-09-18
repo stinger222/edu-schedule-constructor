@@ -4,7 +4,7 @@ import { StyledInput } from "./Input.styled"
 interface IProps {
 	label?: string,
 	className?: string
-} 
+}
 
 const Input: React.FC<IProps & React.InputHTMLAttributes<HTMLInputElement>> = React.forwardRef<HTMLInputElement, IProps>(
 	({
@@ -15,7 +15,7 @@ const Input: React.FC<IProps & React.InputHTMLAttributes<HTMLInputElement>> = Re
 		return (
 			<StyledInput className={`${className} input-container`}>
 				<span className="label">{label}</span>
-				<input placeholder="" ref={ref} {...rest} />
+				<input ref={ref} {...rest} />
 			</StyledInput>
 		)
 	}

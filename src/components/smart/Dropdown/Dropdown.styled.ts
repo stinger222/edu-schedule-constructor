@@ -35,13 +35,30 @@ export const StyledDropdown = styled.div`
     gap: 0.6em;
   }
 
-  & .dropdown-content header {
+  :is(&) :is(h1, h2, h3) {
     width: 100%;
-
-    font-weight: 400;
-    font-size: 1.4em;
     text-align: center;
     line-height: 0.9;
+  }
+  
+  & h1 {
+    font-weight: 400;
+    font-size: 1.4em;
+  }
+
+  & h2 {
+    font-weight: 400;
+    font-size: 1.2em;
+  }
+
+  & .dropdown-content .impex-controls {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  & .dropdown-content .impex-controls > * {
+    flex-basis: 48%;
   }
   
   & .dropdown-content button {
@@ -64,13 +81,12 @@ export const StyledDropdown = styled.div`
   }
 
 
-  & .divider {
+  & .section-divider {
     max-height: 0;
     width: 100%;
     box-shadow: 0 0 0.02em 0.03em ${({theme}) => theme.dropdown.divider};
     margin: 0.2em 0;
   }
-
 
   /* React-transition-group classes: */
 

@@ -7,7 +7,7 @@ Object {
     <div />
     <div>
       <div
-        class="sc-eDWCr hoVdDn composed-schedule"
+        class="sc-bqWxrE iyUBdH composed-schedule"
       >
         <header>
           <div
@@ -16,7 +16,7 @@ Object {
             Test Schedule #1
           </div>
           <input
-            class="sc-ksBlkl jvriEz switch"
+            class="sc-hBxehG byPHju switch"
             type="checkbox"
           />
         </header>
@@ -24,7 +24,7 @@ Object {
           class="days"
         >
           <div
-            class="sc-bqWxrE gTNlmT"
+            class="sc-ksBlkl gxcKTZ"
           >
             <header>
               M
@@ -59,7 +59,7 @@ Object {
             </div>
           </div>
           <div
-            class="sc-bqWxrE gTNlmT"
+            class="sc-ksBlkl gxcKTZ"
           >
             <header>
               T
@@ -94,7 +94,7 @@ Object {
             </div>
           </div>
           <div
-            class="sc-bqWxrE gTNlmT"
+            class="sc-ksBlkl gxcKTZ"
           >
             <header>
               W
@@ -129,7 +129,7 @@ Object {
             </div>
           </div>
           <div
-            class="sc-bqWxrE gTNlmT"
+            class="sc-ksBlkl gxcKTZ"
           >
             <header>
               T
@@ -164,7 +164,7 @@ Object {
             </div>
           </div>
           <div
-            class="sc-bqWxrE gTNlmT"
+            class="sc-ksBlkl gxcKTZ"
           >
             <header>
               F
@@ -204,7 +204,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-eDWCr hoVdDn composed-schedule"
+      class="sc-bqWxrE iyUBdH composed-schedule"
     >
       <header>
         <div
@@ -213,7 +213,7 @@ Object {
           Test Schedule #1
         </div>
         <input
-          class="sc-ksBlkl jvriEz switch"
+          class="sc-hBxehG byPHju switch"
           type="checkbox"
         />
       </header>
@@ -221,7 +221,7 @@ Object {
         class="days"
       >
         <div
-          class="sc-bqWxrE gTNlmT"
+          class="sc-ksBlkl gxcKTZ"
         >
           <header>
             M
@@ -256,7 +256,7 @@ Object {
           </div>
         </div>
         <div
-          class="sc-bqWxrE gTNlmT"
+          class="sc-ksBlkl gxcKTZ"
         >
           <header>
             T
@@ -291,7 +291,7 @@ Object {
           </div>
         </div>
         <div
-          class="sc-bqWxrE gTNlmT"
+          class="sc-ksBlkl gxcKTZ"
         >
           <header>
             W
@@ -326,7 +326,7 @@ Object {
           </div>
         </div>
         <div
-          class="sc-bqWxrE gTNlmT"
+          class="sc-ksBlkl gxcKTZ"
         >
           <header>
             T
@@ -361,7 +361,7 @@ Object {
           </div>
         </div>
         <div
-          class="sc-bqWxrE gTNlmT"
+          class="sc-ksBlkl gxcKTZ"
         >
           <header>
             F

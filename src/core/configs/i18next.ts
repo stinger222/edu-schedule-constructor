@@ -35,9 +35,16 @@ i18n
               language: "Язык",
               rus: "Русский",
               eng: "Английский",
+
               theme: "Тема",
               dark: "Тёмная",
               light: "Светлая",
+
+              impextTextareaTitle: "И/Э созданные карточки",
+              impextTextareaPaceholder: "Вставьте сюда ранее экспортированный текст",
+              impextBtnImport: "Импорт",
+              impextBtnExport: "Экспорт",
+
               back: "Назад =>"
             }
           },
@@ -46,6 +53,7 @@ i18n
             cabinetPrefix: "каб.",
             lessonWasRemoved: "<Пара была удалена>",
             nobody: "<Никто>",
+            nothing: "<Ничего>",
             noCabinet: "???"
 
           },
@@ -82,7 +90,7 @@ i18n
             schNameInputCaption: "Название расписания",
             schNameInputPlaceholder: "Звонки на понедельник",
             startInputcaption: "Начало",
-            endInputcaption: "Конец",
+            endInputСaption: "Конец",
             dividerCaption: "{{value}}-я пара"
           },
           composeScheduleForm: {
@@ -114,9 +122,9 @@ i18n
             header: "Ошибка"
           },
 
-          select: { // it's just a draft, todo
+          select: {
             emptyPlaceholder: "<Пусто>",
-            nothingCard: "<Ничего>"
+            notSelectedPlaceholder: "<Не выбрано>"
           },
 
           confirmPrompt: {
@@ -150,9 +158,16 @@ i18n
               language: "Language",
               rus: "Russiаn",
               eng: "English",
+
               theme: "Theme",
               dark: "Dark",
               light: "Light",
+
+              impextTextareaTitle: "I/E created cards:",
+              impextTextareaPaceholder: "Put here previously exported state",
+              impextBtnImport: "Import",
+              impextBtnExport: "Export",
+
               back: "Back =>"
             }
         },
@@ -161,6 +176,7 @@ i18n
             cabinetPrefix: "cab.",
             lessonWasRemoved: "<Lesson was removed>",
             nobody: "<Nobody>",
+            nothing: "<Nothing>",
             noCabinet: "???"
 
           },
@@ -191,18 +207,18 @@ i18n
             teacherNameInputCaption: "Teacher's name",
             teacherNameInputPlaceholder: "Mr. Dickhead",
             cabinetInputCaption: "Cabinet",
-            cabinetInputPlaceholder: "302m" // <= should there be postfixes in english? 
+            cabinetInputPlaceholder: "302" // <= should there be postfixes in English? 
           },
           addRingsScheduleForm: {
             schNameInputCaption: "Schedule name",
-            schNameInputPlaceholder: "class schedule #1? idk", // TODO: ??? 
+            schNameInputPlaceholder: "Class schedule #1", // TODO: ??? 
             startInputcaption: "Start",
-            endInputcaption: "End",
+            endInputСaption: "End",
             dividerCaption: "Lesson #{{value}}"
           },
           composeScheduleForm: {
             schNameInputCaption: "Schedule name",
-            schNameInputPlaceholder: "Some name, idk", // TODO: ???
+            schNameInputPlaceholder: "Week Schedule #1", // TODO: ???
             ringsSchForThisDayInputCaption: "Rings schedule for this day",
             nthLessonSelectCaption: "Lesson #{{value}}"
           },
@@ -229,9 +245,9 @@ i18n
             header: "An Error occurred"
           },
 
-          select: { // it's just a draft, todo
+          select: {
             emptyPlaceholder: "<Empty>",
-            nothingCard: "<Nothing>"
+            notSelectedPlaceholder: "<Not Selected>"
           },
 
           confirmPrompt: {

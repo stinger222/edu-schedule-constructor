@@ -25,7 +25,7 @@ export const StyledComposeDayForm = styled.div`
 		border-radius: 1em;
 	}
 
-	& .compose-day .hr-divider {
+	& .compose-day .fade-divider {
 		height: 0.5em;
 		background: transparent;
 		box-shadow:

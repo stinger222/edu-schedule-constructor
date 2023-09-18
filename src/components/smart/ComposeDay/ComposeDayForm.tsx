@@ -68,7 +68,7 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 					key={0}
 				/>
 
-				<div className="hr-divider"></div>
+				<div className="fade-divider"></div>
 
 				{
 					fields.map(({id}, index) => (

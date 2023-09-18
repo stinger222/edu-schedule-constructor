@@ -15,10 +15,12 @@ const DropdownMain = () => {
   return (
     <div className="dropdown-content">
       <header>
-        {t("dropdown.main.title")}
+        <h1>
+          {t("dropdown.main.title")}
+        </h1>
 			</header>
 
-      <div className="divider"></div>
+      <div className="section-divider"></div>
 
 			<Link to='/composed'>
 				<Button> {t("dropdown.main.composed")} </Button>
@@ -32,7 +34,7 @@ const DropdownMain = () => {
 				<Button> {t("dropdown.main.lessons")} </Button>
 			</Link>
 
-      <div className="divider"></div>
+      <div className="section-divider"></div>
 
       <Button onClick={() => uiStore.activeDropdownMenu = "settings"}> {t("dropdown.main.settings")} </Button>
     </div>
