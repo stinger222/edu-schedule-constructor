@@ -1,19 +1,27 @@
 import Container from "../../containers/Container/Container"
 import { EmptyDay, Warning } from "../../../core/utils/CustomErrors"
 import { StyledErrorFallback } from "./ErrorFallback.styled"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 
 interface IProps {
   error: Warning | Error | EmptyDay
 }
 
 const ErrorFallback: React.FC<IProps> = ({ error }) => {
+
   return (
     <StyledErrorFallback>
       <Container>
-        { error.name === Warning.name && <WarningLayout error={error}/> }
-        { error.name === EmptyDay.name && <EmptyDayLayout error={error}/> }
-        { error.name === Error.name && <ErrorLayout error={error}/> }
+        {error.name === Warning.name ? (
+          <WarningLayout error={error} />
+        ) : error.name === EmptyDay.name ? (
+          <EmptyDayLayout error={error} />
+        ) : error.name === Error.name ? (
+          <ErrorLayout error={error} />
+        ) : (
+          <OtherErrorLayout error={new Error("")} />
+        )}
+
 
       </Container>
     </StyledErrorFallback>
@@ -52,5 +60,19 @@ const EmptyDayLayout: React.FC<IProps>= () => {
     </div>
   </>
 }
+
+const OtherErrorLayout: React.FC<IProps>= () => {
+  const { t } = useTranslation()
+
+  return <>
+    <h1 className="error-header header"> {t("fatalError.header")} </h1>
+    <div className="error-message-wrapper message-wrapper">
+      <pre className="error-message message">
+        <Trans i18nKey="fatalError.message" components={{ br: <br/>, i: <i></i> }}/> 
+      </pre>
+    </div>
+  </>
+}
+ 
 
 export default ErrorFallback
