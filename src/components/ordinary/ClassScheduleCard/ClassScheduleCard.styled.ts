@@ -1,13 +1,13 @@
 import styled from "styled-components"
 
-export const StyledRingsScheduleCard = styled.div`
+export const StyledClassScheduleCard = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	
 	border-radius: 1em;
-	background: ${({theme}) => theme.ringsScheduleCard.background};
-	box-shadow: ${({theme}) => theme.ringsScheduleCard.boxShadow};
+	background: ${({theme}) => theme.classScheduleCard.background};
+	box-shadow: ${({theme}) => theme.classScheduleCard.boxShadow};
 	
 	width: 29em;
 	height: 7em;

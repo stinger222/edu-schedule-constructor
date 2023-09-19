@@ -9,7 +9,7 @@ import Button from "../../ui/Button/Button"
 import Textarea from "../../ui/Textarea/Textarea"
 import { StyledSelect } from "../../ui/Select/Select.styled"
 import LessonsStore from "../../../core/store/LessonsStore"
-import RingsSchedulesStore from "../../../core/store/RingsSchedulesStore"
+import ClassSchedulesStore from "../../../core/store/ClassSchedulesStore"
 import ComposedSchedulesStore from "../../../core/store/ComposedSchedulesStore"
 
 /**
@@ -38,7 +38,7 @@ const DropdownSettings = () => {
     if (!window.confirm(t("dropdown.settings.removeStoredDataConfirm"))) return
 
     localStorage.removeItem(LessonsStore.storageKey)
-    localStorage.removeItem(RingsSchedulesStore.storageKey)
+    localStorage.removeItem(ClassSchedulesStore.storageKey)
     localStorage.removeItem(ComposedSchedulesStore.storageKey)
     localStorage.removeItem(ComposedSchedulesStore.activeScheduleUidStorageKey)
     document.location.reload()

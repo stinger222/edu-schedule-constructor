@@ -1,19 +1,19 @@
 import { Link, useNavigate } from "react-router-dom"
 import { observer } from "mobx-react"
-import { IRingsSchedule } from "../../../core/types/types"
-import { StyledRingsCardsList } from "./RingsCardsList.styled"
+import { IClassSchedule } from "../../../core/types/types"
+import { StyledClassScheduleCardsList } from "./ClassScheduleCardsList.styled"
 
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
-import RingsScheduleCard from "../../ordinary/RingsScheduleCard/RingsScheduleCard"
+import ClassScheduleCard from "../../ordinary/ClassScheduleCard/ClassScheduleCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 import { Trans, useTranslation } from "react-i18next"
 
 interface IProps {
-	ringsSchedules: IRingsSchedule[],
+	classSchedules: IClassSchedule[],
 	removeSchedule: (uid: string) => boolean
 }
 
-const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) => {
+const ClassScheduleCardsList: React.FC<IProps> = ({ classSchedules, removeSchedule }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
 
@@ -23,20 +23,20 @@ const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) =>
   }
 
   const handleEdit = (uid: string) => {
-    navigate("/add/rings", {state: { mode: "edit", uid }})    
+    navigate("/add/class-schedules", {state: { mode: "edit", uid }})    
   }
 
   return (
-    <StyledRingsCardsList className="rings-cards">
-    {	ringsSchedules?.length === 0 &&
+    <StyledClassScheduleCardsList className="class-schedule-cards">
+    {	classSchedules?.length === 0 &&
         <h2 className="nothing-here-message">
         ¯\_(ツ)_/¯
         <br/>
         <br/>
         <Trans
-          i18nKey="ringsSchedulesPage.nothingHereMsg"
+          i18nKey="classSchedulesPage.nothingHereMsg"
           components={{
-            RingsLink: <Link className="link" to='/rings' />,
+            ClassSchLink: <Link className="link" to="/class-schedules" />,
             LessonsLink: <Link className="link" to='/lessons' />
           }}
         /> 
@@ -44,7 +44,7 @@ const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) =>
     }
 
     {
-      ringsSchedules.map(({rings, name, uid}) => (
+      classSchedules.map(({classes, name, uid}) => (
         <SwipeToAction
           onLeftSwipe={() => handleRemove(uid)}
           onRightSwipe={() => handleEdit(uid)}
@@ -52,21 +52,21 @@ const RingsCardsList: React.FC<IProps> = ({ ringsSchedules, removeSchedule }) =>
           LeftActionLabel={SwipeToAction.EditActionLabel}
           key={uid}
         >
-          <RingsScheduleCard
+          <ClassScheduleCard
             name={name}
-            length={rings.length}
-            start={rings[0].start}
-            end={rings[rings.length-1].end}
+            length={classes.length}
+            start={classes[0].start}
+            end={classes[classes.length-1].end}
           />
         </SwipeToAction>
       ))
     }
 
-    <Link to="/add/rings">
-      <GhostButton> {t("ghostButton.addRingsSchedule")} <span className="plus">+</span></GhostButton>
+    <Link to="/add/class-schedules">
+      <GhostButton> {t("ghostButton.addClassSchedule")} <span className="plus">+</span></GhostButton>
     </Link>
-  </StyledRingsCardsList>
+  </StyledClassScheduleCardsList>
   )
 }
 
-export default observer(RingsCardsList)
+export default observer(ClassScheduleCardsList)

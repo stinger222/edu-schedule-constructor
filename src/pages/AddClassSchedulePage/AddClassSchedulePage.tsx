@@ -11,17 +11,17 @@ import TimeRange from "../../components/ordinary/TimeRange/TimeRange"
 import Container from "../../components/containers/Container/Container"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 
-import { IRingsSchedule } from "../../core/types/types"
+import { IClassSchedule } from "../../core/types/types"
 import { validateField } from "../../core/utils/stringUtils"
 import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
 
-import { StyledAddRingsSchedulePage } from "./AddRingsSchedulePage.styled"
+import { StyledAddClassSchedulePage } from "./AddClassSchedulePage.styled"
 
 
-const AddRingsSchedulePage = () => {
+const AddClassSchedulePage = () => {
 
   const { t } = useTranslation()
-	const { ringsSchedulesStore } = useContext(StoreContext)
+	const { classSchedulesStore } = useContext(StoreContext)
 
   const routeState = useLocation().state
   const navigate = useNavigate()
@@ -29,7 +29,7 @@ const AddRingsSchedulePage = () => {
 	const methods = useForm({
 		defaultValues: {
 			name: "",
-			rings: [
+			classes: [
 				{
 					start: "08:40",
 					end: "10:00"
@@ -38,28 +38,28 @@ const AddRingsSchedulePage = () => {
 		}
 	})
 
-  const { append, fields } = useFieldArray({control: methods.control, name: "rings"})
+  const { append, fields } = useFieldArray({control: methods.control, name: "classes"})
   
-	const handleSubmit = (formData: Omit<IRingsSchedule, "uid">) => {
+	const handleSubmit = (formData: Omit<IClassSchedule, "uid">) => {
     if (routeState?.mode === "edit") { // TODO: Should this be moved to store?...
-      ringsSchedulesStore.removeSchedule(routeState.uid)
-      ringsSchedulesStore.addSchedule(formData, routeState.uid)
+      classSchedulesStore.removeSchedule(routeState.uid)
+      classSchedulesStore.addSchedule(formData, routeState.uid)
     } else {
-      ringsSchedulesStore.addSchedule(formData)
+      classSchedulesStore.addSchedule(formData)
     }
 
 		methods.reset()
     navigate(-1)
 	}
 
-  useInitializeFormForEditMode<IRingsSchedule>(ringsSchedulesStore.ringsSchedules, routeState, methods)
+  useInitializeFormForEditMode<IClassSchedule>(classSchedulesStore.classSchedules, routeState, methods)
 
 	return (
-		<StyledAddRingsSchedulePage>
+		<StyledAddClassSchedulePage>
 			<Container>
 				<Header>
 					<Header.NavHome/>
-          <h1>{routeState?.mode === "edit" ? t("headerTitle.editRingsSchedule") : t("headerTitle.addRingsSchedule")}</h1>
+          <h1>{routeState?.mode === "edit" ? t("headerTitle.editClassSchedule") : t("headerTitle.addClassSchedule")}</h1>
 					<Header.BurgerButton/>
 				</Header>
 
@@ -67,8 +67,8 @@ const AddRingsSchedulePage = () => {
 					<form onSubmit={ methods.handleSubmit(handleSubmit) }>
 						<InputWrapper
 							name="name"
-							label={t("addRingsScheduleForm.schNameInputCaption")}
-							placeholder={t("addRingsScheduleForm.schNameInputPlaceholder")}
+							label={t("addClassScheduleForm.schNameInputCaption")}
+							placeholder={t("addClassScheduleForm.schNameInputPlaceholder")}
 							rules={{validate: validateField}}
 						/>
 
@@ -90,8 +90,8 @@ const AddRingsSchedulePage = () => {
 				</FormProvider>
 
 			</Container>
-		</StyledAddRingsSchedulePage>
+		</StyledAddClassSchedulePage>
 	)
 }
 
-export default AddRingsSchedulePage
+export default AddClassSchedulePage

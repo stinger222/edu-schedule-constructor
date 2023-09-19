@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledRingsCardsList = styled.div`
+export const StyledClassScheduleCardsList = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;

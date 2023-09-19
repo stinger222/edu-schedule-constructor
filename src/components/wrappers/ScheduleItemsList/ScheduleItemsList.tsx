@@ -3,7 +3,7 @@ import { observer } from "mobx-react"
 import { StoreContext } from "../../.."
 
 import RootStore from "../../../core/store/RootStore"
-import { IComposedSchedule, ILesson, IRingsSchedule} from "../../../core/types/types"
+import { IComposedSchedule, ILesson, IClassSchedule} from "../../../core/types/types"
 
 import LessonCard from "../../ordinary/LessonCard/LessonCard"
 import Timeline from "../../ordinary/Timeline/Timeline"
@@ -17,7 +17,7 @@ const ScheduleItemsList = () => {
   const activeComposedSchedule = stores.composedSchedulesStore.getActiveSchedule()
   const selectedDayIndex = stores.uiStore.selectedDayIndex
 
-  const [lessons, ringsSchedule] = getDataForSelectedDay(activeComposedSchedule, selectedDayIndex, stores)
+  const [lessons, classSchedule] = getDataForSelectedDay(activeComposedSchedule, selectedDayIndex, stores)
   
   return (
     <div>
@@ -25,8 +25,8 @@ const ScheduleItemsList = () => {
         <div className="schedule-item" key={Math.random()}>
 
           <Timeline
-            startTime={ringsSchedule.rings[index].start}
-            endTime={ringsSchedule.rings[index].end}
+            startTime={classSchedule.classes[index].start}
+            endTime={classSchedule.classes[index].end}
           />
 
           <LessonCard
@@ -52,14 +52,14 @@ export default observer(ScheduleItemsList)
  * @param stores - Is root store that combines all other mobx stores
  * 
  * @returns Array of lesson objects, data from witch will be used to rednder LessonCards on the right,
- * and ringsSchedule object that will be used to render Timeline segments on the left
+ * and classSchedule object that will be used to render Timeline segments on the left
 */
 
 const getDataForSelectedDay = (
   activeComposedSchedule: IComposedSchedule | undefined | null,
   selectedDayIndex: number,
   stores: RootStore
-): [(ILesson | undefined)[], IRingsSchedule]  => {
+): [(ILesson | undefined)[], IClassSchedule]  => {
   
   if (!activeComposedSchedule) { //TODO: First case is impossible btw...
     throw new Error("Composed schedule not selected.\n\nOr if you haven't created any yet, please go to:\nMenu > Composed Schedules > Compose new schedule")
@@ -69,11 +69,11 @@ const getDataForSelectedDay = (
     throw new EmptyDay()
   }
 
-  const ringsScheduleIdForSelectedDay = activeComposedSchedule.days[selectedDayIndex].ringsScheduleId
-  const ringsScheduleForSelectedDay = stores.ringsSchedulesStore.getById(ringsScheduleIdForSelectedDay)
+  const classScheduleIdForSelectedDay = activeComposedSchedule.days[selectedDayIndex].classScheduleId
+  const classScheduleForSelectedDay = stores.classSchedulesStore.getById(classScheduleIdForSelectedDay)
 
-  if (!ringsScheduleForSelectedDay) {
-    throw new Error(`This day in "${activeComposedSchedule.name}" composed schedule is refering to rings schedule that was deleted!\n\nTo fix that, change rings schedule for this day in "${activeComposedSchedule.name}" composed schedule to existing one.\n\nYou can to that by swiping mentioned composed schedule card to the right in:\nMenu > Composed Schedules`)
+  if (!classScheduleForSelectedDay) {
+    throw new Error(`This day in "${activeComposedSchedule.name}" composed schedule is refering to class schedule that was deleted!\n\nTo fix that, change class schedule for this day in "${activeComposedSchedule.name}" composed schedule to existing one.\n\nYou can to that by swiping mentioned composed schedule card to the right in:\nMenu > Composed Schedules`)
   }
 
   const lessonIdsForSelectedDay = activeComposedSchedule.days[selectedDayIndex].lessonIds
@@ -87,5 +87,5 @@ const getDataForSelectedDay = (
     Also I would appreciate if you will open issue on github with some ideas why this happened <3`)
   }
 
-  return [lessonsForSelectedDay, ringsScheduleForSelectedDay]
+  return [lessonsForSelectedDay, classScheduleForSelectedDay]
 }

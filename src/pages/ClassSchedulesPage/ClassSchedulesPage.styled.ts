@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
-export const StyledRingsSchedulesPage = styled.div`
+export const StyledClassSchedulesPage = styled.div`
 	@media(max-width: 500px) {
-		& .rings-cards {
+		& .class-schedule-cards {
 			font-size: 1.1em
 		}
 
@@ -12,13 +12,13 @@ export const StyledRingsSchedulesPage = styled.div`
 	}
 
 	@media(max-width: 450px) {
-		& .rings-cards {
+		& .class-schedule-cards {
 			font-size: 1.2em
 		}
 	}
 
 	@media(max-width: 400px) {
-		& .rings-cards {
+		& .class-schedule-cards {
 			font-size: 1.3em
 		}
 		

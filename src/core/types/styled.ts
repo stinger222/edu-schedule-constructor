@@ -35,7 +35,7 @@ export interface ITheme {
     background: HexColor,
     boxShadow: string
   },
-  ringsScheduleCard: {
+  classScheduleCard: {
     background: HexColor,
     boxShadow: string
   },

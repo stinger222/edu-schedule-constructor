@@ -1,4 +1,4 @@
-import { ILesson, IRingsSchedule, IComposedSchedule, DropdownMenu, ISettings } from "./types"
+import { ILesson, IClassSchedule, IComposedSchedule, DropdownMenu, ISettings } from "./types"
 export interface IUIStore extends IStoreable {
 	selectedDayIndex: number,
 	isDropdownOpen: boolean,
@@ -28,12 +28,12 @@ export interface ILessonsStore extends IStoreable {
   findById(uid: string): ILesson | undefined
 }
 
-export interface IRingsSchedulesStore extends IStoreable {
-	ringsSchedules: IRingsSchedule[],
-	addSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">, uid?: string): void,
+export interface IClassSchedulesStore extends IStoreable {
+	classSchedules: IClassSchedule[],
+	addSchedule(newClassSchedule: Omit<IClassSchedule, "uid">, uid?: string): void,
 	removeSchedule(uid: string): boolean,
-  updateSchedule(uid: string, newSchedule: Partial<Omit<IRingsSchedule, "uid">>): boolean,
-  getById(uid: string): IRingsSchedule | undefined
+  updateSchedule(uid: string, newSchedule: Partial<Omit<IClassSchedule, "uid">>): boolean,
+  getById(uid: string): IClassSchedule | undefined
 }
 
 export interface IComposedSchedulesStore extends IStoreable {

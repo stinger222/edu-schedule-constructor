@@ -9,15 +9,15 @@ let rootStore: RootStore
 describe("Testing ComposedScheduleCard component", () => {
   beforeAll(() => {
     rootStore = renderHook(() => useContext(StoreContext)).result.current
-    rootStore.ringsSchedulesStore.addSchedule({
-      name: "Test Rings Schedule (4 lessons described)",
-      rings: [
+    rootStore.classSchedulesStore.addSchedule({
+      name: "Test Class Schedule (4 lessons described)",
+      classes: [
         {start: "08:30", end: "10:00"},
         {start: "10:30", end: "12:00"},
         {start: "12:30", end: "14:00"},
         {start: "14:30", end: "16:00"}
       ]
-    }, "test-rings-schedule")
+    }, "test-classes-schedule")
   })
 
   it("Properly renders schedule card", () => {
@@ -25,11 +25,11 @@ describe("Testing ComposedScheduleCard component", () => {
       <ComposedScheduleCard
         name="Test Schedule #1"
         days={[
-          {ringsScheduleId: "test-rings-schedule", lessonIds: ["1", "2", "3", "4"]},
-          {ringsScheduleId: "test-rings-schedule", lessonIds: ["hidden", "2", "3", "4"]},
-          {ringsScheduleId: "test-rings-schedule", lessonIds: ["hidden", "hidden", "3", "4"]},
-          {ringsScheduleId: "test-rings-schedule", lessonIds: ["hidden"]},
-          {ringsScheduleId: "test-rings-schedule", lessonIds: ["hidden", "hidden", "hidden", "hidden"]}
+          {classScheduleId: "test-classes-schedule", lessonIds: ["1", "2", "3", "4"]},
+          {classScheduleId: "test-classes-schedule", lessonIds: ["hidden", "2", "3", "4"]},
+          {classScheduleId: "test-classes-schedule", lessonIds: ["hidden", "hidden", "3", "4"]},
+          {classScheduleId: "test-classes-schedule", lessonIds: ["hidden"]},
+          {classScheduleId: "test-classes-schedule", lessonIds: ["hidden", "hidden", "hidden", "hidden"]}
         ]}
         uid="test-composed-schedule-id-1"
       />

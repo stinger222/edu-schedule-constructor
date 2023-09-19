@@ -26,8 +26,8 @@ const DropdownMain = () => {
 				<Button> {t("dropdown.main.composed")} </Button>
 			</Link>
 
-			<Link to="/rings">
-				<Button> {t("dropdown.main.rings")} </Button>
+			<Link to="/class-schedules">
+				<Button> {t("dropdown.main.classSchedules")} </Button>
 			</Link>
 
 			<Link to='/lessons'>

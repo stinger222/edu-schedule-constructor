@@ -21,17 +21,17 @@ export interface ILesson {
 	uid: string
 }
 
-export interface IRingsSchedule {
+export interface IClassSchedule {
 	name: string,
 	uid: string,
-	rings: Array<{
+	classes: Array<{
 		start: string,
 		end: string
 	}>
 }
 
 export interface IComposedDay  {
-	ringsScheduleId: string,
+	classScheduleId: string,
 	lessonIds: string[]
 }
 

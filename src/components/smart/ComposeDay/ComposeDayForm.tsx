@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react"
 import { UseFieldArrayRemove, useFieldArray, useFormContext } from "react-hook-form"
 
 import { StoreContext } from "../../.."
-import { ILessonsStore, IRingsSchedulesStore } from "../../../core/types/store"
-import { IRingsSchedule } from "../../../core/types/types"
+import { ILessonsStore, IClassSchedulesStore } from "../../../core/types/store"
+import { IClassSchedule } from "../../../core/types/types"
 import { WeekUtils } from "../../../core/utils/dateTimeUtils"
 import { validateField } from "../../../core/utils/stringUtils"
 
@@ -20,7 +20,7 @@ interface IProps {
 
 const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
   const [canAddNewLessons, setCanAddNewLessons] = useState(false)
-	const { lessonsStore, ringsSchedulesStore } = useContext(StoreContext)
+	const { lessonsStore, classSchedulesStore: classSchedulesStore } = useContext(StoreContext)
   
   const { t, i18n } = useTranslation()
   const lang = i18n.resolvedLanguage as "ru" | "en"
@@ -30,7 +30,7 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
     control: methods.control, name: `days.${dayIndex}.lessonIds`
   })
 
-  const selectedRingsScheduleId: string = methods.watch(`days.${dayIndex}.ringsScheduleId`)
+  const selectedClassScheduleId: string = methods.watch(`days.${dayIndex}.classScheduleId`)
 
   const getRightSection = (index: number) => {
     if (fields.length - 1 === index && index != 0) {
@@ -38,20 +38,20 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
     }
   }
 
-  // Prevents user from adding more lessons than described in selected rings schedule
+  // Prevents user from adding more lessons than described in selected class schedule
   useEffect(() => {
-    const selectedRingsSchedule = ringsSchedulesStore.ringsSchedules.find(s => (
-      s.uid === selectedRingsScheduleId
+    const selectedClassSchedule = classSchedulesStore.classSchedules.find(s => (
+      s.uid === selectedClassScheduleId
     ))
 
-    const ringsInSelectedRingsSchedule = selectedRingsSchedule?.rings?.length || 1
+    const classesInSelectedClassSchedule = selectedClassSchedule?.classes?.length || 1
 
-    if (fields.length < ringsInSelectedRingsSchedule) {
+    if (fields.length < classesInSelectedClassSchedule) {
       setCanAddNewLessons(true)
     } else {
       setCanAddNewLessons(false)
     }
-  }, [selectedRingsScheduleId, fields.length]) // On new rings schedule select or addition of new lesson
+  }, [selectedClassScheduleId, fields.length]) // On new class schedule select or addition of new lesson
 
 	if (dayIndex >= 5) return null
 	
@@ -61,9 +61,9 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 
 			<div className="compose-day">
 				<SelectContainer
-					data={getRingsSchedulesSelectData(ringsSchedulesStore)}
-					name={`days.${dayIndex}.ringsScheduleId`}
-					label={t("composeScheduleForm.ringsSchForThisDayInputCaption")}
+					data={getClassSchedulesSelectData(classSchedulesStore)}
+					name={`days.${dayIndex}.classScheduleId`}
+					label={t("composeScheduleForm.classSchForThisDayInputCaption")}
 					rules={{validate: validateField}}
 					key={0}
 				/>
@@ -111,8 +111,8 @@ const RemoveFieldButton = ({ index, remove }: IRemoveFieldButtonProps) => {
 
 
 // Takes necessary data from the store, and returns it in the format that Mantine Select component demand
-const getRingsSchedulesSelectData = (ringsSchedulesStore: IRingsSchedulesStore) => {
-  return ringsSchedulesStore.ringsSchedules.map((schedule: IRingsSchedule) => ({
+const getClassSchedulesSelectData = (classSchedulesStore: IClassSchedulesStore) => {
+  return classSchedulesStore.classSchedules.map((schedule: IClassSchedule) => ({
       label: schedule.name, value: schedule.uid
   }))
 }

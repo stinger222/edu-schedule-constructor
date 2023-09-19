@@ -1,6 +1,6 @@
 import RootStore from "../store/RootStore"
 import LessonsStore from "../store/LessonsStore"
-import RingsSchedulesStore from "../store/RingsSchedulesStore"
+import ClassSchedulesStore from "../store/ClassSchedulesStore"
 import ComposedSchedulesStore from "../store/ComposedSchedulesStore"
 
 type ImpexAppState = Omit<Record<keyof RootStore, string>, "uiStore">
@@ -11,13 +11,13 @@ const useImpexAppState = (): [ImpexAppState, (jsonState: string, onError?: () =>
     return (
       typeof state.composedSchedulesStore === "string" &&
       typeof state.lessonsStore === "string" &&
-      typeof state.ringsSchedulesStore === "string"
+      typeof state.classSchedulesStore === "string"
     )
   }
 
   const state: ImpexAppState = {
     lessonsStore: localStorage.getItem(LessonsStore.storageKey) || "[]",
-    ringsSchedulesStore: localStorage.getItem(RingsSchedulesStore.storageKey)  || "[]",
+    classSchedulesStore: localStorage.getItem(ClassSchedulesStore.storageKey)  || "[]",
     composedSchedulesStore: localStorage.getItem(ComposedSchedulesStore.storageKey) || "[]"
   }
 
@@ -28,7 +28,7 @@ const useImpexAppState = (): [ImpexAppState, (jsonState: string, onError?: () =>
       if (!isImpexAppState(parsedState)) throw new Error()
 
       localStorage.setItem(LessonsStore.storageKey, parsedState.lessonsStore)
-      localStorage.setItem(RingsSchedulesStore.storageKey, parsedState.ringsSchedulesStore)
+      localStorage.setItem(ClassSchedulesStore.storageKey, parsedState.classSchedulesStore)
       localStorage.setItem(ComposedSchedulesStore.storageKey, parsedState.composedSchedulesStore)
       document.location.reload()
     } catch(err){

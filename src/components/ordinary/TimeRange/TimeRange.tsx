@@ -13,20 +13,20 @@ const TimeRange: React.FC<IProps> = ({ index }) => {
 		<StyledTimeRange>
 			<InputWrapper
 				type="time"
-				label={t("addRingsScheduleForm.startInputcaption")}
-				name={`rings.${index}.start` as const}
+				label={t("addClassScheduleForm.startInputcaption")}
+				name={`classes.${index}.start` as const}
 				rules={{required: true}}
 			/>
 
 			<span className="divider">
-				<div className="label"> {t("addRingsScheduleForm.dividerCaption", {value: index + 1})}</div>
+				<div className="label"> {t("addClassScheduleForm.dividerCaption", {value: index + 1})}</div>
 				<div className="line"></div>
 			</span>
 
 			<InputWrapper
 				type="time"
-				label={t("addRingsScheduleForm.endInputCaption")}
-				name={`rings.${index}.end` as const}
+				label={t("addClassScheduleForm.endInputCaption")}
+				name={`classes.${index}.end` as const}
 				rules={{required: true}}
 			/>
 		</StyledTimeRange>

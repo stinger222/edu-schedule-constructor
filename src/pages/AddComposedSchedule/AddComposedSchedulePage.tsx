@@ -30,7 +30,7 @@ const AddComposedSchedulePage = () => {
   const methods = useForm({
     defaultValues: {
       name: "",
-      days: [{ ringsScheduleId: "", lessonIds: ["undefined"] }]
+      days: [{ classScheduleId: "", lessonIds: ["undefined"] }]
     }
   })
   
@@ -78,7 +78,7 @@ const AddComposedSchedulePage = () => {
             {fields.length < 5 && (
               <>
                 <h2>{WeekUtils.getFull(lang, Cases.Nominative)[fields.length]}:</h2>
-                <GhostButton onClick={() => append({ ringsScheduleId: "", lessonIds: ["undefined"] })}>
+                <GhostButton onClick={() => append({ classScheduleId: "", lessonIds: ["undefined"] })}>
                   {t("ghostButton.fillScheduleFor")} {WeekUtils.getFull(lang, Cases.Accusative, true)[fields.length]}
                   <br />
                   <span className="plus">+</span>

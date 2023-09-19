@@ -13,20 +13,20 @@ i18n
         translation: {
           headerTitle: {
             lessonsPage: "Добавленные предеметы",
-            ringsPage: "Расписания звонков",
+            classSchedulesPage: "Расписания звонков",
             composedPage: "Составленные расписания",
             editLesson: "Редактировать предмет",
-            editRingsSchedule: "Редактировать расписание",
+            editClassSchedule: "Редактировать расписание",
             editComposedSchedule: "Редактировать расписане",
             addLesson: "Добавить предмет",
-            addRingsSchedule: "Добавить расписание звонков",
+            addClassSchedule: "Добавить расписание звонков",
             addComposedSchedule: "Составить новое расписание"
           },
           dropdown: {
             main: {
               title: "Меню",
               composed: "Составленные расписания",
-              rings: "Расписания звонков",
+              classSchedules: "Расписания звонков",
               lessons: "Добавленные предметы",
               settings: "Настройки"
             },
@@ -59,7 +59,7 @@ i18n
             noCabinet: "???"
 
           },
-          ringsScheduleCard: {
+          classScheduleCard: {
             lessonsAmount: "Пар -",
             start: "Начало -",
             end: "Конец -"
@@ -73,11 +73,11 @@ i18n
           lessonsPage: {
             nothingHereMsg: "Добавьте предметы из которых можно будет <Link>составлять расписания</Link> на неделю"
           },
-          ringsSchedulesPage: {
+          classSchedulesPage: {
             nothingHereMsg: "Добавьте расписание звонков, что бы приложение могло понимать когда начинаются и кончаются пары"
           },
           composedSchedulesPage: {
-            nothingHereMsg: "Составьте своё первое расписание на неделю используя созданные <RingsLink>расписания звонков</RingsLink> и <LessonsLink>карточки пар</LessonsLink>"
+            nothingHereMsg: "Составьте своё первое расписание на неделю используя созданные <ClassSchLink>расписания звонков</ClassSchLink> и <LessonsLink>карточки пар</LessonsLink>"
           },
 
           addLessonForm: {
@@ -88,7 +88,7 @@ i18n
             cabinetInputCaption: "Кабинет",
             cabinetInputPlaceholder: "302п"
           },
-          addRingsScheduleForm: {
+          addClassScheduleForm: {
             schNameInputCaption: "Название расписания",
             schNameInputPlaceholder: "Звонки на понедельник",
             startInputcaption: "Начало",
@@ -98,7 +98,7 @@ i18n
           composeScheduleForm: {
             schNameInputCaption: "Название расписания",
             schNameInputPlaceholder: "Верхняя неделя",
-            ringsSchForThisDayInputCaption: "Расписание звонков для этого дня",
+            classSchForThisDayInputCaption: "Расписание звонков для этого дня",
             nthLessonSelectCaption: "{{value}}-ая пара"
           },
 
@@ -107,7 +107,7 @@ i18n
           },
           ghostButton: {
             addLesson: "Добавить предмет",
-            addRingsSchedule: "Добавить расписание звонков",
+            addClassSchedule: "Добавить расписание звонков",
             composeNewSchedule: "Составить новое расписание",
             fillScheduleFor: "Заполнить расписание на",
             addNthLesson: "Добавить {{value}}-ую пару"
@@ -142,20 +142,20 @@ i18n
         translation: {
           headerTitle: {
             lessonsPage: "Added lessons",
-            ringsPage: "Rings schedules",
+            classSchedulesPage: "Class schedules",
             composedPage: "Composed schedules",
             editLesson: "Edit lesson",
-            editRingsSchedule: "Edit schedule",
+            editClassSchedule: "Edit schedule",
             editComposedSchedule: "Edit schedule",
             addLesson: "Add new lesson",
-            addRingsSchedule: "Add rings schedule",
+            addClassSchedule: "Add class schedule",
             addComposedSchedule: "Compose new schedule"
           },
           dropdown: {
             main: {
               title: "Menu",
               composed: "Composed schedules",
-              rings: "Rings schedules",
+              classSchedules: "Class schedules",
               lessons: "Added lessons",
               settings: "Settings"
             },
@@ -188,7 +188,7 @@ i18n
             noCabinet: "???"
 
           },
-          ringsScheduleCard: {
+          classScheduleCard: {
             lessonsAmount: "Lessons -",
             start: "Start -",
             end: "End -"
@@ -202,11 +202,11 @@ i18n
           lessonsPage: {
             nothingHereMsg: "Add lesson cards which you can then use to <Link>compose schedules</Link> for the entire week"
           },
-          ringsSchedulesPage: {
+          classSchedulesPage: {
             nothingHereMsg: "Add a class schedule so the app can highlight current/next class on the timeline"
           },
           composedSchedulesPage: {
-            nothingHereMsg: "Assemble your very first schedule using previously made <LessonsLink>lesson cards</LessonsLink> and <RingsLink>class schedules</RingsLink>"
+            nothingHereMsg: "Assemble your very first schedule using previously made <LessonsLink>lesson cards</LessonsLink> and <ClassSchLink>class schedules</ClassSchLink>"
           },
 
           addLessonForm: {
@@ -217,7 +217,7 @@ i18n
             cabinetInputCaption: "Cabinet",
             cabinetInputPlaceholder: "302" // <= should there be postfixes in English? 
           },
-          addRingsScheduleForm: {
+          addClassScheduleForm: {
             schNameInputCaption: "Schedule name",
             schNameInputPlaceholder: "Class schedule #1", // TODO: ??? 
             startInputcaption: "Start",
@@ -227,7 +227,7 @@ i18n
           composeScheduleForm: {
             schNameInputCaption: "Schedule name",
             schNameInputPlaceholder: "Week Schedule #1", // TODO: ???
-            ringsSchForThisDayInputCaption: "Rings schedule for this day",
+            classSchForThisDayInputCaption: "Class schedule for this day",
             nthLessonSelectCaption: "Lesson #{{value}}"
           },
 
@@ -236,7 +236,7 @@ i18n
           },
           ghostButton: {
             addLesson: "Add new lesson",
-            addRingsSchedule: "Add rings schedule",
+            addClassSchedule: "Add class schedule",
             composeNewSchedule: "Compose new schedule",
             fillScheduleFor: "Compose schedule for",
             addNthLesson: "Add lesson #{{value}}"

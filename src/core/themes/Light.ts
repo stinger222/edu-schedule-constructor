@@ -28,7 +28,7 @@ export const LightTheme: ITheme = {
     background: "#FFF",
     boxShadow: "0.1em 0.2em 0.4em 0 #00000080"
   },
-  ringsScheduleCard: {
+  classScheduleCard: {
     background: "#FFF",
     boxShadow: "0.1em 0.2em 0.45em 0 #00000080"
   },

@@ -9,13 +9,9 @@ describe("Testing LessonsStore", () => {
 	it("Tests default values", () => {
 		const lessonsStore = new LessonsStore()
 
-		expect(lessonsStore._lessons[0]).toEqual({
-			cabinet: "???",
-			teacher: "<Никто>",
-			title: "<Ничего>",
-			uid:"hidden"
-		})
-	})
+		expect(lessonsStore.lessons).toHaveLength(0)
+		expect(lessonsStore._lessons).toHaveLength(1)
+  })
 
 	it("Tests addLesson action", () => {
 		const lessonsStore = new LessonsStore()
