@@ -13,7 +13,7 @@ const LessonCard: React.FC<IProps> = ({ title, teacher, cabinet }) => {
 
 	return (
 		<StyledLessonCard className="lesson-card">
-			<h1>{ title.trim() || "<Название пары не указано>" }</h1>
+			<h1>{ title?.trim() || "<Название пары не указано>" }</h1>
 			<footer>
 				<span>{ teacher.trim() || "<Имя препода не указано>" }</span>
 				<span>{t("lessonCard.cabinetPrefix")} { cabinet.trim() || "???" }</span>

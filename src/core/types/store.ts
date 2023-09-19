@@ -9,8 +9,11 @@ export interface IUIStore extends IStoreable {
 	selectDayIndex: (newIndex: number) => void
 }
 
+
 interface IStoreable {
-	storageKey: string,
+  // also "storageKey: string" should be here, but I need it to be static,
+  // and typescript CAN'T declare static field in the interface,
+  // soo.. yea, all classes that implement IStoreable have static "storageKey" filed, I GUESS...
 	memorizeState(): void,
 	restoreState(): void
 }

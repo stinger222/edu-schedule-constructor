@@ -8,7 +8,7 @@ import i18n from "../configs/i18next"
 
 class LessonsStore implements ILessonsStore {
   public _lessons: ILesson[] = []
-  storageKey: string = "lessons"
+  static storageKey: string = "lessons"
 
   constructor() {
     makeAutoObservable(this)
@@ -21,21 +21,21 @@ class LessonsStore implements ILessonsStore {
   }
 
   memorizeState() {
-    localStorage.setItem(this.storageKey, JSON.stringify(this.lessons))
+    localStorage.setItem(LessonsStore.storageKey, JSON.stringify(this.lessons))
   }
 
   restoreState() {
     try {
-      const storedClasses = JSON.parse(localStorage.getItem(this.storageKey) || "[]") 
+      const storedClasses = JSON.parse(localStorage.getItem(LessonsStore.storageKey) || "[]") 
       this._lessons = storedClasses
       this.setDefaultItems()
     } catch(err) {
-      console.error("Error occurred during parsing class cards from local storage: ", err.message)
-      console.log(`Looks like "${this.storageKey}" in the local storage is invalid... is it mine or your fault, my curious friend?... 😑`)
+      console.error(`Fatal error occurred. Can't parse "${LessonsStore.storageKey}" from local storage, so it's value will be cleared.`)
+      console.error(err.message)
       
-      localStorage.setItem(this.storageKey, "[]")
       this._lessons = []
       this.setDefaultItems()
+      this.memorizeState()
     }
 
     console.log("Class cards restored:", toJS(this._lessons))

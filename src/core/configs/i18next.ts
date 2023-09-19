@@ -44,6 +44,8 @@ i18n
               impextTextareaPaceholder: "Вставьте сюда ранее экспортированный текст",
               impextBtnImport: "Импорт",
               impextBtnExport: "Экспорт",
+              removeStoredDataBtn: "Удалить все карточки",
+              removeStoredDataConfirm: "Вы уверены, что хотите удалить ВСЕ созданные/импортированные ранее карточки?\n\nуу, страшно? :D",
 
               back: "Назад =>"
             }
@@ -112,7 +114,7 @@ i18n
           },
 
           emptyDayErr: {
-            header: "Уиииии",
+            header: "Ура!",
             caption: "На сегодня ничего OwO"
           },
           warning: {
@@ -120,6 +122,10 @@ i18n
           },
           error: {
             header: "Ошибка"
+          },
+          fatalError: {
+            header: "Фатальная ошибка",
+            message: "Судя по всему что-то сломалось, и скорее всего это вызвано повреждением импортированной информации <i>(ну или кто-то лазил своими шаловливыми ручками где не надо -_-)</i><br/><br/>Во всяком случае, что бы это починить, скорее всего придётся удалить все сохранённые карточки, Вы можете сделать это в меню настроек"
           },
 
           select: {
@@ -164,9 +170,11 @@ i18n
               light: "Light",
 
               impextTextareaTitle: "I/E created cards:",
-              impextTextareaPaceholder: "Put here previously exported state",
+              impextTextareaPaceholder: "Put here previously exported data",
               impextBtnImport: "Import",
               impextBtnExport: "Export",
+              removeStoredDataBtn: "Clear stored data",
+              removeStoredDataConfirm: "Are you sure you want to delete ALL information stored in the app?",
 
               back: "Back =>"
             }
@@ -233,16 +241,20 @@ i18n
             fillScheduleFor: "Compose schedule for",
             addNthLesson: "Add lesson #{{value}}"
           },
-
+          
           emptyDayErr: {
             header: "Got Lucky!",
-            caption: "Nothing for today :D"
+            caption: "Nothing for today :D" // TODO: rename to "message"
           },
           warning: {
             header: "Warning!"
           },
           error: {
             header: "An Error occurred"
+          },
+          fatalError: {
+            header: "Fatal Error",
+            message: "Looks like app completely broken, this is most likely caused by import of corrupted data.<br/><br/>To fix that, consider clearing all stored data, you can do that in the <i>settings menu</i>"
           },
 
           select: {

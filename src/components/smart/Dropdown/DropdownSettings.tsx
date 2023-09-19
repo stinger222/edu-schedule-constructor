@@ -3,11 +3,14 @@ import { useTranslation } from "react-i18next"
 
 import { StoreContext } from "../../.."
 import { ThemeEnum } from "../../../core/types/styled"
-import useGetAppState from "../../../core/hooks/useGetAppState"
+import useImpexAppState from "../../../core/hooks/useImpexAppState"
 
 import Button from "../../ui/Button/Button"
 import Textarea from "../../ui/Textarea/Textarea"
 import { StyledSelect } from "../../ui/Select/Select.styled"
+import LessonsStore from "../../../core/store/LessonsStore"
+import RingsSchedulesStore from "../../../core/store/RingsSchedulesStore"
+import ComposedSchedulesStore from "../../../core/store/ComposedSchedulesStore"
 
 /**
  * Settings menu inside dropdown
@@ -18,7 +21,7 @@ const DropdownSettings = () => {
   const { t, i18n } = useTranslation()
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
-  const [state, importState] = useGetAppState()
+  const [state, importState] = useImpexAppState()
 
   const getAppState = () => {
     console.log(state)
@@ -26,7 +29,19 @@ const DropdownSettings = () => {
   }
 
   const importAppState = (jsonSate: string) => {
-    importState(jsonSate)
+    importState(jsonSate, () => {
+      textAreaRef.current!.value = "Can't parse passed JSON string! Check if all brackets are there"
+    })
+  }
+
+  const clearAppData = () => {
+    if (!window.confirm(t("dropdown.settings.removeStoredDataConfirm"))) return
+
+    localStorage.removeItem(LessonsStore.storageKey)
+    localStorage.removeItem(RingsSchedulesStore.storageKey)
+    localStorage.removeItem(ComposedSchedulesStore.storageKey)
+    localStorage.removeItem(ComposedSchedulesStore.activeScheduleUidStorageKey)
+    document.location.reload()
   }
 
   const handleLangChange = (value: "ru" | "en") => {
@@ -82,6 +97,9 @@ const DropdownSettings = () => {
           {t("dropdown.settings.impextBtnExport")}
         </Button>
       </div>
+      <Button onClick={clearAppData}>
+         {t("dropdown.settings.removeStoredDataBtn")}
+      </Button>
 
       <div className="section-divider"></div>
 

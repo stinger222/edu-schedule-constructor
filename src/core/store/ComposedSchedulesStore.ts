@@ -6,7 +6,8 @@ import { capitalize } from "../utils/stringUtils"
 
 class ComposedSchedulesStore implements IComposedSchedulesStore {
 	composedSchedules: IComposedSchedule[] = []
-	storageKey: string = "composed-schedules"
+	static storageKey: string = "composed-schedules"
+  static activeScheduleUidStorageKey = "active-composed-schedule-uid"
   activeScheduleUid: string | null = null // schedule that will be rendered on the main page
 
 	constructor() {
@@ -15,13 +16,21 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 	}
 
 	memorizeState(): void {
-		localStorage.setItem(this.storageKey, JSON.stringify(this.composedSchedules))
-    this.activeScheduleUid && localStorage.setItem("active-composed-schedule-uid", this.activeScheduleUid)
+		localStorage.setItem(ComposedSchedulesStore.storageKey, JSON.stringify(this.composedSchedules))
+    this.activeScheduleUid && localStorage.setItem(ComposedSchedulesStore.activeScheduleUidStorageKey, this.activeScheduleUid)
 	}
 
 	restoreState(): void {
-		this.composedSchedules = JSON.parse(localStorage.getItem(this.storageKey) ?? `[]`)
-    this.activeScheduleUid = localStorage.getItem("active-composed-schedule-uid") || null
+    try {
+      this.composedSchedules = JSON.parse(localStorage.getItem(ComposedSchedulesStore.storageKey) || `[]`)
+    } catch (err) {
+      console.error(`Fatal error occurred. Can't parse "${ComposedSchedulesStore.storageKey}" from local storage, so it's value will be cleared.`)
+      console.error(err.message)
+      
+      this.composedSchedules = []
+      this.memorizeState()
+    }
+    this.activeScheduleUid = localStorage.getItem(ComposedSchedulesStore.activeScheduleUidStorageKey) || null
 	}
 
 	addSchedule(newSchedule: Omit<IComposedSchedule, "uid">, uid?: string) {

@@ -6,10 +6,10 @@ import { DropdownMenu, ISettings } from "../types/types"
 import { ThemeEnum } from "../types/styled"
 
 class UIStore implements IUIStore {
-	isDropdownOpen = false
-	selectedDayIndex: number
-  activeDropdownMenu: DropdownMenu = "main"
   storageKey: string = "settings"
+  activeDropdownMenu: DropdownMenu = "main"
+	selectedDayIndex: number
+	isDropdownOpen = false
 
   defaultSettings: ISettings = {
     theme: ThemeEnum.light

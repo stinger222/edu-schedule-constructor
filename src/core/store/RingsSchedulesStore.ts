@@ -7,7 +7,7 @@ import { IRingsSchedule } from "./../types/types"
 
 class RingsSchedulesStore implements IRingsSchedulesStore {
 	ringsSchedules: IRingsSchedule[] = []
-	storageKey: string = "rings"
+	static storageKey: string = "rings"
 
 	constructor() {
 		makeAutoObservable(this)
@@ -15,11 +15,19 @@ class RingsSchedulesStore implements IRingsSchedulesStore {
 	}
 
 	memorizeState(): void {
-		localStorage.setItem(this.storageKey, JSON.stringify(this.ringsSchedules))
+		localStorage.setItem(RingsSchedulesStore.storageKey, JSON.stringify(this.ringsSchedules))
 	}
 
 	restoreState(): void {
-		this.ringsSchedules = JSON.parse(localStorage.getItem(this.storageKey) || `[]`)
+    try {
+      this.ringsSchedules = JSON.parse(localStorage.getItem(RingsSchedulesStore.storageKey) || `[]`)
+    } catch(err) {
+      console.error(`Fatal error occurred. Can't parse "${RingsSchedulesStore.storageKey}" from local storage, so it's value will be cleared.`)
+      console.error(err.message)
+      
+      this.ringsSchedules = []
+      this.memorizeState()
+    }
 	}
 
 	addSchedule(newRingsSchedule: Omit<IRingsSchedule, "uid">, uid?: string): void {
