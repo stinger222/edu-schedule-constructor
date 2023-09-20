@@ -1,4 +1,4 @@
-import { ILesson, IClassSchedule, IComposedSchedule, DropdownMenu, ISettings } from "./types"
+import { IClass, IClassSchedule, IComposedSchedule, DropdownMenu, ISettings } from "./types"
 export interface IUIStore extends IStoreable {
 	selectedDayIndex: number,
 	isDropdownOpen: boolean,
@@ -18,14 +18,14 @@ interface IStoreable {
 	restoreState(): void
 }
 
-export interface ILessonsStore extends IStoreable {
-	_lessons: ILesson[],
-	lessons: ILesson[],
+export interface IClassesStore extends IStoreable {
+	_classes: IClass[],
+	classes: IClass[],
   setDefaultItems(): void,
-	addLesson(newLesson: Omit<ILesson, "uid">, uid?: string): void,
-	removeLesson(uid: string): boolean,
-	updateLesson(uid: string, newLesson: Partial<Omit<ILesson, "uid">>): void,
-  findById(uid: string): ILesson | undefined
+	addClass(newClass: Omit<IClass, "uid">, uid?: string): void,
+	removeClass(uid: string): boolean,
+	updateClass(uid: string, newClass: Partial<Omit<IClass, "uid">>): void,
+  findById(uid: string): IClass | undefined
 }
 
 export interface IClassSchedulesStore extends IStoreable {
@@ -63,7 +63,7 @@ export interface IComposedSchedulesStore extends IStoreable {
   /**
    * This method checks if passed day in passed schedule is either:
    * 1. `undefined` (this can occur if user composed just first few days of the week)
-   * 2. or if all lessons in this day are default \<nothing\> cards with id "hidden" (this is essentially means that this day have no lessons, therefore it's "empty")
+   * 2. or if all classes in this day are default \<nothing\> cards with id "hidden" (this is essentially means that this day have no classes, therefore it's "empty")
    * 
    * @returns In both described cases `true` will be returned. Otherwise - false
   */

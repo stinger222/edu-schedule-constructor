@@ -41,7 +41,7 @@ describe("Testing Dropdown component", () => {
     expect(anchors).toHaveLength(3)
 
     const hrefs = anchors.map(a => a.getAttribute("href"))
-    expect(hrefs.sort()).toEqual(["#/class-schedules", "#/lessons", "#/composed"].sort())
+    expect(hrefs.sort()).toEqual(["#/class-schedules", "#/classes", "#/composed"].sort())
 
     const settingsButton = screen.getByText(t("dropdown.main.settings"))
     expect(settingsButton).not.toBe(null)

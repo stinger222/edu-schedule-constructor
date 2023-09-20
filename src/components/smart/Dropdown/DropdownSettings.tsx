@@ -8,7 +8,7 @@ import useImpexAppState from "../../../core/hooks/useImpexAppState"
 import Button from "../../ui/Button/Button"
 import Textarea from "../../ui/Textarea/Textarea"
 import { StyledSelect } from "../../ui/Select/Select.styled"
-import LessonsStore from "../../../core/store/LessonsStore"
+import ClassesStore from "../../../core/store/ClassesStore"
 import ClassSchedulesStore from "../../../core/store/ClassSchedulesStore"
 import ComposedSchedulesStore from "../../../core/store/ComposedSchedulesStore"
 
@@ -17,7 +17,7 @@ import ComposedSchedulesStore from "../../../core/store/ComposedSchedulesStore"
  */
 
 const DropdownSettings = () => {
-  const { uiStore, lessonsStore } = useContext(StoreContext)
+  const { uiStore, classesStore } = useContext(StoreContext)
   const { t, i18n } = useTranslation()
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -37,7 +37,7 @@ const DropdownSettings = () => {
   const clearAppData = () => {
     if (!window.confirm(t("dropdown.settings.removeStoredDataConfirm"))) return
 
-    localStorage.removeItem(LessonsStore.storageKey)
+    localStorage.removeItem(ClassesStore.storageKey)
     localStorage.removeItem(ClassSchedulesStore.storageKey)
     localStorage.removeItem(ComposedSchedulesStore.storageKey)
     localStorage.removeItem(ComposedSchedulesStore.activeScheduleUidStorageKey)
@@ -46,7 +46,7 @@ const DropdownSettings = () => {
 
   const handleLangChange = (value: "ru" | "en") => {
     i18n.changeLanguage(value)
-    lessonsStore.setDefaultItems()
+    classesStore.setDefaultItems()
   }
 
   const handleThemeChange = (theme: "light" | "dark") => {

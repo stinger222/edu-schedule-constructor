@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const emptyDay: IComposedDay = {
-	lessonIds: [],
+	classIds: [],
 	classScheduleId: "there-is-for-sure-no-such-id"
 }
 
@@ -30,11 +30,11 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
   let endTime = "-:-"
 
   if (thisDayClassSchedule) {
-    [startTime, endTime] = getStartAndEndTime(thisDayClassSchedule, day.lessonIds)
+    [startTime, endTime] = getStartAndEndTime(thisDayClassSchedule, day.classIds)
   }
 
   // If passed day contains <nothing> card, then it's filtered out
-  const amountOfLessons = day.lessonIds.filter((i: string) => i !== "hidden").length
+  const amountOfClasses = day.classIds.filter((i: string) => i !== "hidden").length
 
 	const weekDay: string = WeekUtils.getShort(lang)[dayIndex]
 
@@ -42,8 +42,8 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 		<StyledDay>
 			<header>{ weekDay }</header>
       <div className="card-body">
-				<span> {t("composedScheduleCard.lessonsAmount")} </span>
-				<span>{ amountOfLessons || "0" }</span>
+				<span> {t("composedScheduleCard.classesAmount")} </span>
+				<span>{ amountOfClasses || "0" }</span>
 
 				<span> {t("composedScheduleCard.start")} </span>
 				<span>{ startTime }</span>
@@ -57,15 +57,15 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 
 export default Day
 
-const getStartAndEndTime = (classSchedule: IClassSchedule, lessonIds: string[]): [string, string] => {
-  if (lessonIds.filter(l => l !== "hidden").length === 0) {
+const getStartAndEndTime = (classSchedule: IClassSchedule, classIds: string[]): [string, string] => {
+  if (classIds.filter(l => l !== "hidden").length === 0) {
     return ["-:-", "-:-"]
   }
   
-  const firstLessonIndex = lessonIds.findIndex(i => i !== "hidden") // index of first lesson that is not <nothing> plug
+  const firstClassIndex = classIds.findIndex(i => i !== "hidden") // index of first class that is not <nothing> plug
 
-  const startTime = classSchedule.classes[firstLessonIndex]?.start || "-:-"
-  const endTime = classSchedule.classes[lessonIds.length - 1]?.end || "-:-"
+  const startTime = classSchedule.classes[firstClassIndex]?.start || "-:-"
+  const endTime = classSchedule.classes[classIds.length - 1]?.end || "-:-"
 
   return [startTime, endTime]
 }

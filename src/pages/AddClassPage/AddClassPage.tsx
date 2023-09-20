@@ -9,15 +9,15 @@ import Header from "../../components/smart/Header/Header"
 import Container from "../../components/containers/Container/Container"
 import InputWrapper from "../../components/containers/InputContainer/InputContainer"
 
-import { ILesson } from "../../core/types/types"
+import { IClass } from "../../core/types/types"
 import { validateField } from "../../core/utils/stringUtils"
 import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
 
-import { StyledAddLessonPage } from "./AddLessonPage.styled"
+import { StyledAddClassPage } from "./AddClassPage.styled"
 
 
-const AddLessonPage = () => {
-  const { lessonsStore } = useContext(StoreContext)
+const AddClassPage = () => {
+  const { classesStore } = useContext(StoreContext)
   const { t } = useTranslation()
 
   const navigate = useNavigate()
@@ -29,47 +29,47 @@ const AddLessonPage = () => {
 		cabinet: ""
 	}})
 
-	const handleSubmit = (formData: Omit<ILesson, "uid">) => {
+	const handleSubmit = (formData: Omit<IClass, "uid">) => {
     if (routeState?.mode === "edit") { // TODO: Should this be moved to store?...
-      lessonsStore.removeLesson(routeState.uid)
-      lessonsStore.addLesson(formData, routeState.uid)
+      classesStore.removeClass(routeState.uid)
+      classesStore.addClass(formData, routeState.uid)
     } else {
-      lessonsStore.addLesson(formData)
+      classesStore.addClass(formData)
     }
 		methods.reset()
     navigate(-1)
 	}
 
-  useInitializeFormForEditMode<ILesson>(lessonsStore.lessons, routeState, methods)
+  useInitializeFormForEditMode<IClass>(classesStore.classes, routeState, methods)
 
 	return (
-		<StyledAddLessonPage>
+		<StyledAddClassPage>
 			<Container>
 				<Header>
 					<Header.NavHome/>
-					<h1>{routeState?.mode === "edit" ? t("headerTitle.editLesson") : t("headerTitle.addLesson")}</h1>
+					<h1>{routeState?.mode === "edit" ? t("headerTitle.editClass") : t("headerTitle.addClass")}</h1>
 					<Header.BurgerButton/>
 				</Header>
 
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(handleSubmit)}>
 						<InputWrapper
-							label={t("addLessonForm.lessonNameInputCaption")}
-							placeholder={t("addLessonForm.lessonNameInputPlaceholder")}
+							label={t("addClassForm.classNameInputCaption")}
+							placeholder={t("addClassForm.classNameInputPlaceholder")}
 							name="title"
 							rules={{validate: validateField}}
 							className="title"
 						/>
 						<InputWrapper
-							label={t("addLessonForm.teacherNameInputCaption")}
-							placeholder={t("addLessonForm.teacherNameInputPlaceholder")}
+							label={t("addClassForm.teacherNameInputCaption")}
+							placeholder={t("addClassForm.teacherNameInputPlaceholder")}
 							name="teacher"
 							rules={{validate: validateField}}
 							className="teacher"
 						/>
 						<InputWrapper
-							label={t("addLessonForm.cabinetInputCaption")}
-							placeholder={t("addLessonForm.cabinetInputPlaceholder")}
+							label={t("addClassForm.cabinetInputCaption")}
+							placeholder={t("addClassForm.cabinetInputPlaceholder")}
 							name="cabinet"
 							rules={{validate: validateField}}
 							className="cabinet"
@@ -88,8 +88,8 @@ const AddLessonPage = () => {
 					</form>
 				</FormProvider>
 			</Container>
-		</StyledAddLessonPage>
+		</StyledAddClassPage>
 	)
 }
 
-export default AddLessonPage
+export default AddClassPage

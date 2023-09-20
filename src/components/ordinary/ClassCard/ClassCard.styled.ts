@@ -1,13 +1,13 @@
 import styled from "styled-components"
 
-export const StyledLessonCard = styled.div`
+export const StyledClassCard = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 
 	border-radius: 1.3em;
-	background: ${({theme}) => theme.lessonCard.background};
-	box-shadow: ${({theme}) => theme.lessonCard.boxShadow};
+	background: ${({theme}) => theme.classCard.background};
+	box-shadow: ${({theme}) => theme.classCard.boxShadow};
 
 	width: 28em;
 	height: fit-content;

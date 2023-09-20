@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
-export const StyledLessonsPage = styled.div`
+export const StyledClassesPage = styled.div`
 	@media(max-width: 500px) {
-		& .lesson-cards {
+		& .class-cards-list {
 			font-size: 1.1em;
 		}
 
@@ -12,13 +12,13 @@ export const StyledLessonsPage = styled.div`
 	}
 
 	@media(max-width: 450px) {
-		& .lesson-cards {
+		& .class-cards-list {
 			font-size: 1.2em;
 		}
 	}
 
 	@media(max-width: 400px) {
-		& .lesson-cards {
+		& .class-cards-list {
 			font-size: 1.3em;
 		}
 

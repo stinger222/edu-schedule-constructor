@@ -1,18 +1,18 @@
 import { configure } from "mobx"
-import { IComposedSchedulesStore, ILessonsStore, IClassSchedulesStore, IUIStore } from "./../types/store"
+import { IComposedSchedulesStore, IClassesStore, IClassSchedulesStore, IUIStore } from "./../types/store"
 import ComposedSchedulesStore from "./ComposedSchedulesStore"
 import ClassSchedulesStore from "./ClassSchedulesStore"
-import LessonsStore from "./LessonsStore"
+import ClassesStore from "./ClassesStore"
 import UIStore from "./UIStore"
 class RootStore {
 	uiStore: IUIStore
-	lessonsStore: ILessonsStore
+	classesStore: IClassesStore
 	classSchedulesStore: IClassSchedulesStore
 	composedSchedulesStore: IComposedSchedulesStore
 
 	constructor() {
 		this.uiStore = new UIStore()
-		this.lessonsStore = new LessonsStore()
+		this.classesStore = new ClassesStore()
 		this.classSchedulesStore = new ClassSchedulesStore()
 		this.composedSchedulesStore = new ComposedSchedulesStore()
 	}

@@ -38,7 +38,7 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
             i18nKey="composedSchedulesPage.nothingHereMsg"
             components={{
               ClassSchLink: <Link className="link" to='/class-schedules' />,
-              LessonsLink: <Link className="link" to='/lessons' />
+              ClassesLink: <Link className="link" to='/classes' />
             }}
           /> 
       </h2>

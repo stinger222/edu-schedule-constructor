@@ -24,7 +24,7 @@ export const DarkTheme: ITheme = {
     buttonBoxShadow: "0.1em 0.2em 0.3em 0 #00000085",
     boxShadow: "0.3em 0.3em 0.6em 0 rgb(0 0 0 / 60%)"
   },
-  lessonCard: {
+  classCard: {
     background: "#2A2C32",
     boxShadow: "0.3em 0.4em 0.4em 0 #00000080"
   },

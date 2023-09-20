@@ -12,9 +12,9 @@ import GlobalStyles from "./core/themes/GlobalStyles"
 import AddComposedSchedulePage from "./pages/AddComposedSchedule/AddComposedSchedulePage"
 import ComposedSchedulesPage from "./pages/ComposedSchedules/ComposedSchedulesPage"
 import AddClassSchedulePage from "./pages/AddClassSchedulePage/AddClassSchedulePage"
-import AddLessonPage from "./pages/AddLesson/AddLessonPage"
+import AddClassPage from "./pages/AddClassPage/AddClassPage"
 import ClassSchedulesPage from "./pages/ClassSchedulesPage/ClassSchedulesPage"
-import LessonsPage from "./pages/Lessons/LessonsPage"
+import ClassesPage from "./pages/ClassesPage/ClassesPage"
 import MainPage from "./pages/Main/MainPage"
 
 
@@ -27,12 +27,12 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/composed" element={<ComposedSchedulesPage />} />
-        <Route path="/lessons" element={<LessonsPage />} />
+        <Route path="/classes" element={<ClassesPage />} />
         <Route path="/class-schedules" element={<ClassSchedulesPage />} />
 
         <Route path="/add">
           <Route path="composed" element={<AddComposedSchedulePage />} />
-          <Route path="lesson" element={<AddLessonPage />} />
+          <Route path="class" element={<AddClassPage />} />
           <Route path="class-schedules" element={<AddClassSchedulePage />} />
         </Route>
       </Routes>

@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { UseFormReturn } from "react-hook-form"
 
 /**
- * @param T Type of card that is being edited, aka object inside `cardsArray` param. (e.g. `IComposedSchedule`, `ILesson` or `IClassSchedule`)
+ * @param T Type of card that is being edited, aka object inside `cardsArray` param. (e.g. `IComposedSchedule`, `IClass` or `IClassSchedule`)
  * @param cardsArray Array where target card will be searched
  * @param routeState State that was passed to current route during redirect. Should have `uid` and `mode` fields specified in order to work
  * @param methods Object returned by `useForm` hook from "react-hook-form" library

@@ -10,7 +10,7 @@ describe("Testing ComposedScheduleCard component", () => {
   beforeAll(() => {
     rootStore = renderHook(() => useContext(StoreContext)).result.current
     rootStore.classSchedulesStore.addSchedule({
-      name: "Test Class Schedule (4 lessons described)",
+      name: "Test Class Schedule (4 classes described)",
       classes: [
         {start: "08:30", end: "10:00"},
         {start: "10:30", end: "12:00"},
@@ -25,11 +25,11 @@ describe("Testing ComposedScheduleCard component", () => {
       <ComposedScheduleCard
         name="Test Schedule #1"
         days={[
-          {classScheduleId: "test-classes-schedule", lessonIds: ["1", "2", "3", "4"]},
-          {classScheduleId: "test-classes-schedule", lessonIds: ["hidden", "2", "3", "4"]},
-          {classScheduleId: "test-classes-schedule", lessonIds: ["hidden", "hidden", "3", "4"]},
-          {classScheduleId: "test-classes-schedule", lessonIds: ["hidden"]},
-          {classScheduleId: "test-classes-schedule", lessonIds: ["hidden", "hidden", "hidden", "hidden"]}
+          {classScheduleId: "test-classes-schedule", classIds: ["1", "2", "3", "4"]},
+          {classScheduleId: "test-classes-schedule", classIds: ["hidden", "2", "3", "4"]},
+          {classScheduleId: "test-classes-schedule", classIds: ["hidden", "hidden", "3", "4"]},
+          {classScheduleId: "test-classes-schedule", classIds: ["hidden"]},
+          {classScheduleId: "test-classes-schedule", classIds: ["hidden", "hidden", "hidden", "hidden"]}
         ]}
         uid="test-composed-schedule-id-1"
       />

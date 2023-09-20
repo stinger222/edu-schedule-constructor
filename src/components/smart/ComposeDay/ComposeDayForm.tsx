@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { UseFieldArrayRemove, useFieldArray, useFormContext } from "react-hook-form"
 
 import { StoreContext } from "../../.."
-import { ILessonsStore, IClassSchedulesStore } from "../../../core/types/store"
+import { IClassesStore, IClassSchedulesStore } from "../../../core/types/store"
 import { IClassSchedule } from "../../../core/types/types"
 import { WeekUtils } from "../../../core/utils/dateTimeUtils"
 import { validateField } from "../../../core/utils/stringUtils"
@@ -19,26 +19,26 @@ interface IProps {
 }
 
 const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
-  const [canAddNewLessons, setCanAddNewLessons] = useState(false)
-	const { lessonsStore, classSchedulesStore: classSchedulesStore } = useContext(StoreContext)
+  const [canAddNewClasses, setCanAddNewClasses] = useState(false)
+	const { classesStore, classSchedulesStore } = useContext(StoreContext)
   
   const { t, i18n } = useTranslation()
   const lang = i18n.resolvedLanguage as "ru" | "en"
   
   const methods = useFormContext()
-  const { fields, append: appendLessonId, remove: removeLessonId } = useFieldArray({
-    control: methods.control, name: `days.${dayIndex}.lessonIds`
+  const { fields, append: appendClassId, remove: removeClassId } = useFieldArray({
+    control: methods.control, name: `days.${dayIndex}.classIds`
   })
 
   const selectedClassScheduleId: string = methods.watch(`days.${dayIndex}.classScheduleId`)
 
   const getRightSection = (index: number) => {
     if (fields.length - 1 === index && index != 0) {
-      return <RemoveFieldButton index={index} remove={removeLessonId}/>
+      return <RemoveFieldButton index={index} remove={removeClassId}/>
     }
   }
 
-  // Prevents user from adding more lessons than described in selected class schedule
+  // Prevents user from adding more classes than described in selected class schedule
   useEffect(() => {
     const selectedClassSchedule = classSchedulesStore.classSchedules.find(s => (
       s.uid === selectedClassScheduleId
@@ -47,11 +47,11 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
     const classesInSelectedClassSchedule = selectedClassSchedule?.classes?.length || 1
 
     if (fields.length < classesInSelectedClassSchedule) {
-      setCanAddNewLessons(true)
+      setCanAddNewClasses(true)
     } else {
-      setCanAddNewLessons(false)
+      setCanAddNewClasses(false)
     }
-  }, [selectedClassScheduleId, fields.length]) // On new class schedule select or addition of new lesson
+  }, [selectedClassScheduleId, fields.length]) // On new class schedule select or addition of new class
 
 	if (dayIndex >= 5) return null
 	
@@ -73,9 +73,9 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 				{
 					fields.map(({id}, index) => (
 						<SelectContainer
-              data={getLessonsSelectData(lessonsStore)}
-              name={`days.${dayIndex}.lessonIds.${index}`}
-              label={t("composeScheduleForm.nthLessonSelectCaption", {value: index + 1})}
+              data={getClassesSelectData(classesStore)}
+              name={`days.${dayIndex}.classIds.${index}`}
+              label={t("composeScheduleForm.nthClassSelectCaption", {value: index + 1})}
               rules={{validate: validateField}}
               rightSection={getRightSection(index)}
 							key={id}
@@ -85,9 +85,9 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 
 				<br />
 
-				{ canAddNewLessons &&  fields.length < 9 &&
-					<GhostButton onClick={() => appendLessonId("undefined")}>
-            {t("ghostButton.addNthLesson", {value: fields.length + 1})}
+				{ canAddNewClasses &&  fields.length < 9 &&
+					<GhostButton onClick={() => appendClassId("undefined")}>
+            {t("ghostButton.addNthClass", {value: fields.length + 1})}
 					</GhostButton>
 				}
 			</div>
@@ -118,8 +118,8 @@ const getClassSchedulesSelectData = (classSchedulesStore: IClassSchedulesStore) 
 }
 
 // Same
-const getLessonsSelectData = (lessonsStore: ILessonsStore) => {
-  return lessonsStore._lessons.map((lesson) => ({
-      label: lesson.title, value: lesson.uid
+const getClassesSelectData = (classesStore: IClassesStore) => {
+  return classesStore._classes.map((cls) => ({
+      label: cls.title, value: cls.uid
   }))
 }

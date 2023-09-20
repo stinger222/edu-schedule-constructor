@@ -37,7 +37,7 @@ const ClassScheduleCardsList: React.FC<IProps> = ({ classSchedules, removeSchedu
           i18nKey="classSchedulesPage.nothingHereMsg"
           components={{
             ClassSchLink: <Link className="link" to="/class-schedules" />,
-            LessonsLink: <Link className="link" to='/lessons' />
+            ClassesLink: <Link className="link" to='/classes' />
           }}
         /> 
     </h2>

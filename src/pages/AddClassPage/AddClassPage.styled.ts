@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledAddLessonPage = styled.div`
+export const StyledAddClassPage = styled.div`
   & input {
     font-size: 1.4em;
   }

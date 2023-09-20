@@ -31,7 +31,7 @@ export interface ITheme {
     boxShadow: string
   },
 
-  lessonCard: {
+  classCard: {
     background: HexColor,
     boxShadow: string
   },

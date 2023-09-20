@@ -12,13 +12,13 @@ i18n
       ru: {
         translation: {
           headerTitle: {
-            lessonsPage: "Добавленные предеметы",
+            classesPage: "Добавленные предеметы",
             classSchedulesPage: "Расписания звонков",
             composedPage: "Составленные расписания",
-            editLesson: "Редактировать предмет",
+            editClass: "Редактировать предмет",
             editClassSchedule: "Редактировать расписание",
             editComposedSchedule: "Редактировать расписане",
-            addLesson: "Добавить предмет",
+            addClass: "Добавить предмет",
             addClassSchedule: "Добавить расписание звонков",
             addComposedSchedule: "Составить новое расписание"
           },
@@ -27,7 +27,7 @@ i18n
               title: "Меню",
               composed: "Составленные расписания",
               classSchedules: "Расписания звонков",
-              lessons: "Добавленные предметы",
+              classes: "Добавленные предметы",
               settings: "Настройки"
             },
             settings: {
@@ -41,7 +41,7 @@ i18n
               light: "Светлая",
 
               impextTextareaTitle: "И/Э созданные карточки",
-              impextTextareaPaceholder: "Вставьте сюда ранее экспортированный текст",
+              impextTextareaPaceholder: "Вставьте сюда экспортированный ранее текст",
               impextBtnImport: "Импорт",
               impextBtnExport: "Экспорт",
               removeStoredDataBtn: "Удалить все карточки",
@@ -51,38 +51,38 @@ i18n
             }
           },
 
-          lessonCard: {
+          classCard: {
             cabinetPrefix: "каб.",
-            lessonWasRemoved: "<Пара была удалена>",
+            classWasRemoved: "<Пара была удалена>",
             nobody: "<Никто>",
             nothing: "<Ничего>",
             noCabinet: "???"
 
           },
           classScheduleCard: {
-            lessonsAmount: "Пар -",
+            classesAmount: "Пар -",
             start: "Начало -",
             end: "Конец -"
           },
           composedScheduleCard: {
-            lessonsAmount: "Пар",
+            classesAmount: "Пар",
             start: "Начало",
             end: "Конец"
           },
 
-          lessonsPage: {
+          classesPage: {
             nothingHereMsg: "Добавьте предметы из которых можно будет <Link>составлять расписания</Link> на неделю"
           },
           classSchedulesPage: {
             nothingHereMsg: "Добавьте расписание звонков, что бы приложение могло понимать когда начинаются и кончаются пары"
           },
           composedSchedulesPage: {
-            nothingHereMsg: "Составьте своё первое расписание на неделю используя созданные <ClassSchLink>расписания звонков</ClassSchLink> и <LessonsLink>карточки пар</LessonsLink>"
+            nothingHereMsg: "Составьте своё первое расписание на неделю используя созданные <ClassSchLink>расписания звонков</ClassSchLink> и <ClassesLink>карточки пар</ClassesLink>"
           },
 
-          addLessonForm: {
-            lessonNameInputCaption: "Название пары",
-            lessonNameInputPlaceholder: "Основы алгоритмизации",
+          addClassForm: {
+            classNameInputCaption: "Название пары",
+            classNameInputPlaceholder: "Основы алгоритмизации",
             teacherNameInputCaption: "Имя препода",
             teacherNameInputPlaceholder: "Иванов Иван Иванович",
             cabinetInputCaption: "Кабинет",
@@ -99,18 +99,18 @@ i18n
             schNameInputCaption: "Название расписания",
             schNameInputPlaceholder: "Верхняя неделя",
             classSchForThisDayInputCaption: "Расписание звонков для этого дня",
-            nthLessonSelectCaption: "{{value}}-ая пара"
+            nthClassSelectCaption: "{{value}}-ая пара"
           },
 
           button: {
             done: "Готово"
           },
           ghostButton: {
-            addLesson: "Добавить предмет",
+            addClass: "Добавить предмет",
             addClassSchedule: "Добавить расписание звонков",
             composeNewSchedule: "Составить новое расписание",
             fillScheduleFor: "Заполнить расписание на",
-            addNthLesson: "Добавить {{value}}-ую пару"
+            addNthClass: "Добавить {{value}}-ую пару"
           },
 
           emptyDayErr: {
@@ -141,13 +141,13 @@ i18n
       en: {
         translation: {
           headerTitle: {
-            lessonsPage: "Added lessons",
+            classesPage: "Added classes",
             classSchedulesPage: "Class schedules",
             composedPage: "Composed schedules",
-            editLesson: "Edit lesson",
+            editClass: "Edit class",
             editClassSchedule: "Edit schedule",
             editComposedSchedule: "Edit schedule",
-            addLesson: "Add new lesson",
+            addClass: "Add new class",
             addClassSchedule: "Add class schedule",
             addComposedSchedule: "Compose new schedule"
           },
@@ -156,7 +156,7 @@ i18n
               title: "Menu",
               composed: "Composed schedules",
               classSchedules: "Class schedules",
-              lessons: "Added lessons",
+              classes: "Added classes",
               settings: "Settings"
             },
             settings: {
@@ -178,40 +178,40 @@ i18n
 
               back: "Back =>"
             }
-        },
+          },
 
-          lessonCard: {
+          classCard: {
             cabinetPrefix: "cab.",
-            lessonWasRemoved: "<Lesson was removed>",
+            classWasRemoved: "<Class was removed>",
             nobody: "<Nobody>",
             nothing: "<Nothing>",
             noCabinet: "???"
 
           },
           classScheduleCard: {
-            lessonsAmount: "Lessons -",
+            classes: "Classes -",
             start: "Start -",
             end: "End -"
           },
           composedScheduleCard: {
-            lessonsAmount: "Lessons",
+            classesAmount: "Classes",
             start: "Start",
             end: "End"
           },
 
-          lessonsPage: {
-            nothingHereMsg: "Add lesson cards which you can then use to <Link>compose schedules</Link> for the entire week"
+          classesPage: {
+            nothingHereMsg: "Add class cards which you can then use to <Link>compose schedules</Link> for the entire week"
           },
           classSchedulesPage: {
             nothingHereMsg: "Add a class schedule so the app can highlight current/next class on the timeline"
           },
           composedSchedulesPage: {
-            nothingHereMsg: "Assemble your very first schedule using previously made <LessonsLink>lesson cards</LessonsLink> and <ClassSchLink>class schedules</ClassSchLink>"
+            nothingHereMsg: "Assemble your very first schedule using previously made <ClassesLink>class cards</ClassesLink> and <ClassSchLink>class schedules</ClassSchLink>"
           },
 
-          addLessonForm: {
-            lessonNameInputCaption: "Lesson name",
-            lessonNameInputPlaceholder: "COBOL programming",
+          addClassForm: {
+            classNameInputCaption: "Class name",
+            classNameInputPlaceholder: "COBOL programming",
             teacherNameInputCaption: "Teacher's name",
             teacherNameInputPlaceholder: "Mr. Dickhead",
             cabinetInputCaption: "Cabinet",
@@ -222,24 +222,24 @@ i18n
             schNameInputPlaceholder: "Class schedule #1", // TODO: ??? 
             startInputcaption: "Start",
             endInputCaption: "End",
-            dividerCaption: "Lesson #{{value}}"
+            dividerCaption: "Class #{{value}}"
           },
           composeScheduleForm: {
             schNameInputCaption: "Schedule name",
             schNameInputPlaceholder: "Week Schedule #1", // TODO: ???
             classSchForThisDayInputCaption: "Class schedule for this day",
-            nthLessonSelectCaption: "Lesson #{{value}}"
+            nthClassSelectCaption: "Class #{{value}}"
           },
 
           button: {
             done: "Done"
           },
           ghostButton: {
-            addLesson: "Add new lesson",
+            addClass: "Add new class",
             addClassSchedule: "Add class schedule",
             composeNewSchedule: "Compose new schedule",
             fillScheduleFor: "Compose schedule for",
-            addNthLesson: "Add lesson #{{value}}"
+            addNthClass: "Add class #{{value}}"
           },
           
           emptyDayErr: {

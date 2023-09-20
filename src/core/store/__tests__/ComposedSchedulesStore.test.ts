@@ -15,8 +15,8 @@ describe("Testing ComposedSchedulesStore", () => {
 		composedSchedulesStore.addSchedule({
 			name: "New composed schedule 1",
 			days: [
-				{lessonIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
-				{lessonIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
+				{classIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
+				{classIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
 			]
 		}, "new-uid-1")
 
@@ -25,8 +25,8 @@ describe("Testing ComposedSchedulesStore", () => {
 			name: "New composed schedule 1",
 			uid: "new-uid-1",
 			days: [
-				{lessonIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
-				{lessonIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
+				{classIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
+				{classIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
 			]
 		})
 
@@ -34,8 +34,8 @@ describe("Testing ComposedSchedulesStore", () => {
 		composedSchedulesStore.addSchedule({
 			name: "New composed schedule 2",
 			days: [
-				{lessonIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
-				{lessonIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
+				{classIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
+				{classIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
 			]
 		})
 		expect(composedSchedulesStore.composedSchedules).toHaveLength(2)
@@ -44,8 +44,8 @@ describe("Testing ComposedSchedulesStore", () => {
         uid: expect.any(String),
         name: "New composed schedule 2",
         days: [
-          {lessonIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
-          {lessonIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
+          {classIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
+          {classIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
         ]
       })
     )
@@ -54,8 +54,8 @@ describe("Testing ComposedSchedulesStore", () => {
 		composedSchedulesStore.addSchedule({
 			name: "new composed schedule 3",
 			days: [
-				{lessonIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
-				{lessonIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
+				{classIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
+				{classIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
 			]
 		})
 		expect(composedSchedulesStore.composedSchedules).toHaveLength(3)
@@ -69,8 +69,8 @@ describe("Testing ComposedSchedulesStore", () => {
 		composedSchedulesStore.addSchedule({
       name: "New composed schedule 1",
 			days: [
-        {lessonIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
-				{lessonIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
+        {classIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
+				{classIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
 			]
 		}, "new-uid-1")
     expect(composedSchedulesStore.composedSchedules).toHaveLength(1)
@@ -93,8 +93,8 @@ describe("Testing ComposedSchedulesStore", () => {
 		composedSchedulesStore.addSchedule({
 			name: "New composed schedule 1",
 			days: [
-				{lessonIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
-				{lessonIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
+				{classIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
+				{classIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
 			]
 		}, "new-uid-1")
 
@@ -102,8 +102,8 @@ describe("Testing ComposedSchedulesStore", () => {
 		composedSchedulesStore.updateSchedule("non-existing-uid", {
 			name: "there-is-no-such-uid-in-there",
 			days: [
-				{lessonIds: ["123", "543"], classScheduleId: "fghrt"},
-				{lessonIds: ["sdfg", "768"], classScheduleId: "4gdfg"}
+				{classIds: ["123", "543"], classScheduleId: "fghrt"},
+				{classIds: ["sdfg", "768"], classScheduleId: "4gdfg"}
 			]
 		})
 		expect(composedSchedulesStore.composedSchedules).toHaveLength(1)
@@ -111,8 +111,8 @@ describe("Testing ComposedSchedulesStore", () => {
 			name: "New composed schedule 1",
 			uid: "new-uid-1",
 			days: [
-				{lessonIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
-				{lessonIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
+				{classIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
+				{classIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
 			]
 		})
 
@@ -125,16 +125,16 @@ describe("Testing ComposedSchedulesStore", () => {
 			name: "Updated name of composed schedule 1",
 			uid: "new-uid-1",
 			days: [
-				{lessonIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
-				{lessonIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
+				{classIds: ["l-id-1", "l-id-2"], classScheduleId: "r-id-1"},
+				{classIds: ["l-id-3", "l-id-1"], classScheduleId: "r-id-2"}
 			]
 		})
 
     // Update only "days" property:
 		composedSchedulesStore.updateSchedule("new-uid-1", {
       days: [
-				{lessonIds: ["3129", "2389"], classScheduleId: "gdfpjo"},
-				{lessonIds: ["923487", "2937"], classScheduleId: "cdwklm"}
+				{classIds: ["3129", "2389"], classScheduleId: "gdfpjo"},
+				{classIds: ["923487", "2937"], classScheduleId: "cdwklm"}
 			]
 		})
 		expect(composedSchedulesStore.composedSchedules).toHaveLength(1)
@@ -142,8 +142,8 @@ describe("Testing ComposedSchedulesStore", () => {
 			name: "Updated name of composed schedule 1",
 			uid: "new-uid-1",
       days: [
-				{lessonIds: ["3129", "2389"], classScheduleId: "gdfpjo"},
-				{lessonIds: ["923487", "2937"], classScheduleId: "cdwklm"}
+				{classIds: ["3129", "2389"], classScheduleId: "gdfpjo"},
+				{classIds: ["923487", "2937"], classScheduleId: "cdwklm"}
 			]
 		})
    
@@ -151,8 +151,8 @@ describe("Testing ComposedSchedulesStore", () => {
 		composedSchedulesStore.updateSchedule("new-uid-1", {
 			name: "Once again updated name of composed schedule 1",
 			days: [
-				{lessonIds: ["3490287", "746567"], classScheduleId: "jklfhds"},
-				{lessonIds: ["5346", "72685"], classScheduleId: "ncdjvqs"}
+				{classIds: ["3490287", "746567"], classScheduleId: "jklfhds"},
+				{classIds: ["5346", "72685"], classScheduleId: "ncdjvqs"}
 			]
 		})
 		expect(composedSchedulesStore.composedSchedules).toHaveLength(1)
@@ -160,8 +160,8 @@ describe("Testing ComposedSchedulesStore", () => {
 			name: "Once again updated name of composed schedule 1",
       uid: "new-uid-1",
 			days: [
-				{lessonIds: ["3490287", "746567"], classScheduleId: "jklfhds"},
-				{lessonIds: ["5346", "72685"], classScheduleId: "ncdjvqs"}
+				{classIds: ["3490287", "746567"], classScheduleId: "jklfhds"},
+				{classIds: ["5346", "72685"], classScheduleId: "ncdjvqs"}
 			]
 		})
 	})

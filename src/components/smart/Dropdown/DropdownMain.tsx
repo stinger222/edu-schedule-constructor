@@ -30,8 +30,8 @@ const DropdownMain = () => {
 				<Button> {t("dropdown.main.classSchedules")} </Button>
 			</Link>
 
-			<Link to='/lessons'>
-				<Button> {t("dropdown.main.lessons")} </Button>
+			<Link to='/classes'>
+				<Button> {t("dropdown.main.classes")} </Button>
 			</Link>
 
       <div className="section-divider"></div>

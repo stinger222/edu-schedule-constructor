@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const StyledMainPage = styled.div`
-	& .lesson-card {
+	& .class-card {
 			width: 29.5em;
 	}
 `

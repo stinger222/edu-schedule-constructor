@@ -18,7 +18,7 @@ const ClassScheduleCard: React.FC<IProps> = ({ length, start, end, name }) => {
 				{name}
 			</header>
 			<div className="details">
-				<div>{t("classScheduleCard.lessonsAmount")} <span className="value">{length}</span></div>
+				<div>{t("classScheduleCard.classesAmount")} <span className="value">{length}</span></div>
 				<div>{t("classScheduleCard.start")} <span className="value">{ formatTimeString(start) }</span></div>
 				<div>{t("classScheduleCard.end")} <span className="value">{ formatTimeString(end) }</span></div>
 			</div>

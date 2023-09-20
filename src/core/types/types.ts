@@ -14,7 +14,7 @@ export interface IOption {
 	label: string,
 	id: string
 }
-export interface ILesson {
+export interface IClass {
 	title: string,
 	teacher: string,
 	cabinet: string,
@@ -32,7 +32,7 @@ export interface IClassSchedule {
 
 export interface IComposedDay  {
 	classScheduleId: string,
-	lessonIds: string[]
+	classIds: string[]
 }
 
 export interface IComposedSchedule {

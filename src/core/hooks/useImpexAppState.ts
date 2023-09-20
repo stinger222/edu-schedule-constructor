@@ -1,5 +1,5 @@
 import RootStore from "../store/RootStore"
-import LessonsStore from "../store/LessonsStore"
+import ClassesStore from "../store/ClassesStore"
 import ClassSchedulesStore from "../store/ClassSchedulesStore"
 import ComposedSchedulesStore from "../store/ComposedSchedulesStore"
 
@@ -10,13 +10,13 @@ const useImpexAppState = (): [ImpexAppState, (jsonState: string, onError?: () =>
   const isImpexAppState = (state: ImpexAppState): state is ImpexAppState  => {
     return (
       typeof state.composedSchedulesStore === "string" &&
-      typeof state.lessonsStore === "string" &&
+      typeof state.classesStore === "string" &&
       typeof state.classSchedulesStore === "string"
     )
   }
 
   const state: ImpexAppState = {
-    lessonsStore: localStorage.getItem(LessonsStore.storageKey) || "[]",
+    classesStore: localStorage.getItem(ClassesStore.storageKey) || "[]",
     classSchedulesStore: localStorage.getItem(ClassSchedulesStore.storageKey)  || "[]",
     composedSchedulesStore: localStorage.getItem(ComposedSchedulesStore.storageKey) || "[]"
   }
@@ -27,7 +27,7 @@ const useImpexAppState = (): [ImpexAppState, (jsonState: string, onError?: () =>
 
       if (!isImpexAppState(parsedState)) throw new Error()
 
-      localStorage.setItem(LessonsStore.storageKey, parsedState.lessonsStore)
+      localStorage.setItem(ClassesStore.storageKey, parsedState.classesStore)
       localStorage.setItem(ClassSchedulesStore.storageKey, parsedState.classSchedulesStore)
       localStorage.setItem(ComposedSchedulesStore.storageKey, parsedState.composedSchedulesStore)
       document.location.reload()

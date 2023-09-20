@@ -50,7 +50,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 		}
 		
 		const deletedSchedule = this.composedSchedules.splice(indexToDelete, 1)
-		console.log("Lesson deleted from store.", toJS(deletedSchedule[0]))
+		console.log("Class deleted from store.", toJS(deletedSchedule[0]))
 		this.memorizeState()
 		return deletedSchedule.length === 1 
 	}
@@ -107,7 +107,7 @@ class ComposedSchedulesStore implements IComposedSchedulesStore {
 
     if (!targetDay) return true
 
-    return targetDay.lessonIds.filter(l => l !== "hidden").length === 0
+    return targetDay.classIds.filter(l => l !== "hidden").length === 0
   }
 }
 
