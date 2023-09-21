@@ -16,8 +16,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
  * @param data - data to show in dropdown
 */
 
-// TODO: rename wrapper to Container!!
-const InputWrapper: React.FC<IProps> = ({ name, rules, label, ...rest }) => {
+const InputContainer: React.FC<IProps> = ({ name, rules, label, ...rest }) => {
 	const methods = useFormContext()
 
 	return (
@@ -29,4 +28,4 @@ const InputWrapper: React.FC<IProps> = ({ name, rules, label, ...rest }) => {
 	)
 }
 
-export default InputWrapper
+export default InputContainer

@@ -9,7 +9,7 @@ import Icon from "../../components/ordinary/Icon/Icon"
 import Header from "../../components/smart/Header/Header"
 import TimeRange from "../../components/ordinary/TimeRange/TimeRange"
 import Container from "../../components/containers/Container/Container"
-import InputWrapper from "../../components/containers/InputContainer/InputContainer"
+import InputContainer from "../../components/containers/InputContainer/InputContainer"
 
 import { IClassSchedule } from "../../core/types/types"
 import { validateField } from "../../core/utils/stringUtils"
@@ -65,7 +65,7 @@ const AddClassSchedulePage = () => {
 
 				<FormProvider {...methods}>
 					<form onSubmit={ methods.handleSubmit(handleSubmit) }>
-						<InputWrapper
+						<InputContainer
 							name="name"
 							label={t("addClassScheduleForm.schNameInputCaption")}
 							placeholder={t("addClassScheduleForm.schNameInputPlaceholder")}

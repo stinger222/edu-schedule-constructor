@@ -1,5 +1,5 @@
 import { StyledTimeRange } from "./TimeRange.styled"
-import InputWrapper from "../../containers/InputContainer/InputContainer"
+import InputContainer from "../../containers/InputContainer/InputContainer"
 import { useTranslation } from "react-i18next"
 
 interface IProps {
@@ -11,7 +11,7 @@ const TimeRange: React.FC<IProps> = ({ index }) => {
 
 	return (
 		<StyledTimeRange>
-			<InputWrapper
+			<InputContainer
 				type="time"
 				label={t("addClassScheduleForm.startInputcaption")}
 				name={`classes.${index}.start` as const}
@@ -23,7 +23,7 @@ const TimeRange: React.FC<IProps> = ({ index }) => {
 				<div className="line"></div>
 			</span>
 
-			<InputWrapper
+			<InputContainer
 				type="time"
 				label={t("addClassScheduleForm.endInputCaption")}
 				name={`classes.${index}.end` as const}

@@ -7,7 +7,7 @@ import { StoreContext } from "../.."
 import Button from "../../components/ui/Button/Button"
 import Header from "../../components/smart/Header/Header"
 import Container from "../../components/containers/Container/Container"
-import InputWrapper from "../../components/containers/InputContainer/InputContainer"
+import InputContainer from "../../components/containers/InputContainer/InputContainer"
 
 import { IClass } from "../../core/types/types"
 import { validateField } from "../../core/utils/stringUtils"
@@ -53,21 +53,21 @@ const AddClassPage = () => {
 
 				<FormProvider {...methods}>
 					<form onSubmit={methods.handleSubmit(handleSubmit)}>
-						<InputWrapper
+						<InputContainer
 							label={t("addClassForm.classNameInputCaption")}
 							placeholder={t("addClassForm.classNameInputPlaceholder")}
 							name="title"
 							rules={{validate: validateField}}
 							className="title"
 						/>
-						<InputWrapper
+						<InputContainer
 							label={t("addClassForm.teacherNameInputCaption")}
 							placeholder={t("addClassForm.teacherNameInputPlaceholder")}
 							name="teacher"
 							rules={{validate: validateField}}
 							className="teacher"
 						/>
-						<InputWrapper
+						<InputContainer
 							label={t("addClassForm.cabinetInputCaption")}
 							placeholder={t("addClassForm.cabinetInputPlaceholder")}
 							name="cabinet"

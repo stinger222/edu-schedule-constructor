@@ -9,7 +9,7 @@ import Header from "../../components/smart/Header/Header"
 import GhostButton from "../../components/ui/GhostButton/GhostButton"
 import Container from "../../components/containers/Container/Container"
 import AssembleDayForm from "../../components/smart/AssembleDay/AssembleDayForm"
-import InputWrapper from "../../components/containers/InputContainer/InputContainer"
+import InputContainer from "../../components/containers/InputContainer/InputContainer"
 
 import { WeekUtils } from "../../core/utils/dateTimeUtils"
 import { validateField } from "../../core/utils/stringUtils"
@@ -61,7 +61,7 @@ const AddAssembledSchedulePage = () => {
 
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleSubmit)}>
-            <InputWrapper
+            <InputContainer
               name="name"
               label={t("assembleScheduleForm.schNameInputCaption")}
               placeholder={t("assembleScheduleForm.schNameInputPlaceholder")}
