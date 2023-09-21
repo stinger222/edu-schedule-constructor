@@ -10,7 +10,7 @@ import Textarea from "../../ui/Textarea/Textarea"
 import { StyledSelect } from "../../ui/Select/Select.styled"
 import ClassesStore from "../../../core/store/ClassesStore"
 import ClassSchedulesStore from "../../../core/store/ClassSchedulesStore"
-import ComposedSchedulesStore from "../../../core/store/ComposedSchedulesStore"
+import AssembledSchedulesStore from "../../../core/store/AssembledSchedulesStore"
 
 /**
  * Settings menu inside dropdown
@@ -39,8 +39,8 @@ const DropdownSettings = () => {
 
     localStorage.removeItem(ClassesStore.storageKey)
     localStorage.removeItem(ClassSchedulesStore.storageKey)
-    localStorage.removeItem(ComposedSchedulesStore.storageKey)
-    localStorage.removeItem(ComposedSchedulesStore.activeScheduleUidStorageKey)
+    localStorage.removeItem(AssembledSchedulesStore.storageKey)
+    localStorage.removeItem(AssembledSchedulesStore.activeScheduleUidStorageKey)
     document.location.reload()
   }
 

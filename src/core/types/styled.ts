@@ -39,7 +39,7 @@ export interface ITheme {
     background: HexColor,
     boxShadow: string
   },
-  composedScheduleCard: {
+  assembledScheduleCard: {
     background: HexColor,
     boxShadow: string
   },

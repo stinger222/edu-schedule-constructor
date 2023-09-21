@@ -32,7 +32,7 @@ export const DarkTheme: ITheme = {
     background: "#2A2C32",
     boxShadow: "0.3em 0.4em 0.4em 0 #00000080"
   },
-  composedScheduleCard: {
+  assembledScheduleCard: {
     background: "#2A2C32",
     boxShadow: "0.4em 0.4em 0.4em 0 #00000080"
   },

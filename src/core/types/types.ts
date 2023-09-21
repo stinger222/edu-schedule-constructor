@@ -30,15 +30,15 @@ export interface IClassSchedule {
 	}>
 }
 
-export interface IComposedDay  {
+export interface IAssembledDay  {
 	classScheduleId: string,
 	classIds: string[]
 }
 
-export interface IComposedSchedule {
+export interface IAssembledSchedule {
 	uid: string,
 	name: string,
-	days: IComposedDay[]
+	days: IAssembledDay[]
 }
 
 export enum Cases {

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledAddComposedSchedulePage = styled.div`
+export const StyledAddAssembledSchedulePage = styled.div`
   & form {
     padding-inline: 0.5em;
   }

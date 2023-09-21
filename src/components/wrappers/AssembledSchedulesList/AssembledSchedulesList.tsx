@@ -2,19 +2,19 @@ import { observer } from "mobx-react"
 import { Link, useNavigate } from "react-router-dom"
 import { useTranslation, Trans } from "react-i18next"
 
-import { IComposedSchedule } from "../../../core/types/types"
+import { IAssembledSchedule } from "../../../core/types/types"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
-import ComposedScheduleCard from "../../smart/ComposedScheduleCard/ComposedScheduleCard"
+import AssembledScheduleCard from "../../smart/AssembledScheduleCard/AssembledScheduleCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
-import { StyledComposedSchedulesList } from "./ComposedSchedulesList.styled"
+import { StyledAssembledSchedulesList } from "./AssembledSchedulesList.styled"
 
 interface IProps {
-  composedSchedules: IComposedSchedule[]
+  assembledSchedules: IAssembledSchedule[]
   removeSchedule: (uid: string) => boolean
 }
 
-const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSchedule }) => {
+const AssembledSchedulesList: React.FC<IProps> = ({ assembledSchedules, removeSchedule }) => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
@@ -24,18 +24,18 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
   }
 
   const handleEdit = (uid: string) => {
-    navigate("/add/composed", {state: { mode: "edit", uid }})    
+    navigate("/add/assembled", {state: { mode: "edit", uid }})    
   }
 
   return (
-    <StyledComposedSchedulesList className="composed-schedules-list">
-      {composedSchedules.length === 0 && (
+    <StyledAssembledSchedulesList className="assembled-schedules-list">
+      {assembledSchedules.length === 0 && (
         <h2 className="nothing-here-message">
           ¯\_(ツ)_/¯
           <br/>
           <br/>
           <Trans
-            i18nKey="composedSchedulesPage.nothingHereMsg"
+            i18nKey="assembledSchedulesPage.nothingHereMsg"
             components={{
               ClassSchLink: <Link className="link" to='/class-schedules' />,
               ClassesLink: <Link className="link" to='/classes' />
@@ -44,7 +44,7 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
       </h2>
       )}
       
-      {composedSchedules.map((schedule) => (
+      {assembledSchedules.map((schedule) => (
         <SwipeToAction
           onLeftSwipe={() => handleRemove(schedule.uid)}
           onRightSwipe={() => handleEdit(schedule.uid)}
@@ -52,7 +52,7 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
           RightActionLabel={SwipeToAction.RemoveActionLabel}
           key={schedule.uid}
         >
-          <ComposedScheduleCard
+          <AssembledScheduleCard
             name={schedule.name}
             days={schedule.days}
             uid={schedule.uid}
@@ -60,13 +60,13 @@ const ComposedSchedulesList: React.FC<IProps> = ({ composedSchedules, removeSche
         </SwipeToAction>
       ))}
 
-      <Link to="/add/composed">
+      <Link to="/add/assembled">
         <GhostButton>
-          {t("ghostButton.composeNewSchedule")} <br /> <span className="plus">+</span>
+          {t("ghostButton.assembleNewSchedule")} <br /> <span className="plus">+</span>
         </GhostButton>
       </Link>
-    </StyledComposedSchedulesList>
+    </StyledAssembledSchedulesList>
   )
 }
 
-export default observer(ComposedSchedulesList)
+export default observer(AssembledSchedulesList)

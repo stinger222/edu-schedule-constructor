@@ -1,6 +1,6 @@
 import { configure } from "mobx"
-import { IComposedSchedulesStore, IClassesStore, IClassSchedulesStore, IUIStore } from "./../types/store"
-import ComposedSchedulesStore from "./ComposedSchedulesStore"
+import { IAssembledSchedulesStore, IClassesStore, IClassSchedulesStore, IUIStore } from "./../types/store"
+import AssembledSchedulesStore from "./AssembledSchedulesStore"
 import ClassSchedulesStore from "./ClassSchedulesStore"
 import ClassesStore from "./ClassesStore"
 import UIStore from "./UIStore"
@@ -8,13 +8,13 @@ class RootStore {
 	uiStore: IUIStore
 	classesStore: IClassesStore
 	classSchedulesStore: IClassSchedulesStore
-	composedSchedulesStore: IComposedSchedulesStore
+	assembledSchedulesStore: IAssembledSchedulesStore
 
 	constructor() {
 		this.uiStore = new UIStore()
 		this.classesStore = new ClassesStore()
 		this.classSchedulesStore = new ClassSchedulesStore()
-		this.composedSchedulesStore = new ComposedSchedulesStore()
+		this.assembledSchedulesStore = new AssembledSchedulesStore()
 	}
 }
 

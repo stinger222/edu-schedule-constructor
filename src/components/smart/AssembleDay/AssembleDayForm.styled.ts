@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledComposeDayForm = styled.div`
+export const StyledAssembleDayForm = styled.div`
 	background: inherit;
 	margin-inline: auto;
 	width: fit-content;
@@ -11,21 +11,21 @@ export const StyledComposeDayForm = styled.div`
 		font-weight: 500;
 	}
 
-	& .compose-day {
+	& .assemble-day {
 		font-size: 1.4em;
-		background: ${({theme}) => theme.composedScheduleCard.background};
+		background: ${({theme}) => theme.assembledScheduleCard.background};
 		/* background: blue; */
     
 		margin-inline: auto;
 		padding: 0.6em;
     
 		/* box-shadow: $ {({theme}) => theme.boxShadows.primary}; */
-		box-shadow: ${({theme}) => theme.composedScheduleCard.boxShadow};
+		box-shadow: ${({theme}) => theme.assembledScheduleCard.boxShadow};
 		border: 0.06em solid #60606040;
 		border-radius: 1em;
 	}
 
-	& .compose-day .fade-divider {
+	& .assemble-day .fade-divider {
 		height: 0.5em;
 		background: transparent;
 		box-shadow:
@@ -43,13 +43,13 @@ export const StyledComposeDayForm = styled.div`
 		font-weight: 100;
 	}
 
-	& .compose-day .btn-ghost {
+	& .assemble-day .btn-ghost {
 		width: 100%;
 		height: 3.2em;
 		font-size: 0.7em;
 	}
 
-	& .compose-day .btn-ghost span {
+	& .assemble-day .btn-ghost span {
 		font-size: 1.5em;
 	}
 

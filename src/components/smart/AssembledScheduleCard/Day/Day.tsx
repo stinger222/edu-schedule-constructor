@@ -1,16 +1,16 @@
 import { useContext } from "react"
 import { WeekUtils } from "../../../../core/utils/dateTimeUtils"
-import { IComposedDay, IClassSchedule } from "../../../../core/types/types"
+import { IAssembledDay, IClassSchedule } from "../../../../core/types/types"
 import { StoreContext } from "../../../.."
 import { StyledDay } from "./Day.styled"
 import { useTranslation } from "react-i18next"
 
 interface IProps {
 	dayIndex: number,
-	day: IComposedDay
+	day: IAssembledDay
 }
 
-const emptyDay: IComposedDay = {
+const emptyDay: IAssembledDay = {
 	classIds: [],
 	classScheduleId: "there-is-for-sure-no-such-id"
 }
@@ -42,13 +42,13 @@ const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
 		<StyledDay>
 			<header>{ weekDay }</header>
       <div className="card-body">
-				<span> {t("composedScheduleCard.classesAmount")} </span>
+				<span> {t("assembledScheduleCard.classesAmount")} </span>
 				<span>{ amountOfClasses || "0" }</span>
 
-				<span> {t("composedScheduleCard.start")} </span>
+				<span> {t("assembledScheduleCard.start")} </span>
 				<span>{ startTime }</span>
 
-				<span> {t("composedScheduleCard.end")} </span>
+				<span> {t("assembledScheduleCard.end")} </span>
 				<span>{ endTime }</span>
 			</div>
 		</StyledDay>

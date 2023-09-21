@@ -22,8 +22,8 @@ const DropdownMain = () => {
 
       <div className="section-divider"></div>
 
-			<Link to='/composed'>
-				<Button> {t("dropdown.main.composed")} </Button>
+			<Link to='/assembled'>
+				<Button> {t("dropdown.main.assembled")} </Button>
 			</Link>
 
 			<Link to="/class-schedules">

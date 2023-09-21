@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledComposedSchedulesList = styled.div`
+export const StyledAssembledSchedulesList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

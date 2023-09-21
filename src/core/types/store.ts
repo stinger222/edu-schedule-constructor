@@ -1,4 +1,4 @@
-import { IClass, IClassSchedule, IComposedSchedule, DropdownMenu, ISettings } from "./types"
+import { IClass, IClassSchedule, IAssembledSchedule, DropdownMenu, ISettings } from "./types"
 export interface IUIStore extends IStoreable {
 	selectedDayIndex: number,
 	isDropdownOpen: boolean,
@@ -36,33 +36,33 @@ export interface IClassSchedulesStore extends IStoreable {
   getById(uid: string): IClassSchedule | undefined
 }
 
-export interface IComposedSchedulesStore extends IStoreable {
-	composedSchedules: IComposedSchedule[],
+export interface IAssembledSchedulesStore extends IStoreable {
+	assembledSchedules: IAssembledSchedule[],
   activeScheduleUid: string | null,
-	addSchedule(newSchedule: Omit<IComposedSchedule, "uid">,  uid?: string): void,
-  updateSchedule(uid: string, newSchedule: Partial<Omit<IComposedSchedule, "uid">>): boolean,
+	addSchedule(newSchedule: Omit<IAssembledSchedule, "uid">,  uid?: string): void,
+  updateSchedule(uid: string, newSchedule: Partial<Omit<IAssembledSchedule, "uid">>): boolean,
 	removeSchedule(uid: string): boolean,
-  getById(uid: string): IComposedSchedule | undefined,
+  getById(uid: string): IAssembledSchedule | undefined,
 
   /**
-   * "Activates" composed schedule with passed uid, witch results in this schedule to be rendered on the main page
+   * "Activates" assembled schedule with passed uid, witch results in this schedule to be rendered on the main page
    */
 	activateSchedule(uid: string): void,
 
   /**
-   * This method tries to return you composed schedule that user chose to be displayed on the main page,
+   * This method tries to return you assembled schedule that user chose to be displayed on the main page,
    * 
    * but if there is no "active" schedule, it will try to activate first one from the store and return IT to you,
    * 
-   * and ONLY if there is no composed schedules whatsoever, then `null` will be returned
+   * and ONLY if there is no assembled schedules whatsoever, then `null` will be returned
    * 
    * _"get" perfectly fits here..._
    */
-  getActiveSchedule(): IComposedSchedule | null,
+  getActiveSchedule(): IAssembledSchedule | null,
 
   /**
    * This method checks if passed day in passed schedule is either:
-   * 1. `undefined` (this can occur if user composed just first few days of the week)
+   * 1. `undefined` (this can occur if user assembled just first few days of the week)
    * 2. or if all classes in this day are default \<nothing\> cards with id "hidden" (this is essentially means that this day have no classes, therefore it's "empty")
    * 
    * @returns In both described cases `true` will be returned. Otherwise - false

@@ -14,18 +14,18 @@ i18n
           headerTitle: {
             classesPage: "Добавленные предеметы",
             classSchedulesPage: "Расписания звонков",
-            composedPage: "Составленные расписания",
+            assembledPage: "Составленные расписания",
             editClass: "Редактировать предмет",
             editClassSchedule: "Редактировать расписание",
-            editComposedSchedule: "Редактировать расписане",
+            editAssembledSchedule: "Редактировать расписане",
             addClass: "Добавить предмет",
             addClassSchedule: "Добавить расписание звонков",
-            addComposedSchedule: "Составить новое расписание"
+            addAssembledSchedule: "Составить новое расписание"
           },
           dropdown: {
             main: {
               title: "Меню",
-              composed: "Составленные расписания",
+              assembled: "Составленные расписания",
               classSchedules: "Расписания звонков",
               classes: "Добавленные предметы",
               settings: "Настройки"
@@ -64,7 +64,7 @@ i18n
             start: "Начало -",
             end: "Конец -"
           },
-          composedScheduleCard: {
+          assembledScheduleCard: {
             classesAmount: "Пар",
             start: "Начало",
             end: "Конец"
@@ -76,7 +76,7 @@ i18n
           classSchedulesPage: {
             nothingHereMsg: "Добавьте расписание звонков, что бы приложение могло понимать когда начинаются и кончаются пары"
           },
-          composedSchedulesPage: {
+          assembledSchedulesPage: {
             nothingHereMsg: "Составьте своё первое расписание на неделю используя созданные <ClassSchLink>расписания звонков</ClassSchLink> и <ClassesLink>карточки пар</ClassesLink>"
           },
 
@@ -95,7 +95,7 @@ i18n
             endInputCaption: "Конец",
             dividerCaption: "{{value}}-я пара"
           },
-          composeScheduleForm: {
+          assembleScheduleForm: {
             schNameInputCaption: "Название расписания",
             schNameInputPlaceholder: "Верхняя неделя",
             classSchForThisDayInputCaption: "Расписание звонков для этого дня",
@@ -108,7 +108,7 @@ i18n
           ghostButton: {
             addClass: "Добавить предмет",
             addClassSchedule: "Добавить расписание звонков",
-            composeNewSchedule: "Составить новое расписание",
+            assembleNewSchedule: "Составить новое расписание",
             fillScheduleFor: "Заполнить расписание на",
             addNthClass: "Добавить {{value}}-ую пару"
           },
@@ -143,18 +143,18 @@ i18n
           headerTitle: {
             classesPage: "Added classes",
             classSchedulesPage: "Class schedules",
-            composedPage: "Composed schedules",
+            assembledPage: "Assembled schedules",
             editClass: "Edit class",
             editClassSchedule: "Edit schedule",
-            editComposedSchedule: "Edit schedule",
+            editAssembledSchedule: "Edit schedule",
             addClass: "Add new class",
             addClassSchedule: "Add class schedule",
-            addComposedSchedule: "Compose new schedule"
+            addAssembledSchedule: "Assemble new schedule"
           },
           dropdown: {
             main: {
               title: "Menu",
-              composed: "Composed schedules",
+              assembled: "Assembled schedules",
               classSchedules: "Class schedules",
               classes: "Added classes",
               settings: "Settings"
@@ -193,19 +193,19 @@ i18n
             start: "Start -",
             end: "End -"
           },
-          composedScheduleCard: {
+          assembledScheduleCard: {
             classesAmount: "Classes",
             start: "Start",
             end: "End"
           },
 
           classesPage: {
-            nothingHereMsg: "Add class cards which you can then use to <Link>compose schedules</Link> for the entire week"
+            nothingHereMsg: "Add class cards which you can then use to <Link>assemble schedules</Link> for the entire week"
           },
           classSchedulesPage: {
             nothingHereMsg: "Add a class schedule so the app can highlight current/next class on the timeline"
           },
-          composedSchedulesPage: {
+          assembledSchedulesPage: {
             nothingHereMsg: "Assemble your very first schedule using previously made <ClassesLink>class cards</ClassesLink> and <ClassSchLink>class schedules</ClassSchLink>"
           },
 
@@ -224,7 +224,7 @@ i18n
             endInputCaption: "End",
             dividerCaption: "Class #{{value}}"
           },
-          composeScheduleForm: {
+          assembleScheduleForm: {
             schNameInputCaption: "Schedule name",
             schNameInputPlaceholder: "Week Schedule #1", // TODO: ???
             classSchForThisDayInputCaption: "Class schedule for this day",
@@ -237,8 +237,8 @@ i18n
           ghostButton: {
             addClass: "Add new class",
             addClassSchedule: "Add class schedule",
-            composeNewSchedule: "Compose new schedule",
-            fillScheduleFor: "Compose schedule for",
+            assembleNewSchedule: "Assemble new schedule",
+            fillScheduleFor: "Assemble schedule for",
             addNthClass: "Add class #{{value}}"
           },
           

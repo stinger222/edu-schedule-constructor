@@ -10,7 +10,7 @@ import { validateField } from "../../../core/utils/stringUtils"
 import SelectContainer from "../../containers/SelectContainer/SelectContainer"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
-import { StyledComposeDayForm } from "./ComposeDayForm.styled"
+import { StyledAssembleDayForm } from "./AssembleDayForm.styled"
 import { useTranslation } from "react-i18next"
 
 
@@ -18,7 +18,7 @@ interface IProps {
 	dayIndex: number
 }
 
-const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
+const AssembleDayForm: React.FC<IProps> = ({ dayIndex }) => {
   const [canAddNewClasses, setCanAddNewClasses] = useState(false)
 	const { classesStore, classSchedulesStore } = useContext(StoreContext)
   
@@ -56,14 +56,14 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 	if (dayIndex >= 5) return null
 	
 	return (
-		<StyledComposeDayForm>
+		<StyledAssembleDayForm>
 			<h2>{WeekUtils.getFull(lang)[dayIndex]}:</h2>
 
-			<div className="compose-day">
+			<div className="assemble-day">
 				<SelectContainer
 					data={getClassSchedulesSelectData(classSchedulesStore)}
 					name={`days.${dayIndex}.classScheduleId`}
-					label={t("composeScheduleForm.classSchForThisDayInputCaption")}
+					label={t("assembleScheduleForm.classSchForThisDayInputCaption")}
 					rules={{validate: validateField}}
 					key={0}
 				/>
@@ -75,7 +75,7 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 						<SelectContainer
               data={getClassesSelectData(classesStore)}
               name={`days.${dayIndex}.classIds.${index}`}
-              label={t("composeScheduleForm.nthClassSelectCaption", {value: index + 1})}
+              label={t("assembleScheduleForm.nthClassSelectCaption", {value: index + 1})}
               rules={{validate: validateField}}
               rightSection={getRightSection(index)}
 							key={id}
@@ -91,11 +91,11 @@ const ComposeDayForm: React.FC<IProps> = ({ dayIndex }) => {
 					</GhostButton>
 				}
 			</div>
-		</StyledComposeDayForm>
+		</StyledAssembleDayForm>
 	)
 }
 
-export default ComposeDayForm
+export default AssembleDayForm
 
 
 interface IRemoveFieldButtonProps {

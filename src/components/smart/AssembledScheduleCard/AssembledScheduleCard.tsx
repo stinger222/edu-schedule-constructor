@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { StoreContext } from "../../.."
-import { IComposedDay } from "../../../core/types/types"
-import { StyledComposedSchedule } from "./ComposedScheduleCard.styled"
+import { IAssembledDay } from "../../../core/types/types"
+import { StyledAssembledSchedule } from "./AssembledScheduleCard.styled"
 
 import Day from "./Day/Day"
 import Switch from "../../ui/Switch/Switch"
@@ -9,21 +9,21 @@ import { observer } from "mobx-react"
 
 interface IProps {
 	name: string,
-	days: IComposedDay[]
+	days: IAssembledDay[]
   uid: string
 }
 
-const ComposedScheduleCard: React.FC<IProps> = ({ name, days, uid }) => {
+const AssembledScheduleCard: React.FC<IProps> = ({ name, days, uid }) => {
 
-  const { composedSchedulesStore } = useContext(StoreContext)
-  const thisIsActive = composedSchedulesStore.activeScheduleUid === uid
+  const { assembledSchedulesStore } = useContext(StoreContext)
+  const thisIsActive = assembledSchedulesStore.activeScheduleUid === uid
 
   const handleActivation = () => {
-    composedSchedulesStore.activateSchedule(uid)
+    assembledSchedulesStore.activateSchedule(uid)
   }
 
   return (
-		<StyledComposedSchedule className="composed-schedule">
+		<StyledAssembledSchedule className="assembled-schedule">
 			<header>
         <div className="title">{ name }</div>
         <Switch type="checkbox" onChange={handleActivation} checked={thisIsActive} />
@@ -42,8 +42,8 @@ const ComposedScheduleCard: React.FC<IProps> = ({ name, days, uid }) => {
 					})
 				}
 			</div>
-		</StyledComposedSchedule>
+		</StyledAssembledSchedule>
 	)
 }
 
-export default observer(ComposedScheduleCard)
+export default observer(AssembledScheduleCard)

@@ -3,10 +3,10 @@ import { useContext } from "react"
 import { StoreContext } from "../../../.."
 import { render } from "../../../../core/utils/test-utils"
 import RootStore from "../../../../core/store/RootStore"
-import ComposedScheduleCard from "../ComposedScheduleCard"
+import AssembledScheduleCard from "../AssembledScheduleCard"
 
 let rootStore: RootStore
-describe("Testing ComposedScheduleCard component", () => {
+describe("Testing AssembledScheduleCard component", () => {
   beforeAll(() => {
     rootStore = renderHook(() => useContext(StoreContext)).result.current
     rootStore.classSchedulesStore.addSchedule({
@@ -22,7 +22,7 @@ describe("Testing ComposedScheduleCard component", () => {
 
   it("Properly renders schedule card", () => {
     const screen = render(
-      <ComposedScheduleCard
+      <AssembledScheduleCard
         name="Test Schedule #1"
         days={[
           {classScheduleId: "test-classes-schedule", classIds: ["1", "2", "3", "4"]},
@@ -31,7 +31,7 @@ describe("Testing ComposedScheduleCard component", () => {
           {classScheduleId: "test-classes-schedule", classIds: ["hidden"]},
           {classScheduleId: "test-classes-schedule", classIds: ["hidden", "hidden", "hidden", "hidden"]}
         ]}
-        uid="test-composed-schedule-id-1"
+        uid="test-assembled-schedule-id-1"
       />
     )
     expect(screen).toMatchSnapshot()

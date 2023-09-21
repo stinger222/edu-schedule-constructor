@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing ComposedScheduleCard component Properly renders schedule card 1`] = `
+exports[`Testing AssembledScheduleCard component Properly renders schedule card 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div />
     <div>
       <div
-        class="sc-bqWxrE iyUBdH composed-schedule"
+        class="sc-bqWxrE iyUBdH assembled-schedule"
       >
         <header>
           <div
@@ -204,7 +204,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-bqWxrE iyUBdH composed-schedule"
+      class="sc-bqWxrE iyUBdH assembled-schedule"
     >
       <header>
         <div

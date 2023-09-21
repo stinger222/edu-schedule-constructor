@@ -36,7 +36,7 @@ const ClassCardsList: React.FC<IProps> = ({ classes, removeClass }) => {
           <br/>
           <Trans
             i18nKey="classesPage.nothingHereMsg"
-            components={{Link: <Link className="link" to='/composed' />}}
+            components={{Link: <Link className="link" to='/assembled' />}}
           /> 
         </h2>
 			}

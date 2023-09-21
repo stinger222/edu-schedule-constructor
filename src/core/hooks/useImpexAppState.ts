@@ -1,7 +1,7 @@
 import RootStore from "../store/RootStore"
 import ClassesStore from "../store/ClassesStore"
 import ClassSchedulesStore from "../store/ClassSchedulesStore"
-import ComposedSchedulesStore from "../store/ComposedSchedulesStore"
+import AssembledSchedulesStore from "../store/AssembledSchedulesStore"
 
 type ImpexAppState = Omit<Record<keyof RootStore, string>, "uiStore">
 
@@ -9,7 +9,7 @@ const useImpexAppState = (): [ImpexAppState, (jsonState: string, onError?: () =>
 
   const isImpexAppState = (state: ImpexAppState): state is ImpexAppState  => {
     return (
-      typeof state.composedSchedulesStore === "string" &&
+      typeof state.assembledSchedulesStore === "string" &&
       typeof state.classesStore === "string" &&
       typeof state.classSchedulesStore === "string"
     )
@@ -18,7 +18,7 @@ const useImpexAppState = (): [ImpexAppState, (jsonState: string, onError?: () =>
   const state: ImpexAppState = {
     classesStore: localStorage.getItem(ClassesStore.storageKey) || "[]",
     classSchedulesStore: localStorage.getItem(ClassSchedulesStore.storageKey)  || "[]",
-    composedSchedulesStore: localStorage.getItem(ComposedSchedulesStore.storageKey) || "[]"
+    assembledSchedulesStore: localStorage.getItem(AssembledSchedulesStore.storageKey) || "[]"
   }
 
   const importState = (jsonState: string, onError: () => void) => {
@@ -29,7 +29,7 @@ const useImpexAppState = (): [ImpexAppState, (jsonState: string, onError?: () =>
 
       localStorage.setItem(ClassesStore.storageKey, parsedState.classesStore)
       localStorage.setItem(ClassSchedulesStore.storageKey, parsedState.classSchedulesStore)
-      localStorage.setItem(ComposedSchedulesStore.storageKey, parsedState.composedSchedulesStore)
+      localStorage.setItem(AssembledSchedulesStore.storageKey, parsedState.assembledSchedulesStore)
       document.location.reload()
     } catch(err){
       console.error(`Error occurred during state import, can't parse passed JSON string:\n${err.message}`)

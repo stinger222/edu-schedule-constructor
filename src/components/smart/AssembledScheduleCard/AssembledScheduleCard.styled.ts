@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledComposedSchedule = styled.div`
+export const StyledAssembledSchedule = styled.div`
 	width: 37em;
 	height: fit-content;
 	padding: 0 0.3em 1em 0.3em;
@@ -8,8 +8,8 @@ export const StyledComposedSchedule = styled.div`
 
 	border-radius: 1.3em;
 	/* border: 0.08em solid #00000035; */
-	background: ${({theme}) => theme.composedScheduleCard.background};
-	box-shadow: ${({theme}) => theme.composedScheduleCard.boxShadow};
+	background: ${({theme}) => theme.assembledScheduleCard.background};
+	box-shadow: ${({theme}) => theme.assembledScheduleCard.boxShadow};
 	
   & > header {
     position: relative;

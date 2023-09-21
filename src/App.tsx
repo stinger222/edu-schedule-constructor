@@ -9,8 +9,8 @@ import { LightTheme } from "./core/themes/Light"
 import { DarkTheme } from "./core/themes/Dark"
 import GlobalStyles from "./core/themes/GlobalStyles"
 
-import AddComposedSchedulePage from "./pages/AddComposedSchedule/AddComposedSchedulePage"
-import ComposedSchedulesPage from "./pages/ComposedSchedules/ComposedSchedulesPage"
+import AddAssembledSchedulePage from "./pages/AddAssembledSchedule/AddAssembledSchedulePage"
+import AssembledSchedulesPage from "./pages/AssembledSchedules/AssembledSchedulesPage"
 import AddClassSchedulePage from "./pages/AddClassSchedulePage/AddClassSchedulePage"
 import AddClassPage from "./pages/AddClassPage/AddClassPage"
 import ClassSchedulesPage from "./pages/ClassSchedulesPage/ClassSchedulesPage"
@@ -26,12 +26,12 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/composed" element={<ComposedSchedulesPage />} />
+        <Route path="/assembled" element={<AssembledSchedulesPage />} />
         <Route path="/classes" element={<ClassesPage />} />
         <Route path="/class-schedules" element={<ClassSchedulesPage />} />
 
         <Route path="/add">
-          <Route path="composed" element={<AddComposedSchedulePage />} />
+          <Route path="assembled" element={<AddAssembledSchedulePage />} />
           <Route path="class" element={<AddClassPage />} />
           <Route path="class-schedules" element={<AddClassSchedulePage />} />
         </Route>
