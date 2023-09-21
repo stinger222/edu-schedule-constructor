@@ -10,7 +10,6 @@ export const StyledDropdown = styled.div`
 
 	width: 20em;
 	min-width: 17em;
-  padding: 0.7em 0.8em;
 	background: ${({theme}) => theme.dropdown.background};
   
 	border-radius: 1em;
@@ -33,7 +32,15 @@ export const StyledDropdown = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 0.6em;
+    overflow-y: auto;
+    padding: 0.7em 0.8em;
+    max-height: 34em;
   }
+
+  & .dropdown-content::-webkit-scrollbar {
+    width: 0;
+  }
+
 
   :is(&) :is(h1, h2, h3) {
     width: 100%;
@@ -123,4 +130,17 @@ export const StyledDropdown = styled.div`
   & a:has(button) {
     width: 100%;
   }
+
+  @media (max-width: 400px) {
+    & {
+      --dropdown-font-size: 1.3;
+      right: unset;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    & .dropdown-content header {
+      font-size: 0.85em;
+    }
+  } 
 `

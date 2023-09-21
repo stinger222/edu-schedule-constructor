@@ -15,7 +15,7 @@ const Input: React.FC<IProps & React.InputHTMLAttributes<HTMLInputElement>> = Re
 		return (
 			<StyledInput className={`${className} input-container`}>
 				<span className="label">{label}</span>
-				<input ref={ref} {...rest} />
+				<input ref={ref} {...rest} autoComplete="off"/>
 			</StyledInput>
 		)
 	}

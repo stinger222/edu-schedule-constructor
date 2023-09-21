@@ -7,6 +7,9 @@ i18n
   .use(initReactI18next)
   .init({
     debug: process.env.NODE_ENV === "development",
+    detection: {
+      convertDetectedLanguage: (lng: string) => lng.split("-")[0]
+    },
     fallbackLng: "ru",
     resources: {
       ru: {

@@ -59,7 +59,7 @@ const DropdownSettings = () => {
       <header>
         <h1>{t("dropdown.settings.title")}</h1>
       </header>
-
+      
       <div className="section-divider"></div>
 
       <StyledSelect

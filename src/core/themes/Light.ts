@@ -43,10 +43,10 @@ export const LightTheme: ITheme = {
   
   input: {
     background: "#FFF",
-    border: "#707070"
+    border: "#555555"
   },
   select: {
-    border: "#707070",
+    border: "#555555",
     background: "#FFF",
     text: {
       label: "#000",
