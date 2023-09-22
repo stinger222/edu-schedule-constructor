@@ -8,7 +8,7 @@ interface IProps {
 	cabinet: string,
 }
 
-const ClassCard: React.FC<IProps> = ({ title, teacher, cabinet }) => {
+const ClassCard = ({ title, teacher, cabinet }: IProps) => {
   const { t } = useTranslation()
 
 	return (

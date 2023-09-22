@@ -6,7 +6,7 @@ interface IProps {
 	onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const GhostButton: React.FC<IProps> = ({ children, onClick }) => {
+const GhostButton = ({ children, onClick }: IProps) => {
 	return (
 		<StyledGhostButton onClick={onClick} className="btn btn-ghost">
 			<span>{ children }</span>

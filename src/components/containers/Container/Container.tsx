@@ -5,7 +5,7 @@ interface IProps {
 	children: ReactNode
 }
 
-const Container: React.FC<IProps> = ({ children }) => {
+const Container = ({ children }: IProps) => {
 	return (
 		<StyledContainer>
 			{children}

@@ -15,7 +15,7 @@ const emptyDay: IAssembledDay = {
 	classScheduleId: "there-is-for-sure-no-such-id"
 }
 
-const Day: React.FC<IProps> = ({ dayIndex, day = emptyDay }) => {
+const Day = ({ dayIndex, day = emptyDay }: IProps) => {
 	const { classSchedulesStore: classSchedulesStore } = useContext(StoreContext)
     
   const { t, i18n } = useTranslation()

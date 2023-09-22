@@ -8,7 +8,7 @@ interface IProps {
 	active?: boolean
 }
 
-const Timeline: React.FC<IProps> = ({ startTime, endTime, active }) => {
+const Timeline = ({ startTime, endTime, active }: IProps) => {
 	startTime = formatTimeString(startTime)
 	endTime = formatTimeString(endTime)
 

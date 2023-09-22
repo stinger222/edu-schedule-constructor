@@ -8,7 +8,7 @@ interface IProps {
 	onSelect: (index: number) => void
 }
 
-const NavButton: React.FC<IProps> = ({ label, date, selectedDayIndex, index, onSelect }) => {
+const NavButton = ({ label, date, selectedDayIndex, index, onSelect }: IProps) => {
 	return (
 		<StyledNavButton
 			className={selectedDayIndex === index ? "selected" : ""}

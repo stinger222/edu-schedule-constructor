@@ -13,7 +13,7 @@ interface IProps {
   uid: string
 }
 
-const AssembledScheduleCard: React.FC<IProps> = ({ name, days, uid }) => {
+const AssembledScheduleCard = ({ name, days, uid }: IProps) => {
 
   const { assembledSchedulesStore } = useContext(StoreContext)
   const thisIsActive = assembledSchedulesStore.activeScheduleUid === uid

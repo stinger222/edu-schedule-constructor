@@ -6,7 +6,7 @@ interface IProps {
 	fill?: string
 }
 
-const Icon: React.FC<IProps> = ({ name, fill }) => {
+const Icon = ({ name, fill }: IProps) => {
 	
 	const IconComponent = icons[name]
 

@@ -1,20 +1,20 @@
 import { StyledTextarea } from "./Textarea.styled"
 import { InputHTMLAttributes, forwardRef, ForwardedRef } from "react"
 
-interface IProps {
+type Props = InputHTMLAttributes<HTMLTextAreaElement> & {
   label?: string,
   placeholder?: string,
   ref:  ForwardedRef<HTMLTextAreaElement>
 }
 
-const Textarea: React.FC<IProps & InputHTMLAttributes<HTMLTextAreaElement>> = forwardRef<
-  HTMLTextAreaElement,
-  IProps
->(({ label, placeholder}, ref) => {
+const Textarea = forwardRef<HTMLTextAreaElement, Props>(({ label, placeholder }: Props, ref) => {
   return (
     <StyledTextarea>
       <span className="label">{label}</span>
-      <textarea ref={ref} placeholder={placeholder}/>
+      <textarea
+        ref={ref}
+        placeholder={placeholder}
+      />
     </StyledTextarea>
   )
 })

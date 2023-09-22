@@ -7,7 +7,7 @@ interface IProps {
 	onClick?: React.MouseEventHandler<HTMLDivElement>
 }
 
-const BurgerButton: React.FC<IProps> = ({ style, onClick }) => {
+const BurgerButton = ({ style, onClick }: IProps) => {
 	const { uiStore } = useContext(StoreContext)
 	
 	const defaultOnClick = () => {

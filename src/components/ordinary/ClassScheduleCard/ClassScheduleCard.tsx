@@ -9,7 +9,7 @@ interface IProps {
 	name: string
 }
 
-const ClassScheduleCard: React.FC<IProps> = ({ length, start, end, name }) => {
+const ClassScheduleCard = ({ length, start, end, name }: IProps) => {
   const { t } = useTranslation()
 
 	return (

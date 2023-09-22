@@ -13,7 +13,7 @@ interface IProps {
 	removeSchedule: (uid: string) => boolean
 }
 
-const ClassScheduleCardsList: React.FC<IProps> = ({ classSchedules, removeSchedule }) => {
+const ClassScheduleCardsList= ({ classSchedules, removeSchedule }: IProps) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
 

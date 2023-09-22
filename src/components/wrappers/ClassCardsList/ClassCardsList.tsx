@@ -13,7 +13,7 @@ interface IProps {
 	removeClass: (uid: string) => boolean 
 }
 
-const ClassCardsList: React.FC<IProps> = ({ classes, removeClass }) => {
+const ClassCardsList = ({ classes, removeClass }: IProps) => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 

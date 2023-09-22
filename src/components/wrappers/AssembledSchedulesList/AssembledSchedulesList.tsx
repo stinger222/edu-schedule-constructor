@@ -14,7 +14,7 @@ interface IProps {
   removeSchedule: (uid: string) => boolean
 }
 
-const AssembledSchedulesList: React.FC<IProps> = ({ assembledSchedules, removeSchedule }) => {
+const AssembledSchedulesList = ({ assembledSchedules, removeSchedule }: IProps) => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 

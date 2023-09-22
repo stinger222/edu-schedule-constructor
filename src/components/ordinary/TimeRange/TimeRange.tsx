@@ -6,7 +6,7 @@ interface IProps {
 	index: number
 }
 
-const TimeRange: React.FC<IProps> = ({ index }) => {
+const TimeRange = ({ index }: IProps) => {
   const { t } = useTranslation()
 
 	return (

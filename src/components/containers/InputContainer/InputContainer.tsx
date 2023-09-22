@@ -16,7 +16,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
  * @param data - data to show in dropdown
 */
 
-const InputContainer: React.FC<IProps> = ({ name, rules, label, ...rest }) => {
+const InputContainer = ({ name, rules, label, ...rest }: IProps) => {
 	const methods = useFormContext()
 
 	return (

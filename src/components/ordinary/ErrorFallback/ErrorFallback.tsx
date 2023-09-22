@@ -7,7 +7,7 @@ interface IProps {
   error: Warning | Error | EmptyDay
 }
 
-const ErrorFallback: React.FC<IProps> = ({ error }) => {
+const ErrorFallback = ({ error }: IProps) => {
 
   return (
     <StyledErrorFallback>
@@ -15,18 +15,18 @@ const ErrorFallback: React.FC<IProps> = ({ error }) => {
         {error.name === Warning.name ? (
           <WarningLayout error={error} />
         ) : error.name === EmptyDay.name ? (
-          <EmptyDayLayout error={error} />
+          <EmptyDayLayout />
         ) : error.name === Error.name ? (
           <ErrorLayout error={error} />
         ) : (
-          <OtherErrorLayout error={new Error("")} />
+          <OtherErrorLayout />
         )}
       </Container>
     </StyledErrorFallback>
   )
 }
 
-const WarningLayout: React.FC<IProps>= ({ error }) => {
+const WarningLayout = ({ error }: IProps) => {
   const { t } = useTranslation()
 
   return <>
@@ -37,7 +37,7 @@ const WarningLayout: React.FC<IProps>= ({ error }) => {
   </>
 }
 
-const ErrorLayout: React.FC<IProps>= ({ error }) => {
+const ErrorLayout = ({ error }: IProps) => {
   const { t } = useTranslation()
 
   return <>
@@ -48,7 +48,7 @@ const ErrorLayout: React.FC<IProps>= ({ error }) => {
   </>
 }
 
-const EmptyDayLayout: React.FC<IProps>= () => {
+const EmptyDayLayout = () => {
   const { t } = useTranslation()
 
   return <>
@@ -59,7 +59,7 @@ const EmptyDayLayout: React.FC<IProps>= () => {
   </>
 }
 
-const OtherErrorLayout: React.FC<IProps>= () => {
+const OtherErrorLayout = () => {
   const { t } = useTranslation()
 
   return <>

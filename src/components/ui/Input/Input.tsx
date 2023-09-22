@@ -1,24 +1,22 @@
-import React from "react"
+import React, { InputHTMLAttributes } from "react"
 import { StyledInput } from "./Input.styled"
 
-interface IProps {
-	label?: string,
+type Props = InputHTMLAttributes<HTMLInputElement> & {
+  label?: string,
 	className?: string
 }
 
-const Input: React.FC<IProps & React.InputHTMLAttributes<HTMLInputElement>> = React.forwardRef<HTMLInputElement, IProps>(
-	({
-		label,
-		className,
-		...rest
-	}, ref) => {
-		return (
-			<StyledInput className={`${className} input-container`}>
-				<span className="label">{label}</span>
-				<input ref={ref} {...rest} autoComplete="off"/>
-			</StyledInput>
-		)
-	}
-)
+const Input = React.forwardRef<HTMLInputElement, Props>(({ label, className, ...rest }: Props, ref) => {
+  return (
+    <StyledInput className={`${className} input-container`}>
+      <span className="label">{label}</span>
+      <input
+        ref={ref}
+        {...rest}
+        autoComplete="off"
+      />
+    </StyledInput>
+  )
+})
 
 export default Input

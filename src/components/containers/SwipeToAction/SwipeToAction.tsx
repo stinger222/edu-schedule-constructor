@@ -14,7 +14,7 @@ interface ISwipeToActionExtensions {
   EditActionLabel: typeof EditActionLabel
 }
 
-// I've tried, but I apparently TS doesn't work like that ¯\_(ツ)_/¯
+// TODO: Forbid impossible props if ts will allow , smth like:
 
 // type IProps = {
 //   children: ReactNode,

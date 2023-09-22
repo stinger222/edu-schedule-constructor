@@ -18,7 +18,7 @@ interface IProps {
 	dayIndex: number
 }
 
-const AssembleDayForm: React.FC<IProps> = ({ dayIndex }) => {
+const AssembleDayForm = ({ dayIndex }: IProps) => {
   const [canAddNewClasses, setCanAddNewClasses] = useState(false)
 	const { classesStore, classSchedulesStore } = useContext(StoreContext)
   
