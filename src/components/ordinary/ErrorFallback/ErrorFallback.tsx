@@ -21,8 +21,6 @@ const ErrorFallback: React.FC<IProps> = ({ error }) => {
         ) : (
           <OtherErrorLayout error={new Error("")} />
         )}
-
-
       </Container>
     </StyledErrorFallback>
   )

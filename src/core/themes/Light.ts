@@ -64,5 +64,49 @@ export const LightTheme: ITheme = {
   switch: {
     background: "#FFF",
     active: "#0075FF"
+  },
+
+  message: {
+    error: {
+      header: "#F22F2F",
+      text: "#FF0000",
+      background: "transparent",
+      border: "#f22f2f"
+    },
+    warning: {
+      header: "#f5cd11",
+      text: "#ffc800",
+      background: "transparent",
+      border: "#ffb904"
+    },
+    emptyDay: {
+      header: "#11A3F5",
+      text: "#11A3F5",
+      background: "transparent",
+      border: "#00B2FF"
+    }
   }
+
+  // =============== Filled style ================
+  
+  // message: {
+  //   error: {
+  //     header: "#F22F2F",
+  //     text: "#FF0000",
+  //     background: "#f22f2f13",
+  //     border: "transparent"
+  //   },
+  //   warning: {
+  //     header: "#f5cd11",
+  //     text: "#ffc800",
+  //     background: "#ffb90424",
+  //     border: "transparent"
+  //   },
+  //   emptyDay: {
+  //     header: "#11A3F5",
+  //     text: "#11A3F5",
+  //     background: "#00B2FF24",
+  //     border: "transparent"
+  //   }
+  // }
 }

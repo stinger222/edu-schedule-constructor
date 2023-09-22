@@ -25,43 +25,46 @@ export const StyledErrorFallback = styled.div`
   // ======== Error: ========
 
   & .error-header {
-    color: #f22f2f;
+    color: ${({theme}) => theme.message.error.header};
   }
 
   & .error-message-wrapper {
-    background: #f22f2f13;
+    background: ${({theme}) => theme.message.error.background};
+    border: 0.14em solid ${({theme}) => theme.message.error.border};
   }
 
   & .error-message {
-    color: red;
+    color: ${({theme}) => theme.message.error.text};
   }
 
   // ======== Warning: ========
   
   & .warning-header {
-    color: #f5cd11;
+    color: ${({theme}) => theme.message.warning.header};
   }
 
   & .warning-message-wrapper {
-    background: #ffb90424;
+    background: ${({theme}) => theme.message.warning.background};
+    border: 0.14em solid ${({theme}) => theme.message.warning.border};
   }
   
   & .warning-message {
-    color: #ffc800;
+    color: ${({theme}) => theme.message.warning.text};
   }
   
   // ======== EmptyDay: ========
 
   & .empty-day-header {
-    color: #11A3F5;
+    color: ${({theme}) => theme.message.emptyDay.header};
   }
 
   & .empty-day-message-wrapper {
-    background: #00B2FF24;
+    background: ${({theme}) => theme.message.emptyDay.background};
+    border: 0.14em solid ${({theme}) => theme.message.emptyDay.border};
   }
   
   & .empty-day-message {
-    color: #11A3F5;
+    color: ${({theme}) => theme.message.emptyDay.text};
   }
   
 

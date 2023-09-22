@@ -71,5 +71,26 @@ export interface ITheme {
   switch: {
     background: HexColor,
     active: HexColor
+  },
+
+  message : {
+    error: {
+      header: HexColor,
+      text: HexColor,
+      background: string,
+      border: string
+    },
+    warning: {
+      header: HexColor,
+      text: HexColor,
+      background: string,
+      border: string
+    },
+    emptyDay: {
+      header: HexColor,
+      text: HexColor,
+      background: string,
+      border: string
+    }
   }
 }

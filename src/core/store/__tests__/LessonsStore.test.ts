@@ -97,8 +97,9 @@ describe("Testing classesStore", () => {
 			title: "Math or whatever"
 		}, "some-uid")
 		expect(classesStore._classes).toHaveLength(2)
-		expect(classesStore._classes[1]).toEqual({
-			cabinet: "202w",
+		expect(classesStore.classes).toHaveLength(1)
+		expect(classesStore.classes[0]).toEqual({
+      cabinet: "202w",
 			teacher: "Some Teacher's Name",
 			title: "Math or whatever",
 			uid: "some-uid"
@@ -106,22 +107,24 @@ describe("Testing classesStore", () => {
 
     // Try updating non-existing class:
 		let updatedSuccessfully: boolean | null = classesStore.updateClass("some-non-existing-uid", {
-			cabinet: "whatever",
+      cabinet: "whatever",
 			teacher: "whatever",
 			title: "whatever"
 		})
+    expect(classesStore._classes).toHaveLength(2)
+    expect(classesStore.classes).toHaveLength(1)
 		expect(updatedSuccessfully).toBe(false)
-		expect(classesStore._classes[1]).toEqual({
-			cabinet: "202w",
+		expect(classesStore.classes[0]).toEqual({
+      cabinet: "202w",
 			teacher: "Some Teacher's Name",
 			title: "Math or whatever",
 			uid: "some-uid"
 		})
-
+    
     // Update only "cabinet" property:
     updatedSuccessfully = null
     updatedSuccessfully = classesStore.updateClass("some-uid", {
-			cabinet: "New cabinet"
+      cabinet: "New cabinet"
 		})
 		expect(updatedSuccessfully).toBe(true)
 		expect(classesStore._classes[1]).toEqual({

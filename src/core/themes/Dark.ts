@@ -64,5 +64,26 @@ export const DarkTheme: ITheme = {
   switch: {
     background: "#50535a",
     active: "#0068e2"
+  },
+
+  message: {
+    error: {
+      header: "#F22F2F",
+      text: "#FF0000",
+      background: "transparent",
+      border: "#f22f2f"
+    },
+    warning: {
+      header: "#f5cd11",
+      text: "#ffc800",
+      background: "transparent",
+      border: "#ffb904"
+    },
+    emptyDay: {
+      header: "#11A3F5",
+      text: "#11A3F5",
+      background: "transparent",
+      border: "#00B2FF"
+    }
   }
 }

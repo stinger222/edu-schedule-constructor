@@ -214,7 +214,7 @@ i18n
 
           addClassForm: {
             classNameInputCaption: "Class name",
-            classNameInputPlaceholder: "COBOL programming",
+            classNameInputPlaceholder: "COBOL programming, idk",
             teacherNameInputCaption: "Teacher's name",
             teacherNameInputPlaceholder: "Mr. Dickhead",
             cabinetInputCaption: "Cabinet",

@@ -30,9 +30,8 @@ const AddClassPage = () => {
 	}})
 
 	const handleSubmit = (formData: Omit<IClass, "uid">) => {
-    if (routeState?.mode === "edit") { // TODO: Should this be moved to store?...
-      classesStore.removeClass(routeState.uid)
-      classesStore.addClass(formData, routeState.uid)
+    if (routeState?.mode === "edit") {
+      classesStore.updateClass(routeState.uid, formData)
     } else {
       classesStore.addClass(formData)
     }

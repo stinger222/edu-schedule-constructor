@@ -37,9 +37,8 @@ const AddAssembledSchedulePage = () => {
   const { fields, append } = useFieldArray({ control: methods.control, name: "days" })
 
   const handleSubmit = (formData: Omit<IAssembledSchedule, "uid">) => {
-    if (routeState?.mode === "edit") { // TODO: Should this be moved to store?...
-      assembledSchedulesStore.removeSchedule(routeState.uid)
-      assembledSchedulesStore.addSchedule(formData, routeState.uid)
+    if (routeState?.mode === "edit") {
+      assembledSchedulesStore.updateSchedule(routeState.uid, formData)
     } else {
       assembledSchedulesStore.addSchedule(formData)
     }
