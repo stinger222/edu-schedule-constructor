@@ -3,7 +3,7 @@ import { UseFieldArrayRemove, useFieldArray, useFormContext } from "react-hook-f
 
 import { StoreContext } from "../../.."
 import { IClassesStore, IClassSchedulesStore } from "../../../core/types/store"
-import { IClassSchedule } from "../../../core/types/types"
+import { IAssembledDay, IAssembledSchedule, IClassSchedule } from "../../../core/types/types"
 import { WeekUtils } from "../../../core/utils/dateTimeUtils"
 import { validateField } from "../../../core/utils/stringUtils"
 
@@ -36,6 +36,16 @@ const AssembleDayForm = ({ dayIndex }: IProps) => {
     if (fields.length - 1 === index && index != 0) {
       return <RemoveFieldButton index={index} remove={removeClassId}/>
     }
+  }
+
+  // Prevents user from submitting form if there is more classes than described in selected class schedule
+  const validateClassFileds = (value: string, formValues: IAssembledSchedule): boolean => {
+    const isValid = validateField(value) && formValues.days.every((day: IAssembledDay) => {
+      const maxClassesCountForThisDay = classSchedulesStore.getById(day.classScheduleId)?.classes.length || 0
+      return maxClassesCountForThisDay >= day.classIds.length
+    })
+
+    return isValid
   }
 
   // Prevents user from adding more classes than described in selected class schedule
@@ -76,7 +86,7 @@ const AssembleDayForm = ({ dayIndex }: IProps) => {
               data={getClassesSelectData(classesStore)}
               name={`days.${dayIndex}.classIds.${index}`}
               label={t("assembleScheduleForm.nthClassSelectCaption", {value: index + 1})}
-              rules={{validate: validateField}}
+              rules={{validate: validateClassFileds}}
               rightSection={getRightSection(index)}
 							key={id}
 						/>

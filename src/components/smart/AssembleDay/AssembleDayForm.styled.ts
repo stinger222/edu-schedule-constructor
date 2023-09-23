@@ -14,12 +14,10 @@ export const StyledAssembleDayForm = styled.div`
 	& .assemble-day {
 		font-size: 1.4em;
 		background: ${({theme}) => theme.assembledScheduleCard.background};
-		/* background: blue; */
     
 		margin-inline: auto;
 		padding: 0.6em;
     
-		/* box-shadow: $ {({theme}) => theme.boxShadows.primary}; */
 		box-shadow: ${({theme}) => theme.assembledScheduleCard.boxShadow};
 		border: 0.06em solid #60606040;
 		border-radius: 1em;
@@ -35,6 +33,10 @@ export const StyledAssembleDayForm = styled.div`
 		width: 105%;
 		margin-block: -0.1em 0.5em;
 	}
+
+  & .mantine-Input-input {
+    border-width: 0.09em;
+  }
 
 	& button.custom-select-clear {
 		background: none;
