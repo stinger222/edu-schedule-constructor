@@ -48,8 +48,10 @@ class ClassSchedulesStore implements IClassSchedulesStore {
 		}
 
 		const deletedSchedule = this.classSchedules.splice(indexToDelete, 1)
-		console.log("Schedule deleted from store.", toJS(deletedSchedule[0]))
+
 		this.memorizeState()
+		console.log("Schedule deleted from store.", toJS(deletedSchedule[0]))
+    
 		return deletedSchedule.length === 1 
 	}
 
@@ -65,8 +67,10 @@ class ClassSchedulesStore implements IClassSchedulesStore {
 			...this.classSchedules[indexToUpdate],
 			...newSchedule
 		}
-
+    
+    this.memorizeState()
 		console.log("Schedule updated successfully.")
+
 		return true
 	}
 

@@ -9,13 +9,13 @@ import { LightTheme } from "./core/themes/Light"
 import { DarkTheme } from "./core/themes/Dark"
 import GlobalStyles from "./core/themes/GlobalStyles"
 
-import AddAssembledSchedulePage from "./pages/AddAssembledSchedule/AddAssembledSchedulePage"
+import AddAssembledSchedulePage from "./pages/AddAssembledSchedulePage/AddAssembledSchedulePage"
 import AssembledSchedulesPage from "./pages/AssembledSchedules/AssembledSchedulesPage"
 import AddClassSchedulePage from "./pages/AddClassSchedulePage/AddClassSchedulePage"
 import AddClassPage from "./pages/AddClassPage/AddClassPage"
 import ClassSchedulesPage from "./pages/ClassSchedulesPage/ClassSchedulesPage"
 import ClassesPage from "./pages/ClassesPage/ClassesPage"
-import MainPage from "./pages/Main/MainPage"
+import MainPage from "./pages/MainPage/MainPage"
 
 
 const App = () => {

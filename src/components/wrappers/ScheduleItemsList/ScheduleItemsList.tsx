@@ -1,14 +1,15 @@
-import { useContext } from "react"
+import { useContext, useLayoutEffect, useState } from "react"
 import { observer } from "mobx-react"
-import { StoreContext } from "../../.."
+import { useTranslation } from "react-i18next"
 
+import i18n from "../../../core/configs/i18next"
 import RootStore from "../../../core/store/RootStore"
-import { IAssembledSchedule, IClass, IClassSchedule} from "../../../core/types/types"
+import { StoreContext } from "../../.."
+import { DayOff, Warning } from "../../../core/utils/CustomErrors"
+import { IAssembledSchedule, IClass, IClassSchedule } from "../../../core/types/types"
 
 import ClassCard from "../../ordinary/ClassCard/ClassCard"
 import Timeline from "../../ordinary/Timeline/Timeline"
-import { EmptyDay } from "../../../core/utils/CustomErrors"
-import { useTranslation } from "react-i18next"
 
 const ScheduleItemsList = () => {
   const stores = useContext(StoreContext)
@@ -61,31 +62,29 @@ const getDataForSelectedDay = (
   stores: RootStore
 ): [(IClass | undefined)[], IClassSchedule]  => {
   
-  if (!activeAssembledSchedule) { //TODO: First case is impossible btw...
-    throw new Error("Assembled schedule not selected.\n\nOr if you haven't created any yet, please go to:\nMenu > Assembled Schedules > Assemble new schedule")
+  if (!activeAssembledSchedule) {
+    throw new Warning(i18n.t("warningException.messages.noAssembledShcedules"))
   }
 
   if (stores.assembledSchedulesStore.dayIsEmptyOrUndefined(activeAssembledSchedule.uid, selectedDayIndex)) {
-    throw new EmptyDay()
+    throw new DayOff()
   }
 
   const classScheduleIdForSelectedDay = activeAssembledSchedule.days[selectedDayIndex].classScheduleId
   const classScheduleForSelectedDay = stores.classSchedulesStore.getById(classScheduleIdForSelectedDay)
 
   if (!classScheduleForSelectedDay) {
-    throw new Error(`This day in "${activeAssembledSchedule.name}" assembled schedule is refering to class schedule that was deleted!\n\nTo fix that, change class schedule for this day in "${activeAssembledSchedule.name}" assembled schedule to existing one.\n\nYou can to that by swiping mentioned assembled schedule card to the right in:\nMenu > Assembled Schedules`)
+    throw new Error(i18n.t("errorException.messages.refferingDeletedClassSchedule", {scheduleName: activeAssembledSchedule.name}))
   }
 
   const classIdsForSelectedDay = activeAssembledSchedule.days[selectedDayIndex].classIds
   const classesForSelectedDay = classIdsForSelectedDay.map(id => stores.classesStore.findById(id))
   
-  if (classIdsForSelectedDay.length === 0) {
-    throw new Error(`I have no idea how you did this, but list of class IDs for this day is empty.\n
-    That's weird cause you literally can't submit new assembled schedule if you not selected at least one class.\n\n
-    So since I don't even know how it is possible, I can't really give any advices on how to fix that :/\n\n
-    Try to cmpose new schedule but... more careful? idk.\n\n
-    Also I would appreciate if you will open issue on github with some ideas why this happened <3`)
+  console.log("classIdsForSelectedDayclassIdsForSelectedDayclassIdsForSelectedDay", classIdsForSelectedDay)
+  
+  if (classesForSelectedDay.length > classScheduleForSelectedDay.classes.length) {
+    throw new Error("Хуй соси губой тряси")
   }
-
+  
   return [classesForSelectedDay, classScheduleForSelectedDay]
 }

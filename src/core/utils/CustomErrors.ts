@@ -1,5 +1,5 @@
-export class EmptyDay extends Error {
-  readonly name = "EmptyDay"
+export class DayOff extends Error {
+  readonly name = "DayOff"
 
   constructor() {
     super()

@@ -15,12 +15,12 @@ i18n
       ru: {
         translation: {
           headerTitle: {
-            classesPage: "Добавленные предеметы",
+            classesPage: "Добавленные предметы",
             classSchedulesPage: "Расписания звонков",
             assembledPage: "Составленные расписания",
             editClass: "Редактировать предмет",
             editClassSchedule: "Редактировать расписание",
-            editAssembledSchedule: "Редактировать расписане",
+            editAssembledSchedule: "Редактировать расписание",
             addClass: "Добавить предмет",
             addClassSchedule: "Добавить расписание звонков",
             addAssembledSchedule: "Составить новое расписание"
@@ -116,21 +116,30 @@ i18n
             addNthClass: "Добавить {{value}}-ую пару"
           },
 
-          emptyDayErr: {
+          dayOffException: {
             header: "Ура!",
-            caption: "На сегодня ничего OwO"
+            message: "На сегодня ничего :D"
           },
-          warning: {
-            header: "Внимание!"
+          warningException: {
+            header: "Внимание",
+            messages: {
+              noAssembledShcedules: "Вы ещё не составили ни одного расписания на неделю\n\nВы можете сделать это в меню"
+            }
           },
-          error: {
-            header: "Ошибка"
+          errorException: {
+            header: "Ошибка",
+            messages: {
+              refferingDeletedClassSchedule: "Этот день в расписании \"{{scheduleName}}\", ссылается на расписание звонков, которое было удалено!\n\nЧто-бы исправить это, отредактируйте расписание \"{{scheduleName}}\" и укажите для этого дня существующее расписание звонков\n\nВы можете сделать это, просто смахнув карточку расписания вправо"
+            }
           },
-          fatalError: {
+          fatalErrorException: {
             header: "Фатальная ошибка",
-            message: "Судя по всему что-то сломалось, и скорее всего это вызвано повреждением импортированной информации <i>(ну или кто-то лазил своими шаловливыми ручками где не надо -_-)</i><br/><br/>Во всяком случае, что бы это починить, скорее всего придётся удалить все сохранённые карточки, Вы можете сделать это в меню настроек"
+            messages: {
+              notSureWhatHappened: "Судя по всему что-то сломалось, и скорее всего эо вызвано повреждением импортированной информации <i>(ну или кто-то лазил своими шаловливыми ручками где не надо -_-)</i><br/><br/>Во всяком случае, что бы это починить, скорее всего, придётся удалить все сохранённые карточки, Вы можете сделать это в меню настроек",
+              dayContainsMoreClssesThanClassSchedule: "Один из дней в этом расписании содержит больше пар, чем описано в расписании звонков.\n\nЕсли я прав, то через ui это сделать невозможно, так что объяснять тебе как это починить смысла наверно нету))\n\nНо если-же это всё-таки баг, то скорее всего придётся удалить все созданные/импортированные карточки. Сделать это можно в настройках\n\np.s. надеюсь скоро эта проблема не будет ломать приложение (пусть даже её, вроде как, нельзя затриггерить через ui)"
+            }
           },
-
+          
           select: {
             emptyPlaceholder: "<Пусто>",
             notSelectedPlaceholder: "<Не выбрано>"
@@ -203,10 +212,10 @@ i18n
           },
 
           classesPage: {
-            nothingHereMsg: "Add class cards which you can then use to <Link>assemble schedules</Link> for the entire week"
+            nothingHereMsg: "Add class cards, which you can then use to <Link>assemble schedules</Link> for the entire week"
           },
           classSchedulesPage: {
-            nothingHereMsg: "Add a class schedule so the app can highlight current/next class on the timeline"
+            nothingHereMsg: "Add a class schedule so the app can highlight the current/next class on the timeline"
           },
           assembledSchedulesPage: {
             nothingHereMsg: "Assemble your very first schedule using previously made <ClassesLink>class cards</ClassesLink> and <ClassSchLink>class schedules</ClassSchLink>"
@@ -245,19 +254,28 @@ i18n
             addNthClass: "Add class #{{value}}"
           },
           
-          emptyDayErr: {
+          dayOffException: {
             header: "Got Lucky!",
-            caption: "Nothing for today :D" // TODO: rename to "message"
+            message: "Nothing for today :D"
           },
-          warning: {
-            header: "Warning!"
+          warningException: {
+            header: "Warning!",
+            messages: {
+              noAssembledShcedules: "You didn't assembled any schedules for the week yet!\n\nYou can do that in the menu"
+            }
           },
-          error: {
-            header: "An Error occurred"
+          errorException: {
+            header: "An Error occurred",
+            messages: {
+              refferingDeletedClassSchedule: "This day in \"{{scheduleName}}\" assembled schedule is refering to class schedule that was deleted!\n\nTo fix that, change class schedule for this day in \"{{scheduleName}}\" assembled schedule to existing one.\n\nYou can to that by swiping mentioned assembled schedule card to the right in:\nMenu > Assembled Schedules"
+            }
           },
-          fatalError: {
+          fatalErrorException: {
             header: "Fatal Error",
-            message: "Looks like app completely broken, this is most likely caused by import of corrupted data.<br/><br/>To fix that, consider clearing all stored data, you can do that in the <i>settings menu</i>"
+            messages: {
+              notSureWhatHappened: "Looks like app completely broken, this is most likely caused by import of corrupted data.<br/><br/>To fix that, consider clearing all stored data, you can do that in the <i>settings menu</i>",
+              dayContainsMoreClssesThanClassSchedule: "One of days in this assembled shcedule contains more classes that corresponding class schedue\n\nIf I'm correct and this is impossible to do using ui, then there is no point in eplaining to you how to fix it))\n\nOtherwise, if this is actually a bug, then you probably have to delete all created/imported cards. You can do that in the settings\n\n p.s. Hope this problen won't break app soon..."
+            }
           },
 
           select: {

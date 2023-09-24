@@ -54,16 +54,16 @@ export const StyledErrorFallback = styled.div`
   
   // ======== EmptyDay: ========
 
-  & .empty-day-header {
+  & .day-off-header {
     color: ${({theme}) => theme.message.emptyDay.header};
   }
 
-  & .empty-day-message-wrapper {
+  & .day-off-message-wrapper {
     background: ${({theme}) => theme.message.emptyDay.background};
     border: 0.14em solid ${({theme}) => theme.message.emptyDay.border};
   }
   
-  & .empty-day-message {
+  & .day-off-message {
     color: ${({theme}) => theme.message.emptyDay.text};
   }
   

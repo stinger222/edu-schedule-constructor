@@ -1,11 +1,14 @@
-import { StyledClassSchedulesPage } from "./ClassSchedulesPage.styled"
-import { StoreContext } from "../.."
 import { useContext } from "react"
-
-import ClassScheduleCardsList from "../../components/wrappers/ClassScheduleCardsList/ClassScheduleCardsList"
-import Container from "../../components/containers/Container/Container"
-import Header from "../../components/smart/Header/Header"
+import { Navigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
+import { ErrorBoundary } from "react-error-boundary"
+
+import { StoreContext } from "../.."
+import Header from "../../components/smart/Header/Header"
+import Container from "../../components/containers/Container/Container"
+import ClassScheduleCardsList from "../../components/wrappers/ClassScheduleCardsList/ClassScheduleCardsList"
+
+import { StyledClassSchedulesPage } from "./ClassSchedulesPage.styled"
 
 const ClassSchedulesPage = () => {
   const { t } = useTranslation()
@@ -20,10 +23,12 @@ const ClassSchedulesPage = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-				<ClassScheduleCardsList
-					classSchedules={classSchedulesStore.classSchedules}
-					removeSchedule={classSchedulesStore.removeSchedule.bind(classSchedulesStore)}
-				/>
+        <ErrorBoundary fallback={<Navigate to="/"/>}>
+          <ClassScheduleCardsList
+            classSchedules={classSchedulesStore.classSchedules}
+            removeSchedule={classSchedulesStore.removeSchedule.bind(classSchedulesStore)}
+          />
+        </ErrorBoundary>
 
 			</Container>
 		</StyledClassSchedulesPage>

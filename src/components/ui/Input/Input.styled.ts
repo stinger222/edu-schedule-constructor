@@ -20,7 +20,7 @@ export const StyledInput = styled.div`
 		margin-top: 0.8em;
 		
 		border-radius: 0.45em;
-		border: 0.1em solid  ${({theme}) => theme.input.border};
+		border: 0.082em solid  ${({theme}) => theme.input.border};
 
 		background: ${({theme}) => theme.input.background};
 		color: ${({theme}) => theme.text.primary};

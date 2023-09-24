@@ -74,7 +74,7 @@ export const DarkTheme: ITheme = {
       border: "#f22f2f"
     },
     warning: {
-      header: "#f5cd11",
+      header: "#ffc300",
       text: "#ffc800",
       background: "transparent",
       border: "#ffb904"

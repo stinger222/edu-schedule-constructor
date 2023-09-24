@@ -73,8 +73,10 @@ class ClassesStore implements IClassesStore {
     }
 
     const deletedClass = this._classes.splice(indexToDelete, 1)
-    console.log("Class deleted from store.", toJS(deletedClass[0]))
+
     this.memorizeState()
+    console.log("Class deleted from store.", toJS(deletedClass[0]))
+    
     return deletedClass.length === 1
   }
 
@@ -91,7 +93,9 @@ class ClassesStore implements IClassesStore {
       ...newClass
     }
 
+    this.memorizeState()
     console.log("Class modified successfully.")
+    
     return true
   }
 

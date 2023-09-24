@@ -3,6 +3,7 @@ import { makeAutoObservable, toJS } from "mobx"
 import { IAssembledSchedulesStore } from "../types/store"
 import { IAssembledSchedule } from "../types/types"
 import { capitalize } from "../utils/stringUtils"
+import i18n from "../configs/i18next"
 
 class AssembledSchedulesStore implements IAssembledSchedulesStore {
 	assembledSchedules: IAssembledSchedule[] = []
@@ -50,8 +51,10 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
 		}
 		
 		const deletedSchedule = this.assembledSchedules.splice(indexToDelete, 1)
-		console.log("Class deleted from store.", toJS(deletedSchedule[0]))
+
 		this.memorizeState()
+		console.log("Class deleted from store.", toJS(deletedSchedule[0]))
+    
 		return deletedSchedule.length === 1 
 	}
 
@@ -67,7 +70,9 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
 			...newSchedule
 		}
 
+    this.memorizeState()
 		console.log("Assembled Schedule updated successfully.")
+
 		return true
 	}
 
@@ -103,7 +108,12 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
 
     if (!targetSchedule) throw new Error(`Assembled schedule with passed id: ${scheduleUid} is not present in the store`)
     
-    const targetDay = targetSchedule.days[dayIndex]
+    let targetDay
+    try {
+      targetDay = targetSchedule.days[dayIndex]
+    } catch(err) {
+      throw new Error(i18n.t("fatalErrorException.messages.dayContainsMoreClssesThanClassSchedule"))
+    }
 
     if (!targetDay) return true
 

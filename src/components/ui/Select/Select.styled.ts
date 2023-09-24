@@ -21,7 +21,7 @@ export const StyledSelect = styled(MantineSelect)`
 			padding: 0.85em 1.1em 0.85em 0.5em;
 			
 			background: ${({theme}) => theme.select.background};
-			border: 0.1em solid ${({theme}) => theme.select.border};
+			border: 0.082em solid ${({theme}) => theme.select.border};
 			border-radius: 0.4em;
 			
 			font-size: 1em;

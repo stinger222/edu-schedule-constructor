@@ -1,16 +1,18 @@
 import { useContext } from "react"
+import { Navigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
+import { ErrorBoundary } from "react-error-boundary"
 
 import { StoreContext } from "../.."
-import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
+import Container from "../../components/containers/Container/Container"
 import AssembledSchedulesList from "../../components/wrappers/AssembledSchedulesList/AssembledSchedulesList"
 
 import { StyledAssembledSchedulesPage } from "./AssembledSchedulesPage.styled"
-import { useTranslation } from "react-i18next"
 
 const AssembledSchedulesPage = () => {
-  const assembledSchedulesStore = useContext(StoreContext).assembledSchedulesStore
   const { t } = useTranslation()
+  const assembledSchedulesStore = useContext(StoreContext).assembledSchedulesStore
 
   return (
     <StyledAssembledSchedulesPage>
@@ -21,10 +23,13 @@ const AssembledSchedulesPage = () => {
           <Header.BurgerButton />
         </Header>
 
-        <AssembledSchedulesList
-          assembledSchedules={assembledSchedulesStore.assembledSchedules}
-          removeSchedule={assembledSchedulesStore.removeSchedule.bind(assembledSchedulesStore)}
-        />
+        <ErrorBoundary fallback={<Navigate to="/"/>}>
+          <AssembledSchedulesList
+            assembledSchedules={assembledSchedulesStore.assembledSchedules}
+            removeSchedule={assembledSchedulesStore.removeSchedule.bind(assembledSchedulesStore)}
+          />
+        </ErrorBoundary>
+
       </Container>
     </StyledAssembledSchedulesPage>
   )
