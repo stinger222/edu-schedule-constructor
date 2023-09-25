@@ -3,7 +3,6 @@ import { makeAutoObservable, toJS } from "mobx"
 import { IAssembledSchedulesStore } from "../types/store"
 import { IAssembledSchedule } from "../types/types"
 import { capitalize } from "../utils/stringUtils"
-import i18n from "../configs/i18next"
 
 class AssembledSchedulesStore implements IAssembledSchedulesStore {
 	assembledSchedules: IAssembledSchedule[] = []
@@ -106,14 +105,9 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
   dayIsEmptyOrUndefined(scheduleUid: string, dayIndex: number): boolean {
     const targetSchedule = this.getById(scheduleUid)
 
-    if (!targetSchedule) throw new Error(`Assembled schedule with passed id: ${scheduleUid} is not present in the store`)
+    if (!targetSchedule) throw new Error(`Assembled schedule with passed id: ${scheduleUid} is not present in the store... somehow...`)
     
-    let targetDay
-    try {
-      targetDay = targetSchedule.days[dayIndex]
-    } catch(err) {
-      throw new Error(i18n.t("fatalErrorException.messages.dayContainsMoreClssesThanClassSchedule"))
-    }
+    const targetDay = targetSchedule.days[dayIndex]
 
     if (!targetDay) return true
 

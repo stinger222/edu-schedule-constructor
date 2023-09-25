@@ -26,8 +26,8 @@ const ScheduleItemsList = () => {
         <div className="schedule-item" key={Math.random()}>
 
           <Timeline
-            startTime={classSchedule.classes[index].start}
-            endTime={classSchedule.classes[index].end}
+            startTime={classSchedule.classes?.[index]?.start || "??:??"}
+            endTime={classSchedule.classes?.[index]?.end || "??:??"}
           />
 
           <ClassCard
@@ -79,12 +79,6 @@ const getDataForSelectedDay = (
 
   const classIdsForSelectedDay = activeAssembledSchedule.days[selectedDayIndex].classIds
   const classesForSelectedDay = classIdsForSelectedDay.map(id => stores.classesStore.findById(id))
-  
-  console.log("classIdsForSelectedDayclassIdsForSelectedDayclassIdsForSelectedDay", classIdsForSelectedDay)
-  
-  if (classesForSelectedDay.length > classScheduleForSelectedDay.classes.length) {
-    throw new Error("Хуй соси губой тряси")
-  }
-  
+
   return [classesForSelectedDay, classScheduleForSelectedDay]
 }

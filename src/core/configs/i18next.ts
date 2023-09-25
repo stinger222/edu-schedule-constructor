@@ -135,8 +135,7 @@ i18n
           fatalErrorException: {
             header: "Фатальная ошибка",
             messages: {
-              notSureWhatHappened: "Судя по всему что-то сломалось, и скорее всего эо вызвано повреждением импортированной информации <i>(ну или кто-то лазил своими шаловливыми ручками где не надо -_-)</i><br/><br/>Во всяком случае, что бы это починить, скорее всего, придётся удалить все сохранённые карточки, Вы можете сделать это в меню настроек",
-              dayContainsMoreClssesThanClassSchedule: "Один из дней в этом расписании содержит больше пар, чем описано в расписании звонков.\n\nЕсли я прав, то через ui это сделать невозможно, так что объяснять тебе как это починить смысла наверно нету))\n\nНо если-же это всё-таки баг, то скорее всего придётся удалить все созданные/импортированные карточки. Сделать это можно в настройках\n\np.s. надеюсь скоро эта проблема не будет ломать приложение (пусть даже её, вроде как, нельзя затриггерить через ui)"
+              notSureWhatHappened: "Судя по всему что-то сломалось, и скорее всего эо вызвано повреждением импортированной информации <i>(ну или кто-то лазил своими шаловливыми ручками где не надо -_-)</i><br/><br/>Во всяком случае, что бы это починить, скорее всего, придётся удалить все сохранённые карточки, Вы можете сделать это в меню настроек"
             }
           },
           
@@ -273,8 +272,7 @@ i18n
           fatalErrorException: {
             header: "Fatal Error",
             messages: {
-              notSureWhatHappened: "Looks like app completely broken, this is most likely caused by import of corrupted data.<br/><br/>To fix that, consider clearing all stored data, you can do that in the <i>settings menu</i>",
-              dayContainsMoreClssesThanClassSchedule: "One of days in this assembled shcedule contains more classes that corresponding class schedue\n\nIf I'm correct and this is impossible to do using ui, then there is no point in eplaining to you how to fix it))\n\nOtherwise, if this is actually a bug, then you probably have to delete all created/imported cards. You can do that in the settings\n\n p.s. Hope this problen won't break app soon..."
+              notSureWhatHappened: "Looks like app completely broken, this is most likely caused by import of corrupted data.<br/><br/>To fix that, consider clearing all stored data, you can do that in the <i>settings menu</i>"
             }
           },
 
