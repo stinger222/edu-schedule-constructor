@@ -13,17 +13,22 @@ export const StyledAddClassSchedulePage = styled.div`
 
 	& form .btn {
 		display: block;
-		margin-inline: auto;
 		font-size: 1em;
 	}
 
-  & form .btn[type="submit"] {
-    width: 5.5em;
+  & form .controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5em;
+    gap: 1.2em;
   }
 
-	& form .append {
-		margin-block: 1em 1.5em;
-	}
+  & form .btn[type="submit"] {
+    width: 5.5em;
+    margin-inline: auto;
+  }
+
+
 
 	& form input {
 		width: 6em;
