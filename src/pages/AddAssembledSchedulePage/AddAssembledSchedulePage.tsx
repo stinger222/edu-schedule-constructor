@@ -31,7 +31,7 @@ const AddAssembledSchedulePage = () => {
     defaultValues: {
       name: "",
       days: [{ classScheduleId: "", classIds: ["undefined"] }]
-    }
+    }, shouldFocusError: false
   })
   
   const { fields, append } = useFieldArray({ control: methods.control, name: "days" })

@@ -55,6 +55,9 @@ export class WeekUtils {
 	}
 }
 
+/**
+ * @returns An array of 7 formatted readonly strings, that represent dates of each day in current week 
+ */
 export const getCurrentWeekDates = (): weekDates => {
 	const date = new Date()
 	date.setDate(date.getDate() - (date.getDay() === 0 ? 7 : date.getDay())) // now it's current week sunday date:
@@ -66,3 +69,28 @@ export const getCurrentWeekDates = (): weekDates => {
 
 	return result as weekDates
 }
+
+  /**
+   * @param timeString string consisting of 2 numbers, divided by colon (:)
+   * @returns Date object with time and hours set to values from the passed string
+   */
+  export const parseTimeStringToDate = (timeString: string): Date => {
+    const splitted = timeString.split(":")
+
+    const date = new Date()
+    date.setHours(+splitted[0])
+    date.setMinutes(+splitted[1])
+
+    return date
+  }
+
+  /**
+   * This function checks if the `targetDate` is withing a given date range
+   * 
+   * @param targetDate 
+   * @param rangeStartDate Lower range boundary
+   * @param rangeEndDate Upper range boundary
+   */
+  export const isDateInRange = (targetDate: Date, rangeStartDate: Date, rangeEndDate: Date): boolean => {
+    return (targetDate.getTime() >= rangeStartDate.getTime())  && (targetDate.getTime() <= rangeEndDate.getTime())
+  }

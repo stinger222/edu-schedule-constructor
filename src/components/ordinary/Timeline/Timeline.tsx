@@ -1,19 +1,24 @@
 import React from "react"
 import { StyledTimeline } from "./Timeline.styled."
 import { formatTimeString } from "../../../core/utils/stringUtils"
+import { isDateInRange, parseTimeStringToDate } from "../../../core/utils/dateTimeUtils"
 
 interface IProps {
 	startTime: string,
 	endTime: string,
-	active?: boolean
 }
 
-const Timeline = ({ startTime, endTime, active }: IProps) => {
+const Timeline = ({ startTime, endTime }: IProps) => {
 	startTime = formatTimeString(startTime)
 	endTime = formatTimeString(endTime)
 
+  const startDate = parseTimeStringToDate(startTime)
+  const endDate = parseTimeStringToDate(endTime)
+
+  const isActive = isDateInRange(new Date, startDate, endDate)
+
 	return (
-		<StyledTimeline className={active ? "active" : ""}>
+		<StyledTimeline className={isActive ? "active" : ""}>
 			<div className="label">
 				<div className="label-start">{ startTime }</div>
 				<div className="label-end">{ endTime }</div>

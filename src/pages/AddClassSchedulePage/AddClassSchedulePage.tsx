@@ -90,8 +90,8 @@ const AddClassSchedulePage = () => {
               }
             </div>
 
-
 						<Button type="submit" disabled={!methods.formState.isValid}> {t("button.done")} </Button>
+            
 					</form>
 				</FormProvider>
 

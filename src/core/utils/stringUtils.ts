@@ -13,8 +13,8 @@ export const formatNumber = (number: number, digits: number = 2): string => {
 	return formatter.format(Math.abs(number))
 }
 
-export const formatTimeString = (timeString: string): string => {
-	const [hours, minutes] = timeString.split(":")
+export const formatTimeString = (rawTimeString: string): string => {
+	const [hours, minutes] = rawTimeString.split(":")
 
 	return `${formatNumber(parseInt(hours))}:${formatNumber(parseInt(minutes))}`
 }
