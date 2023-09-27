@@ -17,16 +17,17 @@ export const StyledClassCard = styled.div`
 	letter-spacing: -0.025em;
 
 	h1 {
+		display: -webkit-box;
 		margin-bottom: 1em;
 
 		line-height: 1.25em;
 		font-weight: 500;
 		font-size: 1.625em;
 
-		display: -webkit-box;
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		text-overflow: ellipsis;
+    word-break: break-all;
 		overflow: hidden;
 	}
 

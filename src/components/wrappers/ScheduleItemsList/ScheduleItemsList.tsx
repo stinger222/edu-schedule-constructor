@@ -46,7 +46,7 @@ export default observer(ScheduleItemsList)
 
 
 /**
- * This function returns everything that necessary to render assembled schedule.
+ * This function returns everything that is necessary to render assembled schedule.
  * 
  * @param activeAssembledSchedule - Is assembled schedule that user selected to be shown on the main page
  * @param selectedDayIndex - Used to select what day will be rendered on the main page
@@ -55,7 +55,6 @@ export default observer(ScheduleItemsList)
  * @returns Array of class objects, data from witch will be used to rednder ClassCards on the right,
  * and classSchedule object that will be used to render Timeline segments on the left
 */
-
 const getDataForSelectedDay = (
   activeAssembledSchedule: IAssembledSchedule | undefined | null,
   selectedDayIndex: number,

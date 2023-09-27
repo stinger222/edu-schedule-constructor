@@ -21,8 +21,8 @@ import MainPage from "./pages/MainPage/MainPage"
 const App = () => {
   const { uiStore } = useContext(StoreContext)
   const theme = uiStore.userSettings.theme === ThemeEnum.dark ? DarkTheme : LightTheme
-
-	return (
+  
+  return (
     <ThemeProvider theme={theme}>
       <Routes>
         <Route path="/" element={<MainPage />} />

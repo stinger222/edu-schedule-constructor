@@ -7,7 +7,6 @@ export const StyledAssembledSchedule = styled.div`
   position: relative;
 
 	border-radius: 1.3em;
-	/* border: 0.08em solid #00000035; */
 	background: ${({theme}) => theme.assembledScheduleCard.background};
 	box-shadow: ${({theme}) => theme.assembledScheduleCard.boxShadow};
 	
@@ -24,12 +23,21 @@ export const StyledAssembledSchedule = styled.div`
   }
 
 	& > header .title {
+    display: -webkit-box;
+    
 		line-height: 1em;
 		font-size: 1.9em;
 		font-weight: 400;
 		letter-spacing: 0.05em;
 		text-align: center;
-    width: 100%;
+    margin-inline: auto;
+    width: 77%;
+
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		text-overflow: ellipsis;
+    word-break: break-all;
+		overflow: hidden;
 	}
 
 	& .days {

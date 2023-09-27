@@ -10,15 +10,24 @@ export const StyledClassScheduleCard = styled.div`
 	box-shadow: ${({theme}) => theme.classScheduleCard.boxShadow};
 	
 	width: 29em;
-	height: 7em;
+	min-height: 7em;
+  height: fit-content;
 	padding: 1em 0.8em;
 	
 	text-align: center;
-
+  
 	& header {
-		font-size: 1.5em;
+    display: -webkit-box;
+
+    font-size: 1.5em;
 		font-weight: 400;
 		margin-bottom: 0.6em;
+    
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    word-break: break-all;
+    overflow: hidden;
 	}
 
 	& .details {
