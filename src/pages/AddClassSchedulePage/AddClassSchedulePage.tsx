@@ -41,6 +41,8 @@ const AddClassSchedulePage = () => {
   const { append, remove, fields } = useFieldArray({control: methods.control, name: "classes"})
   
 	const handleSubmit = (formData: Omit<IClassSchedule, "uid">) => {
+    console.log("SUBMITTTEDD")
+    
     if (routeState?.mode === "edit") {
       classSchedulesStore.updateSchedule(routeState.uid, formData)
     } else {

@@ -9,7 +9,7 @@ interface IProps {
 	onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const Button = ({ children, onClick, className, type, disabled }: IProps) => {
+const Button = ({ children, onClick, className, type = "button", disabled }: IProps) => {
 	return (
 		<StyledButton
 			type={type}
