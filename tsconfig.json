@@ -23,7 +23,8 @@
     "jsx": "react-jsx"
   },
 	"typeRoots": [
-		"src/core/configs"
+		"src/core/configs",
+    "node_modules/@types"
 	],
   "include": [
     "src", "react-app-env.d.ts"

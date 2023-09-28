@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  app:
+    image: "custom-schedule"
+    container_name: "custom-schedule-container"
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules/
+    environment:
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+      - FAST_REFRESH=true
+      - WDS_SOCKET_PORT=3000
+    command: "npm start"
+volumes:
+  node_modules:
