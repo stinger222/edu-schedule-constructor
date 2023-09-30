@@ -1,9 +1,5 @@
 node_modules
 Dockerfile
-.vscode
 .dockerignore
-.git
-.gitignore
 npm-debug.log
 build
-docker-compose.yml

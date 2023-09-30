@@ -26,7 +26,5 @@
 		"src/core/configs",
     "node_modules/@types"
 	],
-  "include": [
-    "src", "react-app-env.d.ts"
-, "module-name.d.ts"	]
+  "include": ["./src", "react-app-env.d.ts", "module-name.d.ts"]
 }
