@@ -27,7 +27,7 @@ export const StyledClassCard = styled.div`
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		text-overflow: ellipsis;
-    word-break: break-all;
+    word-wrap: break-word;
 		overflow: hidden;
 	}
 

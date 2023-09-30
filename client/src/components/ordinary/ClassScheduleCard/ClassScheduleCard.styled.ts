@@ -26,7 +26,8 @@ export const StyledClassScheduleCard = styled.div`
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
-    word-break: break-all;
+    word-wrap: break-word;
+    
     overflow: hidden;
 	}
 

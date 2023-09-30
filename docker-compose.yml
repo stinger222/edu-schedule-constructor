@@ -1,22 +1,62 @@
 version: "3.8"
 services:
-  app:
-    image: "custom-schedule"
-    container_name: "custom-schedule-container"
-    build:
-      context: .
+  client:
+    image: "react-frontend-image"
+    container_name: "react-frontend-container"
+    build: ./client
     ports:
       - "3000:3000"
-    stdin_open: true
-    tty: true
+    depends_on:
+      - server
+    networks:
+      - dick-network
     volumes:
-      - .:/app
-      - node_modules:/app/node_modules/
+      - ./client:/app/client:cached
+      - client_node_modules:/app/client/node_modules:delegated
     environment:
+      - NODE_ENV=development
       - WATCHPACK_POLLING=true
       - CHOKIDAR_USEPOLLING=true
       - FAST_REFRESH=true
       - WDS_SOCKET_PORT=3000
     command: "npm start"
+
+
+  server:
+    build: ./server
+    image: "express-backend-image"
+    container_name: "express-backend-container"
+    ports:
+      - "3001:3001"
+    depends_on:
+      - database
+    networks:
+      - dick-network
+    volumes:
+      - ./server:/app/server:cached
+      - server_node_modules:/app/server/node_modules:delegated
+    environment:
+      - NODE_ENV=development
+      - BACKEND_PORT=3001
+    restart: always
+
+
+  database:
+    image: mongo:latest
+    container_name: mongo-db-container
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_PORT=27017
+    volumes:
+      - ./mongo-db-backup:/data/db
+    networks:
+      - dick-network
+
 volumes:
-  node_modules:
+  client_node_modules:
+  server_node_modules:
+
+networks:
+  dick-network:
+    driver: bridge
