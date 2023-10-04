@@ -1,11 +1,11 @@
-import jwtDecode from "jwt-decode"
 import ky from "ky"
 import { useContext, useEffect } from "react"
 import { StoreContext } from "../.."
+import { useNavigate } from "react-router"
 
 const LogInPage = () => {
-
   const { authStore } = useContext(StoreContext)
+  const navigate = useNavigate()
 
   const handleLogin = async (result: any) => {
     // const email: string = jwtDecode<any>(result.credential).email
@@ -19,8 +19,8 @@ const LogInPage = () => {
       }).json() as {email: string}
       
       console.log("Session successfully created! User singned-in!")
-      
       authStore.setUserEmail(data.email)
+      navigate("/")
     } catch(err) {
       console.error("Can't create session.\n", err.message)
     }
