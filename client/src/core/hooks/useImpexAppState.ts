@@ -3,7 +3,7 @@ import ClassesStore from "../store/ClassesStore"
 import ClassSchedulesStore from "../store/ClassSchedulesStore"
 import AssembledSchedulesStore from "../store/AssembledSchedulesStore"
 
-type ImpexAppState = Omit<Record<keyof RootStore, string>, "uiStore">
+type ImpexAppState = Omit<Record<keyof RootStore, string>, "uiStore" | "authStore">
 
 const useImpexAppState = (): [ImpexAppState, (jsonState: string, onError?: () => void) => void] => {
 

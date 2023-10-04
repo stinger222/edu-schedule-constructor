@@ -16,12 +16,13 @@ import AddClassPage from "./pages/AddClassPage/AddClassPage"
 import ClassSchedulesPage from "./pages/ClassSchedulesPage/ClassSchedulesPage"
 import ClassesPage from "./pages/ClassesPage/ClassesPage"
 import MainPage from "./pages/MainPage/MainPage"
+import LogInPage from "./pages/LogInPage/LogInPage"
 
 
 const App = () => {
   const { uiStore } = useContext(StoreContext)
   const theme = uiStore.userSettings.theme === ThemeEnum.dark ? DarkTheme : LightTheme
-  
+
   return (
     <ThemeProvider theme={theme}>
       <Routes>
@@ -34,6 +35,10 @@ const App = () => {
           <Route path="assembled" element={<AddAssembledSchedulePage />} />
           <Route path="class" element={<AddClassPage />} />
           <Route path="class-schedules" element={<AddClassSchedulePage />} />
+        </Route>
+
+        <Route path="/auth">
+          <Route path="sign-in" element={<LogInPage />} />
         </Route>
       </Routes>
       <GlobalStyles />
