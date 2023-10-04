@@ -2,14 +2,17 @@ import ky from "ky"
 import { useContext, useEffect } from "react"
 import { StoreContext } from "../.."
 import { useNavigate } from "react-router"
+import jwtDecode from "jwt-decode"
 
 const LogInPage = () => {
   const { authStore } = useContext(StoreContext)
   const navigate = useNavigate()
 
   const handleLogin = async (result: any) => {
-    // const email: string = jwtDecode<any>(result.credential).email
-    const email: string = result.credential.email
+    const email: string = jwtDecode<any>(result.credential).email
+    console.log("Decoded after login email: ", email)
+    
+    // const email: string = result.credential.email
     console.log("Trying to create session...")
 
     try {

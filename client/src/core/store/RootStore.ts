@@ -1,5 +1,5 @@
 import { configure } from "mobx"
-import { IAssembledSchedulesStore, IClassesStore, IClassSchedulesStore, IUIStore } from "./../types/store"
+import { IAssembledSchedulesStore, IAuthStore, IClassesStore, IClassSchedulesStore, IUIStore } from "./../types/store"
 import AssembledSchedulesStore from "./AssembledSchedulesStore"
 import ClassSchedulesStore from "./ClassSchedulesStore"
 import ClassesStore from "./ClassesStore"
@@ -10,7 +10,7 @@ class RootStore {
 	classesStore: IClassesStore
 	classSchedulesStore: IClassSchedulesStore
 	assembledSchedulesStore: IAssembledSchedulesStore
-  authStore: {userEmail: string, setUserEmail(e: string): void}
+  authStore: IAuthStore
 
 	constructor() {
 		this.uiStore = new UIStore()

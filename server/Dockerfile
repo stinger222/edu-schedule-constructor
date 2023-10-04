@@ -1,5 +1,3 @@
-# FROM mongo:latest это в db sercive
-
 FROM node:18-alpine
 
 WORKDIR /app/server
@@ -13,4 +11,4 @@ COPY . .
 
 EXPOSE 3001
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "deocker-dev"]

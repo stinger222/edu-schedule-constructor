@@ -83,4 +83,3 @@ app.get("/auth/get-session", async (req, res) => {
 
   res.status(200).json({email: targetSession.email})
 })
-

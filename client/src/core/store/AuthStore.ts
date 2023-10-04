@@ -1,9 +1,10 @@
 import ky from "ky"
 import { makeAutoObservable } from "mobx"
-import {Cookies } from "react-cookie"
+import { Cookies } from "react-cookie"
+import { IAuthStore } from "../types/store"
 
-class AuthStore {
-  userEmail: string
+class AuthStore implements IAuthStore {
+  userEmail: string | null = null
 
 	constructor() {
 		makeAutoObservable(this)
@@ -15,6 +16,7 @@ class AuthStore {
   }
 
   async checkIfUserLoggedIn() {
+    console.groupCollapsed("Trying to sign-in using cookie:")
     console.log("Trying sign-in user using stored session id...")
 
     try {
@@ -23,12 +25,21 @@ class AuthStore {
       }).json() as {email: string}
 
       this.setUserEmail(data.email)
-
       console.log("User successfully signed-in using stored session id!")
+      console.groupEnd()
       
     } catch(err) {
-      console.log("Can't sign-in user: session has expired or doesn't exist")
+      console.warn("User not signed-in: session has expired or doesn't exist")
+      console.groupEnd()
     }
+  }
+
+  signOut() {
+    const cookies = new Cookies()
+    cookies.remove("session_id")
+
+    this.userEmail = null
+    document.location = "/"
   }
 }
 

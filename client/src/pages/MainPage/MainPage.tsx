@@ -10,7 +10,6 @@ import ScheduleItemsList from "../../components/wrappers/ScheduleItemsList/Sched
 
 import i18n from "../../core/configs/i18next"
 import { StyledMainPage } from "./MainPage.styled"
-import { Link } from "react-router-dom"
 
 const MainPage = () => {
   const { uiStore, authStore } = useContext(StoreContext)
@@ -29,7 +28,6 @@ const MainPage = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-        <Link to="/auth/sign-in"><h1>LogIn</h1></Link>
         <h1>{authStore.userEmail}</h1>
 
         <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex, lang]}>
