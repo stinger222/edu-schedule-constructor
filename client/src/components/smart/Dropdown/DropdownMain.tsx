@@ -10,7 +10,7 @@ import { StoreContext } from "../../.."
 
 const DropdownMain = () => {
   const { t } = useTranslation()
-  const { uiStore } = useContext(StoreContext)
+  const { uiStore, authStore } = useContext(StoreContext)
 
   return (
     <div className="dropdown-content">
@@ -37,6 +37,13 @@ const DropdownMain = () => {
       <div className="section-divider"></div>
 
       <Button onClick={() => uiStore.activeDropdownMenu = "settings"}> {t("dropdown.main.settings")} </Button>
+      
+      <div className="section-divider"></div>
+
+      {authStore.userEmail
+        ? <Button onClick={authStore.signOut}>Sign Out</Button>
+        : <Link  to="/auth/sign-in"><Button>Sign In</Button></Link>
+      }
     </div>
   )
 }

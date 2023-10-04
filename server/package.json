@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch .env --watch index.js index.js",
+    "deocker-dev": "nodemon -L index.js",
     "json-server": "json-server --watch db.json --port 3003"
   },
   "dependencies": {

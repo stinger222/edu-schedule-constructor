@@ -69,3 +69,11 @@ export interface IAssembledSchedulesStore extends IStoreable {
   */
   dayIsEmptyOrUndefined(scheduleUid: string, dayIndex: number): boolean 
 }
+
+export interface IAuthStore  {
+  userEmail: string | null,
+  setUserEmail(e: string): void,
+  signOut(): void,
+  checkIfUserLoggedIn(): void
+
+}
