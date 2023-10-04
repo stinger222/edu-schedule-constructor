@@ -3,3 +3,4 @@ Dockerfile
 .dockerignore
 npm-debug.log
 build
+.env

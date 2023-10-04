@@ -4,3 +4,9 @@ declare module "styled-components" {
     type: ThemeEnum
   }
 }
+
+declare global {
+  interface Window {
+    google: any;
+  }
+}
