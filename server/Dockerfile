@@ -8,9 +8,9 @@ COPY package.json .
 COPY package-lock.json .
 
 RUN npm install --silent
-
+RUN npm install -g nodemon
 COPY . .
 
 EXPOSE 3001
 
-CMD ["node", "index.js"]
+CMD ["npm", "run", "dev"]
