@@ -71,9 +71,8 @@ export interface IAssembledSchedulesStore extends IStoreable {
 }
 
 export interface IAuthStore  {
-  userEmail: string | null,
-  setUserEmail(e: string): void,
+  isSignedIn: boolean,
+  setSignedIn(isSignedIn: boolean): void,
   signOut(): void,
-  checkIfUserLoggedIn(): void
-
+  validateSession(): void
 }
