@@ -28,7 +28,7 @@ const MainPage = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-        <h1>{authStore.userEmail}</h1>
+        <h1>signed in: {authStore.isSignedIn.toString()}</h1>
 
         <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex, lang]}>
             <ScheduleItemsList />

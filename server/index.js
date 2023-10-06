@@ -64,22 +64,17 @@ app.post("/auth/sign-in", async (req,  res) => {
   }
 })
 
-app.get("/auth/get-session", async (req, res) => {
+app.get("/auth/validate-session", async (req, res) => {
   const session_id = req.cookies.session_id
-
-  if (!session_id) {
-    res.status(401).end()
-    return
-  }
+  
+  if (!session_id) return res.status(401)
 
   const targetSession = (await SessionModel.findOne({session_id}))?.toJSON()
-  console.log("target session:\n", targetSession)
-  
+
   if (!targetSession) {
     res.clearCookie("session_id")
-    res.status(401).end()
-    return
+    return res.status(401)
   }
 
-  res.status(200).json({email: targetSession.email})
+  return res.status(200).json({isSessionValid: true}).end()
 })

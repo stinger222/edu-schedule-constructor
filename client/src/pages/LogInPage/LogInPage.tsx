@@ -8,21 +8,23 @@ const LogInPage = () => {
   const { authStore } = useContext(StoreContext)
   const navigate = useNavigate()
 
-  const handleLogin = async (result: any) => {
-    const email: string = jwtDecode<any>(result.credential).email
+  const handleLogin = async (result: any, isFake: boolean = false) => {
+    const email: string = isFake ? result : jwtDecode<any>(result.credential).email
+    
     console.log("Decoded after login email: ", email)
     
     // const email: string = result.credential.email
     console.log("Trying to create session...")
 
     try {
+      // todo: move all api calls to DAL or something
       const data = await ky.post("http://localhost:3001/auth/sign-in", {
         json: { email },
         credentials: "include"
       }).json() as {email: string}
       
       console.log("Session successfully created! User singned-in!")
-      authStore.setUserEmail(data.email)
+      authStore.setSignedIn(true)
       navigate("/")
     } catch(err) {
       console.error("Can't create session.\n", err.message)
@@ -40,13 +42,9 @@ const LogInPage = () => {
 
   return (
     <div>
-      <div className="googleSignIn">123</div>
+      <div className="googleSignIn"></div>
       <button onClick={() => {
-        handleLogin({
-          credential: {
-            email: "someFakeEmail@gmail.dick"
-          }
-        })
+        handleLogin("someFakeEmail@gmail.dick", true)
       }}>FAKE LOGIN:</button>
     </div>
   )

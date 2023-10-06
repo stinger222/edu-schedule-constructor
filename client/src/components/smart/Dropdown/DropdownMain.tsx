@@ -40,8 +40,8 @@ const DropdownMain = () => {
       
       <div className="section-divider"></div>
 
-      {authStore.userEmail
-        ? <Button onClick={authStore.signOut}>Sign Out</Button>
+      {authStore.isSignedIn
+        ? <Button onClick={() => authStore.signOut()}>Sign Out</Button>
         : <Link  to="/auth/sign-in"><Button>Sign In</Button></Link>
       }
     </div>

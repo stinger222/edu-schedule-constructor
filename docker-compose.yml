@@ -25,6 +25,7 @@ services:
     build: ./server
     image: "express-backend-image"
     container_name: "express-backend-container"
+    restart: always
     ports:
       - "3001:3001"
     depends_on:
@@ -36,7 +37,6 @@ services:
       - server_node_modules:/app/server/node_modules:delegated
     env_file:
       - ./server/.env
-    restart: always
 
   database:
     image: mongo:latest

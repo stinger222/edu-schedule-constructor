@@ -4,27 +4,28 @@ import { Cookies } from "react-cookie"
 import { IAuthStore } from "../types/store"
 
 class AuthStore implements IAuthStore {
-  userEmail: string | null = null
+  isSignedIn: boolean = false
 
 	constructor() {
 		makeAutoObservable(this)
-    this.checkIfUserLoggedIn()
+    this.validateSession()
 	}
 
-  setUserEmail(email: string) {
-    this.userEmail = email
+  setSignedIn(isSignedIn: boolean) {
+    this.isSignedIn = isSignedIn
   }
 
-  async checkIfUserLoggedIn() {
+  async validateSession() {
     console.groupCollapsed("Trying to sign-in using cookie:")
     console.log("Trying sign-in user using stored session id...")
 
     try {
-      const data = await ky.get("http://localhost:3001/auth/get-session", {
+      // todo: move all api calls to DAL or something
+      const data = await ky.get("http://localhost:3001/auth/validate-session", {
         credentials: "include"
-      }).json() as {email: string}
-
-      this.setUserEmail(data.email)
+      }).json() as {isSessionValid: boolean}
+      
+      this.setSignedIn(data.isSessionValid)
       console.log("User successfully signed-in using stored session id!")
       console.groupEnd()
       
@@ -38,8 +39,8 @@ class AuthStore implements IAuthStore {
     const cookies = new Cookies()
     cookies.remove("session_id")
 
-    this.userEmail = null
-    document.location = "/"
+    this.setSignedIn(false)
+    document.location.reload()
   }
 }
 
