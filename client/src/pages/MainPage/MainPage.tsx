@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { observer } from "mobx-react"
 import { ErrorBoundary } from "react-error-boundary"
 
@@ -10,6 +10,7 @@ import ScheduleItemsList from "../../components/wrappers/ScheduleItemsList/Sched
 
 import i18n from "../../core/configs/i18next"
 import { StyledMainPage } from "./MainPage.styled"
+import ky from "ky"
 
 const MainPage = () => {
   const { uiStore, authStore } = useContext(StoreContext)
@@ -19,6 +20,22 @@ const MainPage = () => {
   i18n.on("languageChanged", (newLng: string) => {
     setLang(newLng)
   })
+  
+  const [me, setMe] = useState<any>()
+
+   useEffect(() => {
+    (async () => {
+      try {
+        const data = await ky.get("http://localhost:3001/users/me", {
+          credentials: "include"
+        }).json()
+        setMe(data)
+        return data
+      } catch(err) {
+        return
+      }
+    })()
+   }, [])
 
 	return (
 		<StyledMainPage>
@@ -29,6 +46,7 @@ const MainPage = () => {
 				</Header>
 
         <h1>signed in: {authStore.isSignedIn.toString()}</h1>
+        <pre>{JSON.stringify(me, null, 2)}</pre>
 
         <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex, lang]}>
             <ScheduleItemsList />
