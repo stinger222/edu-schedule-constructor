@@ -35,6 +35,8 @@ services:
     volumes:
       - ./server:/app/server:cached
       - server_node_modules:/app/server/node_modules:delegated
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     env_file:
       - ./server/.env
 
