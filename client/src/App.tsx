@@ -17,6 +17,7 @@ import ClassSchedulesPage from "./pages/ClassSchedulesPage/ClassSchedulesPage"
 import ClassesPage from "./pages/ClassesPage/ClassesPage"
 import MainPage from "./pages/MainPage/MainPage"
 import LogInPage from "./pages/LogInPage/LogInPage"
+import DebugPage from "./pages/DebugPage/DebugPage"
 
 
 const App = () => {
@@ -30,6 +31,8 @@ const App = () => {
         <Route path="/assembled" element={<AssembledSchedulesPage />} />
         <Route path="/classes" element={<ClassesPage />} />
         <Route path="/class-schedules" element={<ClassSchedulesPage />} />
+        <Route path="/debug" element={<DebugPage />} />
+
 
         <Route path="/add">
           <Route path="assembled" element={<AddAssembledSchedulePage />} />
@@ -40,6 +43,7 @@ const App = () => {
         <Route path="/auth">
           <Route path="sign-in" element={<LogInPage />} />
         </Route>
+        
       </Routes>
       <GlobalStyles />
     </ThemeProvider>
