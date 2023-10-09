@@ -16,7 +16,7 @@ const EXPRESS_PORT = process.env.BACKEND_PORT
 const SessionSchema = new mongoose.Schema({
   session_id: String,
   email: String,
-  // todo: expiration_date  
+  // todo: expiration_date
 })
 const SessionModel = mongoose.model("sessions", SessionSchema)
 
@@ -139,11 +139,11 @@ app.post("/auth/sign-in", async (req: Request,  res: Response) => {
   } as IUser)
 })
 
-app.get("/auth/validate-session", withAuth, async (req: Request, res: Response, ) => {
+app.get("/auth/validate-session", withAuth, async (req: Request, res: Response) => {
   return res.status(200).json({isSessionValid: true})
 })
 
-app.get("/users/me", withAuth, async (req, res) => {
+app.get("/users/me", withAuth, async (req: Request, res: Response) => {
   // TODO: there is no way this user can be null, so if it IS - this is too should be logged and inspected
   const targetUser = await UserModel.findOne({
     email: res.locals.targetSession.email
@@ -152,6 +152,78 @@ app.get("/users/me", withAuth, async (req, res) => {
   return res.status(200).json(targetUser.toJSON())
 })
 
-app.post("users/me/classes/:id", async (req, res) => {
-  
+//TODO: body thing
+app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response) => {
+  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
+  try {
+    await UserModel.findOneAndUpdate(
+      { email: res.locals.targetSession.email, "classes.uid": req.params.uid },
+      {
+        $set: {
+          "classes.$": {
+            title: req.body.title,
+            teacher: req.body.teacher,
+            cabinet: req.body.cabinet,
+            uid: req.params.uid
+          }
+        }
+      },
+      { new: true }
+    )
+  } catch(err) {
+    console.log("============ EEERROOR ==============\n", err.message)
+  }
+
+  res.status(200).json({message: "Class successfully updated!"})
+})
+
+app.post("/users/me/classes", withAuth, async (req: Request, res: Response) => {
+  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
+  try {
+    const targetUser = await UserModel.findOne({email: res.locals.targetSession.email})
+    
+    targetUser.classes.push({
+      title: req.body.title, 
+      teacher: req.body.teacher,
+      cabinet: req.body.cabinet,
+      uid: req.body.uid
+    })
+
+    await targetUser.save()
+  } catch(err) {
+    console.log("============ EEERROOR ==============\n", err.message)
+  }
+
+  res.status(200).json({message: "Class successfully added!"})
+})
+
+// this is just a debug endpoint that will not present in prod version of the app 
+app.delete("/users/me/delete-all-classes", withAuth, async (req: Request, res: Response) => {
+  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
+  try {
+    const targetUser = await UserModel.findOne({email: res.locals.targetSession.email})
+    
+    targetUser.classes = []
+
+    await targetUser.save()
+  } catch(err) {
+    console.log("============ EEERROOR ==============\n", err.message)
+  }
+
+  res.status(200).json({message: "All classes successfully deleted!"})
+})
+
+app.delete("/users/me/classes/:uid", withAuth, async (req: Request, res: Response) => {
+  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
+  try {
+    const targetUser = await UserModel.findOne({email: res.locals.targetSession.email})
+    
+    targetUser.classes = targetUser.classes.filter(c => c.uid !== req.params.uid)
+
+    await targetUser.save()
+  } catch(err) {
+    console.log("============ EEERROOR ==============\n", err.message)
+  }
+
+  res.status(200).json({message: `Class with id ${req.params.uid} successfully deleted!`})
 })
