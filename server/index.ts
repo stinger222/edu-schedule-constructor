@@ -1,9 +1,13 @@
-
 import cookieParser from "cookie-parser"
-import mongoose, { InferSchemaType }from "mongoose"
-import express, { Express, NextFunction, Request, Response } from "express"
-const cors = require("cors")
 import { config } from "dotenv"
+import express, { Express, NextFunction, Request, Response } from "express"
+import mongoose, { InferSchemaType } from "mongoose"
+import CustomError from "./src/errors/CustomError"
+import withAuth from "./src/middlewares/withAuth"
+import UserModel, { IUser } from "./src/models/UserModel"
+import SessionModel from "./src/models/SessionModel"
+import DatabaseError from "./src/errors/DatabaseError"
+const cors = require("cors")
 config()
 
 const app: Express = express()
@@ -13,99 +17,21 @@ app.use(cors({credentials: true, origin: "http://localhost:3000"}))
 
 const EXPRESS_PORT = process.env.BACKEND_PORT
 
-const SessionSchema = new mongoose.Schema({
-  session_id: String,
-  email: String,
-  // todo: expiration_date
-})
-const SessionModel = mongoose.model("sessions", SessionSchema)
-
-const UserSchema = new mongoose.Schema({
-  email: String,
-  classes: [{
-    title: String,
-    teacher: String,
-    cabinet: String,
-    uid: String
-  }],
-  classSchedules: [{
-    name: String,
-    uid: String,
-    classes: [{
-      start: String,
-      end: String
-    }]
-  }],
-  assembledSchedules: [{
-    uid: String,
-    name: String,
-    days: [ {
-      classScheduleId: String,
-      classIds: [String]
-    }]
-  }]
-})
-
-type IUser = InferSchemaType<typeof UserSchema>
-const UserModel = mongoose.model<IUser>("users", UserSchema)
-
-
 app.listen(EXPRESS_PORT, () => {
   mongoose.connect(`mongodb://database/custom_schedule_db`)
   console.log(`Server started on port ${EXPRESS_PORT}!!`)
 })
 
-/**
- * This middleware will check if "session_id" cookie attached to the request is there and not expired
- * 
- * @returns if session is valid, then `res.locals` will contain session object
- */
-const withAuth = async (req: Request, res: Response, next: NextFunction) => {
-  const session_id = req.cookies.session_id
-  
-  if (!session_id) {
-    res.status(401).json({message: "Not Authorized"})
-    return next(new Error("Not Authorized"))
-  }
-
-  const targetSession = (await SessionModel.findOne({session_id}))
-
-  if (!targetSession) {
-    res.clearCookie("session_id")
-    res.status(401).json({message: "Not Authorized"})
-    return next(new Error("Not Authorized"))
-  }
-
-  res.locals.targetSession = targetSession.toJSON()
-
-  return next()
-}
-
 app.get("/", async (req: Request, res: Response) => {
-  res.json({m: '122'})
-
-  // await SessionModel.create({
-  //   email: "test123", 
-  //   session_id: "12dssdgf34"+Math.random() 
-  // })
-
-  // const x = await SessionModel.find()
-  // await UserModel.create({
-  //   classSchedules: [{}]
-  // } as IUser)
-
-  // const x = await UserModel.find()
-
-  // res.json(x.map(i => i.toJSON()))
+  res.json({message: "Hi there!"})
 })
 
-app.post("/auth/sign-in", async (req: Request,  res: Response) => {
+app.post("/auth/sign-in", async (req: Request,  res: Response, next: NextFunction) => {
   console.log("======= NEW LOGIN =======\n", req.body)
   
-  // clear session_id cookie in case if user already signed-in
   res.clearCookie("session_id")
 
-  const newSessionId = Math.random().toString()
+  const newSessionId = Math.random().toString() // temp, obviously
 
   try {
     await SessionModel.create({
@@ -115,16 +41,12 @@ app.post("/auth/sign-in", async (req: Request,  res: Response) => {
     
     res.cookie("session_id", newSessionId)
     
-    res.status(200).json({
-      email: req.body.email
-    })
+    res.status(200).json({message: "User signed in. Session created successfully!"})
   } catch (err) {
-    res.status(500).json({
-      message: "Can't create new session due to internal server error."
-    })
+    next(new DatabaseError("Can't create new session due to internal server error."))
   }
 
-  // ======= create user in db if he doesn't exist yet =======
+  // ======= create user in db if he doesn't exist yet: =======
 
   const user: IUser | null = await UserModel.findOne({email: req.body.email})
 
@@ -152,9 +74,8 @@ app.get("/users/me", withAuth, async (req: Request, res: Response) => {
   return res.status(200).json(targetUser.toJSON())
 })
 
-//TODO: body thing
-app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response) => {
-  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
+app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
+  // TODO: again, if this user will be null, it means I fucked up SOOO badly
   try {
     await UserModel.findOneAndUpdate(
       { email: res.locals.targetSession.email, "classes.uid": req.params.uid },
@@ -171,13 +92,13 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response) 
       { new: true }
     )
   } catch(err) {
-    console.log("============ EEERROOR ==============\n", err.message)
+    next(new DatabaseError("Database call to edit user's classes failed due to some internal server error."))
   }
 
   res.status(200).json({message: "Class successfully updated!"})
 })
 
-app.post("/users/me/classes", withAuth, async (req: Request, res: Response) => {
+app.post("/users/me/classes", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
   try {
     const targetUser = await UserModel.findOne({email: res.locals.targetSession.email})
@@ -191,14 +112,14 @@ app.post("/users/me/classes", withAuth, async (req: Request, res: Response) => {
 
     await targetUser.save()
   } catch(err) {
-    console.log("============ EEERROOR ==============\n", err.message)
+    next(new DatabaseError("Database call to add new class failed due to some internal server error."))
   }
 
   res.status(200).json({message: "Class successfully added!"})
 })
 
 // this is just a debug endpoint that will not present in prod version of the app 
-app.delete("/users/me/delete-all-classes", withAuth, async (req: Request, res: Response) => {
+app.delete("/users/me/delete-all-classes", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
   try {
     const targetUser = await UserModel.findOne({email: res.locals.targetSession.email})
@@ -207,13 +128,13 @@ app.delete("/users/me/delete-all-classes", withAuth, async (req: Request, res: R
 
     await targetUser.save()
   } catch(err) {
-    console.log("============ EEERROOR ==============\n", err.message)
+    next(new DatabaseError("Database call to delete all classes failed due to some internal server error."))
   }
 
   res.status(200).json({message: "All classes successfully deleted!"})
 })
 
-app.delete("/users/me/classes/:uid", withAuth, async (req: Request, res: Response) => {
+app.delete("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
   try {
     const targetUser = await UserModel.findOne({email: res.locals.targetSession.email})
@@ -222,8 +143,13 @@ app.delete("/users/me/classes/:uid", withAuth, async (req: Request, res: Respons
 
     await targetUser.save()
   } catch(err) {
-    console.log("============ EEERROOR ==============\n", err.message)
+    next(new DatabaseError("Database call to delete class failed due to some internal server error."))
   }
 
   res.status(200).json({message: `Class with id ${req.params.uid} successfully deleted!`})
+})
+
+app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
+  console.error("============ ERROR ============\n", err.message, "\n===============================")
+  res.status(err.statusCode).json({message: err.message})
 })
