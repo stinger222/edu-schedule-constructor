@@ -13,8 +13,8 @@ const DebugPage = () => {
   const cookies = new Cookies()
 
   const inputStyles = {
-    border: "1px solid black",
-    borderRadius: "5px",
+    border: "0.01em solid black",
+    borderRadius: "0.35em",
     fontSize: "1.6em",
     width: "5em",
     marginLeft: "0.5em",
@@ -107,33 +107,39 @@ const DebugPage = () => {
       </Header>
       
       <h1>isAuthorized: {authStore.isSignedIn.toString()}</h1>
-
-      <br/>
-      <br/>
+      <br/><br/>
 
       <h1>session_id cookie: {cookies.get("session_id")?.toString()}</h1>
-
-      <br/>
-      <br/>
+      <br/><br/>
 
       <h1>backend://users/me:</h1>
       <pre>{JSON.stringify(me, null, 2)}</pre>
+      <br/><br/>
       
-      <br/>
-      <br/>
-
-      <Button onClick={addClass}>Add new class with random uid</Button>
-      <br/>
-      <br/>
-      <Button onClick={() => updateClassWithId()}>Update class with passed uid</Button>
-      <input placeholder="uid:" style={inputStyles} ref={updateClassWithIdInputRef}/>
-      <br/>
-      <br/>
-      <Button onClick={deleteAllClasses}>Delete all classes</Button>
-      <br/>
-      <br/>
-      <Button onClick={() => deleteClassWithId()}>Delete class with passed uid</Button>
-      <input placeholder="uid:" style={inputStyles} ref={deleteClassWithIdInputRef}/>
+      <div style={{fontSize: "0.5em", display: "flex", justifyContent: "space-between"}}>
+        <div>
+          <Button onClick={addClass}>Add new class with random uid</Button>
+          <br/><br/>
+          <Button onClick={() => updateClassWithId()}>Update class with passed uid</Button>
+          <input placeholder="uid:" style={inputStyles} ref={updateClassWithIdInputRef}/>
+          <br/><br/>
+          <Button onClick={deleteAllClasses}>Delete all classes</Button>
+          <br/><br/>
+          <Button onClick={() => deleteClassWithId()}>Delete class with passed uid</Button>
+          <input placeholder="uid:" style={inputStyles} ref={deleteClassWithIdInputRef}/>
+        </div>
+        {/* <div>
+          <Button onClick={addClass}>Add new class with random uid</Button>
+          <br/><br/>
+          <Button onClick={() => updateClassWithId()}>Update class with passed uid</Button>
+          <input placeholder="uid:" style={inputStyles} ref={updateClassWithIdInputRef}/>
+          <br/><br/>
+          <Button onClick={deleteAllClasses}>Delete all classes</Button>
+          <br/><br/>
+          <Button onClick={() => deleteClassWithId()}>Delete class with passed uid</Button>
+          <input placeholder="uid:" style={inputStyles} ref={deleteClassWithIdInputRef}/>
+        </div> */}
+      </div>
       
     </Container>
   )

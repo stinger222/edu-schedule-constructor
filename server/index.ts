@@ -1,14 +1,18 @@
-import cookieParser from "cookie-parser"
-import { config } from "dotenv"
 import express, { Express, NextFunction, Request, Response } from "express"
-import mongoose, { InferSchemaType } from "mongoose"
+import cookieParser from "cookie-parser"
+import mongoose from "mongoose"
+import cors from "cors"
+import { config } from "dotenv"
+config()
+
+import DatabaseError from "./src/errors/DatabaseError"
 import CustomError from "./src/errors/CustomError"
 import withAuth from "./src/middlewares/withAuth"
-import UserModel, { IUser } from "./src/models/UserModel"
 import SessionModel from "./src/models/SessionModel"
-import DatabaseError from "./src/errors/DatabaseError"
-const cors = require("cors")
-config()
+import UserModel, { IUser } from "./src/models/UserModel"
+import UnknownError from "./src/errors/UnknownError"
+import withUser from "./src/middlewares/withUser"
+
 
 const app: Express = express()
 app.use(express.json())
@@ -25,6 +29,8 @@ app.listen(EXPRESS_PORT, () => {
 app.get("/", async (req: Request, res: Response) => {
   res.json({message: "Hi there!"})
 })
+
+// ======== Auth-related ========
 
 app.post("/auth/sign-in", async (req: Request,  res: Response, next: NextFunction) => {
   console.log("======= NEW LOGIN =======\n", req.body)
@@ -74,6 +80,28 @@ app.get("/users/me", withAuth, async (req: Request, res: Response) => {
   return res.status(200).json(targetUser.toJSON())
 })
 
+// ======== Classes ========
+
+app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
+  try {
+    const targetUser = res.locals.targetUser
+
+    targetUser.classes.push({
+      title: req.body.title, 
+      teacher: req.body.teacher,
+      cabinet: req.body.cabinet,
+      uid: req.body.uid
+    })
+
+    await targetUser.save()
+  } catch(err) {
+    next(new DatabaseError("Database call to add new class failed due to some internal server error."))
+  }
+
+  res.status(200).json({message: "Class successfully added!"})
+})
+
 app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   // TODO: again, if this user will be null, it means I fucked up SOOO badly
   try {
@@ -98,46 +126,10 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
   res.status(200).json({message: "Class successfully updated!"})
 })
 
-app.post("/users/me/classes", withAuth, async (req: Request, res: Response, next: NextFunction) => {
+app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
   try {
-    const targetUser = await UserModel.findOne({email: res.locals.targetSession.email})
-    
-    targetUser.classes.push({
-      title: req.body.title, 
-      teacher: req.body.teacher,
-      cabinet: req.body.cabinet,
-      uid: req.body.uid
-    })
-
-    await targetUser.save()
-  } catch(err) {
-    next(new DatabaseError("Database call to add new class failed due to some internal server error."))
-  }
-
-  res.status(200).json({message: "Class successfully added!"})
-})
-
-// this is just a debug endpoint that will not present in prod version of the app 
-app.delete("/users/me/delete-all-classes", withAuth, async (req: Request, res: Response, next: NextFunction) => {
-  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
-  try {
-    const targetUser = await UserModel.findOne({email: res.locals.targetSession.email})
-    
-    targetUser.classes = []
-
-    await targetUser.save()
-  } catch(err) {
-    next(new DatabaseError("Database call to delete all classes failed due to some internal server error."))
-  }
-
-  res.status(200).json({message: "All classes successfully deleted!"})
-})
-
-app.delete("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
-  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
-  try {
-    const targetUser = await UserModel.findOne({email: res.locals.targetSession.email})
+    const targetUser = res.locals.targetUser
     
     targetUser.classes = targetUser.classes.filter(c => c.uid !== req.params.uid)
 
@@ -149,7 +141,47 @@ app.delete("/users/me/classes/:uid", withAuth, async (req: Request, res: Respons
   res.status(200).json({message: `Class with id ${req.params.uid} successfully deleted!`})
 })
 
+// this is just a debug endpoint that will not present in prod version of the app 
+app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
+  try {
+    const targetUser = res.locals.targetUser
+    
+    targetUser.classes = []
+
+    await targetUser.save()
+  } catch(err) {
+    next(new DatabaseError("Database call to delete all classes failed due to some internal server error."))
+  }
+
+  res.status(200).json({message: "All classes successfully deleted!"})
+})
+
+// ======== Class Schedules ========
+
+// app.post("/users/me/class-schedules", withAuth, async (req: Request, res: Response, next: NextFunction) => {
+//   res.json({message: "not implemented yet..."})
+// })
+
+// app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
+//   res.json({message: "not implemented yet..."})
+// })
+
+// app.delete("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
+//   res.json({message: "not implemented yet..."})
+// })
+
+// app.delete("/users/me/delete-all-class-schedules", withAuth, async (req: Request, res: Response, next: NextFunction) => {
+//   res.json({message: "not implemented yet..."})
+// })
+
+// Error Handling Middleware
 app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
+  if (Object.getPrototypeOf(err) === UnknownError.prototype) {
+    console.error("============ UNKNOWN ERROR ============\n", err.message, "\n===============================")
+    return res.status(err.statusCode).json({message: "Internal server error."}).end()
+  }
+
   console.error("============ ERROR ============\n", err.message, "\n===============================")
   res.status(err.statusCode).json({message: err.message})
 })
