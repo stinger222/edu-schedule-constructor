@@ -190,8 +190,8 @@ app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Re
         $set: {
           "classSchedules.$": {
             name: req.body.name,
-            uid: req.params.uid,
-            classes: req.body.classes
+            classes: req.body.classes,
+            uid: req.params.uid
           }
         }
       },
@@ -241,6 +241,87 @@ app.delete("/users/me/delete-all-class-schedules", withAuth, withUser, async (re
   }
 
   res.status(200).json({message: "All class schedules successfully deleted!"})
+})
+
+// ======== Assembled Schedules ========
+
+app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const targetUser: IUserDocumnet = res.locals.targetUser
+
+    targetUser.assembledSchedules.push({
+      uid: req.body.uid,
+      name: req.body.name,
+      days: req.body.days
+    })
+
+    await targetUser.save()
+  } catch(err) {
+    return next(new DatabaseError("Database call to add new assembled schedule failed due to some internal server error."))
+  }
+
+  res.status(200).json({message: "Assembled schedule successfully added!"})
+})
+
+app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await UserModel.findOneAndUpdate(
+      { email: res.locals.targetSession.email, "assembledSchedules.uid": req.params.uid },
+      {
+        $set: {
+          "assembledSchedules.$": {
+            uid: req.params.uid,
+            name: req.body.name,
+            days: req.body.days
+          }
+        }
+      },
+      { new: true }
+    )
+
+    if (!result) {
+      return next(new DatabaseError(`Can't update assembled schedule with id ${req.params.uid}, most likely because it's not exist`))
+    }
+    
+  } catch(err) {
+    return next(new DatabaseError("Database call to edit user's assembled schedule failed due to some internal server error."))
+  }
+
+  res.status(200).json({message: "Assembled schedule successfully updated!"})
+})
+
+app.delete("/users/me/assembled-schedules/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const targetUser: IUserDocumnet = res.locals.targetUser
+    
+    const initLength = targetUser.assembledSchedules.length
+    targetUser.assembledSchedules = targetUser.assembledSchedules.filter(c => c.uid !== req.params.uid)
+    
+    if (targetUser.assembledSchedules.length === initLength) {
+      return next(new DatabaseError(`Can't delete assembled schedule with id ${req.params.uid}, most likely because it's not exist`))
+    }
+
+    await targetUser.save()
+  } catch(err) {
+    return next(new DatabaseError("Database call to delete assembled schedule failed due to some internal server error."))
+  }
+
+  res.status(200).json({message: `Assembled schedule with id ${req.params.uid} successfully deleted!`})
+})
+  
+// this is just a debug endpoint that will not present in prod version of the app 
+app.delete("/users/me/delete-all-assembled-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const targetUser: IUserDocumnet = res.locals.targetUser
+    
+    targetUser.assembledSchedules = []
+
+    await targetUser.save()
+  } catch(err) {
+    return next(new DatabaseError("Database call to delete all assembled schedles failed due to some internal server error."))
+  }
+
+  res.status(200).json({message: "All assembled schedles successfully deleted!"})
 })
 
 // Error Handling Middleware
