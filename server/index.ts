@@ -9,10 +9,9 @@ import DatabaseError from "./src/errors/DatabaseError"
 import CustomError from "./src/errors/CustomError"
 import withAuth from "./src/middlewares/withAuth"
 import SessionModel from "./src/models/SessionModel"
-import UserModel, { IUser } from "./src/models/UserModel"
+import UserModel, { IUserDocumnet, IUser } from "./src/models/UserModel"
 import UnknownError from "./src/errors/UnknownError"
 import withUser from "./src/middlewares/withUser"
-
 
 const app: Express = express()
 app.use(express.json())
@@ -49,22 +48,22 @@ app.post("/auth/sign-in", async (req: Request,  res: Response, next: NextFunctio
     
     res.status(200).json({message: "User signed in. Session created successfully!"})
   } catch (err) {
-    next(new DatabaseError("Can't create new session due to internal server error."))
+    return next(new DatabaseError("Can't create new session due to internal server error."))
   }
 
   // ======= create user in db if he doesn't exist yet: =======
 
-  const user: IUser | null = await UserModel.findOne({email: req.body.email})
-
+  const user = await UserModel.findOne({email: req.body.email})
+  
   if (user) return
-
+  
   // TODO: if this will fail (somehow), then this is should defentetly be logged and inspected
   UserModel.create({
     email: req.body.email,
     classes: [],
     classSchedules: [],
     assembledSchedules: []
-  } as IUser)
+  })
 })
 
 app.get("/auth/validate-session", withAuth, async (req: Request, res: Response) => {
@@ -83,10 +82,9 @@ app.get("/users/me", withAuth, async (req: Request, res: Response) => {
 // ======== Classes ========
 
 app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
-  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
   try {
-    const targetUser = res.locals.targetUser
-
+    const targetUser: IUserDocumnet = res.locals.targetUser
+    
     targetUser.classes.push({
       title: req.body.title, 
       teacher: req.body.teacher,
@@ -96,16 +94,15 @@ app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Resp
 
     await targetUser.save()
   } catch(err) {
-    next(new DatabaseError("Database call to add new class failed due to some internal server error."))
+    return next(new DatabaseError("Database call to add new class failed due to some internal server error."))
   }
 
   res.status(200).json({message: "Class successfully added!"})
 })
 
 app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
-  // TODO: again, if this user will be null, it means I fucked up SOOO badly
   try {
-    await UserModel.findOneAndUpdate(
+    const result = await UserModel.findOneAndUpdate(
       { email: res.locals.targetSession.email, "classes.uid": req.params.uid },
       {
         $set: {
@@ -119,23 +116,32 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
       },
       { new: true }
     )
+
+    if (!result) {
+      return next(new DatabaseError(`Can't update class with id ${req.params.uid}, most likely because it's not exist`))
+    }
+
   } catch(err) {
-    next(new DatabaseError("Database call to edit user's classes failed due to some internal server error."))
+    return next(new DatabaseError("Database call to edit user's class failed due to some internal server error."))
   }
 
   res.status(200).json({message: "Class successfully updated!"})
 })
 
 app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
-  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
   try {
-    const targetUser = res.locals.targetUser
-    
+    const targetUser: IUserDocumnet = res.locals.targetUser
+
+    const initLength = targetUser.classes.length
     targetUser.classes = targetUser.classes.filter(c => c.uid !== req.params.uid)
+
+    if (targetUser.classes.length === initLength) {
+      return next(new DatabaseError(`Can't delete class with id ${req.params.uid}, most likely because it's not exist`))
+    }
 
     await targetUser.save()
   } catch(err) {
-    next(new DatabaseError("Database call to delete class failed due to some internal server error."))
+    return next(new DatabaseError("Database call to delete class failed due to some internal server error."))
   }
 
   res.status(200).json({message: `Class with id ${req.params.uid} successfully deleted!`})
@@ -143,15 +149,14 @@ app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, re
 
 // this is just a debug endpoint that will not present in prod version of the app 
 app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
-  // TODO: again: if this user will be null, it means I fucked up SOOO badly (should be logged)
   try {
-    const targetUser = res.locals.targetUser
+    const targetUser: IUserDocumnet = res.locals.targetUser
     
     targetUser.classes = []
 
     await targetUser.save()
   } catch(err) {
-    next(new DatabaseError("Database call to delete all classes failed due to some internal server error."))
+    return next(new DatabaseError("Database call to delete all classes failed due to some internal server error."))
   }
 
   res.status(200).json({message: "All classes successfully deleted!"})
@@ -159,21 +164,84 @@ app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Reque
 
 // ======== Class Schedules ========
 
-// app.post("/users/me/class-schedules", withAuth, async (req: Request, res: Response, next: NextFunction) => {
-//   res.json({message: "not implemented yet..."})
-// })
+app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const targetUser: IUserDocumnet = res.locals.targetUser
 
-// app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
-//   res.json({message: "not implemented yet..."})
-// })
+    targetUser.classSchedules.push({
+      classes: req.body.classes,
+      name: req.body.name,
+      uid: req.body.uid
+    })
 
-// app.delete("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
-//   res.json({message: "not implemented yet..."})
-// })
+    await targetUser.save()
+  } catch(err) {
+    return next(new DatabaseError("Database call to add new class schedule failed due to some internal server error."))
+  }
 
-// app.delete("/users/me/delete-all-class-schedules", withAuth, async (req: Request, res: Response, next: NextFunction) => {
-//   res.json({message: "not implemented yet..."})
-// })
+  res.status(200).json({message: "Class schedule successfully added!"})
+})
+
+app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await UserModel.findOneAndUpdate(
+      { email: res.locals.targetSession.email, "classSchedules.uid": req.params.uid },
+      {
+        $set: {
+          "classSchedules.$": {
+            name: req.body.name,
+            uid: req.params.uid,
+            classes: req.body.classes
+          }
+        }
+      },
+      { new: true }
+    )
+
+    if (!result) {
+      return next(new DatabaseError(`Can't update class schedule with id ${req.params.uid}, most likely because it's not exist`))
+    }
+    
+  } catch(err) {
+    return next(new DatabaseError("Database call to edit user's class schedule failed due to some internal server error."))
+  }
+
+  res.status(200).json({message: "Class schedule successfully updated!"})
+})
+
+app.delete("/users/me/class-schedules/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const targetUser: IUserDocumnet = res.locals.targetUser
+    
+    const initLength = targetUser.classSchedules.length
+    targetUser.classSchedules = targetUser.classSchedules.filter(c => c.uid !== req.params.uid)
+    
+    if (targetUser.classSchedules.length === initLength) {
+      return next(new DatabaseError(`Can't delete class schedule with id ${req.params.uid}, most likely because it's not exist`))
+    }
+
+    await targetUser.save()
+  } catch(err) {
+    return next(new DatabaseError("Database call to delete class schedule failed due to some internal server error."))
+  }
+
+  res.status(200).json({message: `Class schedule with id ${req.params.uid} successfully deleted!`})
+})
+  
+// this is just a debug endpoint that will not present in prod version of the app 
+app.delete("/users/me/delete-all-class-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const targetUser: IUserDocumnet = res.locals.targetUser
+    
+    targetUser.classSchedules = []
+
+    await targetUser.save()
+  } catch(err) {
+    return next(new DatabaseError("Database call to delete all class schedles failed due to some internal server error."))
+  }
+
+  res.status(200).json({message: "All class schedules successfully deleted!"})
+})
 
 // Error Handling Middleware
 app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
