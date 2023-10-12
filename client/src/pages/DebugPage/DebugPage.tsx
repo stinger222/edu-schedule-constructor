@@ -1,4 +1,3 @@
-import ky from "ky"
 import { observer } from "mobx-react"
 import { useState, useEffect, useContext, useRef } from "react"
 import { StoreContext } from "../.."
@@ -7,6 +6,7 @@ import Container from "../../components/containers/Container/Container"
 import { Cookies } from "react-cookie"
 import Button from "../../components/ui/Button/Button"
 import { IAssembledSchedule, IClassSchedule } from "../../core/types/types"
+import { api } from "../../api"
 
 const DebugPage = () => {
   const { authStore } = useContext(StoreContext)
@@ -31,9 +31,7 @@ const DebugPage = () => {
 
   const fetchMe = async () => {
     try {
-      const data = await ky.get("http://localhost:3001/users/me", {
-        credentials: "include"
-      }).json()
+      const data = await api.get("users/me").json()
       setMe(data)
       return data
     } catch(err) { return }
@@ -43,119 +41,119 @@ const DebugPage = () => {
   
   const addClass = async () => {
     try {
-      const data = await ky.post(`http://localhost:3001/users/me/classes`, {
-        credentials: "include",
-        body: JSON.stringify({
-          title: "(title) I was added using debug thing", 
-          teacher: "(teacher) I was added using debug thing",
-          cabinet: "(cabinet) I was added using debug thing",
-          uid: Math.random().toString()
-        }),
-        headers: {
-          "content-type": "application/json"
-        }
-      }).json()
+      const data = await api
+        .post(`users/me/classes`, {
+          json: {
+            title: "Name of the class here " + Math.random().toFixed(1),
+            teacher: "Some Teacher Name Here " + Math.random().toFixed(1),
+            cabinet: (Math.random() * 1000).toFixed(0) + "q",
+            uid: Math.random().toString()
+          }
+        })
+        .json()
 
       console.log("Trying to add new class. Result: ", data)
       fetchMe()
-    } catch(err) { return }
+    } catch (err) {
+      return
+    }
   }
 
   const addClassSchedule = async () => {
     try {
-      const data = await ky.post(`http://localhost:3001/users/me/class-schedules`, {
-        credentials: "include",
-        body: JSON.stringify({
-          name: "new class schedule name" + Math.random().toFixed(5),
-          classes: [
-            {start: `${+Math.random().toFixed(0)+1}:00`, end:`${+Math.random().toFixed(0)*2+2}:00`}
-          ],
-          uid: Math.random().toString()
-        } as IClassSchedule),
-        headers: {
-          "content-type": "application/json"
-        }
-      }).json()
+      const data = await api
+        .post(`users/me/class-schedules`, {
+          json: {
+            name: "New class schedule name" + Math.random().toFixed(5),
+            classes: [
+              { start: `${+Math.random().toFixed(0) + 1}:00`, end: `${+Math.random().toFixed(0) * 2 + 2}:00` }
+            ],
+            uid: Math.random().toString()
+          } as IClassSchedule
+        })
+        .json()
 
       console.log("Trying to add new class schedule. Result: ", data)
       fetchMe()
-    } catch(err) { return }
+    } catch (err) {
+      return
+    }
   }
 
   const addAssembledSchedule = async () => {
     try {
-      const data = await ky.post(`http://localhost:3001/users/me/assembled-schedules`, {
-        credentials: "include",
-        body: JSON.stringify({
-          name: "(new) some name",
-          days: [{
-            classIds: new Array(5).fill(0).map(i => Math.random().toFixed(3).toString()),
-            classScheduleId: Math.random().toFixed(3).toString()
-          }],
-          uid: Math.random().toString()
-        } as IAssembledSchedule),
-        headers: {
-          "content-type": "application/json"
-        }
-      }).json()
+      const data = await api
+        .post(`users/me/assembled-schedules`, {
+          json: {
+            name: "(new) some name",
+            days: [
+              {
+                classIds: new Array(5).fill(0).map((i) => Math.random().toFixed(3).toString()),
+                classScheduleId: Math.random().toFixed(3).toString()
+              }
+            ],
+            uid: Math.random().toString()
+          } as IAssembledSchedule
+        })
+        .json()
 
       console.log("Trying to add new class schedule. Result: ", data)
       fetchMe()
-    } catch(err) { return }
+    } catch (err) {
+      return
+    }
   }
 
   // ============= "Update" Requests =============
 
   const updateClassWithId = async () => {
     try {
-       await ky.put(`http://localhost:3001/users/me/classes/${updateClassWithIdInputRef.current.value}`, {
-        credentials: "include",
-        body: JSON.stringify({
-          title: "(updated title) " + Math.random(), 
-          teacher: "(updated teacher) " + Math.random(),
-          cabinet: "(updated cabinet) " + Math.random()
-        }),
-        headers: {
-          "content-type": "application/json"
-        }
-      }).json()
+      await api
+        .put(`users/me/classes/${updateClassWithIdInputRef.current.value}`, {
+          json: {
+            title: "Updated Name of the class " + Math.random().toFixed(1),
+            teacher: "Updated Teacher Name Here " + Math.random().toFixed(1),
+            cabinet: (Math.random() * 1000).toFixed(0) + "q"
+          }
+        })
+        .json()
       fetchMe()
-    } catch(err) { return }
+    } catch (err) {
+      return
+    }
   }
 
   const updateClassSchedulesWithId = async () => {
     try {
-      await ky.put(`http://localhost:3001/users/me/class-schedules/${updateClassScheduleWithIdInputRef.current.value}`, {
-       credentials: "include",
-       body: JSON.stringify({
-        name: "(updated) class schedule name " + Math.random().toFixed(5),
-        classes: [
-          {start: `${+Math.random().toFixed(0)+1}:00`, end:`${+Math.random().toFixed(0)*2+2}:00`}
-        ]
-      } as IClassSchedule),
-       headers: {
-         "content-type": "application/json"
-       }
-     }).json()
-     fetchMe()
-   } catch(err) { return }
+      await api
+        .put(`users/me/class-schedules/${updateClassScheduleWithIdInputRef.current.value}`, {
+          json: {
+            name: "(updated) class schedule name " + Math.random().toFixed(5),
+            classes: [
+              { start: `${+Math.random().toFixed(0) + 1}:00`, end: `${+Math.random().toFixed(0) * 2 + 2}:00` }
+            ]
+          } as IClassSchedule
+        })
+        .json()
+      fetchMe()
+    } catch (err) {
+      return
+    }
   }
 
   const updateAssembledSchedule = async () => {
     try {
-      await ky.put(`http://localhost:3001/users/me/assembled-schedules/${updateAssembledScheduleWithIdInputRef.current.value}`, {
-       credentials: "include",
-       body: JSON.stringify({
-        name: "(updated) some new name",
-        days: [{
-          classIds: new Array(5).fill(0).map(i => Math.random().toFixed(3).toString()),
-          classScheduleId: Math.random().toFixed(3).toString()
-        }]
-      } as IAssembledSchedule),
-       headers: {
-         "content-type": "application/json"
-       }
-     }).json()
+      await api
+        .put(`users/me/assembled-schedules/${updateAssembledScheduleWithIdInputRef.current.value}`, {
+          json: {
+            name: "(updated) some new name",
+            days: [{
+              classIds: new Array(5).fill(0).map(i => Math.random().toFixed(3).toString()),
+              classScheduleId: Math.random().toFixed(3).toString()
+            }]
+          } as IAssembledSchedule
+        })
+        .json()
      fetchMe()
    } catch(err) { return }
   }
@@ -164,9 +162,10 @@ const DebugPage = () => {
 
   const deleteClassWithId = async () => {
     try {
-      const data = await ky.delete(`http://localhost:3001/users/me/classes/${deleteClassWithIdInputRef.current.value}`, {
-        credentials: "include"
-      }).json()
+      const data = api
+        .delete(`users/me/classes/${deleteClassWithIdInputRef.current.value}`)
+        .json()
+
       console.log(`Trying to delete class with id:"${deleteClassWithIdInputRef.current.value}". Result: `, data)
       fetchMe()
       deleteClassWithIdInputRef.current.value = ""
@@ -175,9 +174,10 @@ const DebugPage = () => {
 
   const deleteClassScheduleWithId = async () => {
     try {
-      const data = await ky.delete(`http://localhost:3001/users/me/class-schedules/${deleteClassScheduleWithIdInputRef.current.value}`, {
-        credentials: "include"
-      }).json()
+      const data = await api
+        .delete(`users/me/class-schedules/${deleteClassScheduleWithIdInputRef.current.value}`)
+        .json()
+
       console.log(`Trying to delete class schedule with id:"${deleteClassScheduleWithIdInputRef.current.value}". Result: `, data)
       fetchMe()
       deleteClassScheduleWithIdInputRef.current.value = ""
@@ -186,9 +186,10 @@ const DebugPage = () => {
 
   const deleteAssembledScheduleWithId = async () => {
     try {
-      const data = await ky.delete(`http://localhost:3001/users/me/assembled-schedules/${deleteAssembledScheduleWithIdInputRef.current.value}`, {
-        credentials: "include"
-      }).json()
+      const data = await api
+        .delete(`users/me/assembled-schedules/${deleteAssembledScheduleWithIdInputRef.current.value}`)
+        .json()
+
       console.log(`Trying to delete assembled schedule with id:"${deleteAssembledScheduleWithIdInputRef.current.value}". Result: `, data)
       fetchMe()
       deleteAssembledScheduleWithIdInputRef.current.value = ""
@@ -199,9 +200,10 @@ const DebugPage = () => {
 
   const deleteAllClasses = async () => {
     try {
-      const data = await ky.delete(`http://localhost:3001/users/me/delete-all-classes`, {
-        credentials: "include"
-      }).json()
+      const data = await api.
+        delete(`users/me/delete-all-classes`)
+        .json()
+
       console.log("Trying to delete all classes. Result: ", data)
       fetchMe()
     } catch(err) { return }
@@ -209,9 +211,10 @@ const DebugPage = () => {
 
   const deleteAllClassSchedules = async () => {
     try {
-      const data = await ky.delete(`http://localhost:3001/users/me/delete-all-class-schedules`, {
-        credentials: "include"
-      }).json()
+      const data = await api
+        .delete(`users/me/delete-all-class-schedules`)
+        .json()
+
       console.log("Trying to delete all class schedules. Result: ", data)
       fetchMe()
     } catch(err) { return }
@@ -219,9 +222,10 @@ const DebugPage = () => {
 
   const deleteAllAssembledSchedules = async () => {
     try {
-      const data = await ky.delete(`http://localhost:3001/users/me/delete-all-assembled-schedules`, {
-        credentials: "include"
-      }).json()
+      const data = await api
+        .delete(`users/me/delete-all-assembled-schedules`)
+        .json()
+
       console.log("Trying to delete all assembled schedules. Result: ", data)
       fetchMe()
     } catch(err) { return }
