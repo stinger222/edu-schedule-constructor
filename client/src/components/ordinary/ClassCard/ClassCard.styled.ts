@@ -16,6 +16,10 @@ export const StyledClassCard = styled.div`
 
 	letter-spacing: -0.025em;
 
+  & > * {
+    user-select: none;
+  }
+
 	h1 {
 		display: -webkit-box;
 		margin-bottom: 1em;
@@ -56,5 +60,16 @@ export const StyledClassCard = styled.div`
 		flex-shrink: 0;
 		margin-left: 0.5em;
     word-spacing: -0.35em;
+    max-width: 8.2em;
+
+    display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
+		text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
+		text-overflow: ellipsis;
+    word-break: break-all;
+		overflow: hidden;
 	}
 `
