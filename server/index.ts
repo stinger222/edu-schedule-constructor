@@ -83,7 +83,9 @@ app.get("/users/me", withAuth, async (req: Request, res: Response) => {
 
 app.get("/users/me/classes", withAuth, withUser, async (req: Request, res: Response) => {
   const targetUser: IUserDocumnet = res.locals.targetUser
-  res.status(200).json({classes: targetUser.classes})
+  res.status(200).json({
+    classes: targetUser.classes
+  })
 })
 
 app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
@@ -103,7 +105,6 @@ app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Resp
     await targetUser.save()
 
     return res.status(200).json({
-      message: "Class successfully added!",
       classes: targetUser.classes
     })
   } catch(err) {
@@ -133,7 +134,6 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
     }
 
     return res.status(200).json({
-      message: "Class successfully updated!",
       classes: updatedUser.toJSON().classes
     })
 
@@ -156,7 +156,6 @@ app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, re
     await targetUser.save()
 
     return res.status(200).json({
-      message: `Class with id ${req.params.uid} successfully deleted!`,
       classes: targetUser.classes
     })
   } catch(err) {
