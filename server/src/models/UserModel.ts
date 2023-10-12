@@ -29,23 +29,28 @@ export interface IUserDocumnet extends mongoose.Document {
 const UserSchema = new mongoose.Schema({
   email: String,
   classes: [{
+    _id: false,
     title: String,
     teacher: String,
     cabinet: String,
     uid: String
   }],
   classSchedules: [{
+    _id: false,
     name: String,
     uid: String,
     classes: [{
+      _id: false,
       start: String,
       end: String
     }]
   }],
   assembledSchedules: [{
+    _id: false,
     uid: String,
     name: String,
-    days: [ {
+    days: [{
+      _id: false,
       classScheduleId: String,
       classIds: [String]
     }]
