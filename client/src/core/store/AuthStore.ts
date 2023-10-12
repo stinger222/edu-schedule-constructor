@@ -16,7 +16,6 @@ class AuthStore implements IAuthStore {
   }
 
   async validateSession() {
-    console.groupCollapsed("Trying to sign-in using cookie:")
     console.log("Trying sign-in user using stored session id...")
 
     try {
@@ -27,11 +26,8 @@ class AuthStore implements IAuthStore {
       
       this.setSignedIn(data.isSessionValid)
       console.log("User successfully signed-in using stored session id!")
-      console.groupEnd()
-      
     } catch(err) {
       console.warn("User not signed-in: session has expired or doesn't exist")
-      console.groupEnd()
     }
   }
 

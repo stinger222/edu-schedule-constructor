@@ -19,7 +19,6 @@ import MainPage from "./pages/MainPage/MainPage"
 import LogInPage from "./pages/LogInPage/LogInPage"
 import DebugPage from "./pages/DebugPage/DebugPage"
 
-
 const App = () => {
   const { uiStore } = useContext(StoreContext)
   const theme = uiStore.userSettings.theme === ThemeEnum.dark ? DarkTheme : LightTheme

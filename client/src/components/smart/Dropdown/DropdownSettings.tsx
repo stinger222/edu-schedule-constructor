@@ -46,7 +46,7 @@ const DropdownSettings = () => {
 
   const handleLangChange = (value: "ru" | "en") => {
     i18n.changeLanguage(value)
-    classesStore.setDefaultItems()
+    classesStore.addNothingItem()
   }
 
   const handleThemeChange = (theme: "light" | "dark") => {

@@ -81,28 +81,39 @@ app.get("/users/me", withAuth, async (req: Request, res: Response) => {
 
 // ======== Classes ========
 
+app.get("/users/me/classes", withAuth, withUser, async (req: Request, res: Response) => {
+  const targetUser: IUserDocumnet = res.locals.targetUser
+  res.status(200).json({classes: targetUser.classes})
+})
+
 app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.targetUser
     
-    targetUser.classes.push({
+    const newClass = {
       title: req.body.title, 
       teacher: req.body.teacher,
       cabinet: req.body.cabinet,
       uid: req.body.uid
-    })
+    }
 
+    console.log("======== newClass ========\n", newClass)
+
+    targetUser.classes.push(newClass)
     await targetUser.save()
+
+    return res.status(200).json({
+      message: "Class successfully added!",
+      classes: targetUser.classes
+    })
   } catch(err) {
     return next(new DatabaseError("Database call to add new class failed due to some internal server error."))
   }
-
-  res.status(200).json({message: "Class successfully added!"})
 })
 
 app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await UserModel.findOneAndUpdate(
+    const updatedUser = await UserModel.findOneAndUpdate(
       { email: res.locals.targetSession.email, "classes.uid": req.params.uid },
       {
         $set: {
@@ -117,15 +128,18 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
       { new: true }
     )
 
-    if (!result) {
+    if (!updatedUser) {
       return next(new DatabaseError(`Can't update class with id ${req.params.uid}, most likely because it's not exist`))
     }
+
+    return res.status(200).json({
+      message: "Class successfully updated!",
+      classes: updatedUser.toJSON().classes
+    })
 
   } catch(err) {
     return next(new DatabaseError("Database call to edit user's class failed due to some internal server error."))
   }
-
-  res.status(200).json({message: "Class successfully updated!"})
 })
 
 app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
@@ -140,11 +154,15 @@ app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, re
     }
 
     await targetUser.save()
+
+    return res.status(200).json({
+      message: `Class with id ${req.params.uid} successfully deleted!`,
+      classes: targetUser.classes
+    })
   } catch(err) {
     return next(new DatabaseError("Database call to delete class failed due to some internal server error."))
   }
 
-  res.status(200).json({message: `Class with id ${req.params.uid} successfully deleted!`})
 })
 
 // this is just a debug endpoint that will not present in prod version of the app 
@@ -163,6 +181,12 @@ app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Reque
 })
 
 // ======== Class Schedules ========
+
+app.get("/users/me/class-schedules", withAuth, withUser, async (req: Request, res: Response) => {
+  const targetUser: IUserDocumnet = res.locals.targetUser
+  res.status(200).json({classSchedules: targetUser.classSchedules})
+
+})
 
 app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -244,6 +268,11 @@ app.delete("/users/me/delete-all-class-schedules", withAuth, withUser, async (re
 })
 
 // ======== Assembled Schedules ========
+
+app.get("/users/me/assembled-schedules", withAuth, withUser, async (req: Request, res: Response) => {
+  const targetUser: IUserDocumnet = res.locals.targetUser
+  res.status(200).json({assembledSchedules: targetUser.assembledSchedules})
+})
 
 app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {

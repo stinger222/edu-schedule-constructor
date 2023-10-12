@@ -21,9 +21,9 @@ interface IStoreable {
 export interface IClassesStore extends IStoreable {
 	_classes: IClass[],
 	classes: IClass[],
-  setDefaultItems(): void,
+  addNothingItem(): void,
 	addClass(newClass: Omit<IClass, "uid">, uid?: string): void,
-	removeClass(uid: string): boolean,
+	removeClass(uid: string): void,
 	updateClass(uid: string, newClass: Partial<Omit<IClass, "uid">>): void,
   findById(uid: string): IClass | undefined
 }
@@ -31,8 +31,8 @@ export interface IClassesStore extends IStoreable {
 export interface IClassSchedulesStore extends IStoreable {
 	classSchedules: IClassSchedule[],
 	addSchedule(newClassSchedule: Omit<IClassSchedule, "uid">, uid?: string): void,
-	removeSchedule(uid: string): boolean,
-  updateSchedule(uid: string, newSchedule: Partial<Omit<IClassSchedule, "uid">>): boolean,
+	removeSchedule(uid: string): void,
+  updateSchedule(uid: string, newSchedule: Partial<Omit<IClassSchedule, "uid">>): void,
   getById(uid: string): IClassSchedule | undefined
 }
 
@@ -40,8 +40,8 @@ export interface IAssembledSchedulesStore extends IStoreable {
 	assembledSchedules: IAssembledSchedule[],
   activeScheduleUid: string | null,
 	addSchedule(newSchedule: Omit<IAssembledSchedule, "uid">,  uid?: string): void,
-  updateSchedule(uid: string, newSchedule: Partial<Omit<IAssembledSchedule, "uid">>): boolean,
-	removeSchedule(uid: string): boolean,
+  updateSchedule(uid: string, newSchedule: Partial<Omit<IAssembledSchedule, "uid">>): void,
+	removeSchedule(uid: string): void,
   getById(uid: string): IAssembledSchedule | undefined,
 
   /**
