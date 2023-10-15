@@ -7,6 +7,7 @@ import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
 import ClassScheduleCard from "../../ordinary/ClassScheduleCard/ClassScheduleCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
 import { Trans, useTranslation } from "react-i18next"
+import { toJS } from "mobx"
 
 interface IProps {
 	classSchedules: IClassSchedule[],
@@ -16,7 +17,7 @@ interface IProps {
 const ClassScheduleCardsList= ({ classSchedules, removeSchedule }: IProps) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-
+  
   const handleRemove = (uid: string) => {
     if (!window.confirm(t("confirmPrompt.deleteCard"))) return
     removeSchedule(uid)

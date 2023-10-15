@@ -1,43 +1,101 @@
 import { makeAutoObservable, toJS } from "mobx"
 import { nanoid } from "nanoid"
 
-import { capitalize } from "../utils/stringUtils"
+import { capitalize, formatClassSchedule } from "../utils/stringUtils"
 import { IClassSchedulesStore } from "../types/store"
 import { IClassSchedule } from "../types/types"
+import { api } from "../../api"
 
 class ClassSchedulesStore implements IClassSchedulesStore {
-	classSchedules: IClassSchedule[] = []
+	_classSchedules: IClassSchedule[] = []
 	static storageKey: string = "class-schedules"
 
 	constructor() {
-		makeAutoObservable(this)
 		this.restoreState()
+		makeAutoObservable(this)
 	}
 
-	memorizeState(): void {
-		localStorage.setItem(ClassSchedulesStore.storageKey, JSON.stringify(this.classSchedules))
+  set classSchedules(classSchedules1: IClassSchedule[]) {
+    this._classSchedules = classSchedules1.map((sch: IClassSchedule) => formatClassSchedule(sch))
+  }
+
+  get classSchedules() {
+    return this._classSchedules
+  }
+
+	memorizeState() {
+		// localStorage.setItem(ClassSchedulesStore.storageKey, JSON.stringify(this.classSchedules))
 	}
 
-	restoreState(): void {
+	async restoreState() {
     try {
-      this.classSchedules = JSON.parse(localStorage.getItem(ClassSchedulesStore.storageKey) || `[]`)
-    } catch(err) {
-      console.error(`Fatal error occurred. Can't parse "${ClassSchedulesStore.storageKey}" from local storage, so it's value will be cleared.`)
-      console.error(err.message)
+      const response = await api.get("users/me/class-schedules").json() as { classSchedules: IClassSchedule[] }
       
+      console.log("Fetched classSchedules: ", response.classSchedules)
+
+      this.classSchedules = response.classSchedules
+
+      
+    } catch(err) {
+      console.error("Can't fetch class schedules:\n", err.message)
       this.classSchedules = []
-      this.memorizeState()
+    }
+	}
+	// restoreState(): void {
+  //   try {
+  //     this.classSchedules = JSON.parse(localStorage.getItem(ClassSchedulesStore.storageKey) || `[]`)
+  //   } catch(err) {
+  //     console.error(`Fatal error occurred. Can't parse "${ClassSchedulesStore.storageKey}" from local storage, so it's value will be cleared.`)
+  //     console.error(err.message)
+      
+  //     this.classSchedules = []
+  //     this.memorizeState()
+  //   }
+	// }
+
+	async addSchedule(newClassSchedule: Omit<IClassSchedule, "uid">, uid?: string) {
+    try {
+      const newFormatterClassSchedule = {
+        ...newClassSchedule,
+        name: capitalize(newClassSchedule.name) || `Class Schedule №${this.classSchedules.length+1}`, 
+        uid: uid || nanoid(10)
+      }
+
+      const response = await api.post("users/me/class-schedules", {
+        json: newFormatterClassSchedule
+      }).json() as { classSchedules: IClassSchedule[] }
+
+      this.classSchedules = response.classSchedules
+    } catch (err) {
+      console.error("Can't add new class schedule:\n", err.message)
     }
 	}
 
-	addSchedule(newClassSchedule: Omit<IClassSchedule, "uid">, uid?: string): void {
-		this.classSchedules.push({
-      ...newClassSchedule,
-      name: capitalize(newClassSchedule.name) || `Class Schedule №${this.classSchedules.length+1}`, 
-      uid: uid || nanoid(10)
-    })
+	// addSchedule(newClassSchedule: Omit<IClassSchedule, "uid">, uid?: string): void {
+	// 	this.classSchedules.push({
+  //     ...newClassSchedule,
+  //     name: capitalize(newClassSchedule.name) || `Class Schedule №${this.classSchedules.length+1}`, 
+  //     uid: uid || nanoid(10)
+  //   })
 
-		this.memorizeState()
+	// 	this.memorizeState()
+	// }
+
+  updateSchedule(uid: string, newSchedule: Partial<Omit<IClassSchedule, "uid">>) {
+		const indexToUpdate = this.classSchedules.findIndex(s => s.uid === uid)
+
+		if (indexToUpdate === -1) {
+			console.warn(`Can't update.\nSchedule with id "${uid}" not found.`)
+			return false
+		}
+
+		this.classSchedules[indexToUpdate] = {
+			...this.classSchedules[indexToUpdate],
+			...newSchedule
+		}
+    
+    this.memorizeState()
+		console.log("Schedule updated successfully.")
 	}
 
 	removeSchedule(uid: string): boolean {
@@ -53,25 +111,6 @@ class ClassSchedulesStore implements IClassSchedulesStore {
 		console.log("Schedule deleted from store.", toJS(deletedSchedule[0]))
     
 		return deletedSchedule.length === 1 
-	}
-
-	updateSchedule(uid: string, newSchedule: Partial<Omit<IClassSchedule, "uid">>): boolean {
-		const indexToUpdate = this.classSchedules.findIndex(s => s.uid === uid)
-
-		if (indexToUpdate === -1) {
-			console.warn(`Can't update.\nSchedule with id "${uid}" not found.`)
-			return false
-		}
-
-		this.classSchedules[indexToUpdate] = {
-			...this.classSchedules[indexToUpdate],
-			...newSchedule
-		}
-    
-    this.memorizeState()
-		console.log("Schedule updated successfully.")
-
-		return true
 	}
 
   getById(uid: string): IClassSchedule | undefined {

@@ -28,8 +28,8 @@ class ClassesStore implements IClassesStore {
 
   async restoreState() {
     try {
-      const data = await api.get("users/me/classes").json() as { classes: IClass[] }
-      this._classes = data.classes
+      const response = await api.get("users/me/classes").json() as { classes: IClass[] }
+      this._classes = response.classes
     } catch(err) {
       console.error("Can't fetch classes:\n", err.message)
       this._classes = []
@@ -70,18 +70,21 @@ class ClassesStore implements IClassesStore {
 
   async addClass(newClass: Omit<IClass, "uid">, uid?: string) {
     try {
-      const data = (await api
-        .post("users/me/classes", {
-          json: {
-            ...newClass,
-            uid: uid || nanoid(10),
-            title: capitalize(newClass.title) || `Class №${this.classes.length + 1}`,
-            teacher: capitalize(newClass.teacher, true)
-          } as IClass
-        })
-        .json()) as { message: string; classes: IClass[] }
 
-      this._classes = data.classes
+      const NewFormattedClass = {
+        ...newClass,
+        uid: uid || nanoid(10),
+        title: capitalize(newClass.title) || `Class №${this.classes.length + 1}`,
+        teacher: capitalize(newClass.teacher, true)
+      }
+
+      const response = (await api
+        .post("users/me/classes", {
+          json: NewFormattedClass
+        })
+        .json()) as { classes: IClass[] }
+
+      this._classes = response.classes
       this.addNothingItem()
     } catch(err) {
       console.error("Can't add new class:\n", err.message)
@@ -101,11 +104,11 @@ class ClassesStore implements IClassesStore {
 
   async removeClass(uid: string) {
     try {
-      const data = await api
+      const response = await api
         .delete(`users/me/classes/${uid}`)
-        .json() as {message: string, classes: IClass[]}
+        .json() as { classes: IClass[] }
 
-      this._classes = data.classes
+      this._classes = response.classes
       this.addNothingItem()
 
     } catch(err) {
@@ -143,13 +146,13 @@ class ClassesStore implements IClassesStore {
     }
 
     try {
-      const data = await api.put(`users/me/classes/${uid}`, {
+      const response = await api.put(`users/me/classes/${uid}`, {
         json: {
           ...updatedClass
         }  
-      }).json() as { message: string, classes: IClass[] }
+      }).json() as { classes: IClass[] }
       
-      this._classes = data.classes
+      this._classes = response.classes
       this.addNothingItem()
 
       console.log("Class modified successfully.")

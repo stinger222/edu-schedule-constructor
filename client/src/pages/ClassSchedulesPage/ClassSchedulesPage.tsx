@@ -9,6 +9,7 @@ import Container from "../../components/containers/Container/Container"
 import ClassScheduleCardsList from "../../components/wrappers/ClassScheduleCardsList/ClassScheduleCardsList"
 
 import { StyledClassSchedulesPage } from "./ClassSchedulesPage.styled"
+import { observer } from "mobx-react"
 
 const ClassSchedulesPage = () => {
   const { t } = useTranslation()
@@ -35,4 +36,4 @@ const ClassSchedulesPage = () => {
 	)
 }
 
-export default ClassSchedulesPage
+export default observer(ClassSchedulesPage)

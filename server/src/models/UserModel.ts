@@ -57,7 +57,7 @@ const UserSchema = new mongoose.Schema({
   }]
 })
 
-export type IUser = InferSchemaType<typeof UserSchema>
+export type IUser = Required<InferSchemaType<typeof UserSchema>>
 
 const UserModel = mongoose.model<IUser>("users", UserSchema)
 

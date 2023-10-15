@@ -20,11 +20,11 @@ class AuthStore implements IAuthStore {
 
     try {
       // todo: move all api calls to DAL or something
-      const data = await ky.get("http://localhost:3001/auth/validate-session", {
+      const response = await ky.get("http://localhost:3001/auth/validate-session", {
         credentials: "include"
       }).json() as {isSessionValid: boolean}
       
-      this.setSignedIn(data.isSessionValid)
+      this.setSignedIn(response.isSessionValid)
       console.log("User successfully signed-in using stored session id!")
     } catch(err) {
       console.warn("User not signed-in: session has expired or doesn't exist")
