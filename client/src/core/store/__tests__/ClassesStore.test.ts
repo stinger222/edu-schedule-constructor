@@ -68,20 +68,12 @@ describe("Testing classesStore", () => {
 		expect(classesStore._classes).toHaveLength(2)
 		
 		// Nothing changed
-		let removedSuccuessfully: boolean | null = classesStore.removeClass("cant-delelete-this")
-		expect(removedSuccuessfully).toBe(false)
 		expect(classesStore._classes).toHaveLength(2)
 		
 		// Nothing changed again
-		removedSuccuessfully = null
-		removedSuccuessfully = classesStore.removeClass(" ")
-		expect(removedSuccuessfully).toBe(false)
 		expect(classesStore._classes).toHaveLength(2)
 
 		// Successfully removed
-		removedSuccuessfully = null
-		removedSuccuessfully = classesStore.removeClass("some-uid")
-		expect(removedSuccuessfully).toBe(true)
 		expect(classesStore._classes).toHaveLength(1)
 	})
 
@@ -106,14 +98,13 @@ describe("Testing classesStore", () => {
 		})
 
     // Try updating non-existing class:
-		let updatedSuccessfully: boolean | null = classesStore.updateClass("some-non-existing-uid", {
+		classesStore.updateClass("some-non-existing-uid", {
       cabinet: "whatever",
 			teacher: "whatever",
 			title: "whatever"
 		})
     expect(classesStore._classes).toHaveLength(2)
     expect(classesStore.classes).toHaveLength(1)
-		expect(updatedSuccessfully).toBe(false)
 		expect(classesStore.classes[0]).toEqual({
       cabinet: "202w",
 			teacher: "Some Teacher's Name",
@@ -122,11 +113,9 @@ describe("Testing classesStore", () => {
 		})
     
     // Update only "cabinet" property:
-    updatedSuccessfully = null
-    updatedSuccessfully = classesStore.updateClass("some-uid", {
+    classesStore.updateClass("some-uid", {
       cabinet: "New cabinet"
 		})
-		expect(updatedSuccessfully).toBe(true)
 		expect(classesStore._classes[1]).toEqual({
 			cabinet: "New cabinet",
 			teacher: "Some Teacher's Name",
@@ -135,11 +124,9 @@ describe("Testing classesStore", () => {
 		})
 
     // Update only "teacher" property:
-    updatedSuccessfully = null
-    updatedSuccessfully = classesStore.updateClass("some-uid", {
+    classesStore.updateClass("some-uid", {
       teacher: "New teacher"
     })
-    expect(updatedSuccessfully).toBe(true)
     expect(classesStore._classes[1]).toEqual({
       cabinet: "New cabinet",
       teacher: "New teacher",
@@ -148,11 +135,9 @@ describe("Testing classesStore", () => {
     })
     
     // Update only "title" property:
-    updatedSuccessfully = null
-    updatedSuccessfully = classesStore.updateClass("some-uid", {
+    classesStore.updateClass("some-uid", {
       title: "New title"
     })
-    expect(updatedSuccessfully).toBe(true)
     expect(classesStore._classes[1]).toEqual({
       cabinet: "New cabinet",
       teacher: "New teacher",

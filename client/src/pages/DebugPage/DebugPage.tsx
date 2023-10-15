@@ -31,9 +31,9 @@ const DebugPage = () => {
 
   const fetchMe = async () => {
     try {
-      const data = await api.get("users/me").json()
-      setMe(data)
-      return data
+      const response = await api.get("users/me").json()
+      setMe(response)
+      return response
     } catch(err) { return }
   }
 
@@ -41,7 +41,7 @@ const DebugPage = () => {
   
   const addClass = async () => {
     try {
-      const data = await api
+      const response = await api
         .post(`users/me/classes`, {
           json: {
             title: "Name of the class here " + Math.random().toFixed(1),
@@ -52,7 +52,7 @@ const DebugPage = () => {
         })
         .json()
 
-      console.log("Trying to add new class. Result: ", data)
+      console.log("Trying to add new class. Result: ", response)
       fetchMe()
     } catch (err) {
       return
@@ -61,7 +61,7 @@ const DebugPage = () => {
 
   const addClassSchedule = async () => {
     try {
-      const data = await api
+      const response = await api
         .post(`users/me/class-schedules`, {
           json: {
             name: "New class schedule name" + Math.random().toFixed(5),
@@ -73,7 +73,7 @@ const DebugPage = () => {
         })
         .json()
 
-      console.log("Trying to add new class schedule. Result: ", data)
+      console.log("Trying to add new class schedule. Result: ", response)
       fetchMe()
     } catch (err) {
       return
@@ -82,7 +82,7 @@ const DebugPage = () => {
 
   const addAssembledSchedule = async () => {
     try {
-      const data = await api
+      const response = await api
         .post(`users/me/assembled-schedules`, {
           json: {
             name: "(new) some name",
@@ -97,7 +97,7 @@ const DebugPage = () => {
         })
         .json()
 
-      console.log("Trying to add new class schedule. Result: ", data)
+      console.log("Trying to add new class schedule. Result: ", response)
       fetchMe()
     } catch (err) {
       return
@@ -162,11 +162,11 @@ const DebugPage = () => {
 
   const deleteClassWithId = async () => {
     try {
-      const data = api
+      const response = api
         .delete(`users/me/classes/${deleteClassWithIdInputRef.current.value}`)
         .json()
 
-      console.log(`Trying to delete class with id:"${deleteClassWithIdInputRef.current.value}". Result: `, data)
+      console.log(`Trying to delete class with id:"${deleteClassWithIdInputRef.current.value}". Result: `, response)
       fetchMe()
       deleteClassWithIdInputRef.current.value = ""
     } catch(err) { return }
@@ -174,11 +174,11 @@ const DebugPage = () => {
 
   const deleteClassScheduleWithId = async () => {
     try {
-      const data = await api
+      const response = await api
         .delete(`users/me/class-schedules/${deleteClassScheduleWithIdInputRef.current.value}`)
         .json()
 
-      console.log(`Trying to delete class schedule with id:"${deleteClassScheduleWithIdInputRef.current.value}". Result: `, data)
+      console.log(`Trying to delete class schedule with id:"${deleteClassScheduleWithIdInputRef.current.value}". Result: `, response)
       fetchMe()
       deleteClassScheduleWithIdInputRef.current.value = ""
     } catch(err) { return }
@@ -186,11 +186,11 @@ const DebugPage = () => {
 
   const deleteAssembledScheduleWithId = async () => {
     try {
-      const data = await api
+      const response = await api
         .delete(`users/me/assembled-schedules/${deleteAssembledScheduleWithIdInputRef.current.value}`)
         .json()
 
-      console.log(`Trying to delete assembled schedule with id:"${deleteAssembledScheduleWithIdInputRef.current.value}". Result: `, data)
+      console.log(`Trying to delete assembled schedule with id:"${deleteAssembledScheduleWithIdInputRef.current.value}". Result: `, response)
       fetchMe()
       deleteAssembledScheduleWithIdInputRef.current.value = ""
     } catch(err) { return }
@@ -200,33 +200,33 @@ const DebugPage = () => {
 
   const deleteAllClasses = async () => {
     try {
-      const data = await api.
+      const response = await api.
         delete(`users/me/delete-all-classes`)
         .json()
 
-      console.log("Trying to delete all classes. Result: ", data)
+      console.log("Trying to delete all classes. Result: ", response)
       fetchMe()
     } catch(err) { return }
   }
 
   const deleteAllClassSchedules = async () => {
     try {
-      const data = await api
+      const response = await api
         .delete(`users/me/delete-all-class-schedules`)
         .json()
 
-      console.log("Trying to delete all class schedules. Result: ", data)
+      console.log("Trying to delete all class schedules. Result: ", response)
       fetchMe()
     } catch(err) { return }
   }
 
   const deleteAllAssembledSchedules = async () => {
     try {
-      const data = await api
+      const response = await api
         .delete(`users/me/delete-all-assembled-schedules`)
         .json()
 
-      console.log("Trying to delete all assembled schedules. Result: ", data)
+      console.log("Trying to delete all assembled schedules. Result: ", response)
       fetchMe()
     } catch(err) { return }
   }

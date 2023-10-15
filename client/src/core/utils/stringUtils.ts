@@ -1,3 +1,5 @@
+import { IClassSchedule } from "../types/types"
+
 export const formatNumbers = (numbers: number[]): string[] => {
 	return numbers.map(number => formatNumber(number))
 }
@@ -34,4 +36,21 @@ export const capitalize = (str: string, eachWord: boolean = false): string => {
 export const validateField = (value: string) => {
 	value = value.trim()
 	return value !== "" && value !== "undefined"
+}
+
+/**
+ * In fact, it formats only `classes` array, to avoid unformatted time strings inside it like "8:5", "9:30" or "12:5" idk 
+ */
+export const formatClassSchedule = (sch: IClassSchedule) => {
+  const formattedClasses = sch.classes.map((cls: {start: string, end: string}) => {
+    return {
+      start: formatTimeString(cls.start),
+      end: formatTimeString(cls.end)
+    }
+  })
+
+  return {
+    ...sch,
+    classes: formattedClasses
+  } as IClassSchedule
 }

@@ -2,7 +2,7 @@ import { Cases, weekDates } from "../types/types"
 import { formatNumber } from "./stringUtils"
 
 
-interface IData {
+interface IDate {
   ru: {
     short: readonly string[],
     full: {
@@ -20,7 +20,7 @@ interface IData {
 }
 export class WeekUtils {
 
-  private static readonly data: IData = {
+  private static readonly data: IDate = {
     ru: {
       short: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
       full: {

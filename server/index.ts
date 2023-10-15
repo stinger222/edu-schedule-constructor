@@ -1,4 +1,4 @@
-import express, { Express, NextFunction, Request, Response } from "express"
+import express, { Express, NextFunction, Request, Response as ExpressResponse} from "express"
 import cookieParser from "cookie-parser"
 import mongoose from "mongoose"
 import cors from "cors"
@@ -9,9 +9,12 @@ import DatabaseError from "./src/errors/DatabaseError"
 import CustomError from "./src/errors/CustomError"
 import withAuth from "./src/middlewares/withAuth"
 import SessionModel from "./src/models/SessionModel"
-import UserModel, { IUserDocumnet, IUser } from "./src/models/UserModel"
+import UserModel, { IUserDocumnet } from "./src/models/UserModel"
 import UnknownError from "./src/errors/UnknownError"
 import withUser from "./src/middlewares/withUser"
+import { MyResponseLocals } from "./src/types"
+
+type Response = ExpressResponse<any, MyResponseLocals>
 
 const app: Express = express()
 app.use(express.json())
@@ -70,19 +73,14 @@ app.get("/auth/validate-session", withAuth, async (req: Request, res: Response) 
   return res.status(200).json({isSessionValid: true})
 })
 
-app.get("/users/me", withAuth, async (req: Request, res: Response) => {
-  // TODO: there is no way this user can be null, so if it IS - this is too should be logged and inspected
-  const targetUser = await UserModel.findOne({
-    email: res.locals.targetSession.email
-  })
-  
-  return res.status(200).json(targetUser.toJSON())
+app.get("/users/me", withAuth, withUser, async (req: Request, res: Response) => {
+  return res.status(200).json(res.locals.userDocument.toJSON())
 })
 
 // ======== Classes ========
 
 app.get("/users/me/classes", withAuth, withUser, async (req: Request, res: Response) => {
-  const targetUser: IUserDocumnet = res.locals.targetUser
+  const targetUser: IUserDocumnet = res.locals.userDocument
   res.status(200).json({
     classes: targetUser.classes
   })
@@ -90,8 +88,7 @@ app.get("/users/me/classes", withAuth, withUser, async (req: Request, res: Respo
 
 app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const targetUser: IUserDocumnet = res.locals.targetUser
-    
+    const targetUser: IUserDocumnet = res.locals.userDocument
     const newClass = {
       title: req.body.title, 
       teacher: req.body.teacher,
@@ -115,7 +112,7 @@ app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Resp
 app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const updatedUser = await UserModel.findOneAndUpdate(
-      { email: res.locals.targetSession.email, "classes.uid": req.params.uid },
+      { email: res.locals.userSession.email, "classes.uid": req.params.uid },
       {
         $set: {
           "classes.$": {
@@ -144,7 +141,7 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
 
 app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const targetUser: IUserDocumnet = res.locals.targetUser
+    const targetUser: IUserDocumnet = res.locals.userDocument
 
     const initLength = targetUser.classes.length
     targetUser.classes = targetUser.classes.filter(c => c.uid !== req.params.uid)
@@ -167,7 +164,7 @@ app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, re
 // this is just a debug endpoint that will not present in prod version of the app 
 app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const targetUser: IUserDocumnet = res.locals.targetUser
+    const targetUser: IUserDocumnet = res.locals.userDocument
     
     targetUser.classes = []
 
@@ -182,14 +179,15 @@ app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Reque
 // ======== Class Schedules ========
 
 app.get("/users/me/class-schedules", withAuth, withUser, async (req: Request, res: Response) => {
-  const targetUser: IUserDocumnet = res.locals.targetUser
-  res.status(200).json({classSchedules: targetUser.classSchedules})
-
+  const targetUser: IUserDocumnet = res.locals.userDocument.toJSON()
+  res.status(200).json({
+    classSchedules: targetUser.classSchedules
+  })
 })
 
 app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const targetUser: IUserDocumnet = res.locals.targetUser
+    const targetUser: IUserDocumnet = res.locals.userDocument
 
     targetUser.classSchedules.push({
       classes: req.body.classes,
@@ -198,17 +196,19 @@ app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, r
     })
 
     await targetUser.save()
+
+    return res.status(200).json({
+      classSchedules: targetUser.classSchedules
+    })
   } catch(err) {
     return next(new DatabaseError("Database call to add new class schedule failed due to some internal server error."))
   }
-
-  res.status(200).json({message: "Class schedule successfully added!"})
 })
 
 app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await UserModel.findOneAndUpdate(
-      { email: res.locals.targetSession.email, "classSchedules.uid": req.params.uid },
+      { email: res.locals.userSession.email, "classSchedules.uid": req.params.uid },
       {
         $set: {
           "classSchedules.$": {
@@ -234,7 +234,7 @@ app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Re
 
 app.delete("/users/me/class-schedules/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const targetUser: IUserDocumnet = res.locals.targetUser
+    const targetUser: IUserDocumnet = res.locals.userDocument
     
     const initLength = targetUser.classSchedules.length
     targetUser.classSchedules = targetUser.classSchedules.filter(c => c.uid !== req.params.uid)
@@ -254,7 +254,7 @@ app.delete("/users/me/class-schedules/:uid", withAuth, withUser, async (req: Req
 // this is just a debug endpoint that will not present in prod version of the app 
 app.delete("/users/me/delete-all-class-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const targetUser: IUserDocumnet = res.locals.targetUser
+    const targetUser: IUserDocumnet = res.locals.userDocument
     
     targetUser.classSchedules = []
 
@@ -269,13 +269,13 @@ app.delete("/users/me/delete-all-class-schedules", withAuth, withUser, async (re
 // ======== Assembled Schedules ========
 
 app.get("/users/me/assembled-schedules", withAuth, withUser, async (req: Request, res: Response) => {
-  const targetUser: IUserDocumnet = res.locals.targetUser
+  const targetUser: IUserDocumnet = res.locals.userDocument
   res.status(200).json({assembledSchedules: targetUser.assembledSchedules})
 })
 
 app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const targetUser: IUserDocumnet = res.locals.targetUser
+    const targetUser: IUserDocumnet = res.locals.userDocument
 
     targetUser.assembledSchedules.push({
       uid: req.body.uid,
@@ -294,7 +294,7 @@ app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Reques
 app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await UserModel.findOneAndUpdate(
-      { email: res.locals.targetSession.email, "assembledSchedules.uid": req.params.uid },
+      { email: res.locals.userSession.email, "assembledSchedules.uid": req.params.uid },
       {
         $set: {
           "assembledSchedules.$": {
@@ -320,7 +320,7 @@ app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res
 
 app.delete("/users/me/assembled-schedules/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const targetUser: IUserDocumnet = res.locals.targetUser
+    const targetUser: IUserDocumnet = res.locals.userDocument
     
     const initLength = targetUser.assembledSchedules.length
     targetUser.assembledSchedules = targetUser.assembledSchedules.filter(c => c.uid !== req.params.uid)
@@ -340,7 +340,7 @@ app.delete("/users/me/assembled-schedules/:uid", withAuth, withUser, async (req:
 // this is just a debug endpoint that will not present in prod version of the app 
 app.delete("/users/me/delete-all-assembled-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const targetUser: IUserDocumnet = res.locals.targetUser
+    const targetUser: IUserDocumnet = res.locals.userDocument
     
     targetUser.assembledSchedules = []
 

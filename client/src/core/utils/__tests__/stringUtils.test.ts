@@ -37,4 +37,20 @@ describe("Testing helper functions with different arguments", () => {
 		expect(utils.validateField(" undefined ")).toBe(false)
 		expect(utils.validateField("  undefined ")).toBe(false)
 	})
+
+  it("Testing formatClassSchedule", () => {
+    expect(utils.formatClassSchedule({
+      uid: "1", name: "1", classes: [
+        {start: "2:2", end: "3:5"},
+        {start: "4:30", end: "5:00"},
+        {start: "10:0", end: "11:9"},
+        {start: "12:00", end: "13:00"}
+      ]
+    }).classes).toEqual([
+      {start: "02:02", end: "03:05"},
+      {start: "04:30", end: "05:00"},
+      {start: "10:00", end: "11:09"},
+      {start: "12:00", end: "13:00"}
+    ])
+  })
 })

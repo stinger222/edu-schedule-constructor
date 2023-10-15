@@ -1,3 +1,4 @@
+import { toJS } from "mobx"
 import { useEffect } from "react"
 import { UseFormReturn } from "react-hook-form"
 
@@ -15,11 +16,14 @@ function useInitializeFormForEditMode<T extends { uid: string }>(
 ) {
   useEffect(() => {
     if (routeState?.mode === "edit") {
+      console.log("cardsArray ", toJS(cardsArray))
+      
       const cardToEdit = cardsArray
         .find((card: T) => {
           return card.uid === routeState.uid
         })
-
+        
+      console.log("cardToEdit ", toJS(cardToEdit))
       methods.reset(cardToEdit)
     }
   }, [])
