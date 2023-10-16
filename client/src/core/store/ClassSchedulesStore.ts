@@ -81,7 +81,7 @@ class ClassSchedulesStore implements IClassSchedulesStore {
 	// 	this.memorizeState()
 	// }
 
-  updateSchedule(uid: string, newSchedule: Partial<Omit<IClassSchedule, "uid">>) {
+  async updateSchedule(uid: string, updatedFields: Partial<Omit<IClassSchedule, "uid">>) {
 		const indexToUpdate = this.classSchedules.findIndex(s => s.uid === uid)
 
 		if (indexToUpdate === -1) {
@@ -89,29 +89,70 @@ class ClassSchedulesStore implements IClassSchedulesStore {
 			return false
 		}
 
-		this.classSchedules[indexToUpdate] = {
+		const updatedSchedule = {
 			...this.classSchedules[indexToUpdate],
-			...newSchedule
+			...updatedFields
 		}
     
-    this.memorizeState()
-		console.log("Schedule updated successfully.")
+    try {
+      const response = await api
+        .put(`users/me/class-schedules/${uid}`, {
+          json: {
+            ...updatedSchedule
+          }  
+        })
+        .json() as { classSchedules: IClassSchedule[] }
+        
+      this.classSchedules = response.classSchedules
+    } catch (err) {
+      console.error(`Can't update class schedule with id "${uid}":\n`,  err.message)
+    }
 	}
 
-	removeSchedule(uid: string): boolean {
-		const indexToDelete = this.classSchedules.findIndex(schedule => schedule.uid === uid)
-		if (indexToDelete === -1) {
-			console.warn(`Class schedule with id "${uid}" not found.`)
-			return false
-		}
+  // updateSchedule(uid: string, newSchedule: Partial<Omit<IClassSchedule, "uid">>) {
+	// 	const indexToUpdate = this.classSchedules.findIndex(s => s.uid === uid)
 
-		const deletedSchedule = this.classSchedules.splice(indexToDelete, 1)
+	// 	if (indexToUpdate === -1) {
+	// 		console.warn(`Can't upsdate.\nSchedule with id "${uid}" not found.`)
+	// 		return false
+	// 	}
 
-		this.memorizeState()
-		console.log("Schedule deleted from store.", toJS(deletedSchedule[0]))
+	// 	this.classSchedules[indexToUpdate] = {
+	// 		...this.classSchedules[indexToUpdate],
+	// 		...newSchedule
+	// 	}
     
-		return deletedSchedule.length === 1 
+  //   this.memorizeState()
+	// 	console.log("Schedule updated successfully.")
+	// }
+
+	async removeSchedule(uid: string) {
+    try {
+      const response = await api
+        .delete(`users/me/class-schedules/${uid}`)
+        .json() as { classSchedules: IClassSchedule[] }
+
+        this.classSchedules = response.classSchedules
+        console.log(`Class schedule with id "${uid}" was successfully deleted!`)
+    } catch (err) {
+      console.error(`Can't delete class schedule with id "${uid}":\n`, err.message)
+    }
 	}
+
+	// removeSchedule(uid: string): boolean {
+	// 	const indexToDelete = this.classSchedules.findIndex(schedule => schedule.uid === uid)
+	// 	if (indexToDelete === -1) {
+	// 		console.warn(`Class schedule with id "${uid}" not found.`)
+	// 		return false
+	// 	}
+
+	// 	const deletedSchedule = this.classSchedules.splice(indexToDelete, 1)
+
+	// 	this.memorizeState()
+	// 	console.log("Schedule deleted from store.", toJS(deletedSchedule[0]))
+    
+	// 	return deletedSchedule.length === 1 
+	// }
 
   getById(uid: string): IClassSchedule | undefined {
     return this.classSchedules.find(s => s.uid === uid)

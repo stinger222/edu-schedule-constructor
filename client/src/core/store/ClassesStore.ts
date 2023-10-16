@@ -158,7 +158,6 @@ class ClassesStore implements IClassesStore {
       console.log("Class modified successfully.")
     } catch(err) {
       console.error("Can't update class:\n", err.message)
-      return false
     }
   }
 

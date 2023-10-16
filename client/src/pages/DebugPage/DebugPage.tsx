@@ -64,7 +64,7 @@ const DebugPage = () => {
       const response = await api
         .post(`users/me/class-schedules`, {
           json: {
-            name: "New class schedule name" + Math.random().toFixed(5),
+            name: "New class schedule name " + Math.random().toFixed(5),
             classes: [
               { start: `${+Math.random().toFixed(0) + 1}:00`, end: `${+Math.random().toFixed(0) * 2 + 2}:00` }
             ],
