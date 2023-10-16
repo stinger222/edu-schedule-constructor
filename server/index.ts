@@ -35,7 +35,7 @@ app.get("/", async (req: Request, res: Response) => {
 // ======== Auth-related ========
 
 app.post("/auth/sign-in", async (req: Request,  res: Response, next: NextFunction) => {
-  console.log("======= NEW LOGIN =======\n", req.body)
+  console.log("======= NEW LOGIN =======\n", req.body, "\n======================")
   
   res.clearCookie("session_id")
 
@@ -96,10 +96,11 @@ app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Resp
       uid: req.body.uid
     }
 
-    console.log("======== newClass ========\n", newClass)
-
+    
     targetUser.classes.push(newClass)
     await targetUser.save()
+    
+    console.log("======== Class Added ========\n", newClass, "\n=============================")
 
     return res.status(200).json({
       classes: targetUser.classes
@@ -130,6 +131,8 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
       return next(new DatabaseError(`Can't update class with id ${req.params.uid}, most likely because it's not exist`))
     }
 
+    console.log("======== Class Updated ========")
+
     return res.status(200).json({
       classes: updatedUser.toJSON().classes
     })
@@ -151,6 +154,8 @@ app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, re
     }
 
     await targetUser.save()
+
+    console.log("======== Class Deleted ========")
 
     return res.status(200).json({
       classes: targetUser.classes
@@ -197,6 +202,8 @@ app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, r
 
     await targetUser.save()
 
+    console.log("======= Class Schedule Added =======")
+
     return res.status(200).json({
       classSchedules: targetUser.classSchedules
     })
@@ -225,11 +232,15 @@ app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Re
       return next(new DatabaseError(`Can't update class schedule with id ${req.params.uid}, most likely because it's not exist`))
     }
     
+    console.log("======= Class Schedule Updated =======")
+
+    return res.status(200).json({
+      classSchedules: result.classSchedules
+    })
   } catch(err) {
     return next(new DatabaseError("Database call to edit user's class schedule failed due to some internal server error."))
   }
 
-  res.status(200).json({message: "Class schedule successfully updated!"})
 })
 
 app.delete("/users/me/class-schedules/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
@@ -244,11 +255,15 @@ app.delete("/users/me/class-schedules/:uid", withAuth, withUser, async (req: Req
     }
 
     await targetUser.save()
+
+    console.log("======= Class Schedule Removed =======")
+
+    return res.status(200).json({
+      classSchedules: targetUser.classSchedules
+    })
   } catch(err) {
     return next(new DatabaseError("Database call to delete class schedule failed due to some internal server error."))
   }
-
-  res.status(200).json({message: `Class schedule with id ${req.params.uid} successfully deleted!`})
 })
   
 // this is just a debug endpoint that will not present in prod version of the app 
