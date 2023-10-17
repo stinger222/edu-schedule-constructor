@@ -81,7 +81,7 @@ app.get("/users/me", withAuth, withUser, async (req: Request, res: Response) => 
 
 app.get("/users/me/classes", withAuth, withUser, async (req: Request, res: Response) => {
   const targetUser: IUserDocumnet = res.locals.userDocument
-  res.status(200).json({
+  return res.status(200).json({
     classes: targetUser.classes
   })
 })
@@ -136,7 +136,6 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
     return res.status(200).json({
       classes: updatedUser.toJSON().classes
     })
-
   } catch(err) {
     return next(new DatabaseError("Database call to edit user's class failed due to some internal server error."))
   }
@@ -178,14 +177,14 @@ app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Reque
     return next(new DatabaseError("Database call to delete all classes failed due to some internal server error."))
   }
 
-  res.status(200).json({message: "All classes successfully deleted!"})
+  return res.status(200).json({message: "All classes successfully deleted!"})
 })
 
 // ======== Class Schedules ========
 
 app.get("/users/me/class-schedules", withAuth, withUser, async (req: Request, res: Response) => {
   const targetUser: IUserDocumnet = res.locals.userDocument.toJSON()
-  res.status(200).json({
+  return res.status(200).json({
     classSchedules: targetUser.classSchedules
   })
 })
@@ -202,7 +201,7 @@ app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, r
 
     await targetUser.save()
 
-    console.log("======= Class Schedule Added =======")
+    console.log("======= Class Schedule Added =========")
 
     return res.status(200).json({
       classSchedules: targetUser.classSchedules
@@ -278,14 +277,16 @@ app.delete("/users/me/delete-all-class-schedules", withAuth, withUser, async (re
     return next(new DatabaseError("Database call to delete all class schedles failed due to some internal server error."))
   }
 
-  res.status(200).json({message: "All class schedules successfully deleted!"})
+  return res.status(200).json({message: "All class schedules successfully deleted!"})
 })
 
 // ======== Assembled Schedules ========
 
 app.get("/users/me/assembled-schedules", withAuth, withUser, async (req: Request, res: Response) => {
   const targetUser: IUserDocumnet = res.locals.userDocument
-  res.status(200).json({assembledSchedules: targetUser.assembledSchedules})
+  return res.status(200).json({
+    assembledSchedules: targetUser.assembledSchedules
+  })
 })
 
 app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
@@ -299,11 +300,15 @@ app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Reques
     })
 
     await targetUser.save()
+
+    console.log("======= Assembled Schedule Added =======")
+
+    return res.status(200).json({
+      assembledSchedules: targetUser.assembledSchedules
+    })
   } catch(err) {
     return next(new DatabaseError("Database call to add new assembled schedule failed due to some internal server error."))
   }
-
-  res.status(200).json({message: "Assembled schedule successfully added!"})
 })
 
 app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
@@ -326,11 +331,14 @@ app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res
       return next(new DatabaseError(`Can't update assembled schedule with id ${req.params.uid}, most likely because it's not exist`))
     }
     
+    console.log("======= Assembled Schedule Updated =======")
+
+    return res.status(200).json({
+      assembledSchedules: result.assembledSchedules
+    })
   } catch(err) {
     return next(new DatabaseError("Database call to edit user's assembled schedule failed due to some internal server error."))
   }
-
-  res.status(200).json({message: "Assembled schedule successfully updated!"})
 })
 
 app.delete("/users/me/assembled-schedules/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
@@ -343,13 +351,17 @@ app.delete("/users/me/assembled-schedules/:uid", withAuth, withUser, async (req:
     if (targetUser.assembledSchedules.length === initLength) {
       return next(new DatabaseError(`Can't delete assembled schedule with id ${req.params.uid}, most likely because it's not exist`))
     }
-
+    
     await targetUser.save()
+
+    console.log("======= Assembled Schedule Deleted =======")
+
+    return res.status(200).json({
+      assembledSchedules: targetUser.assembledSchedules
+    })
   } catch(err) {
     return next(new DatabaseError("Database call to delete assembled schedule failed due to some internal server error."))
   }
-
-  res.status(200).json({message: `Assembled schedule with id ${req.params.uid} successfully deleted!`})
 })
   
 // this is just a debug endpoint that will not present in prod version of the app 
@@ -364,7 +376,7 @@ app.delete("/users/me/delete-all-assembled-schedules", withAuth, withUser, async
     return next(new DatabaseError("Database call to delete all assembled schedles failed due to some internal server error."))
   }
 
-  res.status(200).json({message: "All assembled schedles successfully deleted!"})
+  return res.status(200).json({message: "All assembled schedles successfully deleted!"})
 })
 
 // Error Handling Middleware
@@ -375,5 +387,5 @@ app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
   }
 
   console.error("============ ERROR ============\n", err.message, "\n===============================")
-  res.status(err.statusCode).json({message: err.message})
+  return res.status(err.statusCode).json({message: err.message})
 })

@@ -55,17 +55,18 @@ class ClassSchedulesStore implements IClassSchedulesStore {
 
 	async addSchedule(newClassSchedule: Omit<IClassSchedule, "uid">, uid?: string) {
     try {
-      const newFormatterClassSchedule = {
+      const newFormatterSchedule = {
         ...newClassSchedule,
         name: capitalize(newClassSchedule.name) || `Class Schedule №${this.classSchedules.length+1}`, 
         uid: uid || nanoid(10)
       }
 
       const response = await api.post("users/me/class-schedules", {
-        json: newFormatterClassSchedule
+        json: newFormatterSchedule
       }).json() as { classSchedules: IClassSchedule[] }
 
       this.classSchedules = response.classSchedules
+      console.log("Class schedule added successfully")
     } catch (err) {
       console.error("Can't add new class schedule:\n", err.message)
     }
@@ -104,6 +105,7 @@ class ClassSchedulesStore implements IClassSchedulesStore {
         .json() as { classSchedules: IClassSchedule[] }
         
       this.classSchedules = response.classSchedules
+      console.log("Class schedule modified successfully")
     } catch (err) {
       console.error(`Can't update class schedule with id "${uid}":\n`,  err.message)
     }
@@ -133,7 +135,7 @@ class ClassSchedulesStore implements IClassSchedulesStore {
         .json() as { classSchedules: IClassSchedule[] }
 
         this.classSchedules = response.classSchedules
-        console.log(`Class schedule with id "${uid}" was successfully deleted!`)
+        console.log(`Class schedule deleted successfully`)
     } catch (err) {
       console.error(`Can't delete class schedule with id "${uid}":\n`, err.message)
     }

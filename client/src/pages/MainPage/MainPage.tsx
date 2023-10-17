@@ -13,7 +13,7 @@ import { StyledMainPage } from "./MainPage.styled"
 import { Link } from "react-router-dom"
 
 const MainPage = () => {
-  const { uiStore } = useContext(StoreContext)
+  const { uiStore, assembledSchedulesStore } = useContext(StoreContext)
 
   const [lang, setLang] = useState(i18n.language)
 
@@ -30,9 +30,10 @@ const MainPage = () => {
 				</Header>
 
         <Link to="/debug" className="link">Debug Thing</Link>
+        <br />
          
-        <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex, lang]}>
-            <ScheduleItemsList />
+        <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex, lang, assembledSchedulesStore.assembledSchedules]}>
+          <ScheduleItemsList />
         </ErrorBoundary>
 
 			</Container>
