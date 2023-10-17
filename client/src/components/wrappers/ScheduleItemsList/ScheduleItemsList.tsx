@@ -14,12 +14,12 @@ import Timeline from "../../ordinary/Timeline/Timeline"
 const ScheduleItemsList = () => {
   const stores = useContext(StoreContext)
   const { t } = useTranslation()
-
+  
   const activeAssembledSchedule = stores.assembledSchedulesStore.getActiveSchedule()
   const selectedDayIndex = stores.uiStore.selectedDayIndex
-
-  const [classes, classSchedule] = getDataForSelectedDay(activeAssembledSchedule, selectedDayIndex, stores)
   
+  const [classes, classSchedule] = getDataForSelectedDay(activeAssembledSchedule, selectedDayIndex, stores)
+
   return (
     <div>
       {classes.map((cls: IClass, index: number) => (

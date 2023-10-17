@@ -1,15 +1,14 @@
-import { makeAutoObservable } from "mobx"
 import { nanoid } from "nanoid"
-
+import { makeAutoObservable } from "mobx"
 import { capitalize } from "../utils/stringUtils"
 import { IClassesStore } from "../types/store"
 import { IClass } from "../types/types"
-import i18n from "../configs/i18next"
 import { api } from "../../api"
+import i18n from "../configs/i18next"
 
 class ClassesStore implements IClassesStore {
   public _classes: IClass[] = []
-  static storageKey: string = "classes"
+  isLoading: boolean = true
 
   constructor() {
     makeAutoObservable(this)
@@ -22,39 +21,21 @@ class ClassesStore implements IClassesStore {
     return this._classes.filter((l) => l.uid !== "hidden")
   }
 
-  memorizeState() {
-    // localStorage.setItem(ClassesStore.storageKey, JSON.stringify(this.classes))
-  }
-
   async restoreState() {
     try {
-      const response = await api.get("users/me/classes").json() as { classes: IClass[] }
+      this.isLoading = true
+      const response = await api
+        .get("users/me/classes")
+        .json() as { classes: IClass[] }
       this._classes = response.classes
     } catch(err) {
       console.error("Can't fetch classes:\n", err.message)
       this._classes = []
     } finally {
+      this.isLoading = false
       this.addNothingItem()
     }
   }
-
-  // Local Storage version:
-  // restoreState() {
-  //   try {
-  //     const storedClasses = JSON.parse(localStorage.getItem(ClassesStore.storageKey) || "[]") 
-  //     this._classes = storedClasses
-  //     this.setDefaultItems()
-  //   } catch(err) {
-  //     console.error(`Fatal error occurred. Can't parse "${ClassesStore.storageKey}" from local storage, so it's value will be cleared.`)
-  //     console.error(err.message)
-      
-  //     this._classes = []
-  //     this.setDefaultItems()
-  //     this.memorizeState()
-  //   }
-
-  //   console.log("Class cards restored:", toJS(this._classes))
-  // }
 
   addNothingItem(): void {
     this._classes = [
@@ -76,34 +57,26 @@ class ClassesStore implements IClassesStore {
         title: capitalize(newClass.title) || `Class №${this.classes.length + 1}`,
         teacher: capitalize(newClass.teacher, true)
       }
-
-      const response = (await api
-        .post("users/me/classes", {
-          json: newFormattedClass
-        })
-        .json()) as { classes: IClass[] }
-
+      
+      this.isLoading = true
+      const response = await api
+        .post("users/me/classes", { json: newFormattedClass })
+        .json() as { classes: IClass[] }
       this._classes = response.classes
       this.addNothingItem()
+
       console.log("Class added successfully")
     } catch(err) {
       console.error("Can't add new class:\n", err.message)
+    } finally {
+      this.isLoading = false
+      console.log("isLoading is now FALSE!!!!")
     }
   }
 
-  // addClass(newClass: Omit<IClass, "uid">, uid?: string) {
-  //   this._classes.push({
-  //     ...newClass,
-  //     uid: uid || nanoid(10),
-  //     title: capitalize(newClass.title) || `Class №${this.classes.length+1}`,
-  //     teacher: capitalize(newClass.teacher, true)
-  //   })
-
-  //   this.memorizeState()
-  // }
-
   async removeClass(uid: string) {
     try {
+      this.isLoading = true
       const response = await api
         .delete(`users/me/classes/${uid}`)
         .json() as { classes: IClass[] }
@@ -113,24 +86,12 @@ class ClassesStore implements IClassesStore {
       console.log("Class deleted successfully")
     } catch(err) {
       console.error("Can't delete class:\n", err.message)
+    } finally {
+      this.isLoading = false
+      console.log("isLoading is now FALSE!!!!")
+      
     }
   }
-
-  // removeClass(uid: string): boolean {
-  //   const indexToDelete = this._classes.findIndex((cls) => cls.uid === uid)
-
-  //   if (indexToDelete === -1) {
-  //     console.warn(`Can't remove.\nClass with id "${uid}" not found.`)
-  //     return false
-  //   }
-
-  //   const deletedClass = this._classes.splice(indexToDelete, 1)
-
-  //   this.memorizeState()
-  //   console.log("Class deleted from store.", toJS(deletedClass[0]))
-    
-  //   return deletedClass.length === 1
-  // }
 
   async updateClass(uid: string, updatedFields: Partial<Omit<IClass, "uid">>) {
     const indexToUpdate = this.classes.findIndex((c) => c.uid === uid)
@@ -145,6 +106,7 @@ class ClassesStore implements IClassesStore {
     }
 
     try {
+      this.isLoading = true
       const response = await api
         .put(`users/me/classes/${uid}`, {
           json: {
@@ -159,27 +121,11 @@ class ClassesStore implements IClassesStore {
       console.log("Class modified successfully")
     } catch(err) {
       console.error("Can't update class:\n", err.message)
+    } finally {
+      this.isLoading = false
+      console.log("isLoading is now FALSE!!!!")
     }
   }
-
-  // updateClass(uid: string, newClass: Partial<Omit<IClass, "uid">>): boolean {
-  //   const indexToUpdate = this._classes.findIndex((l) => l.uid === uid)
-
-  //   if (indexToUpdate === -1) {
-  //     console.warn(`Can't update.\nClass with id "${uid}" not found.`)
-  //     return false
-  //   }
-
-  //   this._classes[indexToUpdate] = {
-  //     ...this._classes[indexToUpdate],
-  //     ...newClass
-  //   }
-
-  //   this.memorizeState()
-  //   console.log("Class modified successfully.")
-    
-  //   return true
-  // }
 
   findById(uid: string): IClass | undefined {
     return this._classes.find(l => l.uid === uid)

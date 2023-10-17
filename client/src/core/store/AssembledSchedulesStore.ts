@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid"
-import { makeAutoObservable, toJS } from "mobx"
+import { makeAutoObservable } from "mobx"
 import { IAssembledSchedulesStore } from "../types/store"
 import { IAssembledSchedule } from "../types/types"
 import { capitalize } from "../utils/stringUtils"
@@ -7,9 +7,9 @@ import { api } from "../../api"
 
 class AssembledSchedulesStore implements IAssembledSchedulesStore {
 	assembledSchedules: IAssembledSchedule[] = []
-	static storageKey: string = "assembled-schedules"
-  static activeScheduleUidStorageKey = "active-assembled-schedule-uid"
   activeScheduleUid: string | null = null // schedule that will be rendered on the main page
+  isLoading: boolean = true
+  static activeScheduleUidStorageKey = "active-assembled-schedule-uid"
 
 	constructor() {
 		makeAutoObservable(this)
@@ -17,42 +17,28 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
 	}
 
 	memorizeState(): void {
-		// localStorage.setItem(AssembledSchedulesStore.storageKey, JSON.stringify(this.assembledSchedules))
     this.activeScheduleUid && localStorage.setItem(AssembledSchedulesStore.activeScheduleUidStorageKey, this.activeScheduleUid)
 	}
 
 	async restoreState() {
     try {
+      this.isLoading = true
       const response = await api
         .get("users/me/assembled-schedules")
         .json() as { assembledSchedules: IAssembledSchedule[] }
       
         this.assembledSchedules = response.assembledSchedules
-        
-        setTimeout(() => {
-          this.assembledSchedules.push(this.assembledSchedules[0])
-        }, 1000)
     } catch (err) {
       console.error(`Can't fetch assembled schedules:\n`,err.message)
+    } finally {
+      this.isLoading = false
+      this.activeScheduleUid = localStorage.getItem(AssembledSchedulesStore.activeScheduleUidStorageKey) || null
     }
-
-    this.activeScheduleUid = localStorage.getItem(AssembledSchedulesStore.activeScheduleUidStorageKey) || null
 	}
-	// restoreState(): void {
-  //   try {
-  //     this.assembledSchedules = JSON.parse(localStorage.getItem(AssembledSchedulesStore.storageKey) || `[]`)
-  //   } catch (err) {
-  //     console.error(`Fatal error occurred. Can't parse "${AssembledSchedulesStore.storageKey}" from local storage, so it's value will be cleared.`)
-  //     console.error(err.message)
-      
-  //     this.assembledSchedules = []
-  //     this.memorizeState()
-  //   }
-  //   this.activeScheduleUid = localStorage.getItem(AssembledSchedulesStore.activeScheduleUidStorageKey) || null
-	// }
 
 	async addSchedule(newSchedule: Omit<IAssembledSchedule, "uid">, uid?: string) {
     try {
+      this.isLoading = true
       const newFormattedSchedule = {
         ...newSchedule,
         uid: uid || nanoid(10),
@@ -71,19 +57,14 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
         console.log("Assembled schedule added successfully")
     } catch (err) {
       console.error("Can't add new assembled schedule:\n", err.message)
+    } finally {
+      this.isLoading = false
     }
 	}
-	// addSchedule(newSchedule: Omit<IAssembledSchedule, "uid">, uid?: string) {
-	// 	this.assembledSchedules.push({
-	// 		...newSchedule,
-	// 		uid: uid || nanoid(10),
-	// 		name: capitalize(newSchedule.name)
-	// 	})
-	// 	this.memorizeState()
-	// }
 
 	async removeSchedule(uid: string) {
     try {
+      this.isLoading = true
       const response = await api
         .delete(`users/me/assembled-schedules/${uid}`)
         .json() as { assembledSchedules: IAssembledSchedule[] }
@@ -92,31 +73,20 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
       console.log("Assembled schedule deleted successfully")
     } catch (err) {
       console.error(`Can't delete assebmled schedule with id "${uid}":\n`, err.message)
+    } finally {
+      this.isLoading = false
     }
 	}
 
-	// removeSchedule(uid: string): boolean {
-	// 	const indexToDelete = this.assembledSchedules.findIndex(schedule => schedule.uid === uid)
-	// 	if (indexToDelete === -1) {
-	// 		console.warn(`Can't remove\n.Assembled schedule with id: "${uid}" not found.`)
-	// 		return false
-	// 	}
-		
-	// 	const deletedSchedule = this.assembledSchedules.splice(indexToDelete, 1)
-
-	// 	this.memorizeState()
-	// 	console.log("Class deleted from store.", toJS(deletedSchedule[0]))
-    
-	// 	return deletedSchedule.length === 1 
-	// }
-
 	async updateSchedule(uid: string, updatedFields: Partial<Omit<IAssembledSchedule, "uid">>) {
-		const indexToUpdate = this.assembledSchedules.findIndex(s => s.uid === uid)
+    const indexToUpdate = this.assembledSchedules.findIndex(s => s.uid === uid)
 		if (indexToUpdate === -1) {
-			console.error(`Can't update.\nAssembled schedule with id: "${uid}" not found.`)
+      console.error(`Can't update.\nAssembled schedule with id: "${uid}" not found.`)
 			return false
 		}
 
+    this.isLoading = true
+    
 		const updatedSchedule = {
       ...this.assembledSchedules[indexToUpdate],
 			...updatedFields
@@ -135,26 +105,10 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
       console.log("Assembled schedule modified successfully")
     } catch (err) {
       console.error("Can't update assembled schedule:\n", err.message)
+    } finally {
+      this.isLoading = false
     }
 	}
-
-	// updateSchedule(uid: string, newSchedule: Partial<Omit<IAssembledSchedule, "uid">>): boolean {
-	// 	const indexToUpdate = this.assembledSchedules.findIndex(s => s.uid === uid)
-	// 	if (indexToUpdate === -1) {
-	// 		console.warn(`Can't update.\nAssembled schedule with id: "${uid}" not found.`)
-	// 		return false
-	// 	}
-
-	// 	this.assembledSchedules[indexToUpdate] = {
-  //     ...this.assembledSchedules[indexToUpdate],
-	// 		...newSchedule
-	// 	}
-
-  //   this.memorizeState()
-	// 	console.log("Assembled Schedule updated successfully.")
-
-	// 	return true
-	// }
 
   activateSchedule(uid: string) {
     this.activeScheduleUid = uid

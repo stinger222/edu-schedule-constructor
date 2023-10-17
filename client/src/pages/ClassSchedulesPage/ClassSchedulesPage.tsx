@@ -28,6 +28,7 @@ const ClassSchedulesPage = () => {
           <ClassScheduleCardsList
             classSchedules={classSchedulesStore.classSchedules}
             removeSchedule={classSchedulesStore.removeSchedule.bind(classSchedulesStore)}
+            isLoading={classSchedulesStore.isLoading}
           />
         </ErrorBoundary>
 
