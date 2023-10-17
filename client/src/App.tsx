@@ -42,7 +42,6 @@ const App = () => {
         <Route path="/auth">
           <Route path="sign-in" element={<LogInPage />} />
         </Route>
-        
       </Routes>
       <GlobalStyles />
     </ThemeProvider>

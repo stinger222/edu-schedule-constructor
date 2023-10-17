@@ -23,7 +23,7 @@ const LogInPage = () => {
       await api.post("auth/sign-in", {
         json: { email },
         credentials: "include"
-      }).json() as {email: string}
+      }).json() as { email: string }
       
       console.log("Session successfully created! User singned-in!")
       rootStore.authStore.setSignedIn(true)
@@ -52,7 +52,8 @@ const LogInPage = () => {
     <div>
       <div className="googleSignIn"></div>
       <button onClick={() => {
-        handleLogin("someFakeEmail@gmail.dick", true)
+        // handleLogin("someFakeEmail@gmail.dick", true)
+        handleLogin("someFakeEmail2@gmail.dick", true)
       }}>FAKE LOGIN:</button>
     </div>
   )

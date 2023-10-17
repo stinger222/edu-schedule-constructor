@@ -266,7 +266,7 @@ i18n
           errorException: {
             header: "An Error occurred",
             messages: {
-              refferingDeletedClassSchedule: "This day in \"{{scheduleName}}\" assembled schedule is refering to class schedule that was deleted!\n\nTo fix that, change class schedule for this day in \"{{scheduleName}}\" assembled schedule to existing one.\n\nYou can to that by swiping mentioned assembled schedule card to the right in:\nMenu > Assembled Schedules"
+              refferingDeletedClassSchedule: "This day in \"{{scheduleName}}\" assembled schedule is refering to class schedule that was deleted!\n\nTo fix that, change class schedule for this day in \"{{scheduleName}}\" assembled schedule to existing one.\n\nYou can do that by swiping mentioned assembled schedule card to the right in:\nMenu > Assembled Schedules"
             }
           },
           fatalErrorException: {

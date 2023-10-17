@@ -9,6 +9,7 @@ import Container from "../../components/containers/Container/Container"
 import AssembledSchedulesList from "../../components/wrappers/AssembledSchedulesList/AssembledSchedulesList"
 
 import { StyledAssembledSchedulesPage } from "./AssembledSchedulesPage.styled"
+import { observer } from "mobx-react"
 
 const AssembledSchedulesPage = () => {
   const { t } = useTranslation()
@@ -35,4 +36,4 @@ const AssembledSchedulesPage = () => {
   )
 }
 
-export default AssembledSchedulesPage
+export default observer(AssembledSchedulesPage)

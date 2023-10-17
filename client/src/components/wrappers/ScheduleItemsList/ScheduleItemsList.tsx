@@ -44,7 +44,6 @@ const ScheduleItemsList = () => {
 
 export default observer(ScheduleItemsList)
 
-
 /**
  * This function returns everything that is necessary to render assembled schedule.
  * 

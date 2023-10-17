@@ -70,8 +70,7 @@ class ClassesStore implements IClassesStore {
 
   async addClass(newClass: Omit<IClass, "uid">, uid?: string) {
     try {
-
-      const NewFormattedClass = {
+      const newFormattedClass = {
         ...newClass,
         uid: uid || nanoid(10),
         title: capitalize(newClass.title) || `Class №${this.classes.length + 1}`,
@@ -80,12 +79,13 @@ class ClassesStore implements IClassesStore {
 
       const response = (await api
         .post("users/me/classes", {
-          json: NewFormattedClass
+          json: newFormattedClass
         })
         .json()) as { classes: IClass[] }
 
       this._classes = response.classes
       this.addNothingItem()
+      console.log("Class added successfully")
     } catch(err) {
       console.error("Can't add new class:\n", err.message)
     }
@@ -110,7 +110,7 @@ class ClassesStore implements IClassesStore {
 
       this._classes = response.classes
       this.addNothingItem()
-
+      console.log("Class deleted successfully")
     } catch(err) {
       console.error("Can't delete class:\n", err.message)
     }
@@ -134,7 +134,6 @@ class ClassesStore implements IClassesStore {
 
   async updateClass(uid: string, updatedFields: Partial<Omit<IClass, "uid">>) {
     const indexToUpdate = this.classes.findIndex((c) => c.uid === uid)
-
     if (indexToUpdate === -1) {
       console.warn(`Can't update.\nClass with id "${uid}" not found.`)
       return false
@@ -146,16 +145,18 @@ class ClassesStore implements IClassesStore {
     }
 
     try {
-      const response = await api.put(`users/me/classes/${uid}`, {
-        json: {
-          ...updatedClass
-        }  
-      }).json() as { classes: IClass[] }
+      const response = await api
+        .put(`users/me/classes/${uid}`, {
+          json: {
+            ...updatedClass
+          }
+        })
+        .json() as { classes: IClass[] }
       
       this._classes = response.classes
       this.addNothingItem()
 
-      console.log("Class modified successfully.")
+      console.log("Class modified successfully")
     } catch(err) {
       console.error("Can't update class:\n", err.message)
     }
