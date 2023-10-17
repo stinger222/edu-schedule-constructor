@@ -1,20 +1,21 @@
-import { Link, useNavigate } from "react-router-dom"
 import { observer } from "mobx-react"
+import { Link, useNavigate } from "react-router-dom"
+import { Trans, useTranslation } from "react-i18next"
 import { IClassSchedule } from "../../../core/types/types"
 import { StyledClassScheduleCardsList } from "./ClassScheduleCardsList.styled"
 
-import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
 import ClassScheduleCard from "../../ordinary/ClassScheduleCard/ClassScheduleCard"
+import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
 import GhostButton from "../../ui/GhostButton/GhostButton"
-import { Trans, useTranslation } from "react-i18next"
-import { toJS } from "mobx"
+import Loader from "../../ordinary/Loader/Loader"
 
 interface IProps {
 	classSchedules: IClassSchedule[],
-	removeSchedule: (uid: string) => boolean
+	removeSchedule: (uid: string) => boolean,
+  isLoading: boolean
 }
 
-const ClassScheduleCardsList= ({ classSchedules, removeSchedule }: IProps) => {
+const ClassScheduleCardsList= ({ classSchedules, removeSchedule, isLoading }: IProps) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   
@@ -26,6 +27,8 @@ const ClassScheduleCardsList= ({ classSchedules, removeSchedule }: IProps) => {
   const handleEdit = (uid: string) => {
     navigate("/add/class-schedules", {state: { mode: "edit", uid }})    
   }
+
+  if (isLoading) return <Loader />
 
   return (
     <StyledClassScheduleCardsList className="class-schedule-cards">

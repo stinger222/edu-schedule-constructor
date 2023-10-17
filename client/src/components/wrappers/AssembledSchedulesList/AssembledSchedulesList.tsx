@@ -8,13 +8,15 @@ import AssembledScheduleCard from "../../smart/AssembledScheduleCard/AssembledSc
 import GhostButton from "../../ui/GhostButton/GhostButton"
 
 import { StyledAssembledSchedulesList } from "./AssembledSchedulesList.styled"
+import Loader from "../../ordinary/Loader/Loader"
 
 interface IProps {
   assembledSchedules: IAssembledSchedule[]
-  removeSchedule: (uid: string) => boolean
+  removeSchedule: (uid: string) => boolean,
+  isLoading: boolean
 }
 
-const AssembledSchedulesList = ({ assembledSchedules, removeSchedule }: IProps) => {
+const AssembledSchedulesList = ({ assembledSchedules, removeSchedule, isLoading}: IProps) => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
@@ -26,6 +28,8 @@ const AssembledSchedulesList = ({ assembledSchedules, removeSchedule }: IProps) 
   const handleEdit = (uid: string) => {
     navigate("/add/assembled", {state: { mode: "edit", uid }})    
   }
+
+  if (isLoading) return <Loader />
 
   return (
     <StyledAssembledSchedulesList className="assembled-schedules-list">

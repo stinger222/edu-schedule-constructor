@@ -1,25 +1,29 @@
 import { useContext, useState } from "react"
-import { observer } from "mobx-react"
 import { ErrorBoundary } from "react-error-boundary"
+import { observer } from "mobx-react"
+import { Link } from "react-router-dom"
 
 import { StoreContext } from "../.."
-import Header from "../../components/smart/Header/Header"
-import Container from "../../components/containers/Container/Container"
-import ErrorFallback from "../../components/ordinary/ErrorFallback/ErrorFallback"
 import ScheduleItemsList from "../../components/wrappers/ScheduleItemsList/ScheduleItemsList"
+import ErrorFallback from "../../components/ordinary/ErrorFallback/ErrorFallback"
+import Container from "../../components/containers/Container/Container"
+import Header from "../../components/smart/Header/Header"
 
 import i18n from "../../core/configs/i18next"
 import { StyledMainPage } from "./MainPage.styled"
-import { Link } from "react-router-dom"
+import Loader from "../../components/ordinary/Loader/Loader"
 
 const MainPage = () => {
-  const { uiStore, assembledSchedulesStore } = useContext(StoreContext)
-
+  const stores = useContext(StoreContext)
   const [lang, setLang] = useState(i18n.language)
 
   i18n.on("languageChanged", (newLng: string) => {
     setLang(newLng)
   })
+  const isLoading = 
+    stores.assembledSchedulesStore.isLoading 
+    ||  stores.classesStore.isLoading
+    ||  stores.classSchedulesStore.isLoading
 
 	return (
 		<StyledMainPage>
@@ -30,10 +34,12 @@ const MainPage = () => {
 				</Header>
 
         <Link to="/debug" className="link">Debug Thing</Link>
-        <br />
+        <br/><br/>
          
-        <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[uiStore.selectedDayIndex, lang, assembledSchedulesStore.assembledSchedules]}>
-          <ScheduleItemsList />
+        <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[
+          stores.uiStore.selectedDayIndex, lang, stores.assembledSchedulesStore.assembledSchedules
+        ]}>
+          {isLoading ? <Loader /> : <ScheduleItemsList />}
         </ErrorBoundary>
 
 			</Container>

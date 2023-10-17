@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next"
 
 import { StoreContext } from "../../.."
 import { ThemeEnum } from "../../../core/types/styled"
-import useImpexAppState from "../../../core/hooks/useImpexAppState"
 
 import Button from "../../ui/Button/Button"
 import Textarea from "../../ui/Textarea/Textarea"
@@ -21,27 +20,28 @@ const DropdownSettings = () => {
   const { t, i18n } = useTranslation()
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
-  const [state, importState] = useImpexAppState()
+  // const [state, importState] = useImpexAppState()
 
-  const getAppState = () => {
-    console.log(state)
-    textAreaRef.current!.value = JSON.stringify(state)
-  }
+  // const getAppState = () => {
+  //   console.log(state)
+  //   textAreaRef.current!.value = JSON.stringify(state)
+  // }
 
-  const importAppState = (jsonSate: string) => {
-    importState(jsonSate, () => {
-      textAreaRef.current!.value = "Can't parse passed JSON string! Check if all brackets are there"
-    })
-  }
+  // const importAppState = (jsonSate: string) => {
+  //   importState(jsonSate, () => {
+  //     textAreaRef.current!.value = "Can't parse passed JSON string! Check if all brackets are there"
+  //   })
+  // }
 
   const clearAppData = () => {
-    if (!window.confirm(t("dropdown.settings.removeStoredDataConfirm"))) return
+    window.alert("This function not working right now")
+    // if (!window.confirm(t("dropdown.settings.removeStoredDataConfirm"))) return
 
-    localStorage.removeItem(ClassesStore.storageKey)
-    localStorage.removeItem(ClassSchedulesStore.storageKey)
-    localStorage.removeItem(AssembledSchedulesStore.storageKey)
-    localStorage.removeItem(AssembledSchedulesStore.activeScheduleUidStorageKey)
-    document.location.reload()
+    // localStorage.removeItem(ClassesStore.storageKey)
+    // localStorage.removeItem(ClassSchedulesStore.storageKey)
+    // localStorage.removeItem(AssembledSchedulesStore.storageKey)
+    // localStorage.removeItem(AssembledSchedulesStore.activeScheduleUidStorageKey)
+    // document.location.reload()
   }
 
   const handleLangChange = (value: "ru" | "en") => {
@@ -51,7 +51,7 @@ const DropdownSettings = () => {
 
   const handleThemeChange = (theme: "light" | "dark") => {
     uiStore.userSettings.theme = ThemeEnum[theme]
-    uiStore.memorizeState()
+    // uiStore.memorizeState()
   }
 
   return (
@@ -83,13 +83,13 @@ const DropdownSettings = () => {
 
       <div className="section-divider"></div>
 
-      <Textarea
+      {/* <Textarea
         label={t("dropdown.settings.impextTextareaTitle")}
         placeholder={t("dropdown.settings.impextTextareaPaceholder")}
         ref={textAreaRef}
-      />
+      /> */}
 
-      <div className="impex-controls">
+      {/* <div className="impex-controls">
         <Button onClick={() => importAppState(textAreaRef.current!.value)}>
           {t("dropdown.settings.impextBtnImport")}
         </Button>
@@ -99,9 +99,9 @@ const DropdownSettings = () => {
       </div>
       <Button onClick={clearAppData}>
          {t("dropdown.settings.removeStoredDataBtn")}
-      </Button>
+      </Button> */}
 
-      <div className="section-divider"></div>
+      {/* <div className="section-divider"></div> */}
 
       <Button onClick={() => (uiStore.activeDropdownMenu = "main")}> {t("dropdown.settings.back")} </Button>
     </div>

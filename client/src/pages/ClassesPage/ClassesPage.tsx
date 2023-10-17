@@ -1,14 +1,15 @@
-import ClassCardsList from "../../components/wrappers/ClassCardsList/ClassCardsList"
-import Container from "../../components/containers/Container/Container"
-import Header from "../../components/smart/Header/Header"
-import { StyledClassesPage } from "./ClassesPage.styled"
 import { useContext } from "react"
 import { StoreContext } from "../.."
 import { observer } from "mobx-react"
 import { useTranslation } from "react-i18next"
 
-const ClassesPage = () => {
+import Header from "../../components/smart/Header/Header"
+import Container from "../../components/containers/Container/Container"
+import ClassCardsList from "../../components/wrappers/ClassCardsList/ClassCardsList"
 
+import { StyledClassesPage } from "./ClassesPage.styled"
+
+const ClassesPage = () => {
   const { t } = useTranslation()
 	const classesStore = useContext(StoreContext).classesStore
 
@@ -21,9 +22,10 @@ const ClassesPage = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-				<ClassCardsList 
-					classes={classesStore.classes}
-					removeClass={classesStore.removeClass.bind(classesStore)}
+        <ClassCardsList 
+          classes={classesStore.classes}
+          removeClass={classesStore.removeClass.bind(classesStore)}
+          isLoading={classesStore.isLoading}
         />
 
 			</Container>

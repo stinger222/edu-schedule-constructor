@@ -1,26 +1,24 @@
 import { IClass, IClassSchedule, IAssembledSchedule, DropdownMenu, ISettings } from "./types"
-export interface IUIStore extends IStoreable {
+export interface IUIStore extends IRestoreable {
 	selectedDayIndex: number,
 	isDropdownOpen: boolean,
   activeDropdownMenu: DropdownMenu,
   defaultSettings: ISettings,
   userSettings: ISettings,
+  memorizeState(): void,
 	toggleDropdown: (newState?: boolean) => void,
 	selectDayIndex: (newIndex: number) => void
 }
 
 
-interface IStoreable {
-  // also "storageKey: string" should be here, but I need it to be static,
-  // and typescript CAN'T declare static field in the interface,
-  // soo.. yea, all classes that implement IStoreable have static "storageKey" filed, I GUESS...
-	memorizeState(): void,
+interface IRestoreable {
 	restoreState(): void
 }
 
-export interface IClassesStore extends IStoreable {
+export interface IClassesStore extends IRestoreable {
 	_classes: IClass[],
 	classes: IClass[],
+  isLoading: boolean,
   addNothingItem(): void,
 	addClass(newClass: Omit<IClass, "uid">, uid?: string): void,
 	removeClass(uid: string): void,
@@ -28,17 +26,19 @@ export interface IClassesStore extends IStoreable {
   findById(uid: string): IClass | undefined
 }
 
-export interface IClassSchedulesStore extends IStoreable {
+export interface IClassSchedulesStore extends IRestoreable {
 	classSchedules: IClassSchedule[],
+  isLoading: boolean,
 	addSchedule(newClassSchedule: Omit<IClassSchedule, "uid">, uid?: string): void,
 	removeSchedule(uid: string): void,
   updateSchedule(uid: string, newSchedule: Partial<Omit<IClassSchedule, "uid">>): void,
   getById(uid: string): IClassSchedule | undefined
 }
 
-export interface IAssembledSchedulesStore extends IStoreable {
+export interface IAssembledSchedulesStore extends IRestoreable {
 	assembledSchedules: IAssembledSchedule[],
   activeScheduleUid: string | null,
+  isLoading: boolean,
 	addSchedule(newSchedule: Omit<IAssembledSchedule, "uid">,  uid?: string): void,
   updateSchedule(uid: string, newSchedule: Partial<Omit<IAssembledSchedule, "uid">>): void,
 	removeSchedule(uid: string): void,

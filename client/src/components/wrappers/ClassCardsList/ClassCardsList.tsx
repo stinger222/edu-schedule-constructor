@@ -1,19 +1,23 @@
+import { useEffect } from "react"
+import { observer } from "mobx-react"
 import { Link, useNavigate } from "react-router-dom"
+import { Trans, useTranslation } from "react-i18next"
 
 import { IClass } from "../../../core/types/types"
 import SwipeToAction from "../../containers/SwipeToAction/SwipeToAction"
-import ClassCard from "../../ordinary/ClassCard/ClassCard"
 import GhostButton from "../../ui/GhostButton/GhostButton"
+import ClassCard from "../../ordinary/ClassCard/ClassCard"
+import Loader from "../../ordinary/Loader/Loader"
 
 import { StyledClassCardsList } from "./ClassCardsList.styled"
-import { Trans, useTranslation } from "react-i18next"
 
 interface IProps {
 	classes: IClass[]
-	removeClass: (uid: string) => boolean 
+	removeClass: (uid: string) => boolean,
+  isLoading: boolean
 }
 
-const ClassCardsList = ({ classes, removeClass }: IProps) => {
+const ClassCardsList = ({ classes, removeClass, isLoading }: IProps) => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
@@ -25,6 +29,12 @@ const ClassCardsList = ({ classes, removeClass }: IProps) => {
   const handleEdit = (uid: string) => {
     navigate("/add/class", {state: { mode: "edit", uid }})    
   }
+
+  useEffect(() => {
+    console.log("LOADING: ", isLoading.toString())
+  })
+
+  if (isLoading) return <Loader />
 
 	return (
 		<StyledClassCardsList className="class-cards-list">
@@ -66,4 +76,4 @@ const ClassCardsList = ({ classes, removeClass }: IProps) => {
 	)
 }
 
-export default ClassCardsList
+export default observer(ClassCardsList)
