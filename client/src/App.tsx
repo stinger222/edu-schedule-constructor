@@ -16,7 +16,7 @@ import AddClassPage from "./pages/AddClassPage/AddClassPage"
 import ClassSchedulesPage from "./pages/ClassSchedulesPage/ClassSchedulesPage"
 import ClassesPage from "./pages/ClassesPage/ClassesPage"
 import MainPage from "./pages/MainPage/MainPage"
-import LogInPage from "./pages/LogInPage/LogInPage"
+import SignInPage from "./pages/SignInPage/SignInPage"
 import DebugPage from "./pages/DebugPage/DebugPage"
 
 const App = () => {
@@ -40,7 +40,7 @@ const App = () => {
         </Route>
 
         <Route path="/auth">
-          <Route path="sign-in" element={<LogInPage />} />
+          <Route path="sign-in" element={<SignInPage />} />
         </Route>
       </Routes>
       <GlobalStyles />
