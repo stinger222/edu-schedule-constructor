@@ -87,14 +87,6 @@ export const StyledDropdown = styled.div`
     font-size: 0.9em;
   }
 
-
-  & .section-divider {
-    max-height: 0;
-    width: 100%;
-    box-shadow: 0 0 0.02em 0.03em ${({theme}) => theme.dropdown.divider};
-    margin: 0.2em 0;
-  }
-
   /* React-transition-group classes: */
 
   & .mainMenuEnterActive {

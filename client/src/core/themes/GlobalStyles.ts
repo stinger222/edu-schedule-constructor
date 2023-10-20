@@ -113,6 +113,13 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
     font-weight: 200;
     margin-bottom: 4em;
   }
+  
+  .section-divider {
+    width: 100%;
+    height: 0.01em;
+    background: ${({theme}) => theme.dropdown.divider};
+    margin: 0.2em 0;
+  }
 
   .max-lines-1, .max-lines-2 {
     display: -webkit-box;

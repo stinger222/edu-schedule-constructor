@@ -19,7 +19,7 @@ export const LightTheme: ITheme = {
   dropdown: {
     background: "#FFF",
     border: "#515151",
-    divider: "#C6C6C6",
+    divider: "#D2D2D2", // "#C6C6C6",
     buttons: "#25272C",
     buttonBoxShadow: "0.05em 0.1em 0.25em 0 #00000095",
     boxShadow: "0.2em 0.3em 0.6em 0 rgb(0 0 0 / 40%)"
