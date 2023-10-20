@@ -114,6 +114,23 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
     margin-bottom: 4em;
   }
 
+  .max-lines-1, .max-lines-2 {
+    display: -webkit-box;
+		-webkit-box-orient: vertical;
+		text-overflow: ellipsis;
+    word-wrap: break-word;
+    word-break: break-all;
+		overflow: hidden;
+  }
+  
+  .max-lines-1 {
+    -webkit-line-clamp: 1;
+  }
+  
+  .max-lines-2 {
+    -webkit-line-clamp: 2;
+  }
+
 	/* TEMP AS WELL */
 	@media (max-width: 625px) {
 		.schedule-item {

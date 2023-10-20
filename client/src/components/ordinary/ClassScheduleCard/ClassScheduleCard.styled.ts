@@ -17,18 +17,9 @@ export const StyledClassScheduleCard = styled.div`
 	text-align: center;
   
 	& header {
-    display: -webkit-box;
-
     font-size: 1.5em;
 		font-weight: 400;
 		margin-bottom: 0.6em;
-    
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
-    word-wrap: break-word;
-    
-    overflow: hidden;
 	}
 
 	& .details {
