@@ -23,8 +23,6 @@ export const StyledAssembledSchedule = styled.div`
   }
 
 	& > header .title {
-    display: -webkit-box;
-    
 		line-height: 1em;
 		font-size: 1.9em;
 		font-weight: 400;
@@ -32,12 +30,6 @@ export const StyledAssembledSchedule = styled.div`
 		text-align: center;
     margin-inline: auto;
     width: 77%;
-
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		text-overflow: ellipsis;
-    word-wrap: break-word;
-		overflow: hidden;
 	}
 
 	& .days {

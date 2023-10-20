@@ -22,7 +22,7 @@ const ClassesPage = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-        <ClassCardsList 
+        <ClassCardsList
           classes={classesStore.classes}
           removeClass={classesStore.removeClass.bind(classesStore)}
           isLoading={classesStore.isLoading}

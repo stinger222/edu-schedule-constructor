@@ -25,7 +25,7 @@ const AssembledScheduleCard = ({ name, days, uid }: IProps) => {
   return (
 		<StyledAssembledSchedule className="assembled-schedule">
 			<header>
-        <div className="title">{ name }</div>
+        <div className="title max-lines-2">{ name }</div>
         <Switch type="checkbox" onChange={handleActivation} checked={thisIsActive} />
       </header>
       <div className="days">

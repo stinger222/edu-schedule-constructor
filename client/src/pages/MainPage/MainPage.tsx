@@ -20,8 +20,7 @@ const MainPage = () => {
   i18n.on("languageChanged", (newLng: string) => {
     setLang(newLng)
   })
-  const isLoading = 
-    stores.assembledSchedulesStore.isLoading 
+  const isLoading = stores.assembledSchedulesStore.isLoading 
     ||  stores.classesStore.isLoading
     ||  stores.classSchedulesStore.isLoading
 

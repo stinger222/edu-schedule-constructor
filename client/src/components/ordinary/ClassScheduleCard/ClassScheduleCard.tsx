@@ -14,7 +14,7 @@ const ClassScheduleCard = ({ length, start, end, name }: IProps) => {
 
 	return (
 		<StyledClassScheduleCard className="class-schedule-card">
-			<header>
+			<header className="max-lines-2">
 				{name}
 			</header>
 			<div className="details">

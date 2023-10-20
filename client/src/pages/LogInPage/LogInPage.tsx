@@ -44,7 +44,9 @@ const LogInPage = () => {
       callback: handleLogin
     })
 
-    window.google.accounts.id.renderButton(document.querySelector(".googleSignIn"), {theme: "outline", size: "large"})
+    window.google.accounts.id.renderButton(document.querySelector(".googleSignIn"), {
+      size: "medium", locale: "ru_RU"
+    })
 
   }, [])
 

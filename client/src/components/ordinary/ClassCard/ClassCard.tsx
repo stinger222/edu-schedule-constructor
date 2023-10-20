@@ -13,10 +13,16 @@ const ClassCard = ({ title, teacher, cabinet }: IProps) => {
 
 	return (
 		<StyledClassCard className="class-card">
-			<h1>{ title?.trim() || "<Название пары не указано>" }</h1>
+			<h1 className="max-lines-2">
+        { title?.trim() || "<Название пары не указано>" }
+      </h1>
 			<footer>
-				<span>{ teacher.trim() || "<Имя препода не указано>" }</span>
-				<span>{t("classCard.cabinetPrefix")} { cabinet.trim() || "???" }</span>
+				<span className="max-lines-1">
+          { teacher.trim() || "<Имя препода не указано>" }
+        </span>
+				<span className="max-lines-1">
+          {t("classCard.cabinetPrefix")} { cabinet.trim() || "???" }
+        </span>
 			</footer>
 		</StyledClassCard>
 	)
