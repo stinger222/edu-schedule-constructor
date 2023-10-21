@@ -71,7 +71,7 @@ export interface IAssembledSchedulesStore extends IRestoreable {
 }
 
 export interface IAuthStore  {
-  isSignedIn: boolean,
+  isSignedIn: null | boolean,
   setSignedIn(isSignedIn: boolean): void,
   signOut(): void,
   validateSession(): void

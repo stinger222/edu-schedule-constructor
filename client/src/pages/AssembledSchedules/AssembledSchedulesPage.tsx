@@ -10,10 +10,15 @@ import Container from "../../components/containers/Container/Container"
 import AssembledSchedulesList from "../../components/wrappers/AssembledSchedulesList/AssembledSchedulesList"
 
 import { StyledAssembledSchedulesPage } from "./AssembledSchedulesPage.styled"
+import useAuth from "../../core/hooks/useAuth"
+import Loader from "../../components/ordinary/Loader/Loader"
 
 const AssembledSchedulesPage = () => {
   const { t } = useTranslation()
   const assembledSchedulesStore = useContext(StoreContext).assembledSchedulesStore
+
+  const isLoading = useAuth()
+  if (isLoading) return <Loader />
 
   return (
     <StyledAssembledSchedulesPage>

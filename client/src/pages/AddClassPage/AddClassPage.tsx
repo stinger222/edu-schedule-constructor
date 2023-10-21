@@ -14,6 +14,8 @@ import { validateField } from "../../core/utils/stringUtils"
 import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
 
 import { StyledAddClassPage } from "./AddClassPage.styled"
+import useAuth from "../../core/hooks/useAuth"
+import Loader from "../../components/ordinary/Loader/Loader"
 
 
 const AddClassPage = () => {
@@ -41,6 +43,10 @@ const AddClassPage = () => {
 
   useInitializeFormForEditMode<IClass>(classesStore.classes, routeState, methods)
 
+  const isLoading = useAuth()
+  if (isLoading) return <Loader />
+
+  
 	return (
 		<StyledAddClassPage>
 			<Container>

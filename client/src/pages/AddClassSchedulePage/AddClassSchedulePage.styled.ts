@@ -2,8 +2,8 @@ import styled from "styled-components"
 
 export const StyledAddClassSchedulePage = styled.div`
 	& form {
-		padding-inline: 4em;
-		font-size: 1.2em;
+		padding-inline: 3em;
+		font-size: 1.3em;
 	}
 
 	& form input[name="name"] {
@@ -27,8 +27,6 @@ export const StyledAddClassSchedulePage = styled.div`
     width: 5.5em;
     margin-inline: auto;
   }
-
-
 
 	& form input {
 		width: 6em;
