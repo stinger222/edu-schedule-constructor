@@ -8,10 +8,15 @@ import Container from "../../components/containers/Container/Container"
 import ClassCardsList from "../../components/wrappers/ClassCardsList/ClassCardsList"
 
 import { StyledClassesPage } from "./ClassesPage.styled"
+import useAuth from "../../core/hooks/useAuth"
+import Loader from "../../components/ordinary/Loader/Loader"
 
 const ClassesPage = () => {
   const { t } = useTranslation()
 	const classesStore = useContext(StoreContext).classesStore
+
+  const isLoading = useAuth()
+  if (isLoading) return <Loader />
 
 	return (
 		<StyledClassesPage>

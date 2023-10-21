@@ -12,6 +12,7 @@ import Header from "../../components/smart/Header/Header"
 import i18n from "../../core/configs/i18next"
 import { StyledMainPage } from "./MainPage.styled"
 import Loader from "../../components/ordinary/Loader/Loader"
+import useAuth from "../../core/hooks/useAuth"
 
 const MainPage = () => {
   const stores = useContext(StoreContext)
@@ -20,9 +21,14 @@ const MainPage = () => {
   i18n.on("languageChanged", (newLng: string) => {
     setLang(newLng)
   })
-  const isLoading = stores.assembledSchedulesStore.isLoading 
+
+  const dataIsLoading = stores.assembledSchedulesStore.isLoading 
     ||  stores.classesStore.isLoading
     ||  stores.classSchedulesStore.isLoading
+
+
+  const authDataIsLoading = useAuth()
+  if (authDataIsLoading) return <Loader />
 
 	return (
 		<StyledMainPage>
@@ -38,7 +44,7 @@ const MainPage = () => {
         <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[
           stores.uiStore.selectedDayIndex, lang, stores.assembledSchedulesStore.assembledSchedules
         ]}>
-          {isLoading ? <Loader /> : <ScheduleItemsList />}
+          {dataIsLoading ? <Loader /> : <ScheduleItemsList />}
         </ErrorBoundary>
 
 			</Container>

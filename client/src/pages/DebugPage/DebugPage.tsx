@@ -7,6 +7,7 @@ import { Cookies } from "react-cookie"
 import Button from "../../components/ui/Button/Button"
 import { IAssembledSchedule, IClassSchedule } from "../../core/types/types"
 import { api } from "../../api"
+import { Link } from "react-router-dom"
 
 const DebugPage = () => {
   const { authStore } = useContext(StoreContext)
@@ -247,7 +248,7 @@ const DebugPage = () => {
       </Container>
       <div style={{width: "73em", margin: "0 auto", display: "flex", justifyContent: "space-between"}}>
         <div style={{flexBasis: "50%", height: "fit-content", borderRight: "2px solid lightgray", paddingRight: "2em"}}>
-          <div>isAuthorized: <strong>{authStore.isSignedIn.toString()}</strong></div>
+          <div>isAuthorized: <strong>{authStore.isSignedIn?.toString() || null}</strong></div>
           <br/>
 
           <div>session_id cookie: <strong>{cookies.get("session_id")?.toString()}</strong></div>
@@ -300,6 +301,22 @@ const DebugPage = () => {
           <input placeholder="uid:" style={inputStyles} ref={deleteAssembledScheduleWithIdInputRef}/>
           <br/><br/>
           <Button onClick={deleteAllAssembledSchedules}>Delete all assembled schedules</Button>
+
+          <br/><br/>
+          <br/><br/>
+          <h2>Root Protection Tests:</h2>
+          <br/>
+
+          <Link to="/"> / </Link> <br/>
+          <Link to="/assembled"> assembled </Link> <br/>
+          <Link to="/classes"> classes </Link> <br/>
+          <Link to="/class-schedules"> class-schedules </Link> <br/>
+          <Link to="/debug"> debug (should work, obviously...) </Link> <br/>
+          <Link to="/add/assembled"> /add/assembled </Link> <br/>
+          <Link to="/add/class"> /add/class </Link> <br/>
+          <Link to="/add/class-schedules"> /add/class-schedules </Link> <br/>
+          <br/><br/>
+          <br/><br/>
         </div>
 
       </div>

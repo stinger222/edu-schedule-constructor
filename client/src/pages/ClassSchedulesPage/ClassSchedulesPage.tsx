@@ -10,10 +10,16 @@ import ClassScheduleCardsList from "../../components/wrappers/ClassScheduleCards
 
 import { StyledClassSchedulesPage } from "./ClassSchedulesPage.styled"
 import { observer } from "mobx-react"
+import useAuth from "../../core/hooks/useAuth"
+import Loader from "../../components/ordinary/Loader/Loader"
 
 const ClassSchedulesPage = () => {
   const { t } = useTranslation()
   const classSchedulesStore = useContext(StoreContext).classSchedulesStore
+
+  const isLoading = useAuth()
+  if (isLoading) return <Loader />
+
 
 	return (
 		<StyledClassSchedulesPage>

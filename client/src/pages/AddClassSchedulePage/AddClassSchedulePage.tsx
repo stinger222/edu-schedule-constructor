@@ -16,6 +16,8 @@ import { validateField } from "../../core/utils/stringUtils"
 import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
 
 import { StyledAddClassSchedulePage } from "./AddClassSchedulePage.styled"
+import Loader from "../../components/ordinary/Loader/Loader"
+import useAuth from "../../core/hooks/useAuth"
 
 
 const AddClassSchedulePage = () => {
@@ -51,6 +53,10 @@ const AddClassSchedulePage = () => {
 	}
 
   useInitializeFormForEditMode<IClassSchedule>(classSchedulesStore.classSchedules, routeState, methods)
+
+  const isLoading = useAuth()
+  if (isLoading) return <Loader />
+
 
 	return (
 		<StyledAddClassSchedulePage>

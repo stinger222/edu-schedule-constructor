@@ -17,6 +17,8 @@ import { Cases, IAssembledSchedule } from "../../core/types/types"
 import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
 
 import { StyledAddAssembledSchedulePage } from "./AddAssembledSchedulePage.styled"
+import useAuth from "../../core/hooks/useAuth"
+import Loader from "../../components/ordinary/Loader/Loader"
 
 
 const AddAssembledSchedulePage = () => {
@@ -48,6 +50,9 @@ const AddAssembledSchedulePage = () => {
   }
 
   useInitializeFormForEditMode<IAssembledSchedule>(assembledSchedulesStore.assembledSchedules, routeState, methods)
+
+  const isLoading = useAuth()
+  if (isLoading) return <Loader />
 
   return (
     <StyledAddAssembledSchedulePage>

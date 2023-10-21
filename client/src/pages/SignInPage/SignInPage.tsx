@@ -1,11 +1,12 @@
-import ky from "ky"
 import { useContext, useEffect } from "react"
-import { StoreContext } from "../.."
 import { useNavigate } from "react-router"
 import jwtDecode from "jwt-decode"
+
+import { StoreContext } from "../.."
 import { api } from "../../api"
-import { StyledSignInPage } from "./SignInPage.styled"
 import Container from "../../components/containers/Container/Container"
+
+import { StyledSignInPage } from "./SignInPage.styled"
 
 const SignInPage = () => {
   const rootStore = useContext(StoreContext)
@@ -21,7 +22,6 @@ const SignInPage = () => {
     console.log("Trying to create session...")
 
     try {
-      // todo: move all api calls to DAL or something
       await api.post("auth/sign-in", {
         json: { email },
         credentials: "include"
@@ -49,7 +49,6 @@ const SignInPage = () => {
     window.google.accounts.id.renderButton(document.querySelector(".googleSignIn"), {
       size: "medium", locale: "ru_RU"
     })
-
   }, [])
 
   return (
@@ -74,8 +73,6 @@ const SignInPage = () => {
         <p>Если возникнут трудности, то можете <br /> ознакомиться с гайдом нажав <a href="https://google.com" target="_blank" rel="noreferrer">сюда</a>, или используя <br /> кнопку в меню</p>
         <div className="section-divider"></div>
         <p>Исходный код приложения, более подробное <br /> описание фич и информация об авторе доступны на <br /> <a href="https://google.com" target="_blank" rel="noreferrer">GitHub</a></p>
-
-
 
         <br/><br/><br/><br/><br/>
         <button onClick={() => {
