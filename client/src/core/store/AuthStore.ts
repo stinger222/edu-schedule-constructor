@@ -4,7 +4,7 @@ import { Cookies } from "react-cookie"
 import { IAuthStore } from "../types/store"
 
 class AuthStore implements IAuthStore {
-  isSignedIn: boolean = false
+  isSignedIn: null | boolean = null
 
 	constructor() {
 		makeAutoObservable(this)
@@ -27,6 +27,7 @@ class AuthStore implements IAuthStore {
       this.setSignedIn(response.isSessionValid)
       console.log("User successfully signed-in using stored session id!")
     } catch(err) {
+      this.setSignedIn(false)
       console.warn("User not signed-in: session has expired or doesn't exist")
     }
   }
