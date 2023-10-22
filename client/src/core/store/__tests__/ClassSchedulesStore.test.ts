@@ -1,11 +1,33 @@
-// import ClassSchedulesStore from "../ClassSchedulesStore"
+import ClassSchedulesStore from "../ClassSchedulesStore"
 
 /*
   BTW Im intentionally not moving all of these "sub-tests" in one "it" to their own "it"s.
   Despite testing itself is shit, I want to sure that bunch of subsequent calls will not break anything
 */
 
-// describe("Testing ClassSchedulesStore", () => {
+describe("Testing ClassSchedulesStore", () => {
+  it("Tests formatClassScheduleObject method", () => {
+    expect(ClassSchedulesStore.formatClassScheduleObject({
+      name: "   some random name   ",
+      classes: [
+        {start: "2:2", end: "3:5"},
+        {start: "4:30", end: "5:00"},
+        {start: "10:0", end: "11:9"},
+        {start: "12:00", end: "13:00"}
+      ],
+      uid: "123qwe"
+    })).toEqual({
+      name: "Some random name",
+      classes: [
+        {start: "02:02", end: "03:05"},
+        {start: "04:30", end: "05:00"},
+        {start: "10:00", end: "11:09"},
+        {start: "12:00", end: "13:00"}
+      ],
+      uid: "123qwe"
+    })
+  })
+
 	// it("Tests addSchedule action", () => {
 	// 	const classSchedulesStore = new ClassSchedulesStore()
 
@@ -159,4 +181,4 @@
   //     ]
   //   })
 	// })
-// })
+})
