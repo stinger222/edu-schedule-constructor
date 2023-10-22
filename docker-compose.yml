@@ -9,7 +9,7 @@ services:
     depends_on:
       - server
     networks:
-      - dick-network
+      - app-network
     volumes:
       - ./client:/app/client:cached
       - client_node_modules:/app/client/node_modules:delegated
@@ -31,7 +31,7 @@ services:
     depends_on:
       - database
     networks:
-      - dick-network
+      - app-network
     volumes:
       - ./server:/app/server:cached
       - server_node_modules:/app/server/node_modules:delegated
@@ -51,12 +51,12 @@ services:
     volumes:
       - ./mongo-db-backup:/data/db
     networks:
-      - dick-network
+      - app-network
 
 volumes:
   client_node_modules:
   server_node_modules:
 
 networks:
-  dick-network:
+  app-network:
     driver: bridge
