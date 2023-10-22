@@ -66,13 +66,11 @@ class ClassesStore implements IClassesStore {
   }
 
   async addClass(newClass: Omit<IClass, "uid">, uid?: string) {
-    const newFormattedClass = {
+    const newFormattedClass = ClassesStore.formatClassObject({
       ...newClass,
-      uid: uid || nanoid(10),
-      title: capitalize(newClass.title) || `Class №${this.classes.length + 1}`,
-      teacher: capitalize(newClass.teacher, true)
-    }
-    
+      uid: uid || nanoid(10)
+    })
+          
     this.isLoading = true
     api
       .post("users/me/classes", newFormattedClass)
@@ -151,10 +149,10 @@ class ClassesStore implements IClassesStore {
       return false
     }
 
-    const updatedClass = {
+    const updatedClass = ClassesStore.formatClassObject({
       ...this.classes[indexToUpdate],
       ...updatedFields
-    }
+    })
 
     this.isLoading = true
     api
@@ -198,12 +196,13 @@ class ClassesStore implements IClassesStore {
     return this._classes.find(l => l.uid === uid)
   }
   
-  static formatClassObject(classToFormat: Omit<IClass, "uid">) {
+  static formatClassObject(classToFormat: IClass) {
     return {
       ...classToFormat,
       title: capitalize(classToFormat.title).trim(),
       teacher: capitalize(classToFormat.teacher, true).trim(),
-      cabinet: classToFormat.cabinet.trim()
+      cabinet: classToFormat.cabinet.trim(),
+      uid: classToFormat.uid
     } as IClass
   }
 }

@@ -46,7 +46,6 @@ const AddClassPage = () => {
   const isLoading = useAuth()
   if (isLoading) return <Loader />
 
-  
 	return (
 		<StyledAddClassPage>
 			<Container>
