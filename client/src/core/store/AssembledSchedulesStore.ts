@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios"
 import { nanoid } from "nanoid"
 import { makeAutoObservable } from "mobx"
 import { IAssembledSchedulesStore } from "../types/store"
@@ -20,62 +21,111 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
     this.activeScheduleUid && localStorage.setItem(AssembledSchedulesStore.activeScheduleUidStorageKey, this.activeScheduleUid)
 	}
 
-	async restoreState() {
-    try {
-      this.isLoading = true
-      const response = await api
-        .get("users/me/assembled-schedules")
-        .json() as { assembledSchedules: IAssembledSchedule[] }
+	restoreState() {
+    // try {
+    //   this.isLoading = true
+    //   const response = await api
+    //     .get("users/me/assembled-schedules")
+    //     // .json() as { assembledSchedules: IAssembledSchedule[] }
       
-        this.assembledSchedules = response.assembledSchedules
-    } catch (err) {
-      console.error(`Can't fetch assembled schedules:\n`,err.message)
-    } finally {
-      this.isLoading = false
-      this.activeScheduleUid = localStorage.getItem(AssembledSchedulesStore.activeScheduleUidStorageKey) || null
-    }
+    //     // this.assembledSchedules = response.assembledSchedules
+    // } catch (err) {
+    //   console.error(`Can't fetch assembled schedules:\n`,err.message)
+    // } finally {
+    //   this.isLoading = false
+    //   this.activeScheduleUid = localStorage.getItem(AssembledSchedulesStore.activeScheduleUidStorageKey) || null
+    // }
+
+    api
+      .get("users/me/assembled-schedules")
+      .then((response: AxiosResponse<{assembledSchedules: IAssembledSchedule[]}>) => {
+        this.assembledSchedules = response.data.assembledSchedules
+      }).catch(err => {
+        console.error(`Can't fetch assembled schedules:\n`,err.message)
+      }).finally(() => {
+          this.isLoading = false
+          this.activeScheduleUid = localStorage.getItem(AssembledSchedulesStore.activeScheduleUidStorageKey) || null
+      })
 	}
 
 	async addSchedule(newSchedule: Omit<IAssembledSchedule, "uid">, uid?: string) {
-    try {
-      this.isLoading = true
-      const newFormattedSchedule = {
-        ...newSchedule,
-        uid: uid || nanoid(10),
-        name: capitalize(newSchedule.name)
-      }
 
-      const response = await api
-        .post("users/me/assembled-schedules", {
-          json: {
-            ...newFormattedSchedule
-          }
-        })
-        .json() as { assembledSchedules: IAssembledSchedule[] }
+    // try {
+    //   this.isLoading = true
+    //   const newFormattedSchedule = {
+    //     ...newSchedule,
+    //     uid: uid || nanoid(10),
+    //     name: capitalize(newSchedule.name)
+    //   }
 
-        this.assembledSchedules = response.assembledSchedules
-        console.log("Assembled schedule added successfully")
-    } catch (err) {
-      console.error("Can't add new assembled schedule:\n", err.message)
-    } finally {
-      this.isLoading = false
+    //   const response = await api
+    //     .post("users/me/assembled-schedules", {
+    //       json: {
+    //         ...newFormattedSchedule
+    //       }
+    //     })
+    //     // .json() as { assembledSchedules: IAssembledSchedule[] }
+
+    //     // this.assembledSchedules = response.assembledSchedules
+    //     console.log("Assembled schedule added successfully")
+    // } catch (err) {
+    //   console.error("Can't add new assembled schedule:\n", err.message)
+    // } finally {
+    //   this.isLoading = false
+    // }
+
+    this.isLoading = true
+
+    const newFormattedSchedule = {
+      ...newSchedule,
+      uid: uid || nanoid(10),
+      name: capitalize(newSchedule.name)
     }
+
+    api
+      .post("users/me/assembled-schedules", {
+        ...newFormattedSchedule
+      })
+      .then((response: AxiosResponse<{assembledSchedules: IAssembledSchedule[]}>) => {
+        this.assembledSchedules = response.data.assembledSchedules
+        console.log("Assembled schedule added successfully")
+      })
+      .catch(err => {
+        console.error("Can't add new assembled schedule:\n", err.message)
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
 	}
 
 	async removeSchedule(uid: string) {
-    try {
-      this.isLoading = true
-      const response = await api
-        .delete(`users/me/assembled-schedules/${uid}`)
-        .json() as { assembledSchedules: IAssembledSchedule[] }
+    // try {
+    //   this.isLoading = true
+    //   const response = await api
+    //     .delete(`users/me/assembled-schedules/${uid}`)
+    //     // .json() as { assembledSchedules: IAssembledSchedule[] }
 
-      this.assembledSchedules = response.assembledSchedules
-      console.log("Assembled schedule deleted successfully")
-    } catch (err) {
-      console.error(`Can't delete assebmled schedule with id "${uid}":\n`, err.message)
-    } finally {
-      this.isLoading = false
-    }
+    //   // this.assembledSchedules = response.assembledSchedules
+    //   console.log("Assembled schedule deleted successfully")
+    // } catch (err) {
+    //   console.error(`Can't delete assebmled schedule with id "${uid}":\n`, err.message)
+    // } finally {
+    //   this.isLoading = false
+    // }
+
+    this.isLoading = true
+    api
+      .delete(`users/me/assembled-schedules/${uid}`)
+      .then((response: AxiosResponse<{assembledSchedules: IAssembledSchedule[]}>) => {
+        this.assembledSchedules = response.data.assembledSchedules
+        console.log("Assembled schedule deleted successfully")
+      })
+      .catch(err => {
+        console.error(`Can't delete assebmled schedule with id "${uid}":\n`, err.message)
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
 	}
 
 	async updateSchedule(uid: string, updatedFields: Partial<Omit<IAssembledSchedule, "uid">>) {
@@ -92,22 +142,36 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
 			...updatedFields
 		}
 
-    try {
-      const response = await api
-        .put(`users/me/assembled-schedules/${uid}`, {
-          json: {
-            ...updatedSchedule
-          }
-        })
-        .json() as { assembledSchedules: IAssembledSchedule[] }
+    api
+      .put(`users/me/assembled-schedules/${uid}`, {
+        ...updatedSchedule
+      }).then((response: AxiosResponse<{assembledSchedules: IAssembledSchedule[]}>) => {
+        this.assembledSchedules = response.data.assembledSchedules
+        console.log("Assembled schedule modified successfully")
+      })
+      .catch(err => {
+        console.error("Can't update assembled schedule:\n", err.message)
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
+      
+    // try {
+    //   const response = await api
+    //     .put(`users/me/assembled-schedules/${uid}`, {
+    //       json: {
+    //         ...updatedSchedule
+    //       }
+    //     })
+    //     // .json() as { assembledSchedules: IAssembledSchedule[] }
     
-      this.assembledSchedules = response.assembledSchedules
-      console.log("Assembled schedule modified successfully")
-    } catch (err) {
-      console.error("Can't update assembled schedule:\n", err.message)
-    } finally {
-      this.isLoading = false
-    }
+    //   // this.assembledSchedules = response.assembledSchedules
+    //   console.log("Assembled schedule modified successfully")
+    // } catch (err) {
+    //   console.error("Can't update assembled schedule:\n", err.message)
+    // } finally {
+    //   this.isLoading = false
+    // }
 	}
 
   activateSchedule(uid: string) {

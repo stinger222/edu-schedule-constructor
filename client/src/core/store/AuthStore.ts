@@ -1,7 +1,8 @@
-import ky from "ky"
 import { makeAutoObservable } from "mobx"
 import { Cookies } from "react-cookie"
 import { IAuthStore } from "../types/store"
+import { api } from "../../api"
+import { AxiosResponse } from "axios"
 
 class AuthStore implements IAuthStore {
   isSignedIn: null | boolean = null
@@ -18,18 +19,25 @@ class AuthStore implements IAuthStore {
   async validateSession() {
     console.log("Trying sign-in user using stored session id...")
 
-    try {
-      // todo: move all api calls to DAL or something
-      const response = await ky.get("http://localhost:3001/auth/validate-session", {
-        credentials: "include"
-      }).json() as {isSessionValid: boolean}
+    // try {
+    //   const response = await api.get("auth/validate-session")
       
-      this.setSignedIn(response.isSessionValid)
-      console.log("User successfully signed-in using stored session id!")
-    } catch(err) {
-      this.setSignedIn(false)
-      console.warn("User not signed-in: session has expired or doesn't exist")
-    }
+    //   this.setSignedIn(response.data.isSessionValid)
+    //   console.log("User successfully signed-in using stored session id!")
+    // } catch(err) {
+    //   this.setSignedIn(false)
+    //   console.warn("User not signed-in: session has expired or doesn't exist")
+    // }
+
+    api
+      .get("auth/validate-session")
+      .then((response: AxiosResponse<{isSessionValid: boolean}>) => {
+        this.setSignedIn(response.data.isSessionValid)
+        console.log("User successfully signed-in using stored session id!")
+      }).catch(err => {
+        this.setSignedIn(false)
+        console.warn("User not signed-in: session has expired or doesn't exist")
+      })
   }
 
   signOut() {

@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react"
 import { useNavigate } from "react-router"
 import jwtDecode from "jwt-decode"
+import { AxiosResponse } from "axios"
 
 import { StoreContext } from "../.."
 import { api } from "../../api"
@@ -21,23 +22,41 @@ const SignInPage = () => {
     // const email: string = result.credential.email
     console.log("Trying to create session...")
 
-    try {
-      await api.post("auth/sign-in", {
-        json: { email },
-        credentials: "include"
-      }).json() as { email: string }
-      
-      console.log("Session successfully created! User singned-in!")
-      rootStore.authStore.setSignedIn(true)
+      api
+        .post("auth/sign-in", { email })
+        .then((response: AxiosResponse<{email: string}>) => {
+          console.log("Session successfuly created! User signed-in!")
+          rootStore.authStore.setSignedIn(true)
+    
+          rootStore.assembledSchedulesStore.restoreState()
+          rootStore.classSchedulesStore.restoreState()
+          rootStore.classesStore.restoreState()
+          
+          navigate("/")
+        })
+        .catch(err => {
+          console.error("Can't create session.\n", err.message)
+        })
 
-      rootStore.assembledSchedulesStore.restoreState()
-      rootStore.classSchedulesStore.restoreState()
-      rootStore.classesStore.restoreState()
+
+    // try {
+    //   await api.post("auth/sign-in", {
+    //     json: { email },
+    //     credentials: "include"
+    //   })
+    //   // .json() as { email: string }
       
-      navigate("/")
-    } catch(err) {
-      console.error("Can't create session.\n", err.message)
-    }
+    //   console.log("Session successfully created! User singned-in!")
+    //   rootStore.authStore.setSignedIn(true)
+
+    //   rootStore.assembledSchedulesStore.restoreState()
+    //   rootStore.classSchedulesStore.restoreState()
+    //   rootStore.classesStore.restoreState()
+      
+    //   navigate("/")
+    // } catch(err) {
+    //   console.error("Can't create session.\n", err.message)
+    // }
   }
 
   useEffect(() => {

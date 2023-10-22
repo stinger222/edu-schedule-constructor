@@ -1,9 +1,9 @@
-import ky from "ky"
+import axios from "axios"
 
-export const api = ky.create({
-  prefixUrl: "http://localhost:3001",
-  credentials: "include",
+export const api = axios.create({
+  baseURL: "http://localhost:3001",
   headers: {
     "content-type": "application/json"
-  }
+  },
+  withCredentials: true
 })
