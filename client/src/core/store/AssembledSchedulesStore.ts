@@ -22,20 +22,6 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
 	}
 
 	restoreState() {
-    // try {
-    //   this.isLoading = true
-    //   const response = await api
-    //     .get("users/me/assembled-schedules")
-    //     // .json() as { assembledSchedules: IAssembledSchedule[] }
-      
-    //     // this.assembledSchedules = response.assembledSchedules
-    // } catch (err) {
-    //   console.error(`Can't fetch assembled schedules:\n`,err.message)
-    // } finally {
-    //   this.isLoading = false
-    //   this.activeScheduleUid = localStorage.getItem(AssembledSchedulesStore.activeScheduleUidStorageKey) || null
-    // }
-
     api
       .get("users/me/assembled-schedules")
       .then((response: AxiosResponse<{assembledSchedules: IAssembledSchedule[]}>) => {
@@ -49,31 +35,6 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
 	}
 
 	async addSchedule(newSchedule: Omit<IAssembledSchedule, "uid">, uid?: string) {
-
-    // try {
-    //   this.isLoading = true
-    //   const newFormattedSchedule = {
-    //     ...newSchedule,
-    //     uid: uid || nanoid(10),
-    //     name: capitalize(newSchedule.name)
-    //   }
-
-    //   const response = await api
-    //     .post("users/me/assembled-schedules", {
-    //       json: {
-    //         ...newFormattedSchedule
-    //       }
-    //     })
-    //     // .json() as { assembledSchedules: IAssembledSchedule[] }
-
-    //     // this.assembledSchedules = response.assembledSchedules
-    //     console.log("Assembled schedule added successfully")
-    // } catch (err) {
-    //   console.error("Can't add new assembled schedule:\n", err.message)
-    // } finally {
-    //   this.isLoading = false
-    // }
-
     this.isLoading = true
 
     const newFormattedSchedule = {
@@ -99,20 +60,6 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
 	}
 
 	async removeSchedule(uid: string) {
-    // try {
-    //   this.isLoading = true
-    //   const response = await api
-    //     .delete(`users/me/assembled-schedules/${uid}`)
-    //     // .json() as { assembledSchedules: IAssembledSchedule[] }
-
-    //   // this.assembledSchedules = response.assembledSchedules
-    //   console.log("Assembled schedule deleted successfully")
-    // } catch (err) {
-    //   console.error(`Can't delete assebmled schedule with id "${uid}":\n`, err.message)
-    // } finally {
-    //   this.isLoading = false
-    // }
-
     this.isLoading = true
     api
       .delete(`users/me/assembled-schedules/${uid}`)
@@ -155,23 +102,6 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
       .finally(() => {
         this.isLoading = false
       })
-      
-    // try {
-    //   const response = await api
-    //     .put(`users/me/assembled-schedules/${uid}`, {
-    //       json: {
-    //         ...updatedSchedule
-    //       }
-    //     })
-    //     // .json() as { assembledSchedules: IAssembledSchedule[] }
-    
-    //   // this.assembledSchedules = response.assembledSchedules
-    //   console.log("Assembled schedule modified successfully")
-    // } catch (err) {
-    //   console.error("Can't update assembled schedule:\n", err.message)
-    // } finally {
-    //   this.isLoading = false
-    // }
 	}
 
   activateSchedule(uid: string) {
