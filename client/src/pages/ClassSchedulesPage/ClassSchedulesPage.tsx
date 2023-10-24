@@ -18,8 +18,6 @@ const ClassSchedulesPage = () => {
   const classSchedulesStore = useContext(StoreContext).classSchedulesStore
 
   const isLoading = useAuth()
-  if (isLoading) return <Loader />
-
 
 	return (
 		<StyledClassSchedulesPage>
@@ -30,13 +28,15 @@ const ClassSchedulesPage = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-        <ErrorBoundary fallback={<Navigate to="/"/>}>
-          <ClassScheduleCardsList
-            classSchedules={classSchedulesStore.classSchedules}
-            removeSchedule={classSchedulesStore.removeSchedule.bind(classSchedulesStore)}
-            isLoading={classSchedulesStore.isLoading}
-          />
-        </ErrorBoundary>
+        { isLoading ?  <Loader /> :
+          <ErrorBoundary fallback={<Navigate to="/"/>}>
+            <ClassScheduleCardsList
+              classSchedules={classSchedulesStore.classSchedules}
+              removeSchedule={classSchedulesStore.removeSchedule.bind(classSchedulesStore)}
+              isLoading={classSchedulesStore.isLoading}
+            />
+          </ErrorBoundary>
+        }
 
 			</Container>
 		</StyledClassSchedulesPage>

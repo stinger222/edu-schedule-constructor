@@ -18,7 +18,6 @@ const AssembledSchedulesPage = () => {
   const assembledSchedulesStore = useContext(StoreContext).assembledSchedulesStore
 
   const isLoading = useAuth()
-  if (isLoading) return <Loader />
 
   return (
     <StyledAssembledSchedulesPage>
@@ -32,13 +31,15 @@ const AssembledSchedulesPage = () => {
         {/* this fallback can check if occured error should redirect to the main page
             or (if this is, for example, error, indicationg that db or backend not working) 
             can be just a message right here */}
-        <ErrorBoundary fallback={<Navigate to="/"/>}>
-          <AssembledSchedulesList
-            assembledSchedules={assembledSchedulesStore.assembledSchedules}
-            removeSchedule={assembledSchedulesStore.removeSchedule.bind(assembledSchedulesStore)}
-            isLoading={assembledSchedulesStore.isLoading} 
-          />
-        </ErrorBoundary>
+        { isLoading ?  <Loader /> :
+          <ErrorBoundary fallback={<Navigate to="/"/>}>
+            <AssembledSchedulesList
+              assembledSchedules={assembledSchedulesStore.assembledSchedules}
+              removeSchedule={assembledSchedulesStore.removeSchedule.bind(assembledSchedulesStore)}
+              isLoading={assembledSchedulesStore.isLoading} 
+            />
+          </ErrorBoundary>
+        }
 
       </Container>
     </StyledAssembledSchedulesPage>
