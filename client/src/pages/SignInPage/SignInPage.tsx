@@ -1,17 +1,18 @@
 import { useContext, useEffect } from "react"
+import { Trans, useTranslation } from "react-i18next"
 import { useNavigate } from "react-router"
-import jwtDecode from "jwt-decode"
 import { AxiosResponse } from "axios"
+import jwtDecode from "jwt-decode"
 
-import { StoreContext } from "../.."
 import { api } from "../../api"
-import Container from "../../components/containers/Container/Container"
-
+import { StoreContext } from "../.."
 import { StyledSignInPage } from "./SignInPage.styled"
+import Container from "../../components/containers/Container/Container"
 
 const SignInPage = () => {
   const rootStore = useContext(StoreContext)
   const navigate = useNavigate()
+  const { t, i18n } = useTranslation()
 
   const handleLogin = async (result: any, isFake: boolean = false) => {
     const email: string = isFake ? result : jwtDecode<any>(result.credential).email
@@ -44,7 +45,7 @@ const SignInPage = () => {
 
     window.google.accounts.id.renderButton(document.querySelector(".googleSignIn"), {
       size: "medium",
-      locale: "ru_RU"
+      locale: i18n.language
     })
   }, [])
 
@@ -54,7 +55,7 @@ const SignInPage = () => {
         <h1> Schedule Constructor </h1>
 
         <div className="login-card">
-          <h2>Войдите с помощью 
+          <h2>{t("signInPage.signInWith")} 
             <span> </span>
             <span className="g-blue">G</span>
             <span className="g-red">o</span>
@@ -67,9 +68,13 @@ const SignInPage = () => {
         </div>
 
         <div className="section-divider"></div>
-        <p>Если возникнут трудности, то можете <br /> ознакомиться с гайдом нажав <a href="https://google.com" target="_blank" rel="noreferrer">сюда</a>, или используя <br /> кнопку в меню</p>
+        <p>
+          <Trans i18nKey="signInPage.troubleshooting" components={{ br: <br/>, a: <a href="https://nothing-here-yet.coc" target="_blank" rel="noreferrer"></a> }}/>
+        </p>
         <div className="section-divider"></div>
-        <p>Исходный код приложения, более подробное <br /> описание фич и информация об авторе доступны на <br /> <a href="https://google.com" target="_blank" rel="noreferrer">GitHub</a></p>
+        <p>
+          <Trans i18nKey="signInPage.sourceCodeAndDetails" components={{ br: <br/>, a: <a href="https://nothing-here-yet.coc" target="_blank" rel="noreferrer"></a> }}/>
+        </p>
 
         <br/><br/><br/><br/><br/>
         <button onClick={() => {

@@ -51,7 +51,7 @@ class ClassesStore implements IClassesStore {
     ]
   }
 
-  async addClass(newClass: Omit<IClass, "uid">, uid?: string) {
+  addClass(newClass: Omit<IClass, "uid">, uid?: string) {
     const newFormattedClass = ClassesStore.formatClassObject({
       ...newClass,
       uid: uid || nanoid(10)
@@ -73,23 +73,23 @@ class ClassesStore implements IClassesStore {
       })
   }
 
-  async removeClass(uid: string) {
-      this.isLoading = true
-      api
-        .delete(`users/me/classes/${uid}`)
-        .then((response: AxiosResponse<{classes: IClass[]}>) => {
-          this._classes = response.data.classes
-          this.addNothingItem()
-          console.log("Class deleted successfully")
-        })
-        .catch(err => {
-          console.error("Can't delete class:\n", err.message)
-        }).finally(() => {
-          this.isLoading = false
-        })
+  removeClass(uid: string) {
+    this.isLoading = true
+    api
+      .delete(`users/me/classes/${uid}`)
+      .then((response: AxiosResponse<{classes: IClass[]}>) => {
+        this._classes = response.data.classes
+        this.addNothingItem()
+        console.log("Class deleted successfully")
+      })
+      .catch(err => {
+        console.error("Can't delete class:\n", err.message)
+      }).finally(() => {
+        this.isLoading = false
+      })
   }
 
-  async updateClass(uid: string, updatedFields: Partial<Omit<IClass, "uid">>) {
+  updateClass(uid: string, updatedFields: Partial<Omit<IClass, "uid">>) {
     const indexToUpdate = this.classes.findIndex((c) => c.uid === uid)
     if (indexToUpdate === -1) {
       console.warn(`Can't update.\nClass with id "${uid}" not found.`)
