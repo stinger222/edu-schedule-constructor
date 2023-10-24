@@ -1,5 +1,5 @@
 import { StyledNavHome } from "./NavHome.styled"
-import { ReactComponent as HomeIcon } from "../../../../assets/icons/home.svg"
+import HomeIcon from "../../../../assets/icons/home.svg?react"
 import { Link } from "react-router-dom"
 
 const NavHome = () => {

@@ -16,7 +16,6 @@ const ClassesPage = () => {
 	const classesStore = useContext(StoreContext).classesStore
 
   const isLoading = useAuth()
-  if (isLoading) return <Loader />
 
 	return (
 		<StyledClassesPage>
@@ -27,12 +26,13 @@ const ClassesPage = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-        <ClassCardsList
+        { isLoading ?  <Loader /> :
+          <ClassCardsList
           classes={classesStore.classes}
           removeClass={classesStore.removeClass.bind(classesStore)}
           isLoading={classesStore.isLoading}
-        />
-
+          />
+        }
 			</Container>
 		</StyledClassesPage>
 	)
