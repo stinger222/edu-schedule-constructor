@@ -38,14 +38,17 @@ const MainPage = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-        <Link to="/debug" className="link">Debug Thing</Link>
+        <Link to="/debug" className="link">Debug &quot;Dashboard&quot;</Link>
         <br/><br/>
-         
-        <ErrorBoundary FallbackComponent={ErrorFallback} resetKeys={[
-          stores.uiStore.selectedDayIndex, lang, stores.assembledSchedulesStore.assembledSchedules
-        ]}>
-          {dataIsLoading ? <Loader /> : <ScheduleItemsList />}
-        </ErrorBoundary>
+
+          { dataIsLoading ? <Loader /> : 
+            <ErrorBoundary
+              FallbackComponent={ErrorFallback}
+              resetKeys={[lang, stores.uiStore.selectedDayIndex, stores.assembledSchedulesStore.assembledSchedules]}
+            >
+              <ScheduleItemsList />
+            </ErrorBoundary>
+          }
 
 			</Container>
 		</StyledMainPage>

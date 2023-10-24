@@ -1,5 +1,5 @@
-import { AxiosResponse } from "axios"
 import { nanoid } from "nanoid"
+import { AxiosResponse } from "axios"
 import { makeAutoObservable } from "mobx"
 import { IAssembledSchedulesStore } from "../types/store"
 import { IAssembledSchedule } from "../types/types"
@@ -34,7 +34,7 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
       })
 	}
 
-	async addSchedule(newSchedule: Omit<IAssembledSchedule, "uid">, uid?: string) {
+	addSchedule(newSchedule: Omit<IAssembledSchedule, "uid">, uid?: string) {
     this.isLoading = true
 
     const newFormattedSchedule = {
@@ -59,7 +59,7 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
       })
 	}
 
-	async removeSchedule(uid: string) {
+	removeSchedule(uid: string) {
     this.isLoading = true
     api
       .delete(`users/me/assembled-schedules/${uid}`)
@@ -75,7 +75,7 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
       })
 	}
 
-	async updateSchedule(uid: string, updatedFields: Partial<Omit<IAssembledSchedule, "uid">>) {
+	updateSchedule(uid: string, updatedFields: Partial<Omit<IAssembledSchedule, "uid">>) {
     const indexToUpdate = this.assembledSchedules.findIndex(s => s.uid === uid)
 		if (indexToUpdate === -1) {
       console.error(`Can't update.\nAssembled schedule with id: "${uid}" not found.`)
