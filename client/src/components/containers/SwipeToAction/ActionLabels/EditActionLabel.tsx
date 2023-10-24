@@ -1,5 +1,5 @@
 import { IActionLabelProps } from "../../../../core/types/types"
-import { ReactComponent as EditIcon } from "../../../../assets/icons/edit.svg"
+import EditIcon from "../../../../assets/icons/edit.svg?react"
 
 const EditActionLabel = ({ className }: IActionLabelProps) => {
   return (

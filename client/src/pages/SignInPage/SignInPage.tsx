@@ -14,59 +14,37 @@ const SignInPage = () => {
   const navigate = useNavigate()
 
   const handleLogin = async (result: any, isFake: boolean = false) => {
-    
     const email: string = isFake ? result : jwtDecode<any>(result.credential).email
-    
+
     console.log("Decoded after login email: ", email)
-    
+
     // const email: string = result.credential.email
     console.log("Trying to create session...")
+    api
+      .post("auth/sign-in", { email })
+      .then((response: AxiosResponse<{ email: string }>) => {
+        console.log("Session successfuly created! User signed-in!")
+        rootStore.authStore.setSignedIn(true)
 
-      api
-        .post("auth/sign-in", { email })
-        .then((response: AxiosResponse<{email: string}>) => {
-          console.log("Session successfuly created! User signed-in!")
-          rootStore.authStore.setSignedIn(true)
-    
-          rootStore.assembledSchedulesStore.restoreState()
-          rootStore.classSchedulesStore.restoreState()
-          rootStore.classesStore.restoreState()
-          
-          navigate("/")
-        })
-        .catch(err => {
-          console.error("Can't create session.\n", err.message)
-        })
+        rootStore.assembledSchedulesStore.restoreState()
+        rootStore.classSchedulesStore.restoreState()
+        rootStore.classesStore.restoreState()
 
-
-    // try {
-    //   await api.post("auth/sign-in", {
-    //     json: { email },
-    //     credentials: "include"
-    //   })
-    //   // .json() as { email: string }
-      
-    //   console.log("Session successfully created! User singned-in!")
-    //   rootStore.authStore.setSignedIn(true)
-
-    //   rootStore.assembledSchedulesStore.restoreState()
-    //   rootStore.classSchedulesStore.restoreState()
-    //   rootStore.classesStore.restoreState()
-      
-    //   navigate("/")
-    // } catch(err) {
-    //   console.error("Can't create session.\n", err.message)
-    // }
+        navigate("/")
+      })
+      .catch((err) => {
+        console.error("Can't create session.\n", err.message)
+      })
   }
-
   useEffect(() => {
     window.google.accounts.id.initialize({
-      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
       callback: handleLogin
     })
 
     window.google.accounts.id.renderButton(document.querySelector(".googleSignIn"), {
-      size: "medium", locale: "ru_RU"
+      size: "medium",
+      locale: "ru_RU"
     })
   }, [])
 
@@ -101,5 +79,4 @@ const SignInPage = () => {
     </StyledSignInPage>
   )
 }
-
 export default SignInPage

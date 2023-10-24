@@ -19,7 +19,7 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - FAST_REFRESH=false
       - WDS_SOCKET_PORT=3000
-    command: "npm start"
+    command: "npm run start -- --host"
 
   server:
     build: ./server

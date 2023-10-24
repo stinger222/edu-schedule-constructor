@@ -1,5 +1,5 @@
 import { IActionLabelProps } from "../../../../core/types/types"
-import { ReactComponent as TrashCanIcon } from "../../../../assets/icons/trash-can.svg"
+import TrashCanIcon from "../../../../assets/icons/trash-can.svg?react"
 
 const RemoveActionLabel = ({ className }: IActionLabelProps) => {
   return (
