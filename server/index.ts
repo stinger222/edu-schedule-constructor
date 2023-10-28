@@ -13,6 +13,7 @@ import UserModel, { IUserDocumnet } from "./src/models/UserModel"
 import UnknownError from "./src/errors/UnknownError"
 import withUser from "./src/middlewares/withUser"
 import { MyResponseLocals } from "./src/types"
+import { nanoid } from "nanoid"
 
 type Response = ExpressResponse<any, MyResponseLocals>
 
@@ -38,9 +39,13 @@ app.post("/auth/sign-in", async (req: Request,  res: Response, next: NextFunctio
   console.log("======= NEW LOGIN =======\n", req.body, "\n======================")
   
   res.clearCookie("session_id")
+  try { // delete all previous sessions of this user
+    await SessionModel.deleteMany({ email: req.body.email })
+  } catch(err) {
+    console.error(`User "${req.body.email}" trying to sing in, but error ocurred while deleting all his previous sessions:\n`, err.message)
+  }
 
-  const newSessionId = Math.random().toString() // temp, obviously
-
+  const newSessionId = nanoid(50)
   try {
     await SessionModel.create({
       session_id: newSessionId,
@@ -49,18 +54,16 @@ app.post("/auth/sign-in", async (req: Request,  res: Response, next: NextFunctio
     
     res.cookie("session_id", newSessionId)
     
-    res.status(200).json({message: "User signed in. Session created successfully!"})
+    res.status(200).json({ message: "User signed in. Session created successfully!" })
   } catch (err) {
     return next(new DatabaseError("Can't create new session due to internal server error."))
   }
 
   // ======= create user in db if he doesn't exist yet: =======
 
-  const user = await UserModel.findOne({email: req.body.email})
-  
+  const user = await UserModel.findOne({ email: req.body.email })
   if (user) return
   
-  // TODO: if this will fail (somehow), then this is should defentetly be logged and inspected
   UserModel.create({
     email: req.body.email,
     classes: [],

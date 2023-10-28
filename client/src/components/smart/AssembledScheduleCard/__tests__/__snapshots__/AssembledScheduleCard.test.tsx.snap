@@ -46,7 +46,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                  
               </span>
               <span>
-                -:-
+                08:30
               </span>
               <span>
                  
@@ -54,7 +54,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                  
               </span>
               <span>
-                -:-
+                16:00
               </span>
             </div>
           </div>
@@ -81,7 +81,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                  
               </span>
               <span>
-                -:-
+                10:30
               </span>
               <span>
                  
@@ -89,7 +89,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                  
               </span>
               <span>
-                -:-
+                16:00
               </span>
             </div>
           </div>
@@ -116,7 +116,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                  
               </span>
               <span>
-                -:-
+                12:30
               </span>
               <span>
                  
@@ -124,7 +124,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                  
               </span>
               <span>
-                -:-
+                16:00
               </span>
             </div>
           </div>
@@ -243,7 +243,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                
             </span>
             <span>
-              -:-
+              08:30
             </span>
             <span>
                
@@ -251,7 +251,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                
             </span>
             <span>
-              -:-
+              16:00
             </span>
           </div>
         </div>
@@ -278,7 +278,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                
             </span>
             <span>
-              -:-
+              10:30
             </span>
             <span>
                
@@ -286,7 +286,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                
             </span>
             <span>
-              -:-
+              16:00
             </span>
           </div>
         </div>
@@ -313,7 +313,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                
             </span>
             <span>
-              -:-
+              12:30
             </span>
             <span>
                
@@ -321,7 +321,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
                
             </span>
             <span>
-              -:-
+              16:00
             </span>
           </div>
         </div>

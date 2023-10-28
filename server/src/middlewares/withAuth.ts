@@ -23,6 +23,9 @@ const withAuth = async (req: Request, res: Response<any, MyResponseLocals>, next
     res.clearCookie("session_id")
     return next(new UnauthorizedError("Not Authorized"))
   }
+  
+  const isSessionExpired = Date.now() > new Date(userSession.toObject<ISession>()?.expiration_date).getTime()
+  if (isSessionExpired) return next(new UnauthorizedError("Session expired"))
 
   res.locals.userSession = userSession.toObject()
   return next()
