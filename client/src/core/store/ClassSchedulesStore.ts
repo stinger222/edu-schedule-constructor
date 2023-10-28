@@ -27,6 +27,7 @@ class ClassSchedulesStore implements IClassSchedulesStore {
   }
 
 	restoreState() {
+    if (import.meta.env.MODE === "test") return
 
     this.isLoading = true
     api
