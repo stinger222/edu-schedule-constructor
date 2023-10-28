@@ -3,7 +3,6 @@ import { StoreContext } from "../.."
 import { useNavigate } from "react-router-dom"
 import { useObserver } from "mobx-react"
 
-
 const useAuth = () => {
   const { authStore } = useContext(StoreContext)
   const navigate = useNavigate()

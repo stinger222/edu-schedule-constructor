@@ -1,5 +1,5 @@
 import { formatNumber } from "../../../../core/utils/stringUtils"
-import { render, screen } from "../../../../core/utils/test-utils"
+import { render } from "../../../../core/utils/test-utils"
 import NavBar from "./NavBar"
 
 
@@ -8,15 +8,6 @@ describe("Testing NavBar component", () => {
 		const { container } = render(
 			<NavBar />
 		)
-		
-    // TODO:
-		// expect(screen.getByText("Пн")).toBeInTheDocument()
-		// expect(screen.getByText("Вт")).toBeInTheDocument()
-		// expect(screen.getByText("Ср")).toBeInTheDocument()
-		// expect(screen.getByText("Чт")).toBeInTheDocument()
-		// expect(screen.getByText("Пт")).toBeInTheDocument()
-		// expect(screen.getByText("Сб")).toBeInTheDocument()
-		// expect(screen.getByText("Вс")).toBeInTheDocument()
 		
 		const selectedDays = container.getElementsByClassName("selected")
 		expect(selectedDays.length).toBe(1)

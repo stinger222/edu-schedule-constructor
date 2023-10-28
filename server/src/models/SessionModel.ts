@@ -9,7 +9,11 @@ export interface ISessionDocument extends mongoose.Document {
 const SessionSchema = new mongoose.Schema({
   session_id: String,
   email: String,
-  // todo: expiration_date
+  expiration_date: {
+    type: Date,
+    // default: () => Date.now() + 1000*60*60*24*15 // 15d
+    default: () => Date.now() + 1000*60*20 // 20m
+  }
 })
 
 export type ISession = Required<InferSchemaType<typeof SessionSchema>>

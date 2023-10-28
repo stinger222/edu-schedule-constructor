@@ -20,15 +20,15 @@ const ClassScheduleCard = ({ length, start, end, title }: IProps) => {
 			<div className="details">
 				<div>
           {t("classScheduleCard.classesAmount")}
-          <span className="value" data-testid="classes-amount">{length || "?"}</span>
+          <span className="value" data-testid="classes-amount"> {length || "?"}</span>
         </div>
 				<div>
           {t("classScheduleCard.start")}
-          <span className="value" data-testid="start-time">{ formatTimeString(start) }</span>
+          <span className="value" data-testid="start-time"> { formatTimeString(start) }</span>
         </div>
 				<div>
           {t("classScheduleCard.end")}
-          <span className="value" data-testid="end-time">{ formatTimeString(end) }</span>
+          <span className="value" data-testid="end-time"> { formatTimeString(end) }</span>
         </div>
 			</div>
 		</StyledClassScheduleCard>
