@@ -22,6 +22,9 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
 	}
 
 	restoreState() {
+    if (import.meta.env.MODE === "test") return
+
+    this.isLoading = true
     api
       .get("users/me/assembled-schedules")
       .then((response: AxiosResponse<{assembledSchedules: IAssembledSchedule[]}>) => {
@@ -29,8 +32,8 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
       }).catch(err => {
         console.error(`Can't fetch assembled schedules:\n`,err.message)
       }).finally(() => {
-          this.isLoading = false
-          this.activeScheduleUid = localStorage.getItem(AssembledSchedulesStore.activeScheduleUidStorageKey) || null
+        this.isLoading = false
+        this.activeScheduleUid = localStorage.getItem(AssembledSchedulesStore.activeScheduleUidStorageKey) || null
       })
 	}
 
