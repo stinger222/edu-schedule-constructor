@@ -23,6 +23,8 @@ class ClassesStore implements IClassesStore {
   }
 
   restoreState() {
+    if (import.meta.env.MODE === "test") return
+
     this.isLoading = true
     api
       .get("users/me/classes")
@@ -58,6 +60,7 @@ class ClassesStore implements IClassesStore {
     })
           
     this.isLoading = true
+    
     api
       .post("users/me/classes", newFormattedClass)
       .then((response: AxiosResponse<{classes: IClass[]}>) => {

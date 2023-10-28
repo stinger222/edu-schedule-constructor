@@ -17,24 +17,16 @@ class AuthStore implements IAuthStore {
   }
 
   async validateSession() {
-    console.log("Trying sign-in user using stored session id...")
+    if (import.meta.env.MODE === "test") return
 
-    // try {
-    //   const response = await api.get("auth/validate-session")
-      
-    //   this.setSignedIn(response.data.isSessionValid)
-    //   console.log("User successfully signed-in using stored session id!")
-    // } catch(err) {
-    //   this.setSignedIn(false)
-    //   console.warn("User not signed-in: session has expired or doesn't exist")
-    // }
+    console.log("Trying sign-in user using stored session id...")
 
     api
       .get("auth/validate-session")
       .then((response: AxiosResponse<{isSessionValid: boolean}>) => {
         this.setSignedIn(response.data.isSessionValid)
         console.log("User successfully signed-in using stored session id!")
-      }).catch(err => {
+      }).catch(() => {
         this.setSignedIn(false)
         console.warn("User not signed-in: session has expired or doesn't exist")
       })
