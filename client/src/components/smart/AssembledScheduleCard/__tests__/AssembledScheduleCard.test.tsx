@@ -9,15 +9,18 @@ let rootStore: RootStore
 describe("Testing AssembledScheduleCard component", () => {
   beforeAll(() => {
     rootStore = renderHook(() => useContext(StoreContext)).result.current
-    rootStore.classSchedulesStore.addSchedule({
+    
+    rootStore.classSchedulesStore.classSchedules = []
+    rootStore.classSchedulesStore.classSchedules.push({
       name: "Test Class Schedule (4 classes described)",
       classes: [
         {start: "08:30", end: "10:00"},
         {start: "10:30", end: "12:00"},
         {start: "12:30", end: "14:00"},
         {start: "14:30", end: "16:00"}
-      ]
-    }, "test-classes-schedule")
+      ],
+      uid: "test-classes-schedule"
+    })
   })
 
   it("Properly renders schedule card", () => {

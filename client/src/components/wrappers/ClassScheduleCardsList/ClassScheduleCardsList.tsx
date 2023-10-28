@@ -57,7 +57,7 @@ const ClassScheduleCardsList= ({ classSchedules, removeSchedule, isLoading }: IP
           key={uid}
         >
           <ClassScheduleCard
-            name={name}
+            title={name}
             length={classes.length}
             start={classes[0].start}
             end={classes[classes.length-1].end}
