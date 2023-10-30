@@ -30,8 +30,8 @@ const App = () => {
         <Route path="/assembled" element={<AssembledSchedulesPage />} />
         <Route path="/classes" element={<ClassesPage />} />
         <Route path="/class-schedules" element={<ClassSchedulesPage />} />
-        <Route path="/debug" element={<DebugPage />} />
-
+        
+        {import.meta.env.DEV && <Route path="/debug" element={<DebugPage />} />}
 
         <Route path="/add">
           <Route path="assembled" element={<AddAssembledSchedulePage />} />
