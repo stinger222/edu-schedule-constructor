@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const StyledSignInPage = styled.div`
   font-family: 'JetBrains Mono';
+  padding: 1em;
 
   & h1 {
     text-align: center;
@@ -56,5 +57,35 @@ export const StyledSignInPage = styled.div`
     color: #3F3F3F;
     font-weight: 500;
     text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    & .login-card {
+      font-size: 1.1em;
+      padding: 1em;
+    }
+
+    & .login-card h2 {
+      margin-bottom: 1.2em;
+    }
+
+    & p {
+      font-size: 1.45em;
+    }
+  }
+
+  @media (max-width: 400px) {
+    & .login-card {
+      font-size: 1.3em;
+      padding: 1em;
+    }
+
+    & .login-card h2 {
+      margin-bottom: 1em;
+    }
+
+    & p {
+      font-size: 1.7em;
+    }
   }
 `

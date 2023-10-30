@@ -3,17 +3,17 @@ import cookieParser from "cookie-parser"
 import mongoose from "mongoose"
 import cors from "cors"
 import { config } from "dotenv"
-config()
 
 import DatabaseError from "./src/errors/DatabaseError"
 import CustomError from "./src/errors/CustomError"
 import withAuth from "./src/middlewares/withAuth"
-import SessionModel from "./src/models/SessionModel"
 import UserModel, { IUserDocumnet } from "./src/models/UserModel"
 import UnknownError from "./src/errors/UnknownError"
+import SessionModel from "./src/models/SessionModel"
 import withUser from "./src/middlewares/withUser"
 import { MyResponseLocals } from "./src/types"
 import { nanoid } from "nanoid"
+config()
 
 type Response = ExpressResponse<any, MyResponseLocals>
 

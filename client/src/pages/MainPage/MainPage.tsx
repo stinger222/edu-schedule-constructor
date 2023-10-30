@@ -26,7 +26,6 @@ const MainPage = () => {
     ||  stores.classesStore.isLoading
     ||  stores.classSchedulesStore.isLoading
 
-
   const authDataIsLoading = useAuth()
   if (authDataIsLoading) return <Loader />
 
@@ -38,8 +37,10 @@ const MainPage = () => {
 					<Header.BurgerButton/>
 				</Header>
 
-        <Link to="/debug" className="link">Debug &quot;Dashboard&quot;</Link>
-        <br/><br/>
+        { import.meta.env.DEV && <>
+          <Link to="/debug" className="link">Debug &quot;Dashboard&quot;</Link>
+          <br/><br/>
+        </> }
 
           { dataIsLoading ? <Loader /> : 
             <ErrorBoundary
