@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   client:
-    image: "react-frontend-image"
+    image: "react-frontend-image-dev"
     container_name: "react-frontend-container"
     build: ./client
     # stdin_open: true  # May be needed to prevent "immediate exit" issue
@@ -14,17 +14,13 @@ services:
     volumes:
       - ./client:/app/client:cached
       - client_node_modules:/app/client/node_modules:delegated
-    environment:
-      - NODE_ENV=development
-      - WATCHPACK_POLLING=true
-      - CHOKIDAR_USEPOLLING=true
-      - FAST_REFRESH=false
-      - WDS_SOCKET_PORT=3000
+    env_file:
+      - ./client/config/.env.dev
     command: "npm run start -- --host"
 
   server:
     build: ./server
-    image: "express-backend-image"
+    image: "express-backend-image-dev"
     container_name: "express-backend-container"
     restart: always
     ports:
@@ -36,11 +32,8 @@ services:
     volumes:
       - ./server:/app/server:cached
       - server_node_modules:/app/server/node_modules:delegated
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-      - BACKEND_PORT=3001
     env_file:
-      - ./server/.env
+      - ./server/config/.env.dev
 
   database:
     image: mongo:latest
