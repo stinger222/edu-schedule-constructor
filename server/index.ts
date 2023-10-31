@@ -1,8 +1,9 @@
-import express, { Express, NextFunction, Request, Response as ExpressResponse} from "express"
+import express, { Express, NextFunction, Request, Response as ExpressResponse } from "express"
 import cookieParser from "cookie-parser"
 import mongoose from "mongoose"
 import cors from "cors"
 import { config } from "dotenv"
+config()
 
 import DatabaseError from "./src/errors/DatabaseError"
 import CustomError from "./src/errors/CustomError"
@@ -12,9 +13,9 @@ import UnknownError from "./src/errors/UnknownError"
 import SessionModel from "./src/models/SessionModel"
 import withUser from "./src/middlewares/withUser"
 import { MyResponseLocals } from "./src/types"
-import { nanoid } from "nanoid"
-config()
+import { init } from "@paralleldrive/cuid2"
 
+const cuid = init({ length: 50})
 type Response = ExpressResponse<any, MyResponseLocals>
 
 const app: Express = express()
@@ -25,7 +26,7 @@ app.use(cors({credentials: true, origin: "http://localhost:3000"}))
 const EXPRESS_PORT = process.env.BACKEND_PORT
 
 app.listen(EXPRESS_PORT, () => {
-  mongoose.connect(`mongodb://database/custom_schedule_db`)
+  mongoose.connect(process.env.MONGO_URI)
   console.log(`Server started on port ${EXPRESS_PORT}!!`)
 })
 
@@ -45,7 +46,7 @@ app.post("/auth/sign-in", async (req: Request,  res: Response, next: NextFunctio
     console.error(`User "${req.body.email}" trying to sing in, but error ocurred while deleting all his previous sessions:\n`, err.message)
   }
 
-  const newSessionId = nanoid(50)
+  const newSessionId = cuid()
   try {
     await SessionModel.create({
       session_id: newSessionId,

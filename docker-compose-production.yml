@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  client:
+    image: "react-frontend-image-production"
+    restart: unless-stopped
+    container_name: "react-frontend-container"
+    # stdin_open: true  # May be needed to prevent "immediate exit" issue
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - server
+    networks:
+      - app-network
+    env_file:
+      - ./client/config/.env.production
+
+  server:
+    image: "express-backend-image-production"
+    restart: unless-stopped
+    container_name: "express-backend-container"
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network
+    env_file:
+      - ./server/config/.env.production
+
+networks:
+  app-network:
+    driver: bridge
