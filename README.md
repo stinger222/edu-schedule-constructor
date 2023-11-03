@@ -1,5 +1,5 @@
 # Schedules Constructor
-A simple app that can make ugly class schedule look ~~even uglier~~ more pleasant and handy
+A simple app that can make ugly weekly schedule look ~~even uglier~~ more pleasant and handy
 <br/>
 
 ## Preview
