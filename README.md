@@ -9,7 +9,7 @@ A simple app that can make ugly class schedule look ~~even uglier~~ more pleasan
 
 
 ## Demo
-Check it out [here](https://to-do) if you intersted!
+Check it out [here](https://to-do) if you interested!
 
 ## Tech Stack <i><sub><sup>(click to expand)</sup></sub></i>
  <b>▷ Typescript</b>
@@ -61,19 +61,21 @@ Check it out [here](https://to-do) if you intersted!
   1. Log in using your Google account
   2. Add cards of classes that you have
   3. Add class schedule(s) so that app can show you start/end time of each class
-  4. Assemble schedule for the whole week by combining class cards and class schedules for each day individually
-  5. Click "Done" and that's it! Now this schedule will be displayed at the main page
+  5. Assemble weekly schedule by combining class cards and class schedules for each day individually
+  6. Click "Done" and that's it! Now this schedule will be displayed on the main page
    
 ## Features
   - Each day can have unique class schedule in case if they change throughout the week
-  - Progress bar indicates current class
-  - Dark and Light themes are awailable
-  - Support of both English and Russian languages
+  - Progress indicator for ongoing classes
+  - Dark and light themes 
+  - Multi-language support (English and Russian)
   - Edit any card by swiping it to the right
   - Or delete it by swiping to the left
 
-
-
-
-## Installation / Dev stuff
-npm isdfsf
+## Development
+1. Clone repo using `git clone` command
+2. Add two `.env.dev` files in the `client/config` and `server/config` directories _(look `.env.example`)_
+3. Use Docker compose to create images and run containers
+```sh
+docker-compose -f docker-compose-dev.yml up -d
+```
