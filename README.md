@@ -2,14 +2,14 @@
 A simple app that can make ugly weekly schedule look ~~even uglier~~ more pleasant and handy
 <br/>
 
-## Preview
-
-**Assembled schedule example:**
-[screenshot here]
-
-
 ## Demo
 Check it out [here](https://to-do) if you interested!
+
+## Preview
+
+**Example of Assembled Schedule:**
+![localhost_3000_ (5)](https://github.com/stinger222/edu-schedule-constructor/assets/39219491/0d3b006b-001f-456e-8468-1ffa7ee1a247)
+
 
 ## Tech Stack <i><sub><sup>(click to expand)</sup></sub></i>
  <b>▷ Typescript</b>
