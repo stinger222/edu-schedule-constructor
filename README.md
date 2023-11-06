@@ -1,4 +1,4 @@
-# Schedules Constructor
+# Schedule Constructor
 A simple app that can make ugly weekly schedule look ~~even uglier~~ more pleasant and handy
 <br/>
 
