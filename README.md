@@ -3,7 +3,7 @@ A simple app that can make ugly weekly schedule look ~~even uglier~~ more pleasa
 <br/>
 
 ## Demo
-Check it out [here](https://to-do) if you interested!
+App deployed [here](https://to-do), check it out if you interested trying it yourself!
 
 ## Preview
 
