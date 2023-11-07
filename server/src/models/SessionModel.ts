@@ -11,8 +11,8 @@ const SessionSchema = new mongoose.Schema({
   email: String,
   expiration_date: {
     type: Date,
-    // default: () => Date.now() + 1000*60*60*24*15 // 15d
-    default: () => Date.now() + 1000*60*20 // 20m
+    default: () => Date.now() + 1000*60*60*24*15 // 15d
+    // default: () => Date.now() + 1000*60*20 // 20m
   }
 })
 

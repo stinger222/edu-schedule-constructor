@@ -126,7 +126,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 		-webkit-box-orient: vertical;
 		text-overflow: ellipsis;
     word-wrap: break-word;
-    word-break: break-all;
+    /* word-break: break-all; */
 		overflow: hidden;
   }
   

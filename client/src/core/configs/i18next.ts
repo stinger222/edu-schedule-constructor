@@ -81,7 +81,7 @@ i18n
             nothingHereMsg: "Добавьте расписание звонков, что бы приложение могло понимать когда начинаются и кончаются пары"
           },
           assembledSchedulesPage: {
-            nothingHereMsg: "Составьте своё первое расписание на неделю используя созданные <ClassSchLink>расписания звонков</ClassSchLink> и <ClassesLink>карточки пар</ClassesLink>"
+            nothingHereMsg: "Составьте своё первое расписание на неделю используя созданные <ClassSchLink>расписания звонков</ClassSchLink> и <ClassesLink>карточки занятий</ClassesLink>"
           },
           signInPage: {
             troubleshooting: "Если возникнут трудности, то можете <br /> ознакомиться с гайдом <a>здесь</a>, или используя <br /> кнопку в меню</p>",

@@ -21,12 +21,13 @@ type Response = ExpressResponse<any, MyResponseLocals>
 const app: Express = express()
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({credentials: true, origin: "http://localhost:3000"}))
+app.use(cors({credentials: true, origin: `http://${process.env.SERVER_IP}:3000`}))
 
 const EXPRESS_PORT = process.env.BACKEND_PORT
 
 app.listen(EXPRESS_PORT, () => {
   mongoose.connect(process.env.MONGO_URI)
+  // mongoose.connect("")
   console.log(`Server started on port ${EXPRESS_PORT}!!`)
 })
 
