@@ -13,6 +13,10 @@ export const LightTheme: ITheme = {
     primary: "#000",
     secondary: "#9E9E9E"
   },
+  link: {
+    blue: "#4169E1",
+    negative: "#3F3F3F"
+  },
   background: {
     primary: "#FFF"
   },
@@ -40,7 +44,11 @@ export const LightTheme: ITheme = {
     background: "#F7F7F9",
     boxShadow: "0.1em 0.15em 0.3em 0 #00000050"
   },
-  
+  signInCard: {
+    background: "#FF0000",
+    boxShadow: "0.1em 0.2em 0.4em 0 #00000080"
+  },
+
   input: {
     background: "#FFF",
     border: "#555555"

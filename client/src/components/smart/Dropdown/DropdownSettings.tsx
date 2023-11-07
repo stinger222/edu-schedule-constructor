@@ -1,15 +1,11 @@
-import { useContext, useRef } from "react"
+import { useContext } from "react"
 import { useTranslation } from "react-i18next"
 
 import { StoreContext } from "../../.."
 import { ThemeEnum } from "../../../core/types/styled"
 
 import Button from "../../ui/Button/Button"
-import Textarea from "../../ui/Textarea/Textarea"
 import { StyledSelect } from "../../ui/Select/Select.styled"
-import ClassesStore from "../../../core/store/ClassesStore"
-import ClassSchedulesStore from "../../../core/store/ClassSchedulesStore"
-import AssembledSchedulesStore from "../../../core/store/AssembledSchedulesStore"
 
 /**
  * Settings menu inside dropdown
@@ -18,7 +14,7 @@ import AssembledSchedulesStore from "../../../core/store/AssembledSchedulesStore
 const DropdownSettings = () => {
   const { uiStore, classesStore } = useContext(StoreContext)
   const { t, i18n } = useTranslation()
-  const textAreaRef = useRef<HTMLTextAreaElement>(null)
+  // const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
   // const [state, importState] = useImpexAppState()
 
@@ -50,8 +46,10 @@ const DropdownSettings = () => {
   }
 
   const handleThemeChange = (theme: "light" | "dark") => {
-    uiStore.userSettings.theme = ThemeEnum[theme]
+    // uiStore.userSettings.theme = ThemeEnum[theme]
     // uiStore.memorizeState()
+
+    uiStore.setTheme(theme)
   }
 
   return (

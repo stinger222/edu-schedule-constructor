@@ -18,6 +18,10 @@ export interface ITheme {
 		primary: HexColor,
 		secondary: HexColor
 	},
+  link: {
+    blue: HexColor,
+    negative: HexColor
+  },
 	background: {
 		primary: HexColor,
 	},
@@ -44,6 +48,10 @@ export interface ITheme {
     boxShadow: string
   },
   dayCard: {
+    background: HexColor,
+    boxShadow: string
+  },
+  signInCard: {
     background: HexColor,
     boxShadow: string
   },

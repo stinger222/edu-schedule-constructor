@@ -31,7 +31,7 @@ class UIStore implements IUIStore {
   }
 
   restoreState() {
-    //  "{}" || "{lang, theme}"
+    //  "{}" || "{theme:}"
     const storedSettings = JSON.parse(localStorage.getItem(this.storageKey) || "{}")
 
     if (Object.keys(storedSettings).length === 0) {
@@ -56,6 +56,11 @@ class UIStore implements IUIStore {
 	toggleDropdown(newState?: boolean) {
 		this.isDropdownOpen = newState != undefined ? newState : !this.isDropdownOpen
 	}
+
+  setTheme(theme: "light" | "dark") {
+    this.userSettings.theme = ThemeEnum[theme]
+    this.memorizeState()
+  }
 }
 
 export default UIStore

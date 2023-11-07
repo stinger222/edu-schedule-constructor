@@ -45,6 +45,7 @@ const SignInPage = () => {
 
     window.google.accounts.id.renderButton(document.querySelector(".googleSignIn"), {
       size: "medium",
+      theme: rootStore.uiStore.userSettings.theme === "dark" ? "filled_black" : "outline",
       locale: i18n.language
     })
   }, [])

@@ -21,6 +21,7 @@ export const StyledSignInPage = styled.div`
     font-size: 1.1em;
     
     border-radius: 1.1em;
+    background:  ${({theme}) => theme.classCard.background};
     box-shadow: ${({theme}) => theme.classCard.boxShadow}; // temp... I guess
   }
 
@@ -54,7 +55,7 @@ export const StyledSignInPage = styled.div`
   }
 
   & a {
-    color: #3F3F3F;
+    color: ${({theme}) => theme.link.negative};
     font-weight: 500;
     text-decoration: underline;
   }

@@ -6,8 +6,9 @@ export interface IUIStore extends IRestoreable {
   defaultSettings: ISettings,
   userSettings: ISettings,
   memorizeState(): void,
-	toggleDropdown: (newState?: boolean) => void,
-	selectDayIndex: (newIndex: number) => void
+	toggleDropdown(newState?: boolean): void,
+	selectDayIndex(newIndex: number): void,
+  setTheme(theme: "light" | "dark"): void
 }
 
 

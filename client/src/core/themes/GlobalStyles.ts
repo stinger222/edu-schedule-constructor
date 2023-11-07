@@ -104,7 +104,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 	}
 
   .link {
-    color: royalblue;
+    color: ${({theme}) => theme.link.blue};
     text-decoration: underline;
   }
 

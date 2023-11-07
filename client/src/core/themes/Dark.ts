@@ -13,6 +13,10 @@ export const DarkTheme: ITheme = {
     primary: "#FFFFFF",
     secondary: "#9E9E9E"
   },
+  link: {
+    blue: "#4169E1",
+    negative: "#F0F0F0"
+  },
   background: {
     primary: "#37393F"
   },
@@ -39,6 +43,10 @@ export const DarkTheme: ITheme = {
   dayCard: {
     background: "#37393F",
     boxShadow: "0.1em 0.2em 0.2em 0 #00000080"
+  },
+  signInCard: {
+    background: "#FF0000",
+    boxShadow: "0.3em 0.4em 0.4em 0 #00000080"
   },
   
   input: {
