@@ -71,7 +71,6 @@ export interface ITheme {
     dropdown: {
       border: HexColor,
       background: HexColor,
-      scrollbar: HexColor,
       activeItem: HexColor,
       item: HexColor
     }
@@ -79,6 +78,9 @@ export interface ITheme {
   switch: {
     background: HexColor,
     active: HexColor
+  },
+  scrollbarThumb: {
+    background: HexColor
   },
 
   message : {

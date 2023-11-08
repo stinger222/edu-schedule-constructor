@@ -7,7 +7,7 @@ export const StyledLoader = styled.div`
   margin-top: 6em;
   margin-inline: auto;
 
-  border: 0.7em solid black;
+  border: 0.7em solid ${({theme}) => theme.text.primary};
   border-radius: 100%;
   border-top-color: transparent;
   border-bottom-color: transparent;

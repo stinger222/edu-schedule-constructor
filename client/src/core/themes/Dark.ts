@@ -64,7 +64,6 @@ export const DarkTheme: ITheme = {
     dropdown: {
       border: "#FFFFF",
       background: "#37393F",
-      scrollbar: "#", // TODO: NOT USED!!
       activeItem: "#0075FFCC",
       item: "#2A2C32"
     }
@@ -72,6 +71,9 @@ export const DarkTheme: ITheme = {
   switch: {
     background: "#50535a",
     active: "#0068e2"
+  },
+  scrollbarThumb: {
+    background: "#000000"
   },
 
   message: {

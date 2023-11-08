@@ -21,13 +21,13 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 
 	::-webkit-scrollbar {
 		width: 15px;
-		background-color: #ffffff;
+		background-color: ${({theme}) => theme.background.primary};
 	}
 
 	::-webkit-scrollbar-thumb {
-		background: #dcdcdc;
+		background: ${({theme}) => theme.scrollbarThumb.background};
 		border-radius: 50px;
-		border: 3.5px solid #ffffff;
+		border: 3.5px solid ${({theme}) => theme.background.primary};
 	}
 
 	body {

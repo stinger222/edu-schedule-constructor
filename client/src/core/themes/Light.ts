@@ -64,7 +64,6 @@ export const LightTheme: ITheme = {
     dropdown: {
       border: "#FFFFF",
       background: "#FFF",
-      scrollbar: "#", // TODO: NOT USED!!
       activeItem: "#0075FFCC",
       item: "#F2F2F2"
     }
@@ -73,7 +72,10 @@ export const LightTheme: ITheme = {
     background: "#FFF",
     active: "#0075FF"
   },
-
+  scrollbarThumb: {
+    background: "#DCDCDC"
+  },
+ 
   message: {
     error: {
       header: "#F22F2F",
