@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import Button from "../../ui/Button/Button"
 import { useContext } from "react"
 import { StoreContext } from "../../.."
+import GitHubIcon from "../../../assets/icons/github.svg?react"
 
 const DropdownMain = () => {
   const { t } = useTranslation()
@@ -18,6 +19,15 @@ const DropdownMain = () => {
         <h1>
           {t("dropdown.main.title")}
         </h1>
+
+        <a
+          className="git-icon"
+          href="https://github.com/stinger222/edu-schedule-constructor"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <GitHubIcon />
+        </a>
 			</header>
 
       <div className="section-divider"></div>

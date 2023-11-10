@@ -27,6 +27,25 @@ export const StyledDropdown = styled.div`
 	it's position relative to header will be the same */
 	top: calc(1 / var(--dropdown-font-size) * var(--header-height) + var(--dropdown-margin-top));
 
+  & header {
+    position: relative;
+    width: 100%;
+  }
+
+  & header .git-icon {
+    position: absolute;
+    right: 0.5em;
+    top: 0;
+    transform: translateY(-10%);
+  }
+
+  & header .git-icon svg {
+    width: 1.7em;
+    height: 1.7em;
+    fill: ${({theme}) => theme.text.primary};
+  }
+  
+  
   & .dropdown-content {
     display: flex;
     flex-direction: column;
@@ -131,8 +150,8 @@ export const StyledDropdown = styled.div`
       transform: translateX(-50%);
     }
 
-    & .dropdown-content header {
-      font-size: 0.85em;
-    }
+    /* & .dropdown-content header {
+      font-size: 1.15em;
+    } */
   } 
 `

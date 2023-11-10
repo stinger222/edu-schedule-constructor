@@ -6,7 +6,7 @@ export const StyledClassSchedulesPage = styled.div`
 			font-size: 1.1em
 		}
 
-		& header h1 {
+		& .page-header > h1 {
 			font-size: 1.8em;
 		}
 	}
@@ -22,7 +22,7 @@ export const StyledClassSchedulesPage = styled.div`
 			font-size: 1.3em
 		}
 		
-		& header h1 {
+		& .page-header > h1 {
 			font-size: 1.9em;
 		}
 	}

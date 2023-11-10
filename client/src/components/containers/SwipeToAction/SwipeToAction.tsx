@@ -14,7 +14,7 @@ interface ISwipeToActionExtensions {
   EditActionLabel: typeof EditActionLabel
 }
 
-// TODO: Forbid impossible props if ts will allow , smth like:
+// TODO: Forbid impossible props if ts will allow, smth like:
 
 // type IProps = {
 //   children: ReactNode,
@@ -52,7 +52,7 @@ const SwipeToAction: React.FC<IProps> & ISwipeToActionExtensions = ({
 			tension: 300, friction: 25 
 		}
 	}))
-	
+
 	const bind = useDrag(({active, movement, last, _bounds}) => {
 		api.start({
 			to: {

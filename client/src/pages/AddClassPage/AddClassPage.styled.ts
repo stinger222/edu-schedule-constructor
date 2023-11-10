@@ -48,7 +48,7 @@ export const StyledAddClassPage = styled.div`
   }
 
   @media (max-width: 640px) {
-    body:has(&) .app-header h1 {
+    body:has(&) .page-header > h1 {
       font-size: 1.8em;
     }
 
