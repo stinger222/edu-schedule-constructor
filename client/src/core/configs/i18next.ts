@@ -141,7 +141,7 @@ i18n
           fatalErrorException: {
             header: "Фатальная ошибка",
             messages: {
-              notSureWhatHappened: "Судя по всему что-то сломалось, и скорее всего эо вызвано повреждением импортированной информации <i>(ну или кто-то лазил своими шаловливыми ручками где не надо -_-)</i><br/><br/>Во всяком случае, что бы это починить, скорее всего, придётся удалить все сохранённые карточки, Вы можете сделать это в меню настроек"
+              notSureWhatHappened: "Судя по всему что-то сломалось, с чем это связано сказть сложно, но скорее всего это проблема на стороне сервера :("
             }
           },
           
@@ -284,7 +284,7 @@ i18n
           fatalErrorException: {
             header: "Fatal Error",
             messages: {
-              notSureWhatHappened: "Looks like app completely broken, this is most likely caused by import of corrupted data.<br/><br/>To fix that, consider clearing all stored data, you can do that in the <i>settings menu</i>"
+              notSureWhatHappened: "Looks like something is broken, not sure what and why, but most likely problem is on the server side :("
             }
           },
 

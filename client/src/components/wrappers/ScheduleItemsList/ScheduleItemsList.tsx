@@ -5,11 +5,12 @@ import { useTranslation } from "react-i18next"
 import i18n from "../../../core/configs/i18next"
 import RootStore from "../../../core/store/RootStore"
 import { StoreContext } from "../../.."
-import { DayOff, Warning } from "../../../core/utils/CustomErrors"
 import { IAssembledSchedule, IClass, IClassSchedule } from "../../../core/types/types"
 
 import ClassCard from "../../ordinary/ClassCard/ClassCard"
 import Timeline from "../../ordinary/Timeline/Timeline"
+import Warning from "../../../core/errors/WarningError"
+import DayOff from "../../../core/errors/DayOffError"
 
 const ScheduleItemsList = () => {
   const stores = useContext(StoreContext)
@@ -59,7 +60,7 @@ const getDataForSelectedDay = (
   selectedDayIndex: number,
   stores: RootStore
 ): [(IClass | undefined)[], IClassSchedule]  => {
-  
+
   if (!activeAssembledSchedule) {
     throw new Warning(i18n.t("warningException.messages.noAssembledShcedules"))
   }

@@ -7,8 +7,8 @@ node_modules
 /coverage
 
 # production
-server/build
-client/build
+build
+dist
 
 # misc
 .DS_Store

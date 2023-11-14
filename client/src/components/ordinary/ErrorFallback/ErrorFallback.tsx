@@ -1,10 +1,10 @@
+import CustomError from "../../../core/errors/CustomError"
 import Container from "../../containers/Container/Container"
-import { DayOff, Warning } from "../../../core/utils/CustomErrors"
 import { StyledErrorFallback } from "./ErrorFallback.styled"
 import { Trans, useTranslation } from "react-i18next"
 
 interface IProps {
-  error: Warning | Error | DayOff
+  error: CustomError
 }
 
 const ErrorFallback = ({ error }: IProps) => {
@@ -12,9 +12,9 @@ const ErrorFallback = ({ error }: IProps) => {
   return (
     <StyledErrorFallback>
       <Container>
-        {error.name === Warning.name ? (
+        {error.errorType === "warning" ? (
           <WarningLayout error={error} />
-        ) : error.name === DayOff.name ? (
+        ) : error.errorType === "day_off" ? (
           <DayOffLayout />
         ) : error.name === Error.name ? (
           <ErrorLayout error={error} />
