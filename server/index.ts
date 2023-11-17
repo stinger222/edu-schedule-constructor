@@ -1,64 +1,47 @@
-import express, { Express, NextFunction, Request, Response as ExpressResponse } from "express"
-import cookieParser from "cookie-parser"
-import mongoose from "mongoose"
+import express, { Express, Response as ExpressResponse, NextFunction, Request } from "express"
+import { default as JWT } from "jsonwebtoken"
 import cors from "cors"
+import mongoose from "mongoose"
+import cookieParser from "cookie-parser"
 import { config } from "dotenv"
 config()
 
-import DatabaseError from "./src/errors/DatabaseError"
 import CustomError from "./src/errors/CustomError"
-import withAuth from "./src/middlewares/withAuth"
-import UserModel, { IUserDocumnet } from "./src/models/UserModel"
 import UnknownError from "./src/errors/UnknownError"
-import SessionModel from "./src/models/SessionModel"
-import withUser from "./src/middlewares/withUser"
+import UserModel, { IUserDocumnet } from "./src/models/UserModel"
 import { MyResponseLocals } from "./src/types"
-import { init } from "@paralleldrive/cuid2"
+import withAuth from "./src/middlewares/withAuth"
+import withUser from "./src/middlewares/withUser"
+import UnauthorizedError from "./src/errors/UnauthorizedError"
+import DatabaseError from "./src/errors/DatabaseError"
 
-const cuid = init({ length: 50})
 type Response = ExpressResponse<any, MyResponseLocals>
 
 const app: Express = express()
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({credentials: true, origin: `http://${process.env.SERVER_IP}:3000`}))
+app.use(cors({ credentials: true, origin: process.env.ACCESS_ALLOW_ORIGIN.split(", ")}))
 
-const EXPRESS_PORT = process.env.BACKEND_PORT
-
-app.listen(EXPRESS_PORT, () => {
+const PORT = process.env.BACKEND_PORT
+app.listen(PORT, () => {
   mongoose.connect(process.env.MONGO_URI)
-  console.log(`Server started on port ${EXPRESS_PORT}!!`)
+  console.log(`Server started on port ${PORT}!!`)
 })
 
 app.get("/", async (req: Request, res: Response) => {
-  res.json({message: "Hi there!"})
+  res.json({ message: "Hi there!" })
 })
 
 // ======== Auth-related ========
 
 app.post("/auth/sign-in", async (req: Request,  res: Response, next: NextFunction) => {
-  console.log("======= NEW LOGIN =======\n", req.body, "\n======================")
+  console.log("======= NEW LOGIN ATTEMPT =======\n", req.body, "\n======================")
   
-  res.clearCookie("session_id")
-  try { // delete all previous sessions of this user
-    await SessionModel.deleteMany({ email: req.body.email })
-  } catch(err) {
-    console.error(`User "${req.body.email}" trying to sing in, but error ocurred while deleting all his previous sessions:\n`, err.message)
-  }
+  const userEmail = req.body?.email
+  if (!userEmail) return next(new UnauthorizedError("Email wasn't passed inside login request body"))
 
-  const newSessionId = cuid()
-  try {
-    await SessionModel.create({
-      session_id: newSessionId,
-      email: req.body.email
-    })
-    
-    res.cookie("session_id", newSessionId)
-    
-    res.status(200).json({ message: "User signed in. Session created successfully!" })
-  } catch (err) {
-    return next(new DatabaseError("Can't create new session due to internal server error."))
-  }
+  const jwtToken = JWT.sign(userEmail, process.env.JWT_SECRET)
+  res.json({ jwt: jwtToken })
 
   // ======= create user in db if he doesn't exist yet: =======
 
@@ -71,9 +54,11 @@ app.post("/auth/sign-in", async (req: Request,  res: Response, next: NextFunctio
     classSchedules: [],
     assembledSchedules: []
   })
+
+  return res.end()
 })
 
-app.get("/auth/validate-session", withAuth, async (req: Request, res: Response) => {
+app.get("/auth/validate-token", withAuth, async (req: Request, res: Response) => {
   return res.status(200).json({isSessionValid: true})
 })
 
@@ -117,7 +102,7 @@ app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Resp
 app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const updatedUser = await UserModel.findOneAndUpdate(
-      { email: res.locals.userSession.email, "classes.uid": req.params.uid },
+      { email: res.locals.userEmail, "classes.uid": req.params.uid },
       {
         $set: {
           "classes.$": {
@@ -169,7 +154,6 @@ app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, re
 
 })
 
-// this is just a debug endpoint that will not present in prod version of the app 
 app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
@@ -218,7 +202,7 @@ app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, r
 app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await UserModel.findOneAndUpdate(
-      { email: res.locals.userSession.email, "classSchedules.uid": req.params.uid },
+      { email: res.locals.userEmail, "classSchedules.uid": req.params.uid },
       {
         $set: {
           "classSchedules.$": {
@@ -269,7 +253,6 @@ app.delete("/users/me/class-schedules/:uid", withAuth, withUser, async (req: Req
   }
 })
   
-// this is just a debug endpoint that will not present in prod version of the app 
 app.delete("/users/me/delete-all-class-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
@@ -318,7 +301,7 @@ app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Reques
 app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await UserModel.findOneAndUpdate(
-      { email: res.locals.userSession.email, "assembledSchedules.uid": req.params.uid },
+      { email: res.locals.userEmail, "assembledSchedules.uid": req.params.uid },
       {
         $set: {
           "assembledSchedules.$": {
@@ -368,7 +351,6 @@ app.delete("/users/me/assembled-schedules/:uid", withAuth, withUser, async (req:
   }
 })
   
-// this is just a debug endpoint that will not present in prod version of the app 
 app.delete("/users/me/delete-all-assembled-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
@@ -389,7 +371,9 @@ app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
     console.error("============ UNKNOWN ERROR ============\n", err.message, "\n===============================")
     return res.status(err.statusCode).json({message: "Internal server error."}).end()
   }
-
-  console.error("============ ERROR ============\n", err.message, "\n===============================")
+   
+  if (Object.getPrototypeOf(err) !== UnauthorizedError.prototype) {
+    console.error("============ ERROR ============\n", err.message, "\n===============================")
+  }
   return res.status(err.statusCode).json({message: err.message})
 })

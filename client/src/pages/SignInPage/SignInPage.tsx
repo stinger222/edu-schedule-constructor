@@ -13,18 +13,19 @@ const SignInPage = () => {
   const rootStore = useContext(StoreContext)
   const navigate = useNavigate()
   const { t, i18n } = useTranslation()
+  const __DEV__ = import.meta.env.DEV
 
-  const handleLogin = async (result: any, isFake: boolean = false) => {
-    const email: string = isFake ? result : jwtDecode<any>(result.credential).email
+  const handleLogin = async (result: any) => {
+    const email: string =  jwtDecode<any>(result.credential).email
 
-    console.log("Decoded after login email: ", email)
+    console.log("Trying to login...")
 
-    // const email: string = result.credential.email
-    console.log("Trying to create session...")
     api
       .post("auth/sign-in", { email })
-      .then((response: AxiosResponse<{ email: string }>) => {
-        console.log("Session successfuly created! User signed-in!")
+      .then((response: AxiosResponse<{ jwt: string }>) => {
+        console.log("User signed-in!")
+        
+        rootStore.authStore.setJWT(response.data.jwt)
         rootStore.authStore.setSignedIn(true)
 
         rootStore.assembledSchedulesStore.restoreState()
@@ -34,9 +35,34 @@ const SignInPage = () => {
         navigate("/")
       })
       .catch((err) => {
-        console.error("Can't create session.\n", err.message)
+        console.error("Can't login:\n", err.message)
       })
   }
+
+  const handleFakeLogin = async () => {
+    const email: string = "someFakeEmail2@gmail.sock"
+
+    console.log("Trying to login using fake email...")
+
+    api
+      .post("auth/sign-in", { email })
+      .then((response: AxiosResponse<{ jwt: string }>) => {
+        console.log("User signed-in using fake email!")
+        
+        rootStore.authStore.setJWT(response.data.jwt)
+        rootStore.authStore.setSignedIn(true)
+
+        rootStore.assembledSchedulesStore.restoreState()
+        rootStore.classSchedulesStore.restoreState()
+        rootStore.classesStore.restoreState()
+
+        navigate("/")
+      })
+      .catch((err) => {
+        console.error("Can't login with fake email:\n", err.message)
+      })
+  }
+
   useEffect(() => {
     window.google.accounts.id.initialize({
       client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
@@ -78,9 +104,15 @@ const SignInPage = () => {
         </p>
 
         <br/><br/><br/><br/><br/>
-        <button onClick={() => {
-          handleLogin("someFakeEmail2@gmail.dick", true)
-        }}>FAKE LOGIN:</button>
+
+        {
+          __DEV__ && (
+            <button onClick={() => {
+              handleFakeLogin()
+            }}>   Login Using Fake Email  </button>
+          )
+        }
+        
       </Container>
     </StyledSignInPage>
   )

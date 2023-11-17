@@ -3,16 +3,13 @@ import { useState, useEffect, useContext, useRef } from "react"
 import { StoreContext } from "../.."
 import Header from "../../components/smart/Header/Header"
 import Container from "../../components/containers/Container/Container"
-import { Cookies } from "react-cookie"
 import Button from "../../components/ui/Button/Button"
-import { IAssembledSchedule, IClassSchedule } from "../../core/types/types"
 import { api } from "../../api"
 import { Link } from "react-router-dom"
 
 const DebugPage = () => {
   const { authStore } = useContext(StoreContext)
   const [me, setMe] = useState<any>()
-  const cookies = new Cookies()
 
   const inputStyles = {
     border: "0.01em solid black",
@@ -207,9 +204,6 @@ const DebugPage = () => {
       <div style={{width: "73em", margin: "0 auto", display: "flex", justifyContent: "space-between"}}>
         <div style={{flexBasis: "50%", height: "fit-content", borderRight: "2px solid lightgray", paddingRight: "2em"}}>
           <div>isAuthorized: <strong>{authStore.isSignedIn?.toString() || null}</strong></div>
-          <br/>
-
-          <div>session_id cookie: <strong>{cookies.get("session_id")?.toString()}</strong></div>
           <br/>
 
           <div><strong>backend://users/me:</strong></div>

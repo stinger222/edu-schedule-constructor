@@ -71,9 +71,11 @@ export interface IAssembledSchedulesStore extends IRestoreable {
   dayIsEmptyOrUndefined(scheduleUid: string, dayIndex: number): boolean 
 }
 
-export interface IAuthStore  {
+export interface IAuthStore extends IRestoreable {
   isSignedIn: null | boolean,
+  JWT: null | string,
   setSignedIn(isSignedIn: boolean): void,
+  setJWT(token: string): void,
   signOut(): void,
-  validateSession(): void
+  validateStoredJWT(): void
 }

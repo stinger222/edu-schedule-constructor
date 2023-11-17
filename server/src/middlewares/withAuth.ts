@@ -1,33 +1,29 @@
 import { NextFunction, Request, Response } from "express"
-import UnauthorizedError from "../errors/UnauthorizedError"
-import SessionModel, { ISession, ISessionDocument } from "../models/SessionModel"
+import { default as JWT } from "jsonwebtoken"
 import { config } from "dotenv"
-import { MyResponseLocals } from "../types"
 config()
 
+import UnauthorizedError from "../errors/UnauthorizedError"
+import { MyResponseLocals } from "../types"
+
 /**
- * This middleware will check if "session_id" cookie attached to the request and it's not expired
+ * This middleware will check if authorization header contains valid JWT token.
  * 
- * @returns if session is valid, then `res.locals` will contain `userSession` object
+ * If not - UnauthorizedError will be thrown
  */
 const withAuth = async (req: Request, res: Response<any, MyResponseLocals>, next: NextFunction) => {
-  const session_id = req.cookies.session_id
+  const jwt = req.headers["authorization"]?.split(" ")?.[1]
 
-  if (!session_id) {
-    return next(new UnauthorizedError("Not Authorized"))
+  if (!jwt) return next(new UnauthorizedError("Authorization header doesn't exist or have invalid value"))
+
+  try {
+    const result = await JWT.verify(jwt, process.env.JWT_SECRET).toString()
+    res.locals.userEmail = result
+    
+  } catch (err) {
+    return next(new UnauthorizedError("JWT token is malformed"))
   }
 
-  const userSession: ISessionDocument | null = await SessionModel.findOne({session_id})
-
-  if (!userSession) {
-    res.clearCookie("session_id")
-    return next(new UnauthorizedError("Not Authorized"))
-  }
-  
-  const isSessionExpired = Date.now() > new Date(userSession.toObject<ISession>()?.expiration_date).getTime()
-  if (isSessionExpired) return next(new UnauthorizedError("Session expired"))
-
-  res.locals.userSession = userSession.toObject()
   return next()
 }
 

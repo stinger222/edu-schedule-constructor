@@ -4,26 +4,31 @@ import UserModel, { IUserDocumnet } from "../models/UserModel"
 import { MyResponseLocals } from "../types"
 
 /**
- * This middleware should be used after withAuth middleware, to take `res.locals.userSession` and fetch user from db
+ * This middleware should be used after withAuth middleware, to take `res.locals.userEmail` and fetch user from db
  * 
- * @returns if everything ok, then `res.locals.userDocument` will be added (NOT JUST PLANE OBJECT!! but mongoose Document)
+ * @returns if everything ok, then `res.locals.userDocument` will contain userDocument (NOT JUST PLANE OBJECT, but mongoose Document)
  */
 const withUser = async (req: Request, res: Response<any, MyResponseLocals>, next: NextFunction) => {
-  const session = res.locals.userSession
-  if (!session || !session.email) {
-    return next(new UnknownError("wtf? how? For some reason, 'res.locals.userSession' or it's 'email' field is undefined (and I'm not even sure if this is possible if it was used after 'withAuth' middleware"))
+  const userEmail = res.locals.userEmail
+  
+  if (!userEmail) {
+    return next(new UnknownError("withUser middleware: For some reason, 'res.locals.userSession' is undefined"))
   }
 
   try {
-    const user: IUserDocumnet | null = await UserModel.findOne({email: session.email})
+    const user: IUserDocumnet | null = await UserModel.findOne({email: userEmail})
     if (!user) {
-      return next(new UnknownError("HOW? can't find user by email written in the session (AND SESSION *IS* THERE "))
+      return next(new UnknownError(`======================================================================
+      withUser middleware: Not sure how, but can't find user in db by email that was stored in *VALID* JWT.
+      Auth header: "${req.headers.authorization}"
+      Result of parsing JWT: "${userEmail}"
+      ======================================================================`))
     }
 
     res.locals.userDocument = user
     next()
   } catch(err) {
-    return next(new UnknownError("Error ocurred in the 'withUser' middleware, I believe db died or something"))
+    return next(new UnknownError("Unknown error ocurred in the 'withUser' middleware, I believe db died or something"))
   }
 }
 

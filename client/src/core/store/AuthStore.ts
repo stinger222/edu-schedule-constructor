@@ -1,41 +1,52 @@
+import { AxiosResponse } from "axios"
 import { makeAutoObservable } from "mobx"
-import { Cookies } from "react-cookie"
 import { IAuthStore } from "../types/store"
 import { api } from "../../api"
-import { AxiosResponse } from "axios"
 
 class AuthStore implements IAuthStore {
   isSignedIn: null | boolean = null
+  JWT: null | string = null
+  static JWTLocalStorageKey: string = "jwt"
 
 	constructor() {
 		makeAutoObservable(this)
-    this.validateSession()
+    this.restoreState()
+    this.validateStoredJWT()
 	}
+
+  restoreState(): void {
+    this.JWT = localStorage.getItem(AuthStore.JWTLocalStorageKey) || null
+  }
 
   setSignedIn(isSignedIn: boolean) {
     this.isSignedIn = isSignedIn
   }
 
-  async validateSession() {
+  setJWT(jwt: string) {
+    this.JWT = jwt
+    localStorage.removeItem(AuthStore.JWTLocalStorageKey)
+    localStorage.setItem(AuthStore.JWTLocalStorageKey, jwt)
+  }
+
+  async validateStoredJWT() {
     if (import.meta.env.MODE === "test") return
 
-    console.log("Trying sign-in user using stored session id...")
+    console.log("Trying sign-in user using stored jwt...")
 
     api
-      .get("auth/validate-session")
+      .get("auth/validate-token")
       .then((response: AxiosResponse<{isSessionValid: boolean}>) => {
-        this.setSignedIn(response.data.isSessionValid)
-        console.log("User successfully signed-in using stored session id!")
-      }).catch(() => {
+        this.setSignedIn(response.data?.isSessionValid || false)
+        console.log("User successfully signed-in using stored jwt!")
+      }).catch((err) => {
         this.setSignedIn(false)
-        console.warn("User not signed-in: session has expired or doesn't exist")
+        // console.warn("User not signed-in: token has expired or it was malformed")
+        console.warn("User not signed in: ", err.message)
       })
   }
 
   signOut() {
-    const cookies = new Cookies()
-    cookies.remove("session_id")
-
+    localStorage.removeItem(AuthStore.JWTLocalStorageKey)
     this.setSignedIn(false)
     document.location.reload()
   }
