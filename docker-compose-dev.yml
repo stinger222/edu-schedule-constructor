@@ -1,9 +1,11 @@
 version: "3.8"
 services:
   client:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile.dev
     image: "react-frontend-image-dev"
-    container_name: "react-frontend-container"
-    build: ./client
+    container_name: "react-frontend-container-dev"
     # stdin_open: true  # May be needed to prevent "immediate exit" issue
     ports:
       - "3000:3000"
@@ -14,15 +16,15 @@ services:
     volumes:
       - ./client:/app/client:cached
       - client_node_modules:/app/client/node_modules:delegated
-    environment:
-      - SERVER_IP=localhost
     env_file:
-      - ./client/config/.env.dev
+      - ./client/.env
     command: "npm run start -- --host"
 
   server:
-    build: ./server
-    image: "express-backend-image-dev"
+    build: 
+      context: ./server
+      dockerfile: Dockerfile.dev
+    image: "express-backend-image"
     container_name: "express-backend-container"
     restart: always
     ports:
@@ -35,7 +37,8 @@ services:
       - ./server:/app/server:cached
       - server_node_modules:/app/server/node_modules:delegated
     env_file:
-      - ./server/config/.env.dev
+      - ./server/.env
+    command: "npm run dev"
 
   database:
     image: mongo:latest

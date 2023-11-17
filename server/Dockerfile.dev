@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 3001
 
-CMD ["npm", "run", "docker-dev"]
+CMD ["npm", "run", "dev"]

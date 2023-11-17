@@ -4,3 +4,7 @@ Dockerfile
 npm-debug.log
 build
 .env
+.env.*
+.env.dev
+.env.prod
+.env.production

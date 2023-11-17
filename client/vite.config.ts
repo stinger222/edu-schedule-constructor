@@ -16,7 +16,6 @@ export default defineConfig({
           m.importedModules = new Set()
           m.importers = new Set()
         })
-
         return modules
       }
     }
@@ -27,6 +26,13 @@ export default defineConfig({
     globals: true
   },
   server: {
-    port: 3000
+    port: 3000,
+    watch: {
+      usePolling: true
+    }
+  },
+  base: "./",
+  build: {
+    sourcemap: true
   }
-})
+  })
