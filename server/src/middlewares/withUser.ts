@@ -4,24 +4,24 @@ import UserModel, { IUserDocumnet } from "../models/UserModel"
 import { MyResponseLocals } from "../types"
 
 /**
- * This middleware should be used after withAuth middleware, to take `res.locals.userEmail` and fetch user from db
+ * This middleware should be used after withAuth middleware, to take `res.locals.userLogin` and fetch user from db
  * 
  * @returns if everything ok, then `res.locals.userDocument` will contain userDocument (NOT JUST PLANE OBJECT, but mongoose Document)
  */
 const withUser = async (req: Request, res: Response<any, MyResponseLocals>, next: NextFunction) => {
-  const userEmail = res.locals.userEmail
+  const userLogin = res.locals.userLogin
   
-  if (!userEmail) {
+  if (!userLogin) {
     return next(new UnknownError("withUser middleware: For some reason, 'res.locals.userSession' is undefined"))
   }
 
   try {
-    const user: IUserDocumnet | null = await UserModel.findOne({email: userEmail})
+    const user: IUserDocumnet | null = await UserModel.findOne({login: userLogin})
     if (!user) {
       return next(new UnknownError(`======================================================================
       withUser middleware: Not sure how, but can't find user in db by email that was stored in *VALID* JWT.
       Auth header: "${req.headers.authorization}"
-      Result of parsing JWT: "${userEmail}"
+      Result of parsing JWT: "${userLogin}"
       ======================================================================`))
     }
 

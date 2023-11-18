@@ -17,8 +17,8 @@ const withAuth = async (req: Request, res: Response<any, MyResponseLocals>, next
   if (!jwt) return next(new UnauthorizedError("Authorization header doesn't exist or have invalid value"))
 
   try {
-    const result = await JWT.verify(jwt, process.env.JWT_SECRET).toString()
-    res.locals.userEmail = result
+    const result = await JWT.verify(jwt, process.env.JWT_SECRET) as {login: string, id: string}
+    res.locals.userLogin = result.login
     
   } catch (err) {
     return next(new UnauthorizedError("JWT token is malformed"))

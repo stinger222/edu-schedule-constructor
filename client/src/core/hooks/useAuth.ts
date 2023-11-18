@@ -13,7 +13,7 @@ const useAuth = () => {
   useEffect(() => {
     setIsLoading(false)
     if (isSignedIn === false) {
-      navigate("/auth/sign-in")
+      navigate("/auth/login")
     }
   }, [authStore.isSignedIn])
 

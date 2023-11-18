@@ -1,4 +1,4 @@
-import { toast } from "sonner"
+import { useContext } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 
 import { api } from "../../api"
@@ -7,10 +7,16 @@ import { validateField } from "../../core/utils/stringUtils"
 import InputContainer from "../../components/containers/InputContainer/InputContainer"
 import Container from "../../components/containers/Container/Container"
 import Button from "../../components/ui/Button/Button"
+import { StoreContext } from "../.."
+import { AxiosResponse } from "axios"
+import { useNavigate } from "react-router-dom"
+
+interface IFormData { login: string, password: string }
+
 
 const LogInPage = () => {
-
-  interface IFormData { login: string, password: string }
+  const rootStore = useContext(StoreContext)
+  const navigate = useNavigate()
 
   const methods = useForm<IFormData>({defaultValues: {
     login: "",
@@ -20,8 +26,18 @@ const LogInPage = () => {
   const handleSubmit = (formData: IFormData) => {
     api
       .post("auth/login", formData)
-      .then(() => {
-        methods.reset()
+      .then((response: AxiosResponse<{ jwt: string }>) => {
+        console.log("User signed in!")
+        
+        rootStore.authStore.setJWT(response.data.jwt)
+        rootStore.authStore.setSignedIn(true)
+
+        rootStore.assembledSchedulesStore.restoreState()
+        rootStore.classSchedulesStore.restoreState()
+        rootStore.classesStore.restoreState()
+
+        // methods.reset()
+        navigate("/")
       })
   }
   
