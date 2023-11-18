@@ -17,6 +17,8 @@ const LogInPage = () => {
   const handleSubmit = (formData: IFormData) => {
     api
       .post("auth/login", formData)
+      .then(() => 1)
+      .catch((err) => console.log("askdalksjdljkasdjklalkjd", err.response.data.message))
       // .then("Restore all stores, stop loading and redirect to main")
   }
   

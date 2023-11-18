@@ -17,4 +17,4 @@ ENV WATCHPACK_POLLING=true
 
 EXPOSE 3000
 
-RUN ["npm", "run", "start", "--", "--host"]
+# RUN ["npm", "run", "start", "--", "--host"]
