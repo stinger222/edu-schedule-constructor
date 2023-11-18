@@ -52,7 +52,7 @@ const DropdownMain = () => {
 
       {authStore.isSignedIn
         ? <Button onClick={() => authStore.signOut()}>{t("dropdown.main.signOut")}</Button>
-        : <Link  to="/auth/sign-in"><Button>Sign In</Button></Link>
+        : <Link  to="/auth/login"><Button>Sign In</Button></Link>
       }
     </div>
   )

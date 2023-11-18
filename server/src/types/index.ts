@@ -1,6 +1,6 @@
 import { IUserDocumnet } from "../models/UserModel"
 
 export interface MyResponseLocals {
-  userEmail?: string,
+  userLogin?: string,
   userDocument?: IUserDocumnet
 }

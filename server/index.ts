@@ -133,7 +133,7 @@ app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Resp
 app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const updatedUser = await UserModel.findOneAndUpdate(
-      { email: res.locals.userEmail, "classes.uid": req.params.uid },
+      { login: res.locals.userLogin, "classes.uid": req.params.uid },
       {
         $set: {
           "classes.$": {
@@ -233,7 +233,7 @@ app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, r
 app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await UserModel.findOneAndUpdate(
-      { email: res.locals.userEmail, "classSchedules.uid": req.params.uid },
+      { login: res.locals.userLogin, "classSchedules.uid": req.params.uid },
       {
         $set: {
           "classSchedules.$": {
@@ -332,7 +332,7 @@ app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Reques
 app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await UserModel.findOneAndUpdate(
-      { email: res.locals.userEmail, "assembledSchedules.uid": req.params.uid },
+      { login: res.locals.userLogin, "assembledSchedules.uid": req.params.uid },
       {
         $set: {
           "assembledSchedules.$": {
