@@ -17,11 +17,9 @@ const RegisterPage = () => {
   const handleSubmit = (formData: IFormData) => {
     api
       .post("auth/register", formData)
-      // .then("Restore all stores, stop loading and redirect to main")
       .then(() => {
         methods.reset()
       })
-      .catch((err) => console.log("askdalksjdljkasdjklalkjd", err.message))
   }
   
   return (

@@ -19,6 +19,7 @@ import MainPage from "./pages/MainPage/MainPage"
 import DebugPage from "./pages/DebugPage/DebugPage"
 import LogInPage from "./pages/LoginPage/LoginPage"
 import RegisterPage from "./pages/RegisterPage/RegisterPage"
+import { Toaster } from "sonner"
 
 const App = () => {
   const { uiStore } = useContext(StoreContext)
@@ -45,7 +46,10 @@ const App = () => {
           <Route path="register" element={<RegisterPage />} />
         </Route>
       </Routes>
+
+      <Toaster richColors/>
       <GlobalStyles />
+
     </ThemeProvider>
 	)
 }

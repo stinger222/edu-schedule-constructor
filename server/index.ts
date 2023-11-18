@@ -7,14 +7,13 @@ import cookieParser from "cookie-parser"
 import { config } from "dotenv"
 config()
 
-import CustomError from "./src/errors/CustomError"
-import UnknownError from "./src/errors/UnknownError"
-import UserModel, { IUser, IUserDocumnet } from "./src/models/UserModel"
 import { MyResponseLocals } from "./src/types"
+import UserModel, { IUserDocumnet } from "./src/models/UserModel"
 import withAuth from "./src/middlewares/withAuth"
 import withUser from "./src/middlewares/withUser"
 import UnauthorizedError from "./src/errors/UnauthorizedError"
 import DatabaseError from "./src/errors/DatabaseError"
+import CustomError from "./src/errors/CustomError"
 import AuthError from "./src/errors/AuthError"
 
 type Response = ExpressResponse<any, MyResponseLocals>
@@ -31,7 +30,7 @@ app.listen(PORT, () => {
 })
 
 app.get("/", async (req: Request, res: Response) => {
-  res.json({ message: "Hi there!" })
+  res.json({ displayMessage: "Hi there!" })
 })
 
 // ======== Auth-related ========
@@ -42,10 +41,10 @@ app.post("/auth/register", async (req: Request,  res: Response, next: NextFuncti
   const login = req.body?.login  // TODO: move to withAuthCredentials to check that unsername and password are there
   const password = req.body?.password
   
-  if (!login || !password) return next(new UnauthorizedError("Login or password wasn't passed into login request body"))
+  if (!login || !password) return next(new UnauthorizedError("Login or password is missing", true))
 
   const user = await UserModel.findOne({ login })
-  if (user) return next(new AuthError("User already exists"))
+  if (user) return next(new AuthError("User already exists", true))
 
   const passwordHash = bcrypt.hashSync(password)
 
@@ -63,9 +62,9 @@ app.post("/auth/register", async (req: Request,  res: Response, next: NextFuncti
       process.env.JWT_SECRET
     )
 
-    return res.json({ jwt: jwtToken })
+    return res.json({ jwt: jwtToken, displayMessage: "Welcome!" })
   } catch(err) {
-    return next(new DatabaseError("Can't create user in the db"))
+    return next(new DatabaseError("Can't create user in the db", true))
   }
 })
 
@@ -75,20 +74,20 @@ app.post("/auth/login", async (req: Request,  res: Response, next: NextFunction)
   const login = req.body?.login // TODO: move to withAuthCredentials to check that unsername and password are there
   const password = req.body?.password
 
-  if (!login || !password) return next(new UnauthorizedError("Login or password wasn't passed into login request body"))
+  if (!login || !password) return next(new UnauthorizedError("Login or password is missing", true))
 
   const user = await UserModel.findOne({ login })
-  if (!user) return next(new AuthError("User with such login doesn't exist"))
+  if (!user) return next(new AuthError("User with such login doesn't exist", true))
   
   const isMatch = bcrypt.compareSync(password, user.toObject().passwordHash)
-  if (!isMatch) return next(new AuthError("Wrong password"))
+  if (!isMatch) return next(new AuthError("Wrong password", true))
 
   const jwtToken = JWT.sign(
     {login: user.login, id: user._id},
     process.env.JWT_SECRET
   )
 
-  return res.json({ jwt: jwtToken })
+  return res.json({ jwt: jwtToken, displayMessage: "Welcome Back!"})
 })
 
 app.get("/auth/validate-token", withAuth, async (req: Request, res: Response) => {
@@ -127,7 +126,7 @@ app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Resp
       classes: targetUser.classes
     })
   } catch(err) {
-    return next(new DatabaseError("Database call to add new class failed due to some internal server error."))
+    return next(new DatabaseError("Database call to add new class failed due to some internal server error", true))
   }
 })
 
@@ -149,7 +148,7 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
     )
 
     if (!updatedUser) {
-      return next(new DatabaseError(`Can't update class with id ${req.params.uid}, most likely because it's not exist`))
+      return next(new DatabaseError(`Can't update class with id "${req.params.uid}", most likely because it's not exist`, true))
     }
 
     console.log("======== Class Updated ========")
@@ -158,7 +157,7 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
       classes: updatedUser.toJSON().classes
     })
   } catch(err) {
-    return next(new DatabaseError("Database call to edit user's class failed due to some internal server error."))
+    return next(new DatabaseError("Database call to edit user's class failed due to some internal server error", true))
   }
 })
 
@@ -170,7 +169,7 @@ app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, re
     targetUser.classes = targetUser.classes.filter(c => c.uid !== req.params.uid)
 
     if (targetUser.classes.length === initLength) {
-      return next(new DatabaseError(`Can't delete class with id ${req.params.uid}, most likely because it's not exist`))
+      return next(new DatabaseError(`Can't delete class with id "${req.params.uid}", most likely because it's not exist`, true))
     }
 
     await targetUser.save()
@@ -181,7 +180,7 @@ app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, re
       classes: targetUser.classes
     })
   } catch(err) {
-    return next(new DatabaseError("Database call to delete class failed due to some internal server error."))
+    return next(new DatabaseError("Database call to delete class failed due to some internal server error", true))
   }
 
 })
@@ -194,10 +193,10 @@ app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Reque
 
     await targetUser.save()
   } catch(err) {
-    return next(new DatabaseError("Database call to delete all classes failed due to some internal server error."))
+    return next(new DatabaseError("Database call to delete all classes failed due to some internal server error", true))
   }
 
-  return res.status(200).json({message: "All classes successfully deleted!"})
+  return res.status(200).json({displayMessage: "All classes successfully deleted!"})
 })
 
 // ======== Class Schedules ========
@@ -227,7 +226,7 @@ app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, r
       classSchedules: targetUser.classSchedules
     })
   } catch(err) {
-    return next(new DatabaseError("Database call to add new class schedule failed due to some internal server error."))
+    return next(new DatabaseError("Database call to add new class schedule failed due to some internal server error", true))
   }
 })
 
@@ -248,7 +247,7 @@ app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Re
     )
 
     if (!result) {
-      return next(new DatabaseError(`Can't update class schedule with id ${req.params.uid}, most likely because it's not exist`))
+      return next(new DatabaseError(`Can't update class schedule with id "${req.params.uid}", most likely because it's not exist`, true))
     }
     
     console.log("======= Class Schedule Updated =======")
@@ -257,7 +256,7 @@ app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Re
       classSchedules: result.classSchedules
     })
   } catch(err) {
-    return next(new DatabaseError("Database call to edit user's class schedule failed due to some internal server error."))
+    return next(new DatabaseError("Database call to edit user's class schedule failed due to some internal server error", true))
   }
 
 })
@@ -270,7 +269,7 @@ app.delete("/users/me/class-schedules/:uid", withAuth, withUser, async (req: Req
     targetUser.classSchedules = targetUser.classSchedules.filter(c => c.uid !== req.params.uid)
     
     if (targetUser.classSchedules.length === initLength) {
-      return next(new DatabaseError(`Can't delete class schedule with id ${req.params.uid}, most likely because it's not exist`))
+      return next(new DatabaseError(`Can't delete class schedule with id ${req.params.uid}, most likely because it's not exist`, true))
     }
 
     await targetUser.save()
@@ -281,7 +280,7 @@ app.delete("/users/me/class-schedules/:uid", withAuth, withUser, async (req: Req
       classSchedules: targetUser.classSchedules
     })
   } catch(err) {
-    return next(new DatabaseError("Database call to delete class schedule failed due to some internal server error."))
+    return next(new DatabaseError("Database call to delete class schedule failed due to some internal server error", true))
   }
 })
   
@@ -293,10 +292,10 @@ app.delete("/users/me/delete-all-class-schedules", withAuth, withUser, async (re
 
     await targetUser.save()
   } catch(err) {
-    return next(new DatabaseError("Database call to delete all class schedles failed due to some internal server error."))
+    return next(new DatabaseError("Database call to delete all class schedles failed due to some internal server error", true))
   }
 
-  return res.status(200).json({message: "All class schedules successfully deleted!"})
+  return res.status(200).json({displayMessage: "All class schedules successfully deleted!"})
 })
 
 // ======== Assembled Schedules ========
@@ -326,7 +325,7 @@ app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Reques
       assembledSchedules: targetUser.assembledSchedules
     })
   } catch(err) {
-    return next(new DatabaseError("Database call to add new assembled schedule failed due to some internal server error."))
+    return next(new DatabaseError("Database call to add new assembled schedule failed due to some internal server error", true))
   }
 })
 
@@ -347,7 +346,7 @@ app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res
     )
 
     if (!result) {
-      return next(new DatabaseError(`Can't update assembled schedule with id ${req.params.uid}, most likely because it's not exist`))
+      return next(new DatabaseError(`Can't update assembled schedule with id "${req.params.uid}", most likely because it's not exist`, true))
     }
     
     console.log("======= Assembled Schedule Updated =======")
@@ -356,7 +355,7 @@ app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res
       assembledSchedules: result.assembledSchedules
     })
   } catch(err) {
-    return next(new DatabaseError("Database call to edit user's assembled schedule failed due to some internal server error."))
+    return next(new DatabaseError("Database call to edit user's assembled schedule failed due to some internal server error", true))
   }
 })
 
@@ -368,7 +367,7 @@ app.delete("/users/me/assembled-schedules/:uid", withAuth, withUser, async (req:
     targetUser.assembledSchedules = targetUser.assembledSchedules.filter(c => c.uid !== req.params.uid)
     
     if (targetUser.assembledSchedules.length === initLength) {
-      return next(new DatabaseError(`Can't delete assembled schedule with id ${req.params.uid}, most likely because it's not exist`))
+      return next(new DatabaseError(`Can't delete assembled schedule with id ${req.params.uid}, most likely because it's not exist`, true))
     }
     
     await targetUser.save()
@@ -379,7 +378,7 @@ app.delete("/users/me/assembled-schedules/:uid", withAuth, withUser, async (req:
       assembledSchedules: targetUser.assembledSchedules
     })
   } catch(err) {
-    return next(new DatabaseError("Database call to delete assembled schedule failed due to some internal server error."))
+    return next(new DatabaseError("Database call to delete assembled schedule failed due to some internal server error", true))
   }
 })
   
@@ -391,21 +390,21 @@ app.delete("/users/me/delete-all-assembled-schedules", withAuth, withUser, async
 
     await targetUser.save()
   } catch(err) {
-    return next(new DatabaseError("Database call to delete all assembled schedles failed due to some internal server error."))
+    return next(new DatabaseError("Database call to delete all assembled schedles failed due to some internal server error", true))
   }
 
-  return res.status(200).json({message: "All assembled schedles successfully deleted!"})
+  return res.status(200).json({ displayMessage: "All assembled schedles successfully deleted!" })
 })
 
 // Error Handling Middleware
 app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
-  if (Object.getPrototypeOf(err) === UnknownError.prototype) {
-    console.error("============ UNKNOWN ERROR ============\n", err.message, "\n===============================")
-    return res.status(err.statusCode).json({message: "Internal server error."}).end()
-  }
-   
   if (Object.getPrototypeOf(err) !== UnauthorizedError.prototype) {
     console.error("============ ERROR ============\n", err.message, "\n===============================")
   }
-  return res.status(err.statusCode).json({message: err.message})
+
+  if (err.notifyUser) {
+    return res.status(err.statusCode).json({ displayMessage: err.message })
+  }
+  
+  return res.status(err.statusCode).end()
 })
