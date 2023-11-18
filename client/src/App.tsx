@@ -16,8 +16,9 @@ import AddClassPage from "./pages/AddClassPage/AddClassPage"
 import ClassSchedulesPage from "./pages/ClassSchedulesPage/ClassSchedulesPage"
 import ClassesPage from "./pages/ClassesPage/ClassesPage"
 import MainPage from "./pages/MainPage/MainPage"
-import SignInPage from "./pages/SignInPage/SignInPage"
 import DebugPage from "./pages/DebugPage/DebugPage"
+import LogInPage from "./pages/LoginPage/LoginPage"
+import RegisterPage from "./pages/RegisterPage/RegisterPage"
 
 const App = () => {
   const { uiStore } = useContext(StoreContext)
@@ -40,7 +41,8 @@ const App = () => {
         </Route>
 
         <Route path="/auth">
-          <Route path="sign-in" element={<SignInPage />} />
+          <Route path="login" element={<LogInPage />} />
+          <Route path="register" element={<RegisterPage />} />
         </Route>
       </Routes>
       <GlobalStyles />

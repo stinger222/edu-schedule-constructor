@@ -6,10 +6,10 @@ import jwtDecode from "jwt-decode"
 
 import { api } from "../../api"
 import { StoreContext } from "../.."
-import { StyledSignInPage } from "./SignInPage.styled"
+import { StyledGoogleLoginInPage } from "./GoogleLoginInPage.styled"
 import Container from "../../components/containers/Container/Container"
 
-const SignInPage = () => {
+const GoogleLoginInPage = () => {
   const rootStore = useContext(StoreContext)
   const navigate = useNavigate()
   const { t, i18n } = useTranslation()
@@ -77,7 +77,7 @@ const SignInPage = () => {
   }, [])
 
   return (
-    <StyledSignInPage>
+    <StyledGoogleLoginInPage>
       <Container>
         <h1> Schedule Constructor </h1>
 
@@ -114,7 +114,7 @@ const SignInPage = () => {
         }
         
       </Container>
-    </StyledSignInPage>
+    </StyledGoogleLoginInPage>
   )
 }
-export default SignInPage
+export default GoogleLoginInPage
