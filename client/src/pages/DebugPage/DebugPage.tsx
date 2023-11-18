@@ -36,7 +36,6 @@ const DebugPage = () => {
   // ============= "Add" Requests =============
   
   const addClass = () => {
-
     api
       .post(`users/me/classes`, {
 

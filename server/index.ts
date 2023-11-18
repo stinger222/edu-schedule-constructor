@@ -34,26 +34,32 @@ app.get("/", async (req: Request, res: Response) => {
 
 // ======== Auth-related ========
 
-app.post("/auth/sign-in", async (req: Request,  res: Response, next: NextFunction) => {
+app.post("/auth/register", async (req: Request,  res: Response, next: NextFunction) => {
+  console.log("======= NEW REGISTER ATTEMPT =======\n", req.body, "\n======================")
+  
+  return res.end()
+})
+
+app.post("/auth/login", async (req: Request,  res: Response, next: NextFunction) => {
   console.log("======= NEW LOGIN ATTEMPT =======\n", req.body, "\n======================")
   
-  const userEmail = req.body?.email
-  if (!userEmail) return next(new UnauthorizedError("Email wasn't passed inside login request body"))
+  // const userEmail = req.body?.email
+  // if (!userEmail) return next(new UnauthorizedError("Email wasn't passed inside login request body"))
 
-  const jwtToken = JWT.sign(userEmail, process.env.JWT_SECRET)
-  res.json({ jwt: jwtToken })
+  // const jwtToken = JWT.sign(userEmail, process.env.JWT_SECRET)
+  // res.json({ jwt: jwtToken })
 
-  // ======= create user in db if he doesn't exist yet: =======
+  // // ======= create user in db if he doesn't exist yet: =======
 
-  const user = await UserModel.findOne({ email: req.body.email })
-  if (user) return
+  // const user = await UserModel.findOne({ email: req.body.email })
+  // if (user) return
   
-  UserModel.create({
-    email: req.body.email,
-    classes: [],
-    classSchedules: [],
-    assembledSchedules: []
-  })
+  // UserModel.create({
+  //   email: req.body.email,
+  //   classes: [],
+  //   classSchedules: [],
+  //   assembledSchedules: []
+  // })
 
   return res.end()
 })

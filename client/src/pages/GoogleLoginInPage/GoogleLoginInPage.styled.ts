@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledSignInPage = styled.div`
+export const StyledGoogleLoginInPage = styled.div`
   font-family: 'JetBrains Mono';
   padding: 1em;
 
