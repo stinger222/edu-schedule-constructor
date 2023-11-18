@@ -1,6 +1,7 @@
 import express, { Express, Response as ExpressResponse, NextFunction, Request } from "express"
 import { default as JWT } from "jsonwebtoken"
 import cors from "cors"
+import bcrypt from "bcryptjs"
 import mongoose from "mongoose"
 import cookieParser from "cookie-parser"
 import { config } from "dotenv"
@@ -8,12 +9,13 @@ config()
 
 import CustomError from "./src/errors/CustomError"
 import UnknownError from "./src/errors/UnknownError"
-import UserModel, { IUserDocumnet } from "./src/models/UserModel"
+import UserModel, { IUser, IUserDocumnet } from "./src/models/UserModel"
 import { MyResponseLocals } from "./src/types"
 import withAuth from "./src/middlewares/withAuth"
 import withUser from "./src/middlewares/withUser"
 import UnauthorizedError from "./src/errors/UnauthorizedError"
 import DatabaseError from "./src/errors/DatabaseError"
+import AuthError from "./src/errors/AuthError"
 
 type Response = ExpressResponse<any, MyResponseLocals>
 
@@ -36,30 +38,45 @@ app.get("/", async (req: Request, res: Response) => {
 
 app.post("/auth/register", async (req: Request,  res: Response, next: NextFunction) => {
   console.log("======= NEW REGISTER ATTEMPT =======\n", req.body, "\n======================")
+    
+  const username = req.body?.username
+  const password = req.body?.password
   
-  return res.end()
+  if (!username || !password) return next(new UnauthorizedError("Username or password wasn't passed into login request body"))
+
+  // Check if user already exists
+  const user = await UserModel.findOne({ username })
+  if (user) return next(new AuthError("User already exists"))
+
+  const passwordHash = bcrypt.hashSync(password)
+  console.log("Password: ", password)
+  console.log("Hash: ", passwordHash)
+  
+  try {
+    const createdUser = (await UserModel.create({
+      username,
+      passwordHash,
+      classes: [],
+      classSchedules: [],
+      assembledSchedules: []
+    })).toObject()
+
+    // Generate JWT
+    const jwtToken = JWT.sign(
+      {username: createdUser.username, id: createdUser._id},
+      process.env.JWT_SECRET
+    )
+
+    return res.json({ jwt: jwtToken })
+  } catch(err) {
+    return next(new DatabaseError("Can't create user in the db"))
+  }
 })
 
 app.post("/auth/login", async (req: Request,  res: Response, next: NextFunction) => {
   console.log("======= NEW LOGIN ATTEMPT =======\n", req.body, "\n======================")
-  
-  // const userEmail = req.body?.email
-  // if (!userEmail) return next(new UnauthorizedError("Email wasn't passed inside login request body"))
 
-  // const jwtToken = JWT.sign(userEmail, process.env.JWT_SECRET)
-  // res.json({ jwt: jwtToken })
 
-  // // ======= create user in db if he doesn't exist yet: =======
-
-  // const user = await UserModel.findOne({ email: req.body.email })
-  // if (user) return
-  
-  // UserModel.create({
-  //   email: req.body.email,
-  //   classes: [],
-  //   classSchedules: [],
-  //   assembledSchedules: []
-  // })
 
   return res.end()
 })
