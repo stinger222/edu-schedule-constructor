@@ -26,10 +26,7 @@ export default defineConfig({
     globals: true
   },
   server: {
-    port: 3000,
-    watch: {
-      usePolling: true
-    }
+    port: 3000
   },
   base: "./",
   build: {

@@ -1,10 +1,12 @@
+import { toast } from "sonner"
 import { FormProvider, useForm } from "react-hook-form"
-import { StyledLoginPage } from "./LoginPage.styled"
+
 import { api } from "../../api"
+import { StyledLoginPage } from "./LoginPage.styled"
+import { validateField } from "../../core/utils/stringUtils"
 import InputContainer from "../../components/containers/InputContainer/InputContainer"
 import Container from "../../components/containers/Container/Container"
 import Button from "../../components/ui/Button/Button"
-import { validateField } from "../../core/utils/stringUtils"
 
 const LogInPage = () => {
 
@@ -21,8 +23,6 @@ const LogInPage = () => {
       .then(() => {
         methods.reset()
       })
-      .catch((err) => console.log("askdalksjdljkasdjklalkjd", err.response.data.message))
-      // .then("Restore all stores, stop loading and redirect to main")
   }
   
   return (
