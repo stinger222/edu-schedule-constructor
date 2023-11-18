@@ -11,7 +11,9 @@ export const api = axios.create({
 
 api.interceptors.request.use((config) => {
   const jwt: string | undefined = localStorage.getItem(AuthStore.JWTLocalStorageKey) || undefined
+
+  if (!jwt) return config   // To prevent sending "Bearer undefined" for each unauthorized request
+
   config.headers.Authorization = `Bearer ${jwt}`
-  
   return config
 })

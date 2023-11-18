@@ -38,32 +38,28 @@ app.get("/", async (req: Request, res: Response) => {
 
 app.post("/auth/register", async (req: Request,  res: Response, next: NextFunction) => {
   console.log("======= NEW REGISTER ATTEMPT =======\n", req.body, "\n======================")
-    
-  const username = req.body?.username
+  
+  const login = req.body?.login  // TODO: move to withAuthCredentials to check that unsername and password are there
   const password = req.body?.password
   
-  if (!username || !password) return next(new UnauthorizedError("Username or password wasn't passed into login request body"))
+  if (!login || !password) return next(new UnauthorizedError("Login or password wasn't passed into login request body"))
 
-  // Check if user already exists
-  const user = await UserModel.findOne({ username })
+  const user = await UserModel.findOne({ login })
   if (user) return next(new AuthError("User already exists"))
 
   const passwordHash = bcrypt.hashSync(password)
-  console.log("Password: ", password)
-  console.log("Hash: ", passwordHash)
-  
+
   try {
     const createdUser = (await UserModel.create({
-      username,
+      login,
       passwordHash,
       classes: [],
       classSchedules: [],
       assembledSchedules: []
     })).toObject()
 
-    // Generate JWT
     const jwtToken = JWT.sign(
-      {username: createdUser.username, id: createdUser._id},
+      {login: createdUser.login, id: createdUser._id},
       process.env.JWT_SECRET
     )
 
@@ -76,9 +72,23 @@ app.post("/auth/register", async (req: Request,  res: Response, next: NextFuncti
 app.post("/auth/login", async (req: Request,  res: Response, next: NextFunction) => {
   console.log("======= NEW LOGIN ATTEMPT =======\n", req.body, "\n======================")
 
+  const login = req.body?.login // TODO: move to withAuthCredentials to check that unsername and password are there
+  const password = req.body?.password
 
+  if (!login || !password) return next(new UnauthorizedError("Login or password wasn't passed into login request body"))
 
-  return res.end()
+  const user = await UserModel.findOne({ login })
+  if (!user) return next(new AuthError("User with such login doesn't exist"))
+  
+  const isMatch = bcrypt.compareSync(password, user.toObject().passwordHash)
+  if (!isMatch) return next(new AuthError("Wrong password"))
+
+  const jwtToken = JWT.sign(
+    {login: user.login, id: user._id},
+    process.env.JWT_SECRET
+  )
+
+  return res.json({ jwt: jwtToken })
 })
 
 app.get("/auth/validate-token", withAuth, async (req: Request, res: Response) => {
@@ -107,7 +117,6 @@ app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Resp
       cabinet: req.body.cabinet,
       uid: req.body.uid
     }
-
     
     targetUser.classes.push(newClass)
     await targetUser.save()

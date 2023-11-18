@@ -7,10 +7,10 @@ import Button from "../../components/ui/Button/Button"
 import { validateField } from "../../core/utils/stringUtils"
 
 const RegisterPage = () => {
-  interface IFormData { username: string, password: string }
+  interface IFormData { login: string, password: string }
 
   const methods = useForm<IFormData>({defaultValues: {
-    username: "",
+    login: "",
     password: ""
 	}})
 
@@ -18,7 +18,9 @@ const RegisterPage = () => {
     api
       .post("auth/register", formData)
       // .then("Restore all stores, stop loading and redirect to main")
-      .then(() => 1)
+      .then(() => {
+        methods.reset()
+      })
       .catch((err) => console.log("askdalksjdljkasdjklalkjd", err.message))
   }
   
@@ -29,8 +31,8 @@ const RegisterPage = () => {
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleSubmit)} style={{width: "30em"}}>
             <InputContainer
-              label="Username"
-              name="username"
+              label="Login"
+              name="login"
               rules={{validate: validateField, minLength: 5, maxLength: 30}}
             />
             <InputContainer

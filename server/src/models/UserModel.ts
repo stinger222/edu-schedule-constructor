@@ -27,7 +27,7 @@ export interface IUserDocumnet extends mongoose.Document {
 }
 
 const UserSchema = new mongoose.Schema({
-  username: String,
+  login: String,
   passwordHash: String,
   classes: [{
     _id: false,
