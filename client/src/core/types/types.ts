@@ -54,6 +54,18 @@ export interface ISettings {
   theme: ThemeEnum
 }
 
+type RegisterFormConfig = {
+  submitAPIEndpoing: "auth/register",
+  formHeader: "Register"
+}
+
+type LoginFormConfig = {
+  submitAPIEndpoing: "auth/login",
+  formHeader: "Login"
+}
+
+export type AuthFormConfig = RegisterFormConfig | LoginFormConfig
+
 export type DropdownMenu = "main" | "settings"
 
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>

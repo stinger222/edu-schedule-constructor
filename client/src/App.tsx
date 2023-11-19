@@ -17,8 +17,8 @@ import ClassSchedulesPage from "./pages/ClassSchedulesPage/ClassSchedulesPage"
 import ClassesPage from "./pages/ClassesPage/ClassesPage"
 import MainPage from "./pages/MainPage/MainPage"
 import DebugPage from "./pages/DebugPage/DebugPage"
-import LogInPage from "./pages/LoginPage/LoginPage"
-import RegisterPage from "./pages/RegisterPage/RegisterPage"
+import LogInPage from "./pages/LoginPage"
+import RegisterPage from "./pages/RegisterPage"
 import { Toaster } from "sonner"
 
 const App = () => {
