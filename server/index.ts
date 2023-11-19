@@ -80,7 +80,7 @@ app.post("/auth/login", async (req: Request,  res: Response, next: NextFunction)
   if (!user) return next(new AuthError("User with such login doesn't exist", true))
   
   const isMatch = bcrypt.compareSync(password, user.toObject().passwordHash)
-  if (!isMatch) return next(new AuthError("Wrong password", true))
+  if (!isMatch) return next(new AuthError("Invalid password", true))
 
   const jwtToken = JWT.sign(
     {login: user.login, id: user._id},
@@ -123,7 +123,8 @@ app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Resp
     console.log("======== Class Added ========\n", newClass, "\n=============================")
 
     return res.status(200).json({
-      classes: targetUser.classes
+      classes: targetUser.classes,
+      displayMessage: "Card successfully created!"
     })
   } catch(err) {
     return next(new DatabaseError("Database call to add new class failed due to some internal server error", true))
@@ -154,7 +155,8 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
     console.log("======== Class Updated ========")
 
     return res.status(200).json({
-      classes: updatedUser.toJSON().classes
+      classes: updatedUser.toJSON().classes,
+      displayMessage: "Card successfully edited!"
     })
   } catch(err) {
     return next(new DatabaseError("Database call to edit user's class failed due to some internal server error", true))
@@ -177,12 +179,12 @@ app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, re
     console.log("======== Class Deleted ========")
 
     return res.status(200).json({
-      classes: targetUser.classes
+      classes: targetUser.classes,
+      displayMessage: "Card successfully deleted!"
     })
   } catch(err) {
     return next(new DatabaseError("Database call to delete class failed due to some internal server error", true))
   }
-
 })
 
 app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
@@ -223,7 +225,8 @@ app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, r
     console.log("======= Class Schedule Added =========")
 
     return res.status(200).json({
-      classSchedules: targetUser.classSchedules
+      classSchedules: targetUser.classSchedules,
+      displayMessage: "Card successfully created!"
     })
   } catch(err) {
     return next(new DatabaseError("Database call to add new class schedule failed due to some internal server error", true))
@@ -253,7 +256,8 @@ app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Re
     console.log("======= Class Schedule Updated =======")
 
     return res.status(200).json({
-      classSchedules: result.classSchedules
+      classSchedules: result.classSchedules,
+      displayMessage: "Card successfully edited!"
     })
   } catch(err) {
     return next(new DatabaseError("Database call to edit user's class schedule failed due to some internal server error", true))
@@ -277,7 +281,8 @@ app.delete("/users/me/class-schedules/:uid", withAuth, withUser, async (req: Req
     console.log("======= Class Schedule Removed =======")
 
     return res.status(200).json({
-      classSchedules: targetUser.classSchedules
+      classSchedules: targetUser.classSchedules,
+      displayMessage: "Card successfully deleted!"
     })
   } catch(err) {
     return next(new DatabaseError("Database call to delete class schedule failed due to some internal server error", true))
@@ -322,7 +327,8 @@ app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Reques
     console.log("======= Assembled Schedule Added =======")
 
     return res.status(200).json({
-      assembledSchedules: targetUser.assembledSchedules
+      assembledSchedules: targetUser.assembledSchedules,
+      displayMessage: "Card successfully created!"
     })
   } catch(err) {
     return next(new DatabaseError("Database call to add new assembled schedule failed due to some internal server error", true))
@@ -352,7 +358,8 @@ app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res
     console.log("======= Assembled Schedule Updated =======")
 
     return res.status(200).json({
-      assembledSchedules: result.assembledSchedules
+      assembledSchedules: result.assembledSchedules,
+      displayMessage: "Card successfully edited!"
     })
   } catch(err) {
     return next(new DatabaseError("Database call to edit user's assembled schedule failed due to some internal server error", true))
@@ -375,7 +382,8 @@ app.delete("/users/me/assembled-schedules/:uid", withAuth, withUser, async (req:
     console.log("======= Assembled Schedule Deleted =======")
 
     return res.status(200).json({
-      assembledSchedules: targetUser.assembledSchedules
+      assembledSchedules: targetUser.assembledSchedules,
+      displayMessage: "Card successfully deleted!"
     })
   } catch(err) {
     return next(new DatabaseError("Database call to delete assembled schedule failed due to some internal server error", true))

@@ -201,7 +201,7 @@ const DebugPage = () => {
         </Header>
       </Container>
       <div style={{width: "73em", margin: "0 auto", display: "flex", justifyContent: "space-between"}}>
-        <div style={{flexBasis: "50%", height: "fit-content", borderRight: "2px solid lightgray", paddingRight: "2em"}}>
+        <div style={{flexBasis: "50%", maxWidth: "40em", height: "fit-content", borderRight: "2px solid lightgray", paddingRight: "2em"}}>
           <div>isAuthorized: <strong>{authStore.isSignedIn?.toString() || null}</strong></div>
           <br/>
 
@@ -210,7 +210,7 @@ const DebugPage = () => {
           <br/>
         </div>
         
-        <div style={{height: "81vh", overflowY: "auto", fontSize: "0.8em", paddingRight: "1em"}}>
+        <div style={{height: "81vh", overflowY: "auto", fontSize: "0.8em", paddingInline: "1em", minWidth: "45em"}}>
           <h2>Classes controlls:</h2>
           <br/>
           <Button onClick={addClass}>Add new class with random uid</Button>

@@ -36,7 +36,6 @@ const LogInPage = () => {
         rootStore.classSchedulesStore.restoreState()
         rootStore.classesStore.restoreState()
 
-        // methods.reset()
         navigate("/")
       })
   }
@@ -48,7 +47,7 @@ const LogInPage = () => {
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleSubmit)} style={{width: "30em"}}>
             <InputContainer
-              label="Login"
+              label="Username"
               name="login"
               rules={{validate: validateField, minLength: 5, maxLength: 30}}
             />

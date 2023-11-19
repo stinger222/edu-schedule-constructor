@@ -5,9 +5,17 @@ import InputContainer from "../../components/containers/InputContainer/InputCont
 import Container from "../../components/containers/Container/Container"
 import Button from "../../components/ui/Button/Button"
 import { validateField } from "../../core/utils/stringUtils"
+import { useContext } from "react"
+import { StoreContext } from "../.."
+import { useNavigate } from "react-router-dom"
+import { AxiosResponse } from "axios"
+
+
+interface IFormData { login: string, password: string }
 
 const RegisterPage = () => {
-  interface IFormData { login: string, password: string }
+  const rootStore = useContext(StoreContext)
+  const navigate = useNavigate()
 
   const methods = useForm<IFormData>({defaultValues: {
     login: "",
@@ -17,8 +25,17 @@ const RegisterPage = () => {
   const handleSubmit = (formData: IFormData) => {
     api
       .post("auth/register", formData)
-      .then(() => {
-        methods.reset()
+      .then((response: AxiosResponse<{ jwt: string }>) => {
+        console.log("User registrated and signed in!")
+        
+        rootStore.authStore.setJWT(response.data.jwt)
+        rootStore.authStore.setSignedIn(true)
+
+        rootStore.assembledSchedulesStore.restoreState()
+        rootStore.classSchedulesStore.restoreState()
+        rootStore.classesStore.restoreState()
+
+        navigate("/")
       })
   }
   
