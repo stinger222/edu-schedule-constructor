@@ -110,9 +110,17 @@ i18n
             classSchForThisDayInputCaption: "Расписание звонков для этого дня",
             nthClassSelectCaption: "{{value}}-ая пара"
           },
+          authForm: {
+            loginHeader: "Войти",
+            registerHeader: "Регистрация",
+            username: "Логин",
+            password: "Пароль",
+            confirmPassword: "Подтвердите пароль"
+          },
 
           button: {
-            done: "Готово"
+            done: "Готово",
+            submit: "Готово"
           },
           ghostButton: {
             addClass: "Добавить предмет",
@@ -253,9 +261,17 @@ i18n
             classSchForThisDayInputCaption: "Class schedule for this day",
             nthClassSelectCaption: "Class #{{value}}"
           },
+          authForm: {
+            loginHeader: "Login",
+            registerHeader: "Register",
+            username: "Username",
+            password: "Password",
+            confirmPassword: "Confirm Password"
+          },
 
           button: {
-            done: "Done"
+            done: "Done",
+            submit: "Submit"
           },
           ghostButton: {
             addClass: "Add new class",
