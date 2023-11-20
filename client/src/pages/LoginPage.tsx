@@ -7,11 +7,14 @@ import InputContainer from "../components/containers/InputContainer/InputContain
 
 import { validateField } from "../core/utils/stringUtils"
 import { AuthFormConfig } from "../core/types/types"
+import { useTranslation } from "react-i18next"
 
 
 interface IFormData { login: string, password: string }
 
 const LogInPage = () => {
+  const { t } = useTranslation()
+
   const methods = useForm<IFormData>({defaultValues: {
     login: "",
     password: ""
@@ -19,29 +22,26 @@ const LogInPage = () => {
 
   const formConfig: AuthFormConfig = {
     submitAPIEndpoing: "auth/login",
-    formHeader: "Login"
+    formHeader: t("authForm.loginHeader")
   }
   
   return (
     <StyledAuthForm>
       <AuthForm methods={methods} formConfig={formConfig}>
         <InputContainer
-          label="Username"
+          label={t("authForm.username")}
           name="login"
           rules={{validate: validateField, minLength: 5, maxLength: 30}}
         />
+
         <InputContainer
-          label="Password"
+          label={t("authForm.password")}
           name="password"
           type="password"
           rules={{validate: validateField, minLength: 8, maxLength: 64}}
-          />
-        <Button
-          type="submit"
-          disabled={(!methods.formState.isValid)}
-        >
-          Submit
-        </Button>
+        />
+
+        <Button type="submit" disabled={(!methods.formState.isValid)}> {t("button.submit")} </Button>
       </AuthForm>
     </StyledAuthForm>
     )
