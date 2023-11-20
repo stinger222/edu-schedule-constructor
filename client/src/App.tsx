@@ -47,7 +47,7 @@ const App = () => {
         </Route>
       </Routes>
 
-      <Toaster richColors/>
+      <Toaster richColors />
       <GlobalStyles />
 
     </ThemeProvider>
