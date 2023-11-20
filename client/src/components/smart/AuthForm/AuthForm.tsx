@@ -8,9 +8,10 @@ import { StoreContext } from "../../.."
 import { StyledAuthForm } from "./AuthForm.styled"
 import { AuthFormConfig } from "../../../core/types/types"
 import Container from "../../containers/Container/Container"
+import { toast } from "sonner"
 
 
-interface IFormData { login: string, password: string }
+interface IFormData { login: string, password: string, confirmPassword?: string }
 
 interface IProps {
   methods: UseFormReturn<IFormData>,
@@ -23,6 +24,11 @@ const AuthForm = ({ methods, formConfig, children }: IProps) => {
   const navigate = useNavigate()
 
   const handleSubmit = (formData: IFormData) => {
+    if (formData.confirmPassword && formData.confirmPassword !== formData.password) {
+      toast.error("Passwords doesn't match!")
+      return
+    }
+
     api
       .post(formConfig.submitAPIEndpoing, formData)
       .then((response: AxiosResponse<{ jwt: string }>) => {

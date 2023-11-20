@@ -6,14 +6,16 @@ import InputContainer from "../components/containers/InputContainer/InputContain
 
 import { validateField } from "../core/utils/stringUtils"
 import { AuthFormConfig } from "../core/types/types"
+import { useRef } from "react"
 
 
-interface IFormData { login: string, password: string }
+interface IFormData { login: string, password: string, confirmPassword?: string }
 
 const RegisterPage = () => {
   const methods = useForm<IFormData>({defaultValues: {
     login: "",
-    password: ""
+    password: "",
+    confirmPassword: ""
 	}})
 
   const formConfig: AuthFormConfig = {
@@ -31,6 +33,12 @@ const RegisterPage = () => {
       <InputContainer
         label="Password"
         name="password"
+        type="password"
+        rules={{validate: validateField, minLength: 8, maxLength: 64}}
+      />
+      <InputContainer
+        label="Confirm Password"
+        name="confirmPassword"
         type="password"
         rules={{validate: validateField, minLength: 8, maxLength: 64}}
       />
