@@ -1,4 +1,4 @@
-import { ITheme, ThemeEnum } from "../types/styled"
+import { ITheme, ThemeEnum } from "../../types/styled"
 
 export const DarkTheme: ITheme = {
   type: ThemeEnum.dark,

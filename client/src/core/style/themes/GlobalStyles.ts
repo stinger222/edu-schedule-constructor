@@ -1,4 +1,4 @@
-import { ITheme, ThemeEnum } from "./../types/styled"
+import { ITheme, ThemeEnum } from "../../types/styled"
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
@@ -119,6 +119,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
     height: 0.01em;
     background: ${({theme}) => theme.dropdown.divider};
     margin: 0.2em 0;
+    padding-inline: 1em;
   }
 
   .max-lines-1, .max-lines-2 {

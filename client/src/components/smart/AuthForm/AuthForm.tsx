@@ -1,4 +1,5 @@
 import { useContext, ReactNode } from "react"
+import { toast } from "sonner"
 import { AxiosResponse } from "axios"
 import { useNavigate } from "react-router-dom"
 import { FormProvider, UseFormReturn } from "react-hook-form"
@@ -7,8 +8,6 @@ import { api } from "../../../api"
 import { StoreContext } from "../../.."
 import { StyledAuthForm } from "./AuthForm.styled"
 import { AuthFormConfig } from "../../../core/types/types"
-import Container from "../../containers/Container/Container"
-import { toast } from "sonner"
 
 
 interface IFormData { login: string, password: string, confirmPassword?: string }
@@ -46,15 +45,15 @@ const AuthForm = ({ methods, formConfig, children }: IProps) => {
   }
   
   return (
-    <StyledAuthForm>
-      <Container>
-        <h1  style={{marginTop: "10em"}}>{formConfig.formHeader}</h1>
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(handleSubmit)} style={{width: "30em"}}>
-            { children }
-          </form>
-        </FormProvider>
-      </Container>
+    <StyledAuthForm className="auth-form">
+      <h1>Schedule Constructor</h1>
+      
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(handleSubmit)}>
+          <h2>{formConfig.formHeader}</h2>
+          { children }
+        </form>
+      </FormProvider>
     </StyledAuthForm>
   )
 }

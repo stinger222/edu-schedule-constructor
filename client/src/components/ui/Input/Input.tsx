@@ -6,7 +6,7 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
 	className?: string
 }
 
-const Input = React.forwardRef<HTMLInputElement, Props>(({ label, className, ...rest }: Props, ref) => {
+const Input = React.forwardRef<HTMLInputElement, Props>(({ label, className = "", ...rest }: Props, ref) => {
   return (
     <StyledInput className={`${className} input-container`}>
       <span className="label">{label}</span>

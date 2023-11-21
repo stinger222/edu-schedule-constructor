@@ -115,7 +115,8 @@ i18n
             registerHeader: "Регистрация",
             username: "Логин",
             password: "Пароль",
-            confirmPassword: "Подтвердите пароль"
+            confirmPassword: "Подтвердите пароль",
+            noAccountYet: "Ещё не зарегистрировались?"
           },
 
           button: {
@@ -266,7 +267,8 @@ i18n
             registerHeader: "Register",
             username: "Username",
             password: "Password",
-            confirmPassword: "Confirm Password"
+            confirmPassword: "Confirm Password",
+            noAccountYet: "Doesn't have an accout yet?"
           },
 
           button: {
