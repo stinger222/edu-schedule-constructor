@@ -2,12 +2,13 @@ import { ReactNode } from "react"
 import { StyledContainer } from "./Container.styled"
 
 interface IProps {
-	children: ReactNode
+	children: ReactNode,
+  noPaddingBottom?: boolean
 }
 
-const Container = ({ children }: IProps) => {
+const Container = ({ children, noPaddingBottom = false }: IProps) => {
 	return (
-		<StyledContainer>
+		<StyledContainer style={noPaddingBottom ? {paddingBottom: 0} : {}}>
 			{children}
 		</StyledContainer>
 	)

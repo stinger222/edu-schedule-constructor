@@ -5,9 +5,9 @@ import { ThemeProvider } from "styled-components"
 
 import { StoreContext } from "."
 import { ThemeEnum } from "./core/types/styled"
-import { LightTheme } from "./core/themes/Light"
-import { DarkTheme } from "./core/themes/Dark"
-import GlobalStyles from "./core/themes/GlobalStyles"
+import { LightTheme } from "./core/style/themes/Light"
+import { DarkTheme } from "./core/style/themes/Dark"
+import GlobalStyles from "./core/style/themes/GlobalStyles"
 
 import AddAssembledSchedulePage from "./pages/AddAssembledSchedulePage/AddAssembledSchedulePage"
 import AssembledSchedulesPage from "./pages/AssembledSchedules/AssembledSchedulesPage"
@@ -47,7 +47,7 @@ const App = () => {
         </Route>
       </Routes>
 
-      <Toaster richColors />
+      <Toaster richColors position="top-right" />
       <GlobalStyles />
 
     </ThemeProvider>

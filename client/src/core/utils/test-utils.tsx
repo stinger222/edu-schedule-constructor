@@ -2,7 +2,7 @@ import React, { ReactElement } from "react"
 import { HashRouter } from "react-router-dom"
 import { ThemeProvider } from "styled-components"
 import { render, RenderOptions } from "@testing-library/react"
-import { DarkTheme } from "../themes/Dark"
+import { DarkTheme } from "../style/themes/Dark"
 import RootStore from "../store/RootStore"
 
 const AllTheProviders = ({ children }: { children: ReactElement }) => {
