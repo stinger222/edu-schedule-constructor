@@ -58,7 +58,7 @@ App deployed [here](https://to-do), check it out if you interested trying it you
 </details>
 
 ## Usage
-  1. Log in using your Google account
+  1. Create an Account or Log in
   2. Add cards of classes that you have
   3. Add class schedule(s) so that app can show you start/end time of each class
   5. Assemble weekly schedule by combining class cards and class schedules for each day individually
