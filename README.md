@@ -3,7 +3,7 @@ A simple app that can make ugly weekly schedule look ~~even uglier~~ more pleasa
 <br/>
 
 ## Demo
-App deployed [here](https://to-do), check it out if you interested trying it yourself!
+App deployed [here](http://vexon.beget.tech/#/auth/login), check it out if you interested trying it yourself!
 
 ## Preview
 
@@ -25,8 +25,6 @@ App deployed [here](https://to-do), check it out if you interested trying it you
      > For user authentication
  </details>
 
-
- 
  <details>
    <summary><b>React</b></summary>
   
