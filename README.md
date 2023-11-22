@@ -8,7 +8,7 @@ App deployed [here](https://to-do), check it out if you interested trying it you
 ## Preview
 
 **Example of Assembled Schedule:**
-![localhost_3000_ (5)](https://github.com/stinger222/edu-schedule-constructor/assets/39219491/0d3b006b-001f-456e-8468-1ffa7ee1a247)
+![Assembled](https://github.com/stinger222/edu-schedule-constructor/assets/39219491/0d3b006b-001f-456e-8468-1ffa7ee1a247)
 
 
 ## Tech Stack <i><sub><sup>(❗click to expand❗)</sup></sub></i>
@@ -16,9 +16,16 @@ App deployed [here](https://to-do), check it out if you interested trying it you
 
  <b>▷ Docker & Docker Compose</b>
 
- <b>▷ Express</b>
-
  <b>▷ MongoDB</b>
+ 
+ <details>
+   <summary><b>Express</b></summary>
+  
+   - JWT
+     > For user authentication
+ </details>
+
+
  
  <details>
    <summary><b>React</b></summary>
