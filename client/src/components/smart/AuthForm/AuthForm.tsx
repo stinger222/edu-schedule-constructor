@@ -43,7 +43,7 @@ const AuthForm = ({ methods, formConfig, children }: IProps) => {
         navigate("/")
       })
   }
-  
+
   return (
     <StyledAuthForm className="auth-form">
       <h1>Schedule Constructor</h1>

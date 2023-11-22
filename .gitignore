@@ -27,5 +27,4 @@ yarn-debug.log*
 yarn-error.log*
 
 mongo-db-backup
-# this is should be more like build/index.js but for now i'll leave it like that
-index.js
+docker-compose-prod-server.yml

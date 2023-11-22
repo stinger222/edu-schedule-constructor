@@ -52,17 +52,17 @@ const LogInPage = () => {
 
         <div className="section-divider"></div>
         
-          <p>
-            <Trans i18nKey="signInPage.troubleshooting" components={{ br: <br/>, a: <a href="https://nothing-here-yet.coc" target="_blank" rel="noreferrer"></a> }}/>
-          </p>
-          <div className="section-divider"></div>
-          <p>
-            <Trans i18nKey="signInPage.sourceCodeAndDetails" components={{ br: <br/>, a: <a href="https://nothing-here-yet.coc" target="_blank" rel="noreferrer"></a> }}/>
-            <br />
-            <a href="https://nothing-here-yet.coc" target="_blank" rel="noreferrer">
-              <GitHubIcon fill="black" className="gh-icon"/>
-            </a>
-          </p>
+        <p>
+          <Trans i18nKey="signInPage.troubleshooting" components={{ br: <br/>, a: <a href="https://github.com/stinger222/edu-schedule-constructor/tree/main#usage" target="_blank" rel="noreferrer"></a> }}/>
+        </p>
+        <div className="section-divider"></div>
+        <p>
+          <Trans i18nKey="signInPage.sourceCodeAndDetails" components={{ br: <br/>, a: <a href="https://github.com/stinger222/edu-schedule-constructor" target="_blank" rel="noreferrer"></a> }}/>
+          <br />
+          <a href="https://github.com/stinger222/edu-schedule-constructor" target="_blank" rel="noreferrer">
+            <GitHubIcon fill="black" className="gh-icon"/>
+          </a>
+        </p>
         </StyledAuthPage>
       </Container>
     )

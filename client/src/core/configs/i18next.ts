@@ -84,7 +84,7 @@ i18n
             nothingHereMsg: "Составьте своё первое расписание на неделю используя созданные <ClassSchLink>расписания звонков</ClassSchLink> и <ClassesLink>карточки занятий</ClassesLink>"
           },
           signInPage: {
-            troubleshooting: "Если возникнут трудности, то можете <br /> ознакомиться с гайдом <a>здесь</a>, или используя <br /> кнопку в меню</p>",
+            troubleshooting: "Если возникнут трудности, то можете <br /> ознакомиться с гайдом <a>здесь</a></p>",
             sourceCodeAndDetails: "Исходный код приложения, более подробное <br /> описание фич и информация об авторе доступны на <br /> <a>GitHub</a>",
             signInWith: "Войдите с помощью"
           },
@@ -236,7 +236,7 @@ i18n
             nothingHereMsg: "Assemble your very first schedule using previously made <ClassesLink>class cards</ClassesLink> and <ClassSchLink>class schedules</ClassSchLink>"
           },
           signInPage: {
-            troubleshooting: "Have any questions about app functionality? <br /> Then check out <a>this page</a>, or use button <br /> in the menu</p>",
+            troubleshooting: "Have any questions about app functionality? <br /> Then check out guide <a>here</a></p>",
             sourceCodeAndDetails: "Source code, more detailed <br /> features description and info about author <br /> is available on <br /> <a>GitHub</a>",
             signInWith: "Sign in with"
           },

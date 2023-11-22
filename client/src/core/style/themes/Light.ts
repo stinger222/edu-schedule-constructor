@@ -30,6 +30,7 @@ export const LightTheme: ITheme = {
   },
   classCard: {
     background: "#FFF",
+    // boxShadow: "rgba(9,30,66,0.25) 0.5px 1px 1px 1px, rgba(9,30,66,0.31) 0px 0px 2px 0px"
     boxShadow: "0.1em 0.2em 0.4em 0 #00000080"
   },
   classScheduleCard: {
@@ -41,8 +42,10 @@ export const LightTheme: ITheme = {
     boxShadow: "-0.4em 0 0.5em -0.5em #00000030, 0.2em 0.3em 0.4em 0 #00000040, 0 -0.4em 0.5em -0.5em #00000030"
   },
   dayCard: {
-    background: "#F7F7F9",
-    boxShadow: "0.1em 0.15em 0.3em 0 #00000050"
+    // background: "#F7F7F9",
+    background: "#F4F4F6",
+    // boxShadow: "0.1em 0.15em 0.3em 0 #00000050"
+    boxShadow: "rgba(9,30,66,0.25) 0.5px 1px 1px 0px, rgba(9,30,66,0.31) 0px 0px 1px 0px"
   },
   signInCard: {
     background: "#FF0000",

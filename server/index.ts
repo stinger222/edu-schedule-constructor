@@ -10,7 +10,6 @@ config()
 import { MyResponseLocals } from "./src/types"
 import UserModel, { IUserDocumnet } from "./src/models/UserModel"
 import withAuth from "./src/middlewares/withAuth"
-import withUser from "./src/middlewares/withUser"
 import UnauthorizedError from "./src/errors/UnauthorizedError"
 import DatabaseError from "./src/errors/DatabaseError"
 import CustomError from "./src/errors/CustomError"
@@ -38,7 +37,7 @@ app.get("/", async (req: Request, res: Response) => {
 app.post("/auth/register", async (req: Request,  res: Response, next: NextFunction) => {
   console.log("======= NEW REGISTER ATTEMPT =======\n", req.body, "\n======================")
   
-  const login = req.body?.login  // TODO: move to withAuthCredentials to check that unsername and password are there
+  const login = req.body?.login
   const password = req.body?.password
   
   if (!login || !password) return next(new UnauthorizedError("Login or password is missing", true))
@@ -46,7 +45,7 @@ app.post("/auth/register", async (req: Request,  res: Response, next: NextFuncti
   const user = await UserModel.findOne({ login })
   if (user) return next(new AuthError("User already exists", true))
 
-  const passwordHash = bcrypt.hashSync(password)
+  const passwordHash = await bcrypt.hash(password, 10)
 
   try {
     const createdUser = (await UserModel.create({
@@ -64,6 +63,7 @@ app.post("/auth/register", async (req: Request,  res: Response, next: NextFuncti
 
     return res.json({ jwt: jwtToken, displayMessage: "Welcome!" })
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Can't create user in the db", true))
   }
 })
@@ -71,7 +71,7 @@ app.post("/auth/register", async (req: Request,  res: Response, next: NextFuncti
 app.post("/auth/login", async (req: Request,  res: Response, next: NextFunction) => {
   console.log("======= NEW LOGIN ATTEMPT =======\n", req.body, "\n======================")
 
-  const login = req.body?.login // TODO: move to withAuthCredentials to check that unsername and password are there
+  const login = req.body?.login
   const password = req.body?.password
 
   if (!login || !password) return next(new UnauthorizedError("Login or password is missing", true))
@@ -79,7 +79,7 @@ app.post("/auth/login", async (req: Request,  res: Response, next: NextFunction)
   const user = await UserModel.findOne({ login })
   if (!user) return next(new AuthError("User with such login doesn't exist", true))
   
-  const isMatch = bcrypt.compareSync(password, user.toObject().passwordHash)
+  const isMatch = await bcrypt.compare(password, user.toObject().passwordHash)
   if (!isMatch) return next(new AuthError("Invalid password", true))
 
   const jwtToken = JWT.sign(
@@ -94,20 +94,20 @@ app.get("/auth/validate-token", withAuth, async (req: Request, res: Response) =>
   return res.status(200).json({isSessionValid: true})
 })
 
-app.get("/users/me", withAuth, withUser, async (req: Request, res: Response) => {
+app.get("/users/me", withAuth, async (req: Request, res: Response) => {
   return res.status(200).json(res.locals.userDocument.toJSON())
 })
 
 // ======== Classes ========
 
-app.get("/users/me/classes", withAuth, withUser, async (req: Request, res: Response) => {
+app.get("/users/me/classes", withAuth, async (req: Request, res: Response) => {
   const targetUser: IUserDocumnet = res.locals.userDocument
   return res.status(200).json({
     classes: targetUser.classes
   })
 })
 
-app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+app.post("/users/me/classes", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
     const newClass = {
@@ -120,13 +120,14 @@ app.post("/users/me/classes", withAuth, withUser, async (req: Request, res: Resp
     targetUser.classes.push(newClass)
     await targetUser.save()
     
-    console.log("======== Class Added ========\n", newClass, "\n=============================")
+    console.log("======== Class Added ========\n")
 
     return res.status(200).json({
       classes: targetUser.classes
       // displayMessage: "Card successfully created!"
     })
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to add new class failed due to some internal server error", true))
   }
 })
@@ -159,11 +160,12 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
       // displayMessage: "Card successfully edited!"
     })
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to edit user's class failed due to some internal server error", true))
   }
 })
 
-app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+app.delete("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
 
@@ -183,11 +185,12 @@ app.delete("/users/me/classes/:uid", withAuth, withUser, async (req: Request, re
       // displayMessage: "Card successfully deleted!"
     })
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to delete class failed due to some internal server error", true))
   }
 })
 
-app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+app.delete("/users/me/delete-all-classes", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
     
@@ -195,6 +198,7 @@ app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Reque
 
     await targetUser.save()
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to delete all classes failed due to some internal server error", true))
   }
 
@@ -203,14 +207,14 @@ app.delete("/users/me/delete-all-classes", withAuth, withUser, async (req: Reque
 
 // ======== Class Schedules ========
 
-app.get("/users/me/class-schedules", withAuth, withUser, async (req: Request, res: Response) => {
+app.get("/users/me/class-schedules", withAuth, async (req: Request, res: Response) => {
   const targetUser: IUserDocumnet = res.locals.userDocument.toJSON()
   return res.status(200).json({
     classSchedules: targetUser.classSchedules
   })
 })
 
-app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+app.post("/users/me/class-schedules", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
 
@@ -229,6 +233,7 @@ app.post("/users/me/class-schedules", withAuth, withUser, async (req: Request, r
       // displayMessage: "Card successfully created!"
     })
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to add new class schedule failed due to some internal server error", true))
   }
 })
@@ -260,12 +265,13 @@ app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Re
       // displayMessage: "Card successfully edited!"
     })
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to edit user's class schedule failed due to some internal server error", true))
   }
 
 })
 
-app.delete("/users/me/class-schedules/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+app.delete("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
     
@@ -285,11 +291,12 @@ app.delete("/users/me/class-schedules/:uid", withAuth, withUser, async (req: Req
       // displayMessage: "Card successfully deleted!"
     })
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to delete class schedule failed due to some internal server error", true))
   }
 })
   
-app.delete("/users/me/delete-all-class-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+app.delete("/users/me/delete-all-class-schedules", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
     
@@ -297,6 +304,7 @@ app.delete("/users/me/delete-all-class-schedules", withAuth, withUser, async (re
 
     await targetUser.save()
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to delete all class schedles failed due to some internal server error", true))
   }
 
@@ -305,14 +313,14 @@ app.delete("/users/me/delete-all-class-schedules", withAuth, withUser, async (re
 
 // ======== Assembled Schedules ========
 
-app.get("/users/me/assembled-schedules", withAuth, withUser, async (req: Request, res: Response) => {
+app.get("/users/me/assembled-schedules", withAuth, async (req: Request, res: Response) => {
   const targetUser: IUserDocumnet = res.locals.userDocument
   return res.status(200).json({
     assembledSchedules: targetUser.assembledSchedules
   })
 })
 
-app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+app.post("/users/me/assembled-schedules", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
 
@@ -331,6 +339,7 @@ app.post("/users/me/assembled-schedules", withAuth, withUser, async (req: Reques
       // displayMessage: "Card successfully created!"
     })
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to add new assembled schedule failed due to some internal server error", true))
   }
 })
@@ -362,11 +371,12 @@ app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res
       // displayMessage: "Card successfully edited!"
     })
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to edit user's assembled schedule failed due to some internal server error", true))
   }
 })
 
-app.delete("/users/me/assembled-schedules/:uid", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+app.delete("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
     
@@ -386,11 +396,12 @@ app.delete("/users/me/assembled-schedules/:uid", withAuth, withUser, async (req:
       // displayMessage: "Card successfully deleted!"
     })
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to delete assembled schedule failed due to some internal server error", true))
   }
 })
 
-app.delete("/users/me/delete-all-assembled-schedules", withAuth, withUser, async (req: Request, res: Response, next: NextFunction) => {
+app.delete("/users/me/delete-all-assembled-schedules", withAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const targetUser: IUserDocumnet = res.locals.userDocument
     
@@ -398,6 +409,7 @@ app.delete("/users/me/delete-all-assembled-schedules", withAuth, withUser, async
 
     await targetUser.save()
   } catch(err) {
+    console.error(err.message)
     return next(new DatabaseError("Database call to delete all assembled schedles failed due to some internal server error", true))
   }
 
