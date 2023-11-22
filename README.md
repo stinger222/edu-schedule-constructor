@@ -74,7 +74,7 @@ App deployed [here](https://to-do), check it out if you interested trying it you
 
 ## Development
 1. Clone repo using `git clone` command
-2. Add two `.env.dev` files in the `client/config` and `server/config` directories _(look `.env.example`)_
+2. Add two `.env` files in the `client/` and `server/` directories _(look `.env.example`)_
 3. Use Docker compose to create images and run containers
 ```sh
 docker-compose -f docker-compose-dev.yml up -d
