@@ -1,46 +1,86 @@
-# Getting Started with Create React App
+# Schedule Constructor
+A simple app that can make ugly weekly schedule look ~~even uglier~~ more pleasant and handy
+<br/>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Demo
+App deployed [here](http://vexon.beget.tech/#/auth/login), check it out if you interested trying it yourself!
 
-## Available Scripts
+## Preview
 
-In the project directory, you can run:
+**Example of Assembled Schedule:**
+![Assembled](https://github.com/stinger222/edu-schedule-constructor/assets/39219491/0d3b006b-001f-456e-8468-1ffa7ee1a247)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tech Stack <i><sub><sup>(❗click to expand❗)</sup></sub></i>
+ <b>▷ Typescript</b>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ <b>▷ Docker & Docker Compose</b>
 
-### `npm test`
+ <b>▷ MongoDB</b>
+ 
+ <details>
+   <summary><b>Express</b></summary>
+  
+   - JWT
+     > For user authentication
+ </details>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ <details>
+   <summary><b>React</b></summary>
+  
+   - MobX
+     > For global state management
+   - React Hook Form
+     > To create forms with necessary logic such as validation and form state management
+   - React Router Dom
+     > For dynamic routing and navigation in the app
+   - Error Boundary
+     > For handling errors and preventing bad user experience
+   - i18next
+     > For multi-language support (English / Russian)
+   - Axios
+     > For data fetching
+</details>
 
-### `npm run build`
+<details>
+  <summary><b>Vitest/Jest</b></summary>
+  
+   - Unit Testing
+     > (React components & utility functions) 
+   - Simple snapshot testing
+   - Simple End2End testing (⚠️ **Not Yet.** _Currently working on..._ ⚠️)
+</details>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ <details>
+   <summary><b>CSS</b></summary>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   - Styled Components
+     > For general components styling
+   - React Spring + Use Gesture
+     > Used to add delete/edit swipe animations
+   - React transition group
+     > To animate navigation in dropdown menu
+</details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
+  1. Create an Account or Log in
+  2. Add cards of classes that you have
+  3. Add class schedule(s) so that app can show you start/end time of each class
+  5. Assemble weekly schedule by combining class cards and class schedules for each day individually
+  6. Click "Done" and that's it! Now this schedule will be displayed on the main page
+   
+## Features
+  - Each day can have unique class schedule in case if they change throughout the week
+  - Progress indicator for ongoing classes
+  - Dark and light themes 
+  - Multi-language support (English and Russian)
+  - Edit any card by swiping it to the right
+  - Or delete it by swiping to the left
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Development
+1. Clone repo using `git clone` command
+2. Add two `.env` files in the `client/` and `server/` directories _(look `.env.example`)_
+3. Use Docker compose to create images and run containers
+```sh
+docker-compose -f docker-compose-dev.yml up -d
+```
