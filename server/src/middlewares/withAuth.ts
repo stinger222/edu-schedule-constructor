@@ -26,7 +26,6 @@ const withAuth = async (req: Request, res: Response<any, MyResponseLocals>, next
 
     res.locals.userLogin = userLogin
   } catch (err) {
-    console.error(err.message)
     return next(new UnauthorizedError("JWT token is malformed"))
   }
 
@@ -45,7 +44,6 @@ const withAuth = async (req: Request, res: Response<any, MyResponseLocals>, next
     res.locals.userDocument = user
     return next()
   } catch (err) {
-    console.error(err.message)
     return next(new UnknownError("Unknown error ocurred in the 'withUser' middleware, I believe db died or something"))
   }
 }

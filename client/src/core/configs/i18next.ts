@@ -171,7 +171,7 @@ i18n
             classSchedulesPage: "Class schedules",
             assembledPage: "Assembled schedules",
             editClass: "Edit class",
-            editClassSchedule: "Edit schedule",
+            editClassSchedule: "Edit class schedule",
             editAssembledSchedule: "Edit schedule",
             addClass: "Add new class",
             addClassSchedule: "Add class schedule",

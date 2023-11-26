@@ -35,6 +35,7 @@ services:
       - app-network
     volumes:
       - ./server:/app/server:cached
+      - ./server/src/logs:/app/server/logs
       - server_node_modules:/app/server/node_modules:delegated
     env_file:
       - ./server/.env

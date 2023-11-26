@@ -9,15 +9,19 @@ config()
 
 import { MyResponseLocals } from "./src/types"
 import UserModel, { IUserDocumnet } from "./src/models/UserModel"
+import loggerMiddleware from "./src/middlewares/logger"
 import withAuth from "./src/middlewares/withAuth"
 import UnauthorizedError from "./src/errors/UnauthorizedError"
 import DatabaseError from "./src/errors/DatabaseError"
 import CustomError from "./src/errors/CustomError"
 import AuthError from "./src/errors/AuthError"
+import logger from "./src/logger/logger"
+
 
 type Response = ExpressResponse<any, MyResponseLocals>
 
 const app: Express = express()
+app.use(loggerMiddleware)
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({ credentials: true, origin: process.env.ACCESS_ALLOW_ORIGIN.split(", ")}))
@@ -25,17 +29,18 @@ app.use(cors({ credentials: true, origin: process.env.ACCESS_ALLOW_ORIGIN.split(
 const PORT = process.env.BACKEND_PORT
 app.listen(PORT, () => {
   mongoose.connect(process.env.MONGO_URI)
-  console.log(`Server started on port ${PORT}!!`)
+  logger.debug(`Server started on port ${PORT}!!`)
 })
 
 app.get("/", async (req: Request, res: Response) => {
+  logger.debug("Debug message")
   res.json({ displayMessage: "Hi there!" })
 })
 
 // ======== Auth-related ========
 
 app.post("/auth/register", async (req: Request,  res: Response, next: NextFunction) => {
-  console.log("======= NEW REGISTER ATTEMPT =======\n", req.body, "\n======================")
+  logger.debug("NEW REGISTER\n", req.body)
   
   const login = req.body?.login
   const password = req.body?.password
@@ -69,7 +74,8 @@ app.post("/auth/register", async (req: Request,  res: Response, next: NextFuncti
 })
 
 app.post("/auth/login", async (req: Request,  res: Response, next: NextFunction) => {
-  console.log("======= NEW LOGIN ATTEMPT =======\n", req.body, "\n======================")
+  logger.debug("NEW LOGIN ATTEMPT\n", req.body)
+
 
   const login = req.body?.login
   const password = req.body?.password
@@ -120,7 +126,7 @@ app.post("/users/me/classes", withAuth, async (req: Request, res: Response, next
     targetUser.classes.push(newClass)
     await targetUser.save()
     
-    console.log("======== Class Added ========\n")
+    logger.debug("Class Added")
 
     return res.status(200).json({
       classes: targetUser.classes
@@ -153,7 +159,7 @@ app.put("/users/me/classes/:uid", withAuth, async (req: Request, res: Response, 
       return next(new DatabaseError(`Can't update class with id "${req.params.uid}", most likely because it's not exist`, true))
     }
 
-    console.log("======== Class Updated ========")
+    logger.debug("Class Edited")
 
     return res.status(200).json({
       classes: updatedUser.toJSON().classes
@@ -178,7 +184,8 @@ app.delete("/users/me/classes/:uid", withAuth, async (req: Request, res: Respons
 
     await targetUser.save()
 
-    console.log("======== Class Deleted ========")
+    logger.debug("Class Deleted")
+    
 
     return res.status(200).json({
       classes: targetUser.classes
@@ -226,7 +233,7 @@ app.post("/users/me/class-schedules", withAuth, async (req: Request, res: Respon
 
     await targetUser.save()
 
-    console.log("======= Class Schedule Added =========")
+    logger.debug("Class Schedule Added")
 
     return res.status(200).json({
       classSchedules: targetUser.classSchedules
@@ -258,7 +265,7 @@ app.put("/users/me/class-schedules/:uid", withAuth, async (req: Request, res: Re
       return next(new DatabaseError(`Can't update class schedule with id "${req.params.uid}", most likely because it's not exist`, true))
     }
     
-    console.log("======= Class Schedule Updated =======")
+    logger.debug("======= Class Schedule Updated =======")
 
     return res.status(200).json({
       classSchedules: result.classSchedules
@@ -284,7 +291,7 @@ app.delete("/users/me/class-schedules/:uid", withAuth, async (req: Request, res:
 
     await targetUser.save()
 
-    console.log("======= Class Schedule Removed =======")
+    logger.debug("======= Class Schedule Removed =======")
 
     return res.status(200).json({
       classSchedules: targetUser.classSchedules
@@ -332,7 +339,7 @@ app.post("/users/me/assembled-schedules", withAuth, async (req: Request, res: Re
 
     await targetUser.save()
 
-    console.log("======= Assembled Schedule Added =======")
+    logger.debug("Assembled Schedule Added")
 
     return res.status(200).json({
       assembledSchedules: targetUser.assembledSchedules
@@ -364,7 +371,7 @@ app.put("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, res
       return next(new DatabaseError(`Can't update assembled schedule with id "${req.params.uid}", most likely because it's not exist`, true))
     }
     
-    console.log("======= Assembled Schedule Updated =======")
+    logger.debug("Assembled Schedule Updated")
 
     return res.status(200).json({
       assembledSchedules: result.assembledSchedules
@@ -389,7 +396,7 @@ app.delete("/users/me/assembled-schedules/:uid", withAuth, async (req: Request, 
     
     await targetUser.save()
 
-    console.log("======= Assembled Schedule Deleted =======")
+    logger.debug("Assembled Schedule Deleted")
 
     return res.status(200).json({
       assembledSchedules: targetUser.assembledSchedules
