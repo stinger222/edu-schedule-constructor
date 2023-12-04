@@ -11,7 +11,7 @@ App deployed [here](http://vexon.beget.tech/#/auth/login), check it out if you i
 ![Assembled](https://github.com/stinger222/edu-schedule-constructor/assets/39219491/0d3b006b-001f-456e-8468-1ffa7ee1a247)
 
 
-## Tech Stack <i><sub><sup>(❗click to expand❗)</sup></sub></i>
+## Tech Stack <i><sub><sup>(❗click "►" to expand❗)</sup></sub></i>
  <b>▷ Typescript</b>
 
  <b>▷ Docker & Docker Compose</b>

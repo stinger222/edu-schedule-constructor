@@ -2,7 +2,7 @@ import moment from "moment-timezone"
 import winston from "winston"
 
 const debugFormat = winston.format.printf((info) => {
-  return info.level === "debug" ? `{\n  message: ${info.message}\n  timestamp: ${info.timestamp}\n}` : ""
+  return info.level === "debug" ? `[${info.timestamp}] ${info.message}` : ""
 })
 
 const loggerInstance = winston.createLogger({

@@ -16,9 +16,9 @@ import { validateField } from "../../core/utils/stringUtils"
 import { Cases, IAssembledSchedule } from "../../core/types/types"
 import useInitializeFormForEditMode from "../../core/hooks/useInitializeFormForEditMode"
 
-import { StyledAddAssembledSchedulePage } from "./AddAssembledSchedulePage.styled"
 import useAuth from "../../core/hooks/useAuth"
 import Loader from "../../components/ordinary/Loader/Loader"
+import { StyledAddAssembledSchedulePage } from "./AddAssembledSchedulePage.styled"
 
 
 const AddAssembledSchedulePage = () => {

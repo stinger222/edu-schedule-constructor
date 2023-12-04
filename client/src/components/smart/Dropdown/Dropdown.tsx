@@ -4,6 +4,7 @@ import { observer } from "mobx-react"
 
 import useCloseDropdownOnLocationChange from "../../../core/hooks/useCloseDropdownOnLocationChange"
 import useResetDropdownWhenClosed from "../../../core/hooks/useResetDropdownWhenClosed"
+import useOutsideClick from "../../../core/hooks/useOutsideClick"
 import { StoreContext } from "../../.."
 
 import { StyledDropdown } from "./Dropdown.styled"
@@ -12,13 +13,15 @@ import DropdownMain from "./DropdownMain"
 
 const Dropdown = () => {
 	const { uiStore } = useContext(StoreContext)
-  const activeMenu = uiStore.activeDropdownMenu
-  
   const menuRef = useRef<HTMLDivElement>(null)
-  const [menuHeight, setMenuHeight] = useState<number | null>(null)  
-
+  
+  const [menuHeight, setMenuHeight] = useState<number | null>(null)
   const calculateHeight = useResetDropdownWhenClosed(uiStore, menuRef, setMenuHeight)
+  
   useCloseDropdownOnLocationChange(uiStore)
+  useOutsideClick(uiStore.isDropdownOpen, () => uiStore.toggleDropdown(false), menuRef, ["burger-button"])
+  
+  const activeMenu = uiStore.activeDropdownMenu
 
   if (!uiStore.isDropdownOpen) return null
 	return (

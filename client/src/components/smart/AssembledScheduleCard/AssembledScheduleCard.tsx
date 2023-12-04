@@ -1,11 +1,11 @@
+import { observer } from "mobx-react"
 import { useContext } from "react"
-import { StoreContext } from "../../.."
-import { IAssembledDay } from "../../../core/types/types"
-import { StyledAssembledSchedule } from "./AssembledScheduleCard.styled"
 
 import Day from "./Day/Day"
 import Switch from "../../ui/Switch/Switch"
-import { observer } from "mobx-react"
+import { StoreContext } from "../../.."
+import { IAssembledDay } from "../../../core/types/types"
+import { StyledAssembledSchedule } from "./AssembledScheduleCard.styled"
 
 interface IProps {
 	name: string,
@@ -14,7 +14,6 @@ interface IProps {
 }
 
 const AssembledScheduleCard = ({ name, days, uid }: IProps) => {
-
   const { assembledSchedulesStore } = useContext(StoreContext)
   const thisIsActive = assembledSchedulesStore.activeScheduleUid === uid
 

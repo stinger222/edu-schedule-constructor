@@ -30,10 +30,6 @@ const ClassCardsList = ({ classes, removeClass, isLoading }: IProps) => {
     navigate("/add/class", {state: { mode: "edit", uid }})    
   }
 
-  useEffect(() => {
-    console.log("LOADING: ", isLoading.toString())
-  })
-
   if (isLoading) return <Loader />
 
 	return (
