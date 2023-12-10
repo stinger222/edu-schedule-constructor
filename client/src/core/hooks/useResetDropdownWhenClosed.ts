@@ -2,11 +2,12 @@ import { Dispatch, RefObject, SetStateAction, useCallback, useEffect } from "rea
 import { IUIStore } from "../types/store"
 
 const useResetDropdownWhenClosed = (
-uiStore: IUIStore,
+  uiStore: IUIStore,
   menuRef: RefObject<HTMLDivElement>,
   setMenuHeight: Dispatch<SetStateAction<number | null>>
-  ) => {
-    const calculateHeight = useCallback((element: HTMLDivElement) => {
+) => {
+  
+  const calculateHeight = useCallback((element: HTMLDivElement) => {
     const dropdownContent: HTMLElement = (
       element.closest(".dropdown-content") || 
       element.querySelector(".dropdown-content")

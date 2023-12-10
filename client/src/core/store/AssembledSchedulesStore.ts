@@ -114,7 +114,7 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
 
   // "get" doesn't really fit here, but neither anything else I can think of...
   getActiveSchedule(): IAssembledSchedule | null {
-    // it's can only be null if activeScheduleUid === null, or activeScheduleUid is refering deleted schedule
+    // it's can only be null if activeScheduleUid === null, or activeScheduleUid is referring deleted schedule
     const activeSchedule = this.assembledSchedules.find(s => s.uid === this.activeScheduleUid) || null
     
     // if it's there - return it

@@ -1,18 +1,18 @@
 import { RefObject, useCallback, useEffect } from "react"
 
 interface IUseOutsideClick {
-  (isActive: boolean, onOutsideClick: () => void, ref: RefObject<any>, ignoreIdList: string[]): void
+  (ref: RefObject<HTMLElement>, isAttached: boolean, onOutsideClick: () => void, ignoreIdList?: string[]): void
 }
 
 /**
- * Hook for firing passed callback whenever user clicked outside of passed element ref.
+ * Hook for firing passed callback whenever user clicked outside of passed element
  * 
- * @param isActive Indicates when hook should start to listen for outside click. (e.g. when dropdown opened)
- * @param onOutsideClick Callback that will be fired when outside click will happen
  * @param ref React ref for element outside of which hook will listen for clicks
- * @param ignoreIdList Array of ids that will not trigger `onOutsideClick` callback (e.g. dropdown button)
+ * @param isAttached Indicates if hook should start to listen for clicks (e.g. when dropdown opened)
+ * @param onOutsideClick Callback that will be fired when outside click will happen
+ * @param ignoreIdList Array of IDs that will not trigger callback when clicked on (e.g. dropdown button)
  */
-const useOutsideClick: IUseOutsideClick = (isActive, onOutsideClick, ref, ignoreIdList = []) => {
+const useOutsideClick: IUseOutsideClick = (ref, isAttached, onOutsideClick, ignoreIdList = []) => {
   const handleOutsideClick = useCallback((e: any) => {
       if (!ref.current?.contains(e.target) && ignoreIdList.every(i => i !== e.target.id)) {
         onOutsideClick()
@@ -20,13 +20,12 @@ const useOutsideClick: IUseOutsideClick = (isActive, onOutsideClick, ref, ignore
   }, [ref])
 
   useEffect(() => {
-    if (!isActive) return
+    if (!isAttached) return
     
     document.addEventListener("click", handleOutsideClick)
 
     return () => document.removeEventListener("click", handleOutsideClick)
-  }, [isActive])
-  
+  }, [isAttached])
 }
 
 export default useOutsideClick

@@ -19,7 +19,7 @@ const Dropdown = () => {
   const calculateHeight = useResetDropdownWhenClosed(uiStore, menuRef, setMenuHeight)
   
   useCloseDropdownOnLocationChange(uiStore)
-  useOutsideClick(uiStore.isDropdownOpen, () => uiStore.toggleDropdown(false), menuRef, ["burger-button"])
+  useOutsideClick(menuRef, uiStore.isDropdownOpen, () => uiStore.toggleDropdown(false), ["burger-button"] )
   
   const activeMenu = uiStore.activeDropdownMenu
 

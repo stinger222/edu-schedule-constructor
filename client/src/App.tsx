@@ -7,7 +7,7 @@ import { StoreContext } from "."
 import { ThemeEnum } from "./core/types/styled"
 import { LightTheme } from "./core/style/themes/Light"
 import { DarkTheme } from "./core/style/themes/Dark"
-import GlobalStyles from "./core/style/themes/GlobalStyles"
+import GlobalStyles from "./core/style/shared/GlobalStyles"
 
 import AddAssembledSchedulePage from "./pages/AddAssembledSchedulePage/AddAssembledSchedulePage"
 import AssembledSchedulesPage from "./pages/AssembledSchedules/AssembledSchedulesPage"

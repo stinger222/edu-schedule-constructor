@@ -143,7 +143,7 @@ const GlobalStyles = createGlobalStyle<{theme: ITheme}>`
 	@media (max-width: 625px) {
 		.schedule-item {
 			font-size: 1.03em;
-			padding-right: 0.4em;
+			padding-right: 0.4em; 
 			gap: 0;
 		}
 	}

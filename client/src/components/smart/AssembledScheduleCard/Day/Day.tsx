@@ -21,7 +21,7 @@ const Day = ({ dayIndex, day = emptyDay }: IProps) => {
   const { t, i18n } = useTranslation()
   const lang = i18n.resolvedLanguage as "ru" | "en"
 
-  // Can be "undefined" if user deleted schedule that id is reffering to
+  // Can be "undefined" if user deleted schedule that id is referring to
 	const thisDayClassSchedule = classSchedulesStore.classSchedules.find(s => (
     s.uid === day.classScheduleId
   ))
