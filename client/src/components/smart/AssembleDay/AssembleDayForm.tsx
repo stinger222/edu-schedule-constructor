@@ -13,7 +13,6 @@ import GhostButton from "../../ui/GhostButton/GhostButton"
 import { StyledAssembleDayForm } from "./AssembleDayForm.styled"
 import { useTranslation } from "react-i18next"
 
-
 interface IProps {
 	dayIndex: number
 }
@@ -66,7 +65,7 @@ const AssembleDayForm = ({ dayIndex }: IProps) => {
 	if (dayIndex >= 5) return null
 	
 	return (
-		<StyledAssembleDayForm>
+		<StyledAssembleDayForm data-testid="assembled-day-form">
 			<h2>{WeekUtils.getFull(lang)[dayIndex]}:</h2>
 
 			<div className="assemble-day">
