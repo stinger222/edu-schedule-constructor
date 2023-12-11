@@ -3,11 +3,165 @@
 exports[`Testing AssembledScheduleCard component > Properly renders schedule card 1`] = `
 {
   "asFragment": [Function],
-  "baseElement": <body>
+  "baseElement": .c2 {
+  font-size: 1.4em;
+  width: 8.4em;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  border-radius: 0.8em;
+  padding-bottom: 0.5em;
+  background: #37393F;
+  box-shadow: 0.1em 0.2em 0.2em 0 #00000080;
+}
+
+.c2 header {
+  font-size: 1.3em;
+  line-height: 1em;
+  font-weight: 400;
+  text-align: center;
+  padding-block: 0.5em;
+}
+
+.c2 .card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  padding-inline: 0.3em;
+}
+
+.c2 .card-body span {
+  text-align: center;
+  line-height: 1.5em;
+}
+
+.c2 .card-body span:nth-child(2n - 1) {
+  grid-column: 1 / 2;
+  font-weight: 100;
+}
+
+.c2 .card-body span:nth-child(2n) {
+  grid-column: 2 / 3;
+  font-weight: 400;
+}
+
+.c1 {
+  --transition-duration: 0.3s;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  font-size: 1em;
+  width: 4em;
+  height: 2em;
+  box-shadow: inset 0 0 0.4em #00000060;
+  border-radius: 10em;
+  background: #50535a;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.c1:after {
+  content: "";
+  position: absolute;
+  top: 0em;
+  left: 0;
+  width: 2em;
+  height: 2em;
+  border-radius: 10em;
+  box-shadow: 0 0 0.4em 0em #00000060;
+  background: white;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-transition: all var(--transition-duration);
+  transition: all var(--transition-duration);
+}
+
+.c1:checked {
+  background: #0068e2;
+  box-shadow: none;
+}
+
+.c1:checked::after {
+  left: 100%;
+  -webkit-transform: translateX(-100%) scale(1.05);
+  -ms-transform: translateX(-100%) scale(1.05);
+  transform: translateX(-100%) scale(1.05);
+}
+
+.c0 {
+  width: 37em;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0 0.3em 1em 0.3em;
+  position: relative;
+  border-radius: 1.3em;
+  background: #2A2C32;
+  box-shadow: 0.4em 0.4em 0.4em 0 #00000080;
+}
+
+.c0 > header {
+  position: relative;
+  padding-block: 1.2em;
+}
+
+.c0 > header > input.switch {
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+  -webkit-transform: translateY(-55%);
+  -ms-transform: translateY(-55%);
+  transform: translateY(-55%);
+}
+
+.c0 > header .title {
+  line-height: 1em;
+  font-size: 1.9em;
+  font-weight: 400;
+  -webkit-letter-spacing: 0.05em;
+  -moz-letter-spacing: 0.05em;
+  -ms-letter-spacing: 0.05em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-inline: auto;
+  width: 77%;
+}
+
+.c0 .days {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 0.6em;
+  row-gap: 0.7em;
+}
+
+.c0 .days > * {
+  -webkit-flex-basis: calc(33% - 0.4em);
+  -ms-flex-preferred-size: calc(33% - 0.4em);
+  flex-basis: calc(33% - 0.4em);
+}
+
+@media (min-width:700px) {
+  .c0 > header > input.switch {
+    font-size: 0.8em;
+  }
+}
+
+<body>
     <div />
     <div>
       <div
-        class="sc-bqWxrE bua-dPg assembled-schedule"
+        class="c0 assembled-schedule"
       >
         <header>
           <div
@@ -16,7 +170,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
             Test Schedule #1
           </div>
           <input
-            class="sc-hBxehG byPHju switch"
+            class="c1 switch"
             type="checkbox"
           />
         </header>
@@ -24,7 +178,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
           class="days"
         >
           <div
-            class="sc-ksBlkl gxcKTZ"
+            class="c2"
           >
             <header>
               M
@@ -59,7 +213,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
             </div>
           </div>
           <div
-            class="sc-ksBlkl gxcKTZ"
+            class="c2"
           >
             <header>
               T
@@ -94,7 +248,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
             </div>
           </div>
           <div
-            class="sc-ksBlkl gxcKTZ"
+            class="c2"
           >
             <header>
               W
@@ -129,7 +283,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
             </div>
           </div>
           <div
-            class="sc-ksBlkl gxcKTZ"
+            class="c2"
           >
             <header>
               T
@@ -164,7 +318,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
             </div>
           </div>
           <div
-            class="sc-ksBlkl gxcKTZ"
+            class="c2"
           >
             <header>
               F
@@ -202,9 +356,163 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
       </div>
     </div>
   </body>,
-  "container": <div>
+  "container": .c2 {
+  font-size: 1.4em;
+  width: 8.4em;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  border-radius: 0.8em;
+  padding-bottom: 0.5em;
+  background: #37393F;
+  box-shadow: 0.1em 0.2em 0.2em 0 #00000080;
+}
+
+.c2 header {
+  font-size: 1.3em;
+  line-height: 1em;
+  font-weight: 400;
+  text-align: center;
+  padding-block: 0.5em;
+}
+
+.c2 .card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  padding-inline: 0.3em;
+}
+
+.c2 .card-body span {
+  text-align: center;
+  line-height: 1.5em;
+}
+
+.c2 .card-body span:nth-child(2n - 1) {
+  grid-column: 1 / 2;
+  font-weight: 100;
+}
+
+.c2 .card-body span:nth-child(2n) {
+  grid-column: 2 / 3;
+  font-weight: 400;
+}
+
+.c1 {
+  --transition-duration: 0.3s;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  font-size: 1em;
+  width: 4em;
+  height: 2em;
+  box-shadow: inset 0 0 0.4em #00000060;
+  border-radius: 10em;
+  background: #50535a;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.c1:after {
+  content: "";
+  position: absolute;
+  top: 0em;
+  left: 0;
+  width: 2em;
+  height: 2em;
+  border-radius: 10em;
+  box-shadow: 0 0 0.4em 0em #00000060;
+  background: white;
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-transition: all var(--transition-duration);
+  transition: all var(--transition-duration);
+}
+
+.c1:checked {
+  background: #0068e2;
+  box-shadow: none;
+}
+
+.c1:checked::after {
+  left: 100%;
+  -webkit-transform: translateX(-100%) scale(1.05);
+  -ms-transform: translateX(-100%) scale(1.05);
+  transform: translateX(-100%) scale(1.05);
+}
+
+.c0 {
+  width: 37em;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0 0.3em 1em 0.3em;
+  position: relative;
+  border-radius: 1.3em;
+  background: #2A2C32;
+  box-shadow: 0.4em 0.4em 0.4em 0 #00000080;
+}
+
+.c0 > header {
+  position: relative;
+  padding-block: 1.2em;
+}
+
+.c0 > header > input.switch {
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+  -webkit-transform: translateY(-55%);
+  -ms-transform: translateY(-55%);
+  transform: translateY(-55%);
+}
+
+.c0 > header .title {
+  line-height: 1em;
+  font-size: 1.9em;
+  font-weight: 400;
+  -webkit-letter-spacing: 0.05em;
+  -moz-letter-spacing: 0.05em;
+  -ms-letter-spacing: 0.05em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-inline: auto;
+  width: 77%;
+}
+
+.c0 .days {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 0.6em;
+  row-gap: 0.7em;
+}
+
+.c0 .days > * {
+  -webkit-flex-basis: calc(33% - 0.4em);
+  -ms-flex-preferred-size: calc(33% - 0.4em);
+  flex-basis: calc(33% - 0.4em);
+}
+
+@media (min-width:700px) {
+  .c0 > header > input.switch {
+    font-size: 0.8em;
+  }
+}
+
+<div>
     <div
-      class="sc-bqWxrE bua-dPg assembled-schedule"
+      class="c0 assembled-schedule"
     >
       <header>
         <div
@@ -213,7 +521,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
           Test Schedule #1
         </div>
         <input
-          class="sc-hBxehG byPHju switch"
+          class="c1 switch"
           type="checkbox"
         />
       </header>
@@ -221,7 +529,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
         class="days"
       >
         <div
-          class="sc-ksBlkl gxcKTZ"
+          class="c2"
         >
           <header>
             M
@@ -256,7 +564,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
           </div>
         </div>
         <div
-          class="sc-ksBlkl gxcKTZ"
+          class="c2"
         >
           <header>
             T
@@ -291,7 +599,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
           </div>
         </div>
         <div
-          class="sc-ksBlkl gxcKTZ"
+          class="c2"
         >
           <header>
             W
@@ -326,7 +634,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
           </div>
         </div>
         <div
-          class="sc-ksBlkl gxcKTZ"
+          class="c2"
         >
           <header>
             T
@@ -361,7 +669,7 @@ exports[`Testing AssembledScheduleCard component > Properly renders schedule car
           </div>
         </div>
         <div
-          class="sc-ksBlkl gxcKTZ"
+          class="c2"
         >
           <header>
             F
