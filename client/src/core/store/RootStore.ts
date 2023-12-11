@@ -5,6 +5,7 @@ import ClassSchedulesStore from "./ClassSchedulesStore"
 import ClassesStore from "./ClassesStore"
 import UIStore from "./UIStore"
 import AuthStore from "./AuthStore"
+
 class RootStore {
 	uiStore: IUIStore
 	classesStore: IClassesStore
@@ -22,7 +23,7 @@ class RootStore {
 }
 
 configure({
-    enforceActions: "never"
+  enforceActions: "never"
 })
 
 export default RootStore

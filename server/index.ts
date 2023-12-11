@@ -40,7 +40,7 @@ app.get("/", async (req: Request, res: Response) => {
 // ======== Auth-related ========
 
 app.post("/auth/register", async (req: Request,  res: Response, next: NextFunction) => {
-  logger.debug("NEW REGISTER\n", req.body)
+  logger.debug("NEW REGISTER: ", req.body.login)
   
   const login = req.body?.login
   const password = req.body?.password

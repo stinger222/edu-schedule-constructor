@@ -3,7 +3,7 @@ A simple app that can make ugly weekly schedule look ~~even uglier~~ more pleasa
 <br/>
 
 ## Demo
-App deployed [here](http://vexon.beget.tech/#/auth/login) _(if I paid for hosting)_, check it out if you interested trying it yourself!
+App deployed [here](http://vexon.beget.tech/#/auth/login) _(if I paid for hosting)_, so check it out if you interested trying it yourself!
 
 ## Preview
 

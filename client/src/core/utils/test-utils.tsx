@@ -3,10 +3,10 @@ import { HashRouter } from "react-router-dom"
 import { ThemeProvider } from "styled-components"
 import { render, RenderOptions } from "@testing-library/react"
 import { DarkTheme } from "../style/themes/Dark"
-import RootStore from "../store/RootStore"
+import MockRootStore from "../store/__mocks__/MockRootStore"
 
 const AllTheProviders = ({ children }: { children: ReactElement }) => {
-	const rootStore = new RootStore()
+	const rootStore = new MockRootStore()
 	const TestStoreContext = React.createContext<typeof rootStore>(rootStore)
 
 	return (
@@ -23,8 +23,6 @@ const AllTheProviders = ({ children }: { children: ReactElement }) => {
 const customRender = (ui: React.ReactElement, options?: Omit<RenderOptions, "queries">) => {
 	return render(ui, { wrapper: AllTheProviders, ...options})
 }
-
-export const wait = (ms: number = 50) => new Promise(res => setTimeout(res, ms))
 
 export * from "@testing-library/react"
 export { customRender as render }

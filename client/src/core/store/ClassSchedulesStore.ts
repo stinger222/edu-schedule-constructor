@@ -16,8 +16,8 @@ class ClassSchedulesStore implements IClassSchedulesStore {
 		makeAutoObservable(this)
 	}
 
-  set classSchedules(classSchedules1: IClassSchedule[]) {
-    this._classSchedules = classSchedules1.map((sch: IClassSchedule) => {
+  set classSchedules(newClassSchedules: IClassSchedule[]) {
+    this._classSchedules = newClassSchedules.map((sch: IClassSchedule) => {
       return ClassSchedulesStore.formatClassScheduleObject(sch)
     })
   }

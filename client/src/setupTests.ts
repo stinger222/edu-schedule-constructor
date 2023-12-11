@@ -1,38 +1,22 @@
 
 import "@testing-library/jest-dom"
+import "jest-styled-components"
 
-const CRUD_mock =  vi.fn().mockReturnValue(Promise.resolve({
-  status: 200,
-  data: {
-    classes: [],
-    classSchedules: [],
-    assembledSchedules: []
-  }
-}))
-
-// Global mocks:
+// Global mocks
 beforeAll(() => {
-  vi.mock("axios", () => {
-    return {
-      default: {
-        post: CRUD_mock,
-        get: CRUD_mock,
-        delete: CRUD_mock,
-        put: CRUD_mock,
-        create: vi.fn().mockReturnThis(),
-        interceptors: {
-          request: {
-            use: vi.fn(),
-            eject: vi.fn()
-          },
-          response: {
-            use: vi.fn(),
-            eject: vi.fn()
-          }
-        }
-      }
-    }
-  })
+  // vi.mock("", () => mockRootStore)
+  
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: vi.fn().mockImplementation((query: any) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn()
+  }))
+})
   
   // global.console.log = () => undefined
   global.console.warn = () => undefined
