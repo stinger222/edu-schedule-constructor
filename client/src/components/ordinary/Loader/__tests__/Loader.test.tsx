@@ -1,5 +1,5 @@
-import { render } from "../../../core/utils/test-utils"
-import Loader from "./Loader"
+import { render } from "../../../../core/utils/test-utils"
+import Loader from "../Loader"
 
 describe("Testing Loader component", () => {
   it("Renders Loader component", () => {

@@ -1,6 +1,6 @@
 
-import { render } from "../../../core/utils/test-utils"
-import Header from "./Header"
+import { render } from "../../../../core/utils/test-utils"
+import Header from "../Header"
 
 describe("Rendering different valiants of Header", () => {
 	it("Renders Header with NavBar and BurgerButton", () => {

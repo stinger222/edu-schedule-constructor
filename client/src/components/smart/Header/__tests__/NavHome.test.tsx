@@ -1,5 +1,5 @@
 import { act, render } from "../../../../core/utils/test-utils"
-import NavHome from "./NavHome"
+import NavHome from "../NavHome/NavHome"
 
 describe("Testing NavHome component", () => {
 	it("Renders NavHome", () => {

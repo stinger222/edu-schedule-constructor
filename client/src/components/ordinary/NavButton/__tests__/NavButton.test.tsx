@@ -1,6 +1,6 @@
 import { act } from "react-dom/test-utils"
-import { fireEvent, render } from "../../../core/utils/test-utils"
-import NavButton from "./NavButton"
+import { fireEvent, render } from "../../../../core/utils/test-utils"
+import NavButton from "../NavButton"
 
 describe("Testing NavButton component", () => {
   it("Renders NavButton component", () => {

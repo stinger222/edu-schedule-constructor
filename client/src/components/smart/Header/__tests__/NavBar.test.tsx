@@ -1,7 +1,6 @@
 import { formatNumber } from "../../../../core/utils/stringUtils"
 import { render } from "../../../../core/utils/test-utils"
-import NavBar from "./NavBar"
-
+import NavBar from "../NavBar/NavBar"
 
 describe("Testing NavBar component", () => {
 	it("Checks that correct day with correct date is selected", () => {
@@ -16,4 +15,3 @@ describe("Testing NavBar component", () => {
 			.toBe(formatNumber(new Date().getDate()))
 	})
 })
-

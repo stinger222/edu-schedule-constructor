@@ -1,9 +1,9 @@
 import { useContext } from "react"
 import { StoreContext } from "../../../.."
-import i18n from "../../../../core/configs/i18next"
 import { act, fireEvent, render, renderHook, screen } from "../../../../core/utils/test-utils"
+import i18n from "../../../../core/configs/i18next"
 import Dropdown from "../../Dropdown/Dropdown"
-import BurgerButton from "./BurgerButton"
+import BurgerButton from "../BurgerButton/BurgerButton"
 
 const t = i18n.t
 

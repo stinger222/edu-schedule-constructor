@@ -1,5 +1,5 @@
-import { render } from "../../../core/utils/test-utils"
-import TimeRange from "./TimeRange"
+import { render } from "../../../../core/utils/test-utils"
+import TimeRange from "../TimeRange"
 
 describe("Testing TimeRange component", () => {
   it("Renders TimeRange component", () => {

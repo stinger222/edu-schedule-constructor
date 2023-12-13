@@ -1,6 +1,5 @@
-import { cleanup, render, screen } from "../../../core/utils/test-utils"
-import Timeline from "./Timeline"
-
+import { cleanup, render, screen } from "../../../../core/utils/test-utils"
+import Timeline from "../Timeline"
 
 describe("Testing Timeline render with different props", () => {
 	it("Renders Timeline with valid props", () => {

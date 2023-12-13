@@ -1,6 +1,6 @@
-import React, {ComponentProps} from "react"
-import { render } from "../../../core/utils/test-utils"
-import ClassScheduleCard from "./ClassScheduleCard"
+import { ComponentProps } from "react"
+import ClassScheduleCard from "../ClassScheduleCard"
+import { render } from "../../../../core/utils/test-utils"
 
 type Props = ComponentProps<typeof ClassScheduleCard>
 

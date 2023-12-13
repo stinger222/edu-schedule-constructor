@@ -1,6 +1,6 @@
-import i18n from "../../../core/configs/i18next"
-import { render, screen } from "../../../core/utils/test-utils"
-import ClassCard from "./ClassCard"
+import { render, screen } from "../../../../core/utils/test-utils"
+import i18n from "../../../../core/configs/i18next"
+import ClassCard from "../ClassCard"
 
 const t = i18n.t
 
