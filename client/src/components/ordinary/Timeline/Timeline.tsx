@@ -15,7 +15,7 @@ const Timeline = ({ startTime, endTime }: IProps) => {
   const startDate = parseTimeStringToDate(startTime)
   const endDate = parseTimeStringToDate(endTime)
 
-  const isActive = isDateInRange(new Date, startDate, endDate)
+  const isActive = isDateInRange(new Date(), startDate, endDate)
 
 	return (
 		<StyledTimeline className={isActive ? "active" : ""}>
@@ -31,4 +31,4 @@ const Timeline = ({ startTime, endTime }: IProps) => {
 	)
 }
 
-export default React.memo(Timeline)
+export default Timeline

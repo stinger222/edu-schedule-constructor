@@ -2,7 +2,7 @@ import { StyledLoader } from "./Loader.styled"
 
 const Loader = () => {
   return (
-    <StyledLoader />
+    <StyledLoader data-testid="loader"/>
   )
 }
 

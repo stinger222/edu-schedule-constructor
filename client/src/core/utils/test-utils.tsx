@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components"
 import { render, RenderOptions } from "@testing-library/react"
 import { DarkTheme } from "../style/themes/Dark"
 import MockRootStore from "../store/__mocks__/MockRootStore"
+import "../configs/i18next"
 
 const AllTheProviders = ({ children }: { children: ReactElement }) => {
 	const rootStore = new MockRootStore()

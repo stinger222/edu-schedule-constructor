@@ -1,25 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Testing Timeline render with different props > Renders Timeline with invalid props 1`] = `
-{
-  "$$typeof": Symbol(react.memo),
-  "compare": null,
-  "type": [Function],
-}
-`;
+exports[`Testing Timeline render with different props > Renders Timeline with invalid props 1`] = `[Function]`;
 
-exports[`Testing Timeline render with different props > Renders Timeline with valid props 1`] = `
-{
-  "$$typeof": Symbol(react.memo),
-  "compare": null,
-  "type": [Function],
-}
-`;
+exports[`Testing Timeline render with different props > Renders Timeline with valid props 1`] = `[Function]`;
 
-exports[`Testing Timeline render with different props > Renders Timeline with valid props, but values not formatted 1`] = `
-{
-  "$$typeof": Symbol(react.memo),
-  "compare": null,
-  "type": [Function],
-}
-`;
+exports[`Testing Timeline render with different props > Renders Timeline with valid props, but values not formatted 1`] = `[Function]`;
