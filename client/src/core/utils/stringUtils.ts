@@ -1,5 +1,3 @@
-import { IClassSchedule } from "../types/types"
-
 export const formatNumbers = (numbers: number[]): string[] => {
 	return numbers.map(number => formatNumber(number))
 }

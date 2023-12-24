@@ -10,7 +10,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 /**
  * This is container for Input component.
  * 
- * As all other wrappers, it can be used ONLY inside FormProvider.
+ * As all other containers, it's need FormProvider to work.
  * 
  * @param name - name for "@react-hook-form" that used for registration
  * @param data - data to show in dropdown

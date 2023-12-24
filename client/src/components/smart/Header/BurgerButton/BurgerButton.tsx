@@ -1,7 +1,6 @@
-import { useContext, useRef } from "react"
+import { useContext } from "react"
 import { StoreContext } from "../../../.."
 import { StyledBurgerButton } from "./BurgerButton.styled"
-import Dropdown from "../../Dropdown/Dropdown"
 
 interface IProps {
 	style?: React.CSSProperties
@@ -10,7 +9,6 @@ interface IProps {
 
 const BurgerButton = ({ style, onClick }: IProps) => {
 	const { uiStore } = useContext(StoreContext)
-	const burgerButtonRef = useRef()
 
 	const defaultOnClick = () => {
 		uiStore.toggleDropdown()

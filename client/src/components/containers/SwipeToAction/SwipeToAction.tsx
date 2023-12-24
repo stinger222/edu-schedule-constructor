@@ -26,23 +26,23 @@ interface ISwipeToActionExtensions {
 //   LeftActionLabel: React.FC<IActionLabelProps>
 // })
 
-interface IProps {
+type Props = {
   children: ReactNode,
   onLeftSwipe?: () => void,
   onRightSwipe?: () => void,
   RightActionLabel?: React.FC<IActionLabelProps>
   LeftActionLabel?: React.FC<IActionLabelProps>
-}
+} & ISwipeToActionExtensions
 
-const SwipeToAction: React.FC<IProps> & ISwipeToActionExtensions = ({
+const SwipeToAction = ({
   children,
   onLeftSwipe,
   onRightSwipe,
   RightActionLabel,
   LeftActionLabel
-}) => {
-	const [containerRef, setContainerRef] = useState<any>(null)
-	const wrapperRef = (node: HTMLDivElement | null) => setContainerRef(node)
+}: Props) => {
+	const [containerRef, setContainerRef] = useState<any>(null) // TODO: refactor
+	const wrapperRef = (node: HTMLDivElement | null) => setContainerRef(node) // wtf?
 
 	const [{ x }, api] = useSpring(() => ({
 		from: {

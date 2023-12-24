@@ -1,9 +1,9 @@
 import { useContext } from "react"
+import { useTranslation } from "react-i18next"
+import { StyledDay } from "./Day.styled"
+import { StoreContext } from "../../../.."
 import { WeekUtils } from "../../../../core/utils/dateTimeUtils"
 import { IAssembledDay, IClassSchedule } from "../../../../core/types/types"
-import { StoreContext } from "../../../.."
-import { StyledDay } from "./Day.styled"
-import { useTranslation } from "react-i18next"
 
 interface IProps {
 	dayIndex: number,

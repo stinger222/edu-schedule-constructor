@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { observer } from "mobx-react"
 import { Link, useNavigate } from "react-router-dom"
 import { Trans, useTranslation } from "react-i18next"

@@ -16,7 +16,7 @@ const ScheduleItemsList = () => {
   const stores = useContext(StoreContext)
   const { t } = useTranslation()
   
-  const activeAssembledSchedule = stores.assembledSchedulesStore.getActiveSchedule()
+  const activeAssembledSchedule = stores.assembledSchedulesStore.getResolvedActiveScheduleId()
   const selectedDayIndex = stores.uiStore.selectedDayIndex
   
   const [classes, classSchedule] = getDataForSelectedDay(activeAssembledSchedule, selectedDayIndex, stores)
@@ -52,7 +52,7 @@ export default observer(ScheduleItemsList)
  * @param selectedDayIndex - Used to select what day will be rendered on the main page
  * @param stores - Is root store that combines all other mobx stores
  * 
- * @returns Array of class objects, data from witch will be used to rednder ClassCards on the right,
+ * @returns Array of class objects, data from witch will be used to render ClassCards on the right,
  * and classSchedule object that will be used to render Timeline segments on the left
 */
 const getDataForSelectedDay = (

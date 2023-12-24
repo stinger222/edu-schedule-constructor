@@ -110,7 +110,7 @@ class MockAssembledSchedulesStore implements IAssembledSchedulesStore {
   removeSchedule = vi.fn()
   updateSchedule = vi.fn()
   activateSchedule = vi.fn()
-  getActiveSchedule = vi.fn()
+  getResolvedActiveScheduleId = vi.fn()
   getById = vi.fn()
   dayIsEmptyOrUndefined = vi.fn()
 }

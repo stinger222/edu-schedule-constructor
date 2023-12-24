@@ -47,9 +47,7 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
     }
 
     api
-      .post("users/me/assembled-schedules", {
-        ...newFormattedSchedule
-      })
+      .post("users/me/assembled-schedules", newFormattedSchedule)
       .then((response: AxiosResponse<{assembledSchedules: IAssembledSchedule[]}>) => {
         this.assembledSchedules = response.data.assembledSchedules
         console.log("Assembled schedule added successfully")
@@ -113,7 +111,7 @@ class AssembledSchedulesStore implements IAssembledSchedulesStore {
   }
 
   // "get" doesn't really fit here, but neither anything else I can think of...
-  getActiveSchedule(): IAssembledSchedule | null {
+  getResolvedActiveScheduleId(): IAssembledSchedule | null {
     // it's can only be null if activeScheduleUid === null, or activeScheduleUid is referring deleted schedule
     const activeSchedule = this.assembledSchedules.find(s => s.uid === this.activeScheduleUid) || null
     

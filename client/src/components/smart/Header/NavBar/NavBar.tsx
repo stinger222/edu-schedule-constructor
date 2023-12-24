@@ -1,15 +1,15 @@
-import { useContext } from "react"
 import { observer } from "mobx-react"
+import { useContext } from "react"
+import { useTranslation } from "react-i18next"
+import NavButton from "../../../ordinary/NavButton/NavButton"
 import { StoreContext } from "../../../.."
 import { StyledNavBar } from "./NavBar.styled"
-import NavButton from "../../../ordinary/NavButton/NavButton"
 import { getCurrentWeekDates, WeekUtils } from "../../../../core/utils/dateTimeUtils"
-import { useTranslation } from "react-i18next"
 
 const NavBar = () => {
 	const { uiStore } = useContext(StoreContext)
 
-	const { t, i18n } = useTranslation()
+	const { i18n } = useTranslation()
   const lang = i18n.resolvedLanguage as "ru" | "en"
 
 	const currentWeekDates = getCurrentWeekDates()

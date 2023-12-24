@@ -17,7 +17,6 @@ interface IProps {
 }
 
 const Header: React.FC<IProps> & IHeaderExtensions = ({ children }) => {
-
 	return (
 		<StyledHeader className="page-header">
 			{children}

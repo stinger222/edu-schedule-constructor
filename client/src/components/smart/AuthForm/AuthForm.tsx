@@ -9,7 +9,6 @@ import { StoreContext } from "../../.."
 import { StyledAuthForm } from "./AuthForm.styled"
 import { AuthFormConfig } from "../../../core/types/types"
 
-
 interface IFormData { login: string, password: string, confirmPassword?: string }
 
 interface IProps {

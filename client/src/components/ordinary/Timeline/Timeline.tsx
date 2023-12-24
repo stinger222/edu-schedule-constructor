@@ -1,4 +1,3 @@
-import React from "react"
 import { StyledTimeline } from "./Timeline.styled."
 import { formatTimeString } from "../../../core/utils/stringUtils"
 import { isDateInRange, parseTimeStringToDate } from "../../../core/utils/dateTimeUtils"

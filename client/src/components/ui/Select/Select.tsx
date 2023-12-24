@@ -1,5 +1,4 @@
 import { SelectProps } from "@mantine/core"
-import React from "react"
 import { StyledSelect } from "./Select.styled"
 
 

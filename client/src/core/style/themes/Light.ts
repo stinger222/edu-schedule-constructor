@@ -79,6 +79,8 @@ export const LightTheme: ITheme = {
     background: "#DCDCDC"
   },
  
+  // =============== Outlined style ================
+
   message: {
     error: {
       header: "#F22F2F",

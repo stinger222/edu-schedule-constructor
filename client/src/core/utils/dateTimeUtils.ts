@@ -1,7 +1,6 @@
 import { Cases, weekDates } from "../types/types"
 import { formatNumber } from "./stringUtils"
 
-
 interface IDate {
   ru: {
     short: readonly string[],

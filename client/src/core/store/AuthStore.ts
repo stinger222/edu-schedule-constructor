@@ -24,7 +24,6 @@ class AuthStore implements IAuthStore {
 
   setJWT(jwt: string) {
     this.JWT = jwt
-    localStorage.removeItem(AuthStore.JWTLocalStorageKey)
     localStorage.setItem(AuthStore.JWTLocalStorageKey, jwt)
   }
 
@@ -38,7 +37,8 @@ class AuthStore implements IAuthStore {
       .then((response: AxiosResponse<{isSessionValid: boolean}>) => {
         this.setSignedIn(response.data?.isSessionValid || false)
         console.log("User successfully signed-in using stored jwt!")
-      }).catch((err) => {
+      })
+      .catch((err) => {
         this.setSignedIn(false)
         // console.warn("User not signed-in: token has expired or it was malformed")
         console.warn("User not signed in: ", err.message)

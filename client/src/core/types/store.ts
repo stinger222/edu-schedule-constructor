@@ -56,10 +56,8 @@ export interface IAssembledSchedulesStore extends IRestoreable {
    * but if there is no "active" schedule, it will try to activate first one from the store and return IT to you,
    * 
    * and ONLY if there is no assembled schedules whatsoever, then `null` will be returned
-   * 
-   * _"get" perfectly fits here..._
    */
-  getActiveSchedule(): IAssembledSchedule | null,
+  getResolvedActiveScheduleId(): IAssembledSchedule | null,
 
   /**
    * This method checks if passed day in passed schedule is either:

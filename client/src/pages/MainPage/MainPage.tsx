@@ -9,10 +9,10 @@ import ErrorFallback from "../../components/ordinary/ErrorFallback/ErrorFallback
 import Container from "../../components/containers/Container/Container"
 import Header from "../../components/smart/Header/Header"
 
-import i18n from "../../core/configs/i18next"
 import { StyledMainPage } from "./MainPage.styled"
-import Loader from "../../components/ordinary/Loader/Loader"
+import i18n from "../../core/configs/i18next"
 import useAuth from "../../core/hooks/useAuth"
+import Loader from "../../components/ordinary/Loader/Loader"
 
 const MainPage = () => {
   const stores = useContext(StoreContext)
@@ -42,15 +42,14 @@ const MainPage = () => {
           <br/><br/>
         </> }
 
-          { dataIsLoading ? <Loader /> : 
-            <ErrorBoundary
-              FallbackComponent={ErrorFallback}
-              resetKeys={[lang, stores.uiStore.selectedDayIndex, stores.assembledSchedulesStore.assembledSchedules]}
-            >
-              <ScheduleItemsList />
-            </ErrorBoundary>
-          }
-
+        { dataIsLoading ? <Loader /> : 
+          <ErrorBoundary
+            FallbackComponent={ErrorFallback}
+            resetKeys={[lang, stores.uiStore.selectedDayIndex, stores.assembledSchedulesStore.assembledSchedules]}
+          >
+            <ScheduleItemsList />
+          </ErrorBoundary>
+        }
 			</Container>
 		</StyledMainPage>
 	)
