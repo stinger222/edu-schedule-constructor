@@ -3,7 +3,7 @@ A simple app that can make ugly weekly schedule look ~~even uglier~~ more pleasa
 <br/>
 
 ## Demo
-App deployed [here](http://vexon.beget.tech/#/auth/login) _(if I paid for hosting)_, so check it out if you interested trying it yourself!
+App deployed [here](https://vexon.beget.tech/#/auth/login) _(if I paid for hosting)_
 
 ## Preview
 
@@ -11,7 +11,7 @@ App deployed [here](http://vexon.beget.tech/#/auth/login) _(if I paid for hostin
 ![Assembled](https://github.com/stinger222/edu-schedule-constructor/assets/39219491/0d3b006b-001f-456e-8468-1ffa7ee1a247)
 
 
-## Tech Stack <i><sub><sup>(❗click "►" to expand❗)</sup></sub></i>
+## Stack <i><sub><sup>(❗click "►" to expand❗)</sup></sub></i>
  <b>▷ Typescript</b>
 
  <b>▷ Docker & Docker Compose</b>
@@ -48,7 +48,6 @@ App deployed [here](http://vexon.beget.tech/#/auth/login) _(if I paid for hostin
    - Unit Testing
      > (React components & utility functions) 
    - Simple snapshot testing
-   - Simple End2End testing (⚠️ **Not Yet.** _working on..._ ⚠️)
 </details>
 
  <details>
