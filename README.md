@@ -11,21 +11,21 @@ App deployed [here](https://vexon.beget.tech/#/auth/login) _(if I paid for hosti
 ![Assembled](https://github.com/stinger222/edu-schedule-constructor/assets/39219491/0d3b006b-001f-456e-8468-1ffa7ee1a247)
 
 
-## Stack <i><sub><sup>(❗click "►" to expand❗)</sup></sub></i>
+## Stack
  <b>▷ Typescript</b>
 
  <b>▷ Docker & Docker Compose</b>
 
  <b>▷ MongoDB</b>
  
- <details>
+ <details open>
    <summary><b>Express</b></summary>
   
    - JWT
      > For user authentication
  </details>
 
- <details>
+ <details open>
    <summary><b>React</b></summary>
   
    - MobX
@@ -42,7 +42,7 @@ App deployed [here](https://vexon.beget.tech/#/auth/login) _(if I paid for hosti
      > For data fetching
 </details>
 
-<details>
+<details open>
   <summary><b>Vitest/Jest</b></summary>
   
    - Unit Testing
@@ -50,7 +50,7 @@ App deployed [here](https://vexon.beget.tech/#/auth/login) _(if I paid for hosti
    - Simple snapshot testing
 </details>
 
- <details>
+ <details open>
    <summary><b>CSS</b></summary>
 
    - Styled Components
